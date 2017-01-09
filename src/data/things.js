@@ -1,0 +1,1 @@
+module.exports = ['waffles','pancakes','videogames','Arcadia Bay','gays','Himiko','the truth','the Mushroom Kingdom','Hyrule','memes','Beach City','this cat','this dog','the Triforce','bacon','halloween','anime','the journal','the blue key','eggs','goombas'];
