@@ -102,7 +102,7 @@ var makePost = function() {
 	}
 
 	var getPhotos = new photoGetter(query,{
-		debug: true
+		debug: false
 	});
 
 	$post.addClass('layout-'+layout);
