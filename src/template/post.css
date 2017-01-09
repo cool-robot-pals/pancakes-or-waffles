@@ -69,19 +69,23 @@ post.layout-1 x1 {
 
 post.layout-0 choices,
 post.layout-1 choices {
-	top: auto;
+	top: 71%;
 }
 
 post.layout-0 choices choice,
 post.layout-1 choices choice {
-	width: 30%;
-	margin: 7% 10%;
+	width: 40%;
+	margin: 7% 0;
 	float: left;
+	margin-right: 0;
+	margin-left: 10%;
 }
 
 post.layout-0 choices choice:first-child,
 post.layout-1 choices choice:first-child {
 	text-align: right;
+	margin-left: 0;
+	margin-right: 10%;
 }
 
 post.layout-2 x1 {
