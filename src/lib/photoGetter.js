@@ -21,18 +21,18 @@ module.exports = function(query,params) {
 			dataType: 'json',
 			data: {
 				q: query
-				   + ' screenshot -site:deviantart.com  -site:youtube.com',
+				   + ' gameplay screenshot -site:deviantart.com  -site:youtube.com',
 				safe: 'medium',
 				searchType: 'image',
 				imgSize: 'xlarge',
-				imgType: random(['photo','face']),
+				imgType: 'photo',
 				cx: env.googleSearchCx,
 				key: env.googleSearchKey,
 			}
 		}).done(function(response){
 			dfd.resolve([
-				response.items[Math.floor(Math.random() * response.items.length)].link,
-				response.items[Math.floor(Math.random() * response.items.length)].link
+				response.items[Math.floor(Math.random() * 15)].link,
+				response.items[Math.floor(Math.random() * 15)].link
 			]);
 		});
 	}
