@@ -1,0 +1,162 @@
+body {
+	background: #222;
+	-webkit-font-smoothing: antialiased;
+	font-size: 35px;
+}
+
+body, body * {
+	display: block;
+	margin: 0;
+	padding: 0;
+	line-height: 1;
+}
+
+script {
+	display: none;
+}
+
+post {
+	display:block;
+	width: 1280px;
+	height: 720px;
+	background: #000;
+	position: relative;
+	overflow: hidden;
+	float: left;
+	background-image: url(../assets/bg.png);
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	color: #fff;
+}
+
+post > * {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 10;
+	background-position: center center;
+	background-size: cover;
+}
+
+post > bg {
+	z-index: 9;
+}
+
+post.layout-1,
+post.layout-0 {
+	font-family: 'Patrick Hand';
+}
+
+post.layout-0 x1 {
+	background-image: url(../assets/lis-serious.png);
+}
+
+post.layout-0 bg {
+	opacity: .5;
+	-webkit-transform(scale(1.1));
+}
+
+post.layout-0 choice {
+	text-transform: uppercase;
+}
+
+post.layout-1 x1 {
+	background-image: url(../assets/lis.png);
+}
+
+post.layout-0 choices,
+post.layout-1 choices {
+	top: auto;
+}
+
+post.layout-0 choices choice,
+post.layout-1 choices choice {
+	width: 30%;
+	margin: 7% 10%;
+	float: left;
+}
+
+post.layout-0 choices choice:first-child,
+post.layout-1 choices choice:first-child {
+	text-align: right;
+}
+
+post.layout-2 x1 {
+	background-image: url(../assets/bioshock.png);
+}
+
+post.layout-2 {
+	font-size: 45px;
+	font-family: "Poiret One";
+	text-transform: uppercase;
+	color: #eae6c0;
+	text-shadow: 2px 2px 1px #000;
+}
+
+post.layout-2 choices {
+	margin: auto;
+	top: 44%;
+}
+
+post.layout-2 choice {
+	display: block;
+	width: 40%;
+	margin: 5%;
+	float: left;
+	text-align: center;
+}
+
+post.layout-3 x1 {
+	background-image: url(../assets/fallout.png);
+}
+
+post.layout-3 {
+	font-family: 'Roboto Mono';
+	color: #3cd584;
+	font-size: 30px;
+}
+
+post.layout-3 choices {
+	top: 66%;
+	margin: 0 16%;
+}
+
+post.layout-3 choice {
+	margin-bottom: 30px;
+}
+
+post.layout-3 choice span {
+	display: inline;
+}
+
+post.layout-3 choice:before {
+	content: '[';
+	display:inline;
+}
+
+post.layout-3 choice:after {
+	content: ']';
+	display:inline;
+}
+
+post.layout-4 {
+	font-family: 'Lato';
+	color: #48ea59;
+	text-shadow: 2px 2px 1px #000;
+}
+
+post.layout-4 x1 {
+	background-image: url(../assets/zelda.png);
+}
+
+post.layout-4 choices {
+	top: 77.5%;
+	left: 25%;
+}
+
+post.layout-4 choice {
+	margin-bottom: 20px;
+}
