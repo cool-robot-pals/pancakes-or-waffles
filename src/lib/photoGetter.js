@@ -30,6 +30,10 @@ module.exports = function(query,params) {
 			}
 		}).done(function(response){
 
+			response.items = response.items.filter(function(item){
+				return item.width > item.height;
+			});
+
 			var length = 15;
 			if(response.items.length < 15) length = response.items.length;
 
