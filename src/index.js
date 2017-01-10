@@ -2,23 +2,32 @@ var photoGetter = require('./lib/photoGetter.js');
 var makeColors = require('./lib/makeColors.js');
 var random = require('./lib/random.js');
 
-var capitalizeFirstLetter = function(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
 var people = require('./data/people.js');
 var things = require('./data/things.js');
 var verbs = require('./data/verbs.js');
 
-var query = '';
+var fandoms = (function(people){
+	var fandoms = [];
+	people.map(function(item){
+		if(fandoms.indexOf(item.fandom) < 0) fandoms.push(item.fandom)
+	});
+	return fandoms;
+})(people);
 
+var query = '';
 var posts = [];
 
+
+var capitalizeFirstLetter = function(string) {
+	return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 var makeChoices = function() {
 
 	var sameVerb = Math.random() > .66;
+	var crossFandom = Math.random() > .75;
 	var choices = [];
+	var lastChoiceName = '';
 
 	var makeChoice = function(params) {
 
@@ -26,33 +35,54 @@ var makeChoices = function() {
 
 		if(!params) params = {};
 
+		if(params.fandom) {
+			people = people.filter(function(item){
+				return item.fandom === params.fandom;
+			})
+		}
+
 		if(!params.verb) params.verb = random(verbs);
-		if(!params.personObject) params.personObject = random(people);
 		if(!params.thing) params.thing = random(things);
 		if(!params.use) params.use = random([0,1]);
+		if(!params.personObject) {
+			params.personObject = random(people);
+			/*this is awful*/
+			if(lastChoiceName === params.personObject.name) {
+				params.personObject = random(people);
+				if(lastChoiceName === params.personObject.name) {
+					params.personObject = random(people);
+				}
+			}
+		}
 
 		params.person = capitalizeFirstLetter(params.personObject.name);
 		params.verb = params.verb.replace('$1',random(things));
 
-		if (params.use === 0) query = params.personObject.search;
+		if (params.use === 0) {
+			query = params.personObject.search;
+			lastChoiceName = params.personObject.name;
+		}
 
 		return capitalizeFirstLetter(params.verb)+' '+params[useables[params.use]];
 
 	}
 
+	var verb = undefined;
+	var fandom = undefined;
+	if(!crossFandom) {
+		fandom = random(fandoms);
+	}
 	if(sameVerb) {
 		var verb = random(verbs);
-		choices.push(makeChoice({
-			verb: verb
-		}));
-		choices.push(makeChoice({
-			verb: verb
-		}));
 	}
-	else {
-		choices.push(makeChoice());
-		choices.push(makeChoice());
-	}
+	choices.push(makeChoice({
+		verb: verb,
+		fandom: fandom
+	}));
+	choices.push(makeChoice({
+		verb: verb,
+		fandom: fandom
+	}));
 
 	return choices;
 
@@ -94,7 +124,7 @@ var makePost = function() {
 
 	var $post = $('<post></post>');
 
-	var layout = random([0,1,2,3,4]);
+	var layout = random([4]);
 	var choices = makeChoices();
 
 	if(!query) {
