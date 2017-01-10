@@ -124,7 +124,7 @@ var makePost = function() {
 
 	var $post = $('<post></post>');
 
-	var layout = random([4]);
+	var layout = random([0,1,2,3,4]);
 	var choices = makeChoices();
 
 	if(!query) {
