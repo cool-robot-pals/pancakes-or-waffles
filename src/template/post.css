@@ -92,6 +92,10 @@ post.layout-2 x1 {
 	background-image: url(../assets/bioshock.png);
 }
 
+post.layout-2 bg {
+	opacity: .75;
+}
+
 post.layout-2 {
 	font-size: 45px;
 	font-family: "Poiret One";
