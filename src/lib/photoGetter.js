@@ -23,7 +23,7 @@ module.exports = function(query,params) {
 				   + ' gameplay screenshot -site:deviantart.com  -site:youtube.com',
 				safe: 'medium',
 				searchType: 'image',
-				imgSize: 'xlarge',
+				imgSize: 'xxlarge',
 				imgType: 'photo',
 				cx: env.googleSearchCx,
 				key: env.googleSearchKey,
