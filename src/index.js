@@ -22,7 +22,7 @@ var makeChoices = function() {
 
 	var makeChoice = function(params) {
 
-		var useables = ['person','person','thing'];
+		var useables = ['person','thing'];
 
 		if(!params) params = {};
 
