@@ -17,7 +17,7 @@ var posts = [];
 
 var makeChoices = function() {
 
-	var sameVerb = Math.random() > .75;
+	var sameVerb = Math.random() > .66;
 	var choices = [];
 
 	var makeChoice = function(params) {
