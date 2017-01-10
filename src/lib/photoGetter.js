@@ -31,7 +31,7 @@ module.exports = function(query,params) {
 		}).done(function(response){
 
 			response.items = response.items.filter(function(item){
-				return item.width > item.height;
+				return item.image.width > item.image.height;
 			});
 
 			var length = 15;
