@@ -132,9 +132,10 @@ var makePost = function() {
 	4 - zelda
 	5 - saints row-ish
 	6 - quantic dream-ish
+	7 - mass effect
 	*/
 
-	var layout = random([0,1,3,4,5,6]);
+	var layout = random([0,1,3,4,5,6,7]);
 	var choices = makeChoices();
 
 	if(!query) {
