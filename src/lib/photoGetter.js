@@ -34,8 +34,8 @@ module.exports = function(query,params) {
 				return item.image.width > item.image.height;
 			});
 
-			var length = 15;
-			if(response.items.length < 15) length = response.items.length;
+			var length = 30;
+			if(response.items.length < 30) length = response.items.length;
 
 			dfd.resolve([
 				response.items[Math.floor(Math.random() * length)].link
