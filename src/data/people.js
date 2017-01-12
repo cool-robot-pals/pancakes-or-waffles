@@ -25,6 +25,8 @@ module.exports = [
 	{name:'Zoe', search:'dreamfall zoe', fandom:'df'},
 	{name:'Shepard', search:'femshep mass effect', fandom:'me'},
 	{name:'Liara', search:'liara mass effect', fandom:'me'},
+	{name:'Garrus', search:'garrus mass effect', fandom:'me'},
+	{name:'Miranda', search:'miranda mass effect', fandom:'me'},
 	{name:'Tali', search:'mass effect', fandom:'me'},
 	{name:'Kian', search:'dreamfall', fandom:'df'},
 	{name:'Elisabeth', search:'elisabeth bioshock infinite', fandom:'bs'},
