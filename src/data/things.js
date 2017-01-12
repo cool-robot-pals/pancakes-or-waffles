@@ -1,1 +1,1 @@
-module.exports = ['waffles','pancakes','videogames','Arcadia Bay','Blackwell academy','gays','Himiko','the Mushroom Kingdom','Hyrule','memes','this cat','this dog','the Triforce','halloween','anime','the journal'];
+module.exports = ['waffles','pancakes','videogames','Arcadia Bay','Blackwell academy','gays','Himiko','the Mushroom Kingdom','Hyrule','memes','this cat','this dog','this shark','cats','dogs','sharks','the Triforce','halloween','anime','the amulet','xmas','the journal'];
