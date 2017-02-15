@@ -11,7 +11,7 @@
   "license": "GPL-3.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lawwrr/tough-choices-bot.git"
+    "url": "https://github.com/walaura/tough-choices-bot.git"
   },
   "author": "Laura mayhem",
   "dependencies": {
@@ -27,6 +27,6 @@
     "raw-loader": "^0.5.1",
     "twit": "^2.2.5",
     "webpack-stream": "^3.2.0",
-    "webshot": "github:lawwrr/node-webshot"
+    "webshot": "github:walaura/node-webshot"
   }
 }
