@@ -43,4 +43,4 @@ module.exports = function(query,params) {
 		});
 	}
 	return dfd.promise();
-}
+};

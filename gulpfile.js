@@ -1,37 +1,83 @@
-var gulp = require('gulp');
-var webpack = require('webpack-stream');
-var uglify = require('gulp-uglify');
-var path = require('path');
-var webshot = require('gulp-webshot');
-var fs = require('fs-extra');
-var gutil = require("gulp-util");
+const gulp = require('gulp');
+const webpackStream = require('webpack-stream');
+const webpack = require('webpack');
+const path = require('path');
+const webshot = require('gulp-webshot');
+const fs = require('fs-extra');
+const gutil = require('gulp-util');
 
-var env = require('./src/env.js');
+const env = require('./src/env.js');
+const pkg = require('./package.json');
 
 var webpackConfig = {
+	devtool: "#inline-source-map",
+	entry: {
+		vendor: ['react','react-dom','lodash'],
+		app: 'main'
+	},
 	plugins: [
-		new webpack.webpack.DefinePlugin((function(){
+		new webpack.DefinePlugin((function(){
 			var rt = {};
 			Object.keys(process.env).map(function(key){
 				rt['process.env.'+key] = '"'+process.env[key]+'"';
-			})
+			});
 			return rt;
-		})())
+		})()),
+		new webpack.optimize.CommonsChunkPlugin({
+			name: 'vendor',
+			filename: 'vendor.js',
+			minChunks : 2
+		})
 	],
 	module: {
-		loaders: [
+		rules: [
 			{
-				test: /\.css$/, loader: "raw"
+				test: /\.css$/,
+				include: [
+					path.resolve(__dirname, 'src/component')
+				],
+				loaders: [
+					'style-loader?sourceMap',
+					'css-loader?modules&importLoaders=1&localIdentName=tc-[hash:base64:10]',
+					'./tools/randomCssLoader'
+				]
 			},
 			{
-				test: /\.mustache$/, loader: "raw"
+				test: /\.(png|jpg)$/,
+				use: [{
+					loader: 'url-loader',
+					options: { limit: 10 }
+				}],
 			},
 			{
-				test: /.js?$/,
-				loader: 'babel-loader',
-				query: {
-					presets: ['es2015']
-				}
+				test: /\.(mustache|css)$/,
+				exclude: [
+					/node_modules/,
+					path.resolve(__dirname, 'src/component')
+				],
+				use: ['raw-loader']
+			},
+			{
+				test: /.jsx?$/,
+				use: [{
+					loader: 'babel-loader',
+					query: {
+						plugins: [
+							"transform-decorators-legacy",
+							"transform-object-assign"
+						],
+						presets: [
+							['react'],
+							['target', {
+								presets: ["es2015"],
+								targets: [
+									{name: "phantom", version: 2}
+								],
+								modules: false
+							}],
+						]
+					}
+				}]
 			}
 		]
 	},
@@ -41,13 +87,17 @@ var webpackConfig = {
 		libraryTarget: 'umd'
 	},
 	resolve: {
-		root: path.resolve('./src')
+		extensions: ['.js', '.jsx'],
+		modules: [
+			path.resolve('./src'),
+			'node_modules'
+		]
 	}
 };
 
 
 gulp.task('tweet',function(done){
-	var Twit = require('twit')
+	var Twit = require('twit');
 	if(env.twitterConsumerKey){
 		var T = new Twit({
 			consumer_key:         env.twitterConsumerKey,
@@ -57,7 +107,7 @@ gulp.task('tweet',function(done){
 		});
 		var b64content = fs.readFileSync('build/post.jpg', { encoding: 'base64' });
 		T.post('media/upload', { media_data: b64content }, function (err, data, response) {
-			var params = { status: '', media_ids: [data.media_id_string] }
+			var params = { status: '', media_ids: [data.media_id_string] };
 			T.post('statuses/update', params, function (err, data, response) {
 				if(err) {
 					throw new gutil.PluginError({
@@ -66,7 +116,7 @@ gulp.task('tweet',function(done){
 					});
 				}
 				else {
-					done()
+					done();
 				}
 			});
 		});
@@ -76,7 +126,7 @@ gulp.task('tweet',function(done){
 			message: 'Environment is undefined'
 		});
 	}
-})
+});
 
 
 gulp.task('webshot',function(done){
@@ -120,18 +170,24 @@ gulp.task('_makefiles',function(done){
 
 
 gulp.task('_makejs', function() {
-	return gulp.src('src/index.js')
-		.pipe(webpack(webpackConfig))
+	return gulp.src('src/main.js')
+		.pipe(webpackStream(webpackConfig,webpack))
+		.on('error', err => {
+			gutil.log('WEBPACK ERROR', err);
+		})
 		.pipe(gulp.dest('build/'));
 });
 
 
 gulp.task('watch',function() {
 	webpackConfig.watch = true;
-	return gulp.src('src/index.js')
-		.pipe(webpack(webpackConfig))
+	return gulp.src('src/main.js')
+		.pipe(webpackStream(webpackConfig,webpack))
+		.on('error', err => {
+			gutil.log('WEBPACK ERROR', err);
+		})
 		.pipe(gulp.dest('build/'));
-})
+});
 
 
 gulp.task('default',
