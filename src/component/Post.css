@@ -1,21 +1,4 @@
-body {
-	background: #222;
-	-webkit-font-smoothing: antialiased;
-	font-size: 35px;
-}
-
-body, body * {
-	display: block;
-	margin: 0;
-	padding: 0;
-	line-height: 1;
-}
-
-script {
-	display: none;
-}
-
-post {
+.post {
 	display:block;
 	width: 1280px;
 	height: 720px;
@@ -23,14 +6,13 @@ post {
 	position: relative;
 	overflow: hidden;
 	float: left;
-	background-image: url(../assets/bg.png);
 	background-size: cover;
 	background-position: center center;
 	background-repeat: no-repeat;
 	color: #fff;
 }
 
-post > * {
+.post > * {
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -41,39 +23,38 @@ post > * {
 	background-size: cover;
 }
 
-post > bg {
+.post > .bg {
 	z-index: 9;
 }
 
-post.layout-1,
-post.layout-0 {
+.post[data-layout="1"],
+.post[data-layout="0"] {
 	font-family: 'Patrick Hand';
 }
 
-post.layout-0 x1 {
-	background-image: url(../assets/lis-serious.png);
+.post[data-layout="0"] .x1 {
+	background-image: url(assets/lis-serious.png);
 }
 
-post.layout-0 bg {
+.post[data-layout="0"] .bg {
 	opacity: .5;
-	-webkit-transform(scale(1.1));
 }
 
-post.layout-0 choice {
+.post[data-layout="0"] .choice {
 	text-transform: uppercase;
 }
 
-post.layout-1 x1 {
-	background-image: url(../assets/lis.png);
+.post[data-layout="1"] .x1 {
+	background-image: url(assets/lis.png);
 }
 
-post.layout-0 choices,
-post.layout-1 choices {
+.post[data-layout="0"] .choices,
+.post[data-layout="1"] .choices {
 	top: 71%;
 }
 
-post.layout-0 choices choice,
-post.layout-1 choices choice {
+.post[data-layout="0"] .choices .choice,
+.post[data-layout="1"] .choices .choice {
 	width: 40%;
 	margin: 7% 0;
 	float: left;
@@ -81,22 +62,22 @@ post.layout-1 choices choice {
 	margin-left: 10%;
 }
 
-post.layout-0 choices choice:first-child,
-post.layout-1 choices choice:first-child {
+.post[data-layout="0"] .choices .choice:first-child,
+.post[data-layout="1"] .choices .choice:first-child {
 	text-align: right;
 	margin-left: 0;
 	margin-right: 10%;
 }
 
-post.layout-2 x1 {
-	background-image: url(../assets/bioshock.png);
+.post[data-layout="2"] .x1 {
+	background-image: url(assets/bioshock.png);
 }
 
-post.layout-2 bg {
+.post[data-layout="2"] .bg {
 	opacity: .75;
 }
 
-post.layout-2 {
+.post[data-layout="2"] {
 	font-size: 45px;
 	font-family: "Poiret One";
 	text-transform: uppercase;
@@ -104,12 +85,12 @@ post.layout-2 {
 	text-shadow: 2px 2px 1px #000;
 }
 
-post.layout-2 choices {
+.post[data-layout="2"] .choices {
 	margin: auto;
 	top: 44%;
 }
 
-post.layout-2 choice {
+.post[data-layout="2"] .choice {
 	display: block;
 	width: 40%;
 	margin: 5%;
@@ -117,70 +98,70 @@ post.layout-2 choice {
 	text-align: center;
 }
 
-post.layout-3 x1 {
-	background-image: url(../assets/fallout.png);
+.post[data-layout="3"] .x1 {
+	background-image: url(assets/fallout.png);
 }
 
-post.layout-3 {
+.post[data-layout="3"] {
 	font-family: 'Roboto Mono';
 	color: #3cd584;
 	font-size: 30px;
 }
 
-post.layout-3 choices {
+.post[data-layout="3"] .choices {
 	top: 66%;
 	margin: 0 16%;
 }
 
-post.layout-3 choice {
+.post[data-layout="3"] .choice {
 	margin-bottom: 30px;
 }
 
-post.layout-3 choice span {
+.post[data-layout="3"] .choice span {
 	display: inline;
 }
 
-post.layout-3 choice:before {
+.post[data-layout="3"] .choice:before {
 	content: '[';
 	display:inline;
 }
 
-post.layout-3 choice:after {
+.post[data-layout="3"] .choice:after {
 	content: ']';
 	display:inline;
 }
 
-post.layout-4 {
+.post[data-layout="4"] {
 	font-family: 'Lato';
 	font-size: 30px;
 	text-shadow: 2px 2px 1px #000;
 }
 
-post.layout-4 bg {
+.post[data-layout="4"] .bg {
 	width: 960px;
 	margin: auto;
 }
 
-post.layout-4 x1 {
-	background-image: url(../assets/zelda.png);
+.post[data-layout="4"] .x1 {
+	background-image: url(assets/zelda.png);
 }
 
-post.layout-4 choice:first-child {
+.post[data-layout="4"] .choice:first-child {
 	display: none;
 }
 
-post.layout-4 choice:last-child {
+.post[data-layout="4"] .choice:last-child {
 	position: absolute;
 	top: 64%;
 	left: 20%;
 }
 
-post.layout-4 choice:last-child span:after {
+.post[data-layout="4"] .choice:last-child span:after {
 	content: '?';
 }
 
 
-post.layout-4 x2:after {
+.post[data-layout="4"] .x2:after {
 	content: 'Yes No';
 	display: block;
 	position: absolute;
@@ -191,32 +172,32 @@ post.layout-4 x2:after {
 	color: #48ea59;
 }
 
-post.layout-5 {
+.post[data-layout="5"] {
 	font-family: 'Roboto';
 	text-transform: uppercase;
 	font-weight: bold;
 	text-shadow: 0 2px 2px #000;
 }
 
-post.layout-5 x1 {
-	background: url(../assets/sr.png);
+.post[data-layout="5"] .x1 {
+	background: url(assets/sr.png);
 }
 
-post.layout-5 choices {
+.post[data-layout="5"] .choices {
 	top: 69.9%;
 	width: 62%;
 	margin: auto;
 }
-post.layout-5 choice {
+.post[data-layout="5"] .choice {
 	width: 46%;
 	float: left;
 	margin: 0 2%;
 }
-post.layout-5 choice:last-child {
+.post[data-layout="5"] .choice:last-child {
 	text-align: right;
 }
 
-post.layout-6 {
+.post[data-layout="6"] {
 	font-family: 'Roboto';
 	text-transform: uppercase;
 	font-weight: bold;
@@ -224,7 +205,7 @@ post.layout-6 {
 	text-shadow: 0 2px 8px #000;
 }
 
-post.layout-6 choices {
+.post[data-layout="6"] .choices {
 	height: 200px;
 	top: auto;
 	bottom: auto;
@@ -234,27 +215,27 @@ post.layout-6 choices {
 	-@align-alt-: 10%;
 }
 
-post.layout-6 choice span {
+.post[data-layout="6"] .choice span {
 	opacity: .9;
 	display: inline-block;
 }
 
-post.layout-6 choice:last-child {
+.post[data-layout="6"] .choice:last-child {
 	margin-top: -30px;
 	-@-maybe-{
 		margin-left: 70px;
 	}
 }
 
-post.layout-6 choice:first-child {
+.post[data-layout="6"] .choice:first-child {
 	-@-maybe-{
 		margin-left: 70px;
 	}
 }
 
 
-post.layout-6 choice:first-child:before {
-	content: url(../assets/r_bt1.png);
+.post[data-layout="6"] .choice:first-child:before {
+	content: url(assets/r_bt1.png);
 	vertical-align: middle;
 	display: inline-block;
 	position: relative;
@@ -262,8 +243,8 @@ post.layout-6 choice:first-child:before {
 	-webkit-transform: scale(.75);
 	right: -25px;
 }
-post.layout-6 choice:last-child:before {
-	content: url(../assets/r_bt2.png);
+.post[data-layout="6"] .choice:last-child:before {
+	content: url(assets/r_bt2.png);
 	vertical-align: middle;
 	display: inline-block;
 	position: relative;
@@ -273,11 +254,11 @@ post.layout-6 choice:last-child:before {
 }
 
 
-post.layout-7 x1 {
-	background: url(../assets/masseffect.png);
+.post[data-layout="7"] .x1 {
+	background: url(assets/masseffect.png);
 }
 
-post.layout-7 {
+.post[data-layout="7"] {
 	font-family: 'Lato';
 	font-size: 25px;
 	color: #d9e9e8;
@@ -293,7 +274,7 @@ post.layout-7 {
 	2px 2px 0 #000;
 }
 
-post.layout-7 x2:after {
+.post[data-layout="7"] .x2:after {
 	content: 'Investigate';
 	position: absolute;;
 	display: block;
@@ -301,14 +282,14 @@ post.layout-7 x2:after {
 	top: 76%;
 }
 
-post.layout-7 choice span:before {
+.post[data-layout="7"] .choice span:before {
 	content: '[';
 }
-post.layout-7 choice span:after {
+.post[data-layout="7"] .choice span:after {
 	content: ']';
 }
 
-post.layout-7 choice:first-child {
+.post[data-layout="7"] .choice:first-child {
 	position: absolute;
 	top: 70%;
 	text-align: right;
@@ -316,7 +297,7 @@ post.layout-7 choice:first-child {
 	color: #5cc0ff;
 }
 
-post.layout-7 choice:last-child {
+.post[data-layout="7"] .choice:last-child {
 	position: absolute;
 	top: 82%;
 	text-align: right;

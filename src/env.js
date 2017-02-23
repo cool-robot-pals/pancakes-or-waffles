@@ -5,4 +5,4 @@ module.exports = {
 	twitterSecret: process.env.MC_TWITTER_S,
 	googleSearchCx: process.env.MC_GOOGLE_CX,
 	googleSearchKey: process.env.MC_GOOGLE_KEY
-}
+};

@@ -36,4 +36,4 @@ module.exports = [
 	{name:'Sombra', search:'sombra overwatch', fandom:'ow'},
 	{name:'Widowmaker', search:'overwatch', fandom:'ow'},
 	{name:'Tracer', search:'tracer overwatch', fandom:'ow'}
-]
+];
