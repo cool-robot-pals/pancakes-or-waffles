@@ -4,11 +4,10 @@
   "description": "Look it's a long story",
   "main": "index.js",
   "scripts": {
-    "start": "echo 👌",
-    "test": "./node_modules/.bin/mocha --reporter nyan",
     "esfix": "./node_modules/eslint/bin/eslint.js . --fix",
     "webpack": "./node_modules/.bin/webpack",
-    "shitpost": "./node_modules/.bin/gulp shitpost"
+    "shitpost": "./node_modules/.bin/gulp shitpost",
+    "install": "npm run webpack"
   },
   "license": "GPL-3.0",
   "repository": {
@@ -27,6 +26,7 @@
     "babel-preset-react": "^6.23.0",
     "babel-preset-target": "0.0.5",
     "browser-request": "^0.3.3",
+    "chai": "^3.5.0",
     "clean-webpack-plugin": "^0.1.15",
     "color-scheme": "0.0.5",
     "css-loader": "^0.26.1",
@@ -40,6 +40,7 @@
     "gulp-uglify": "^1.5.4",
     "gulp-webshot": "^0.2.3",
     "html-webpack-plugin": "^2.28.0",
+    "mocha": "^3.2.0",
     "phantomjs2": "^2.2.0",
     "postcss-loader": "^1.3.1",
     "raw-loader": "^0.5.1",
