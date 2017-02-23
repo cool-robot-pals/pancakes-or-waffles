@@ -1,5 +1,5 @@
 {
 	"scripts": {
-		"postdeploy": "nvm install 0.10 && npm install"
+		"postdeploy": "nvm install node && npm install"
 	}
 }
