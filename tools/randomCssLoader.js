@@ -5,8 +5,6 @@ const random = function(arr) {
 
 module.exports = function(source) {
 
-	this.cacheable && this.cacheable();
-
 	var alignments = ['left','right'];
 	var alignmentsWithCenter = ['left','right','center'];
 	var verticalAlignments = ['top','bottom'];
