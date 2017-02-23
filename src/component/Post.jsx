@@ -19,7 +19,7 @@ class Post extends React.Component {
 		})
 	}
 
-	componentDidMount() {
+	componentDidMount () {
 		this.getPhotos
 		.then(photos => {
 			this.setState({
