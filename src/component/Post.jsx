@@ -9,8 +9,9 @@ class Post extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {likesCount : 0};
-		this.state.bg = undefined;
+		this.state = {
+			bg: undefined
+		};
 		this.getPhotos = photoGetter(this.props.photoQuery,{
 			debug: false
 		})
