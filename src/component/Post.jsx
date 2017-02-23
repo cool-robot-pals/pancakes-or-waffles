@@ -17,7 +17,7 @@ class Post extends React.Component {
 	}
 
 	componentDidMount () {
-		this.getPhotos.done(photos => {
+		this.getPhotos.then(photos => {
 			this.setState({
 				bg: photos[0]
 			})

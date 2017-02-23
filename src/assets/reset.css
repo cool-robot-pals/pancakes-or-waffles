@@ -14,3 +14,7 @@ body, body * {
 script {
 	display: none;
 }
+
+body {
+	border: 15px solid pink;
+}

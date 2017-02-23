@@ -1,3 +1,5 @@
+import 'assets/reset.css';
+
 import getPostElement from 'lib/getPostElement';
 import getValues from 'lib/getValues';
 import random from 'lib/random';
@@ -45,13 +47,18 @@ export default (function(){
 	lib.makePost = makePost;
 	lib.posts = posts;
 
-	let css = require('template/post.css');
-	$('head').append(
-		$('<style></style>').text(css)
-	);
-	$('head').append(
-		$('<link href="https://fonts.googleapis.com/css?family=Roboto:400,400b|Patrick+Hand|Poiret+One|Roboto+Mono:500|Lato:700" rel="stylesheet">')
-	);
+	/*make app container*/
+	let $app = document.createElement('div');
+	$app.id= 'tough-choices-bot';
+	document.body.appendChild($app);
+
+	/*linked bc phantomjs is OLD*/
+	let link = document.createElement('link');
+	link.href = 'https://fonts.googleapis.com/css?family=Roboto:400,400b|Patrick+Hand|Poiret+One|Roboto+Mono:500|Lato:700'
+	link.rel = 'stylesheet';
+	document.querySelector('head').appendChild(link);
+
+	lib.makePost();
 
 	return lib;
 

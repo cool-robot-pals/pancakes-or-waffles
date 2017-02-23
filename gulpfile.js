@@ -5,12 +5,15 @@ const path = require('path');
 const webshot = require('gulp-webshot');
 const fs = require('fs-extra');
 const gutil = require('gulp-util');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+
 
 const env = require('./src/env.js');
 const pkg = require('./package.json');
 
 var webpackConfig = {
-	devtool: "#inline-source-map",
+	devtool: "source-map",
 	entry: {
 		vendor: ['react','react-dom','lodash'],
 		app: 'main'
@@ -27,6 +30,10 @@ var webpackConfig = {
 			name: 'vendor',
 			filename: 'vendor.js',
 			minChunks : 2
+		}),
+		new ExtractTextPlugin('[name].css'),
+		new HtmlWebpackPlugin({
+			title: '👁👄👁☝️'
 		})
 	],
 	module: {
@@ -36,11 +43,11 @@ var webpackConfig = {
 				include: [
 					path.resolve(__dirname, 'src/component')
 				],
-				loaders: [
-					'style-loader?sourceMap',
+				loader: ExtractTextPlugin.extract([
 					'css-loader?modules&importLoaders=1&localIdentName=tc-[hash:base64:10]',
+					'postcss-loader',
 					'./tools/randomCssLoader'
-				]
+				])
 			},
 			{
 				test: /\.(png|jpg)$/,
@@ -50,15 +57,17 @@ var webpackConfig = {
 				}],
 			},
 			{
-				test: /\.(mustache|css)$/,
+				test: /\.css$/,
 				exclude: [
 					/node_modules/,
 					path.resolve(__dirname, 'src/component')
 				],
-				use: ['raw-loader']
+				use: ExtractTextPlugin.extract({
+					use: ['css-loader','postcss-loader']
+				})
 			},
 			{
-				test: /.jsx?$/,
+				test: /\.jsx?$/,
 				use: [{
 					loader: 'babel-loader',
 					query: {
@@ -160,11 +169,6 @@ gulp.task('webshot',function(done){
 gulp.task('_makefiles',function(done){
 	fs.removeSync('build');
 	fs.mkdirsSync('build');
-	fs.copySync('src/template/index.html','build/index.html');
-	var data = fs.readFileSync('build/index.html');
-	data = data.toString();
-	data = data.replace('{{base}}','file://'+__dirname+'/build/index.html');
-	fs.writeFileSync('build/index.html', data);
 	done();
 });
 

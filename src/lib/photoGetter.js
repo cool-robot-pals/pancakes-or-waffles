@@ -1,46 +1,53 @@
-var env = require('../env.js');
-var random = require('../lib/random.js');
+import request from 'browser-request';
+import env from 'env';
+import random from 'lib/random';
 
-var apiUrl = 'https://www.googleapis.com/customsearch/v1';
+const apiUrl = 'https://www.googleapis.com/customsearch/v1';
 
 module.exports = function(query,params) {
 
 	if(!params) var params = {};
 	if(!params.debug) params.debug = false;
 
-	var dfd = jQuery.Deferred();
-	if(params.debug === true) {
-		dfd.resolve([
-			'https://i.ytimg.com/vi/R45OaTeR_Gw/maxresdefault.jpg'
-		]);
-	}
-	else {
-		$.ajax({
-			url: apiUrl,
-			dataType: 'json',
-			data: {
-				q: query
-				   + ' gameplay screenshot -site:deviantart.com  -site:youtube.com',
-				safe: 'medium',
-				searchType: 'image',
-				imgSize: 'xxlarge',
-				imgType: 'photo',
-				cx: env.googleSearchCx,
-				key: env.googleSearchKey,
-			}
-		}).done(function(response){
+	return new Promise((resolve,reject) => {
 
-			response.items = response.items.filter(function(item){
-				return item.image.width > item.image.height;
-			});
-
-			var length = 30;
-			if(response.items.length < 30) length = response.items.length;
-
-			dfd.resolve([
-				response.items[Math.floor(Math.random() * length)].link
+		if(params.debug === true) {
+			resolve([
+				'https://i.ytimg.com/vi/R45OaTeR_Gw/maxresdefault.jpg'
 			]);
-		});
-	}
-	return dfd.promise();
+		}
+		else {
+			request({
+				url: apiUrl,
+				json: true,
+				qs: {
+					q: query
+					   + ' gameplay screenshot -site:deviantart.com  -site:youtube.com',
+					safe: 'medium',
+					searchType: 'image',
+					imgSize: 'xxlarge',
+					imgType: 'photo',
+					cx: env.googleSearchCx,
+					key: env.googleSearchKey,
+				}
+			},(error,response,body)=>{
+
+				if(error) {
+					reject(error);
+				}
+
+				body.items = body.items.filter(function(item){
+					return item.image.width > item.image.height;
+				});
+
+				var length = 30;
+				if(body.items.length < 30) length = body.items.length;
+
+				resolve([
+					body.items[Math.floor(Math.random() * length)].link
+				]);
+
+			})
+		}
+	});
 };
