@@ -45,7 +45,7 @@ gulp.task('tweet',function(done){
 gulp.task('webshot',function(done){
 	var webshot = require('webshot');
 	var options = {
-		renderDelay: 5000,
+		renderDelay: 20000,
 		siteType: 'file',
 		phantomConfig: {
 			'local-to-remote-url-access':'true',
