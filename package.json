@@ -29,6 +29,7 @@
     "browser-request": "^0.3.3",
     "color-scheme": "0.0.5",
     "css-loader": "^0.26.1",
+    "es6-promise-promise": "^1.0.0",
     "eslint": "^3.16.1",
     "extract-text-webpack-plugin": "^2.0.0-rc.3",
     "file-loader": "^0.10.0",

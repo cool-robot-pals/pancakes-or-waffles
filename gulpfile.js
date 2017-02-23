@@ -19,6 +19,9 @@ var webpackConfig = {
 		app: 'main'
 	},
 	plugins: [
+		new webpack.ProvidePlugin({
+			Promise: 'es6-promise-promise'
+		}),
 		new webpack.DefinePlugin((function(){
 			var rt = {};
 			Object.keys(process.env).map(function(key){
