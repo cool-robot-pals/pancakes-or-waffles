@@ -11,7 +11,7 @@ module.exports = function(query,params) {
 
 	return new Promise((resolve,reject) => {
 
-		if(params.debug === true) {
+		if(!env.googleSearchCx || params.debug === true) {
 			resolve([
 				'https://i.ytimg.com/vi/R45OaTeR_Gw/maxresdefault.jpg'
 			]);
