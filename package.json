@@ -13,7 +13,7 @@
   "license": "GPL-3.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lawwrr/tough-choices-bot.git"
+    "url": "https://github.com/walaura/tough-choices-bot.git"
   },
   "author": "Laura mayhem",
   "dependencies": {
@@ -30,7 +30,6 @@
     "color-scheme": "0.0.5",
     "css-loader": "^0.26.1",
     "es6-promise-promise": "^1.0.0",
-    "eslint": "^3.16.1",
     "extract-text-webpack-plugin": "^2.0.0-rc.3",
     "file-loader": "^0.10.0",
     "fs-extra": "^1.0.0",
@@ -49,9 +48,7 @@
     "url-loader": "^0.5.7",
     "webpack": "^2.2.1",
     "webpack-stream": "^3.2.0",
-    "webshot": "github:walaura/node-webshot"
-  },
-  "devDependencies": {
+    "webshot": "github:walaura/node-webshot",
     "eslint": "^3.16.1",
     "eslint-plugin-react": "^6.10.0"
   }

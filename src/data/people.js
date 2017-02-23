@@ -31,6 +31,8 @@ module.exports = [
 	{name:'Kian', search:'dreamfall', fandom:'df'},
 	{name:'Elisabeth', search:'elisabeth bioshock infinite', fandom:'bs'},
 	{name:'Booker', search:'booker bioshock', fandom:'bs'},
+	{name:'Comstock', search:'Comstock bioshock', fandom:'bs'},
+	{name:'Daisy Fitzroy', search:'Daisy Fitzroy bioshock', fandom:'bs'},
 	{name:'Sombra', search:'sombra overwatch', fandom:'ow'},
 	{name:'Widowmaker', search:'overwatch', fandom:'ow'},
 	{name:'Tracer', search:'tracer overwatch', fandom:'ow'}
