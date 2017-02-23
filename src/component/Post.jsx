@@ -2,6 +2,8 @@ import React from 'react';
 import CSSModules from 'react-css-modules';
 import styles from './Post.css';
 
+import Choice from 'component/Choice';
+
 import photoGetter from 'lib/photoGetter';
 
 @CSSModules(styles)
@@ -45,7 +47,7 @@ class Post extends React.Component {
 				<div styleName='choices'>
 					{
 						choices.map(choice => {
-							return <div styleName='choice' key={choice}><span key={'wr'+choice}>{choice}</span></div>
+							return <Choice className={this.props.styles.choice} key={choice} name={choice}/>
 						})
 					}
 				</div>
