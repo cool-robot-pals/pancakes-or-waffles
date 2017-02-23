@@ -32,21 +32,21 @@ module.exports = function(query,params) {
 				}
 			},(error,response,body)=>{
 
-				if(error) {
-					reject(error);
+				if(error || !body.items) {
+					reject(error?error:'req failed');
 				}
+				else {
+					body.items = body.items.filter(function(item){
+						return item.image.width > item.image.height;
+					});
 
-				body.items = body.items.filter(function(item){
-					return item.image.width > item.image.height;
-				});
+					var length = 30;
+					if(body.items.length < 30) length = body.items.length;
 
-				var length = 30;
-				if(body.items.length < 30) length = body.items.length;
-
-				resolve([
-					body.items[Math.floor(Math.random() * length)].link
-				]);
-
+					resolve([
+						body.items[Math.floor(Math.random() * length)].link
+					]);
+				}
 			})
 		}
 	});

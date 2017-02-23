@@ -17,11 +17,15 @@ class Post extends React.Component {
 	}
 
 	componentDidMount () {
-		this.getPhotos.then(photos => {
+		this.getPhotos
+		.then(photos => {
 			this.setState({
 				bg: photos[0]
 			})
 		})
+		.catch(e => {
+			console.error(e)
+		});
 	}
 
 	render() {

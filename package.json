@@ -7,8 +7,8 @@
     "start": "echo 👌",
     "test": "./node_modules/.bin/mocha --reporter nyan",
     "esfix": "./node_modules/eslint/bin/eslint.js . --fix",
-    "gulp": "./node_modules/.bin/gulp",
-    "shitpost": "gulp shitpost"
+    "webpack": "./node_modules/.bin/webpack",
+    "shitpost": "./node_modules/.bin/gulp shitpost"
   },
   "license": "GPL-3.0",
   "repository": {
@@ -27,9 +27,12 @@
     "babel-preset-react": "^6.23.0",
     "babel-preset-target": "0.0.5",
     "browser-request": "^0.3.3",
+    "clean-webpack-plugin": "^0.1.15",
     "color-scheme": "0.0.5",
     "css-loader": "^0.26.1",
     "es6-promise-promise": "^1.0.0",
+    "eslint": "^3.16.1",
+    "eslint-plugin-react": "^6.10.0",
     "extract-text-webpack-plugin": "^2.0.0-rc.3",
     "file-loader": "^0.10.0",
     "fs-extra": "^1.0.0",
@@ -48,8 +51,6 @@
     "url-loader": "^0.5.7",
     "webpack": "^2.2.1",
     "webpack-stream": "^3.2.0",
-    "webshot": "github:walaura/node-webshot",
-    "eslint": "^3.16.1",
-    "eslint-plugin-react": "^6.10.0"
+    "webshot": "github:walaura/node-webshot"
   }
 }
