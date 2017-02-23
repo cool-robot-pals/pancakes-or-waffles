@@ -23,3 +23,6 @@ This poor thing runs on phantomJS, which is OLD, even as all js & css code (okay
     $ curl --upload-file build/choice.jpg transfer.sh
     
 To see what screenshot comes out
+
+## Why the fuck is this a 100MB react app
+I'm using it as my personal playground okay
