@@ -2,7 +2,7 @@ module.exports = [
 	{name:'Luigi', search:'mario kart', fandom:'nintendo'},
 	{name:'Waluigi', search:'mario party', fandom:'nintendo'},
 	{name:'Wario', search:'mario tennis', fandom:'nintendo'},
-	{name:'Bowser', search:'bowser mario 3d world', fandom:'nintendo'},
+	{name:'Bowser', search:'bowser mario', fandom:'nintendo'},
 	{name:'Lara', search:'lara croft 2013', fandom:'tr'},
 	{name:'Sam', search:'samantha nishimura', fandom:'tr'},
 	{name:'Chloe', search:'chloe life is strange', fandom:'lis'},
@@ -31,9 +31,18 @@ module.exports = [
 	{name:'Kian', search:'dreamfall', fandom:'df'},
 	{name:'Elisabeth', search:'elisabeth bioshock infinite', fandom:'bs'},
 	{name:'Booker', search:'booker bioshock', fandom:'bs'},
+	{name:'Fontaine', search:'fontaine bioshock', fandom:'bs'},
 	{name:'Comstock', search:'Comstock bioshock', fandom:'bs'},
 	{name:'Daisy Fitzroy', search:'Daisy Fitzroy bioshock', fandom:'bs'},
+	{name:'Andrew Ryan', search:'Andrew Ryan bioshock', fandom:'bs'},
 	{name:'Sombra', search:'sombra overwatch', fandom:'ow'},
 	{name:'Widowmaker', search:'overwatch', fandom:'ow'},
-	{name:'Tracer', search:'tracer overwatch', fandom:'ow'}
+	{name:'Tracer', search:'tracer overwatch', fandom:'ow'},
+	{name:'Adam', search:'adam jensen', fandom:'dx'},
+	{name:'Emily', search:'emily dishonored', fandom:'dh'},
+	{name:'Corvo', search:'corvo dishonored', fandom:'dh'},
+	{name:'Piper', search:'piper fallout', fandom:'fo'},
+	{name:'Cait', search:'cait fallout', fandom:'fo'},
+	{name:'Curie', search:'curie fallout', fandom:'fo'},
+	{name:'Dogmeat', search:'dog fallout', fandom:'fo'}
 ];
