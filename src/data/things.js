@@ -29,5 +29,6 @@ module.exports = [
 	'xmas',
 	'the journal',
 	'The Straights',
-	'aliens'
+	'aliens',
+	'traps'
 ];
