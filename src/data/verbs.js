@@ -30,4 +30,5 @@ module.exports = [
 	'give $1 to',
 	'hand $1 to',
 	'listen to $1 with'
+	'avoid'
 ];

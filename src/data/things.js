@@ -30,4 +30,5 @@ module.exports = [
 	'the journal',
 	'The Straights',
 	'aliens'
+	'traps'
 ];
