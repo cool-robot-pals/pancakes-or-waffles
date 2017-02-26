@@ -1,6 +1,6 @@
 import 'assets/reset.css';
 
-import getPostElement from 'lib/getPostElement';
+import Post from 'component/Post';
 import getValues from 'lib/getValues';
 import random from 'lib/random';
 
@@ -8,34 +8,30 @@ import {render} from 'react-dom';
 import React from 'react';
 
 let posts = [];
+let $posts = [];
 
 const makePost = function() {
 
-	/*
-	0 - lis - serious
-	1 - lis - normal
-	2 - bioshock
-	3 - fallout
-	4 - zelda
-	5 - saints row-ish
-	6 - quantic dream-ish
-	7 - mass effect
-	*/
-
-	let layout = random([0,1,3,4,5,6,7]);
 	let values = getValues();
 
-	posts.push(getPostElement({
+	let post = {
 		photoQuery: values.query,
 		choices: values.choices,
-		layout: layout,
+		layout: values.layout,
 		key: posts.length
-	}));
+	};
+
+	let $post =  React.createElement(
+		Post, post
+	);
+
+	posts.push(post);
+	$posts.push($post);
 
 	render(React.createElement(
 		'div',
 		null,
-		posts
+		$posts
 	),document.getElementById('tough-choices-bot'));
 
 }

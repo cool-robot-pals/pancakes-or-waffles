@@ -1,6 +1,7 @@
 import peopleData from 'data/people';
-import thingsData from 'data/things';
-import verbsData from 'data/verbs';
+import thingData from 'data/things';
+import verbData from 'data/verbs';
+import layoutData from 'data/layouts';
 
 import random from 'lib/random';
 
@@ -8,21 +9,21 @@ const capitalizeFirstLetter = function(string) {
 	return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-let people = peopleData;
-let things = thingsData;
-let verbs = verbsData;
-let fandoms = (function(people){
-	let fandoms = [];
-	people.map(function(item){
-		if(fandoms.indexOf(item.fandom) < 0) fandoms.push(item.fandom)
-	});
-	return fandoms;
-})(people);
-
-let query;
-
-
 export default function() {
+
+	let people = peopleData;
+	let things = thingData;
+	let verbs = verbData;
+	let layouts = layoutData;
+	let fandoms = (function(people){
+		let fandoms = [];
+		people.map(function(item){
+			if(fandoms.indexOf(item.fandom) < 0) fandoms.push(item.fandom)
+		});
+		return fandoms;
+	})(people);
+
+	let query;
 
 	let sameVerb = Math.random() > .66;
 	let crossFandom = Math.random() > .75;
@@ -85,12 +86,18 @@ export default function() {
 	}));
 
 	if(!query) {
-		query = random(people).query;
+		query = random(people).search;
 	}
+
+	let layout = random(Object.keys(layouts));
 
 	return {
 		choices: choices,
-		query: query
+		query: query,
+		layout: {
+			id: layout,
+			name: layouts[layout]
+		}
 	}
 
 }

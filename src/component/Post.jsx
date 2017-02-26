@@ -37,7 +37,7 @@ class Post extends React.Component {
 		return (
 			<div
 				styleName='post'
-				data-layout={this.props.layout}
+				data-layout={this.props.layout.id}
 			>
 				{
 					[1,2].map(extra => <div key={'x'+extra} styleName={'x'+extra} /> )
