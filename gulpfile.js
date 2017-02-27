@@ -53,6 +53,12 @@ gulp.task('webshot',function(done){
 		},
 		userAgent: 'Mozilla/4.0 (iPad; CPU OS 4_0_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/4.1 Mobile/9A405 Safari/7534.48.3',
 		quality: 90,
+		onLoadFinished: function(){
+			console.log(window.Post.default.posts.length);
+			for(var k in window.Post.default.posts[0]) {
+				console.log(k.toUpperCase()+' - '+JSON.stringify(window.Post.default.posts[0][k]))
+			}
+		},
 		onConsoleMessage: function(text){
 			gutil.log(text);
 		},
