@@ -4,6 +4,7 @@ module.exports = [
 	'video games',
 	'comic books',
 	'tongues',
+	'tongue',
 	'Arcadia Bay',
 	'Blackwell academy',
 	'gays',
@@ -30,5 +31,7 @@ module.exports = [
 	'the journal',
 	'The Straights',
 	'aliens',
+	'demons',
+	'the monsters',
 	'traps'
 ];

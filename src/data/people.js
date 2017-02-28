@@ -44,5 +44,6 @@ module.exports = [
 	{name:'Piper', search:'piper fallout', fandom:'fo'},
 	{name:'Cait', search:'cait fallout', fandom:'fo'},
 	{name:'Curie', search:'curie fallout', fandom:'fo'},
-	{name:'Dogmeat', search:'dog fallout', fandom:'fo'}
+	{name:'Dogmeat', search:'dog fallout', fandom:'fo'},
+	{name:'The Doom Slayer', search: 'doom slayer 2016', fandom: doom}
 ];

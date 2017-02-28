@@ -2,6 +2,7 @@ module.exports = [
 	'save',
 	'kill',
 	'kiss',
+	'kiss $1 with',
 	'sacrifice',
 	'pet',
 	'eat',
@@ -30,5 +31,8 @@ module.exports = [
 	'give $1 to',
 	'hand $1 to',
 	'listen to $1 with',
+	'listen to $1',
+	'talk to $1 with',
+	'talk to $1'
 	'avoid'
 ];
