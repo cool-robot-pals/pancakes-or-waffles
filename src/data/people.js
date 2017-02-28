@@ -45,5 +45,5 @@ module.exports = [
 	{name:'Cait', search:'cait fallout', fandom:'fo'},
 	{name:'Curie', search:'curie fallout', fandom:'fo'},
 	{name:'Dogmeat', search:'dog fallout', fandom:'fo'},
-	{name:'The Doom Slayer', search: 'doom slayer 2016', fandom: doom}
+	{name:'The Doom Slayer', search: 'doom slayer 2016', fandom: 'doom'}
 ];
