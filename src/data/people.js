@@ -9,6 +9,7 @@ module.exports = [
 	{name:'Max', search:'max life is strange', fandom:'lis'},
 	{name:'Victoria', search:'life is strange victoria', fandom:'lis'},
 	{name:'Kate', search:'life is strange kate', fandom:'lis'},
+	{name:'Pompidou', search:'life is strange pompidou', fandom:'lis'},
 	{name:'Warren', search:'life is strange', fandom:'lis'},
 	{name:'Midna', search:'twilight princess', fandom:'nintendo'},
 	{name:'Zelda', search:'zelda game', fandom:'nintendo'},
@@ -45,5 +46,6 @@ module.exports = [
 	{name:'Cait', search:'cait fallout', fandom:'fo'},
 	{name:'Curie', search:'curie fallout', fandom:'fo'},
 	{name:'Dogmeat', search:'dog fallout', fandom:'fo'},
-	{name:'The Doom Slayer', search: 'doom slayer 2016', fandom:'doom'}
+	{name:'The Doom Slayer', search: 'doom slayer 2016', fandom:'doom'},
+	{name:'Deep Space Lover', search: 'bientôt l été game', fandom: 'kms'}
 ];
