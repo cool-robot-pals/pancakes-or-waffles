@@ -43,7 +43,7 @@ module.exports = [
 	{name:'Zarya', search:'zarya overwatch', fandom:'ow'},
 	{name:'Jensen', search:'deus ex jensen', fandom:'dx'},
 	{name:'Pritchard', search:'deus ex pritchard', fandom:'dx'},
-	{name:'SHODAN', search: 'system shock shodan', fandom:'ss'}
+	{name:'SHODAN', search: 'system shock shodan', fandom:'ss'},
 	{name:'Emily', search:'emily dishonored', fandom:'dh'},
 	{name:'Corvo', search:'corvo dishonored', fandom:'dh'},
 	{name:'Piper', search:'piper fallout', fandom:'fo'},

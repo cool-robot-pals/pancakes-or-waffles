@@ -49,7 +49,7 @@ module.exports = [
 	'listen to $1 with',
 	'listen to $1',
 	'talk to $1 with',
-	'talk to $1'
+	'talk to $1',
 	'ask',
 	'ask for',
 	'bicker with',
