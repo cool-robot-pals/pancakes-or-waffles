@@ -37,9 +37,12 @@ module.exports = [
 	{name:'Daisy Fitzroy', search:'Daisy Fitzroy bioshock', fandom:'bs'},
 	{name:'Andrew Ryan', search:'Andrew Ryan bioshock', fandom:'bs'},
 	{name:'Sombra', search:'sombra overwatch', fandom:'ow'},
-	{name:'Widowmaker', search:'overwatch', fandom:'ow'},
+	{name:'Widowmaker', search:'widowmaker overwatch', fandom:'ow'},
 	{name:'Tracer', search:'tracer overwatch', fandom:'ow'},
-	{name:'Adam', search:'adam jensen', fandom:'dx'},
+	{name:'Mei', search:'mei overwatch', fandom:'ow'},
+	{name:'Zarya', search:'zarya overwatch', fandom:'ow'},
+	{name:'Jensen', search:'deus ex jensen', fandom:'dx'},
+	{name:'Pritchard', search:'deus ex pritchard', fandom:'dx'},
 	{name:'SHODAN', search: 'system shock shodan', fandom:'ss'}
 	{name:'Emily', search:'emily dishonored', fandom:'dh'},
 	{name:'Corvo', search:'corvo dishonored', fandom:'dh'},
@@ -48,5 +51,7 @@ module.exports = [
 	{name:'Curie', search:'curie fallout', fandom:'fo'},
 	{name:'Dogmeat', search:'dog fallout', fandom:'fo'},
 	{name:'The Doom Slayer', search: 'doom slayer 2016', fandom:'doom'},
+	{name:'GLaDOS', search:'glados portal', fandom:'portal'},
+	{name:'Chell', search:'chell portal', fandom:'portal'},
 	{name:'Deep Space Lover', search: 'bientôt l été game', fandom: 'kms'}
 ];
