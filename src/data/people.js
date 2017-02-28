@@ -40,6 +40,7 @@ module.exports = [
 	{name:'Widowmaker', search:'overwatch', fandom:'ow'},
 	{name:'Tracer', search:'tracer overwatch', fandom:'ow'},
 	{name:'Adam', search:'adam jensen', fandom:'dx'},
+	{name:'SHODAN', search: 'system shock shodan', fandom:'ss'}
 	{name:'Emily', search:'emily dishonored', fandom:'dh'},
 	{name:'Corvo', search:'corvo dishonored', fandom:'dh'},
 	{name:'Piper', search:'piper fallout', fandom:'fo'},
