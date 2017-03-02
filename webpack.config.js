@@ -34,9 +34,9 @@ module.exports = {
 			minChunks : 2
 		}),
 		new webpack.SourceMapDevToolPlugin({
-		  filename: "[file].map",
-		  exclude: ['vendor.js']
-	  }),
+			filename: '[file].map',
+			exclude: ['vendor.js']
+		}),
 		new ExtractTextPlugin('[name].css'),
 		new HtmlWebpackPlugin({
 			title: '👁👄👁☝️',

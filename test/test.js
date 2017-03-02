@@ -16,7 +16,7 @@ describe('Initialization', function() {
 	});
 	it('should generate 2 choices with stuff on them',function(done){
 		var values = window.Post.default.getValues();
-		if(values.choices.reduce(function(choice){return choice.length}) > 10) {
+		if(values.choices.reduce(function(choice){return choice.length;}) > 10) {
 			done();
 		}
 		else done(new Error());
