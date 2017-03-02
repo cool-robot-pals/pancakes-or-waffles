@@ -1,6 +1,8 @@
 module.exports = [
 	'save',
 	'kill',
+	'subdue',
+	'neutralise',
 	'kiss',
 	'kiss $1 with',
 	'hug',
@@ -43,6 +45,7 @@ module.exports = [
 	'heal',
 	'boop',
 	'freeze',
+	'fart $1 at'
 	'give $1 to',
 	'hand $1 to',
 	'give a hand to',
