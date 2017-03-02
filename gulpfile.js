@@ -117,7 +117,6 @@ gulp.task('mocha', function(done) {
 	.src('test/basic.html')
 	.pipe(
 		mochaPhantomJS({
-			reporter: 'spec',
 			suppressStderr: false,
 			phantomjs: {
 				settings: {
