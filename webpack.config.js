@@ -4,7 +4,7 @@ const webpackStream = require('webpack-stream');
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const env = require('./src/env.js');
@@ -12,7 +12,7 @@ const pkg = require('./package.json');
 
 
 module.exports = {
-	devtool: "source-map",
+	devtool: 'source-map',
 	entry: {
 		vendor: ['react','react-dom','lodash'],
 		app: 'main'
@@ -86,15 +86,15 @@ module.exports = {
 					loader: 'babel-loader',
 					query: {
 						plugins: [
-							"transform-decorators-legacy",
-							"transform-object-assign"
+							'transform-decorators-legacy',
+							'transform-object-assign'
 						],
 						presets: [
 							['react'],
 							['target', {
-								presets: ["es2015"],
+								presets: ['es2015'],
 								targets: [
-									{name: "phantom", version: 2}
+									{name: 'phantom', version: 2}
 								],
 								modules: false
 							}],

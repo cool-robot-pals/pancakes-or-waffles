@@ -12,7 +12,7 @@ import pluralize from 'pluralize';
 
 const capitalizeFirstLetter = function(string) {
 	return string.charAt(0).toUpperCase() + string.slice(1);
-}
+};
 
 export default () => {
 
@@ -29,7 +29,7 @@ export default () => {
 	let fandoms = (function(people){
 		let fandoms = [];
 		people.map(function(item){
-			if(fandoms.indexOf(item.fandom) < 0) fandoms.push(item.fandom)
+			if(fandoms.indexOf(item.fandom) < 0) fandoms.push(item.fandom);
 		});
 		return fandoms;
 	})(people);
@@ -57,7 +57,7 @@ export default () => {
 
 		return posession;
 
-	}
+	};
 
 	const getThing = (globalparams,selfparams) => {
 
@@ -87,7 +87,7 @@ export default () => {
 			return random(things).value;
 		}
 
-	}
+	};
 
 	const makeChoice = function(params) {
 
@@ -98,7 +98,7 @@ export default () => {
 		if(params.fandom) {
 			people = people.filter(function(item){
 				return item.fandom === params.fandom;
-			})
+			});
 		}
 
 		if(!params.verb) params.verb = random(verbs).value;
@@ -125,12 +125,12 @@ export default () => {
 		}
 
 		if(params.posession) {
-			params.posession = "'s "+params.posession;
+			params.posession = '\'s '+params.posession;
 		}
 
 		return capitalizeFirstLetter(params.verb)+' '+params[useables[params.use]]+params.posession;
 
-	}
+	};
 
 	let verb = undefined;
 	let fandom = undefined;
@@ -162,6 +162,6 @@ export default () => {
 			id: layout,
 			name: layouts[layout]
 		}
-	}
+	};
 
-}
+};

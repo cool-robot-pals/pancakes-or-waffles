@@ -18,10 +18,14 @@ forgive
 tell
 destroy
 delete
+subdue
+fart $1 at
+neutralize
 break
 crush
 rip and tear
 convince
+stroke
 confront
 challenge
 deride
@@ -44,7 +48,6 @@ freeze
 give $1 to
 hand $1 to
 give a hand to
-listen to $1 with
 listen to
 talk to $1 with
 talk to
