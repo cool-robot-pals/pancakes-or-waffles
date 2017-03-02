@@ -14,7 +14,7 @@ class Post extends React.Component {
 		};
 		this.getPhotos = photoGetter(this.props.photoQuery,{
 			debug: false
-		})
+		});
 	}
 
 	componentDidMount() {
@@ -22,10 +22,10 @@ class Post extends React.Component {
 		.then(photos => {
 			this.setState({
 				bg: photos[0]
-			})
+			});
 		})
 		.catch(e => {
-			console.error(e)
+			console.error(e);
 		});
 	}
 
@@ -45,7 +45,7 @@ class Post extends React.Component {
 				<div styleName='choices'>
 					{
 						choices.map(choice => {
-							return <div styleName='choice' key={choice}><span key={'wr'+choice}>{choice}</span></div>
+							return <div styleName='choice' key={choice}><span key={'wr'+choice}>{choice}</span></div>;
 						})
 					}
 				</div>
