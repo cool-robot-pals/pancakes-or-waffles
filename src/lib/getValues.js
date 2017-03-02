@@ -48,7 +48,6 @@ export default () => {
 		if(params.use === 0 && random([1,2]) === 2) {
 			let ownable = random(ownables);
 			let isSingular = random([true,false]);
-			console.log(ownable);
 			if(ownable.proper || ownable.singular === 'always' || ownable.singular === 'owned') {
 				isSingular = false;
 			}
