@@ -37,7 +37,7 @@
     "file-loader": "^0.10.0",
     "fs-extra": "^1.0.0",
     "gulp": "github:gulpjs/gulp#4.0",
-    "gulp-uglify": "^1.5.4",
+    "gulp-uglify": "^2.0.1",
     "gulp-webshot": "^0.2.3",
     "html-webpack-plugin": "^2.28.0",
     "mocha": "^3.2.0",
