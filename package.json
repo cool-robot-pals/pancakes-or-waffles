@@ -55,5 +55,8 @@
     "webpack": "^2.2.1",
     "webpack-stream": "^3.2.0",
     "webshot": "github:walaura/node-webshot"
+  },
+  "devDependencies": {
+    "gulp-mocha-phantomjs": "^0.12.1"
   }
 }

@@ -3,8 +3,17 @@
 	<base href="<%= htmlWebpackPlugin.options.base %>">
 	<head>
 		<meta charset="UTF-8">
+		<%if (typeof htmlWebpackPlugin.options.test !== 'undefined') { %>
+			<script src="../node_modules/mocha/mocha.js"></script>
+			<script>mocha.setup('bdd');</script>
+			<script src="test.js"></script>
+		<% } %>
 		<title><%= htmlWebpackPlugin.options.title %></title>
 	</head>
 	<body>
+		<%if (typeof htmlWebpackPlugin.options.test !== 'undefined') { %>
+			<div id="mocha"></div>
+			<script>mocha.run();</script>
+		<% } %>
 	</body>
 </html>
