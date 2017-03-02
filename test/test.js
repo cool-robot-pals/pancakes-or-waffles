@@ -1,6 +1,6 @@
 describe('Initialization', function() {
 	it('window.post should exist',function(done){
-		if(window.post) done();
+		if(window.Post && window.Post.default) done();
 		else done(new Error());
 	});
 	it('should generate 2 choices',function(done){
