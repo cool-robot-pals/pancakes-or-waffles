@@ -23,6 +23,8 @@ module.exports = [
 	'this place',
 	'the beach',
 	'memes',
+	'fur',
+	'hair',
 	'a cat',
 	'this cat',
 	'cats',
