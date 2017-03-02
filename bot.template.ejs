@@ -11,5 +11,9 @@
 		<title><%= htmlWebpackPlugin.options.title %></title>
 	</head>
 	<body>
+		<%if (typeof htmlWebpackPlugin.options.test !== 'undefined') { %>
+			<div id="mocha"></div>
+			<script>mocha.run();</script>
+		<% } %>
 	</body>
 </html>
