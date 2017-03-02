@@ -12,7 +12,6 @@ const pkg = require('./package.json');
 
 
 module.exports = {
-	devtool: 'source-map',
 	entry: {
 		vendor: ['react','react-dom','lodash'],
 		app: 'main'
@@ -34,12 +33,23 @@ module.exports = {
 			filename: 'vendor.js',
 			minChunks : 2
 		}),
+		new webpack.SourceMapDevToolPlugin({
+		  filename: "[file].map",
+		  exclude: ['vendor.js']
+	  }),
 		new ExtractTextPlugin('[name].css'),
 		new HtmlWebpackPlugin({
 			title: '👁👄👁☝️',
 			template: 'bot.template.ejs',
 			filename: 'index.html',
 			base: `file://${__dirname}/${config.paths.build}/index.html`
+		}),
+		new HtmlWebpackPlugin({
+			title: '👁👄👁☝️',
+			template: 'bot.template.ejs',
+			filename: '../test/basic.html',
+			test: true,
+			base: `file://${__dirname}/${config.paths.build}/../test/basic.html`
 		})
 	],
 	module: {

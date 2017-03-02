@@ -111,8 +111,27 @@ gulp.task('webpack', function(done) {
 });
 
 
+gulp.task('mocha', function(done) {
+	const mochaPhantomJS = require('gulp-mocha-phantomjs');
+	return gulp
+	.src('test/basic.html')
+	.pipe(
+		mochaPhantomJS({
+			reporter: 'spec',
+			suppressStderr: false,
+			phantomjs: {
+				settings: {
+					webSecurityEnabled: false,
+					localToRemoteUrlAccessEnabled: true
+				}
+			}
+		})
+	);
+});
+
+
 gulp.task('test',
-	gulp.series('webpack','webshot','upload')
+	gulp.series('webpack',gulp.parallel('mocha','webshot'),'upload')
 );
 
 
