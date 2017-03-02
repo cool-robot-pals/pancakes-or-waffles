@@ -12,6 +12,7 @@ module.exports = [
 	'elope with',
 	'sacrifice',
 	'pet',
+	'stroke',
 	'eat',
 	'eat $1 with',
 	'drink',
@@ -45,7 +46,7 @@ module.exports = [
 	'heal',
 	'boop',
 	'freeze',
-	'fart $1 at'
+	'fart $1 at',
 	'give $1 to',
 	'hand $1 to',
 	'give a hand to',
