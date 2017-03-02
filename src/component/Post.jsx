@@ -4,7 +4,7 @@ import styles from './Post.css';
 
 import photoGetter from 'lib/photoGetter';
 
-@CSSModules(styles)
+
 class Post extends React.Component {
 
 	constructor(props) {
@@ -56,4 +56,4 @@ class Post extends React.Component {
 
 }
 
-export default Post;
+export default CSSModules(Post,styles);
