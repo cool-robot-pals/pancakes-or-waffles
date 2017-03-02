@@ -1,0 +1,27 @@
+# these can't be owned by a character
+# as in Shepard's the straights
+#
+# they are also always treated as proper nouns
+
+Arcadia Bay
+Blackwell Academy
+the lighthouse
+the straights
+the gays
+lesbians
+Himiko
+Hyrule
+space
+Hell
+Mars
+Venus
+Uranus
+this place
+the beach
+radiation
+this gun
+halloween
+xmas
+anime
+aliens
+earthlings

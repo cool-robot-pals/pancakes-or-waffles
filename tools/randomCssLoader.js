@@ -24,7 +24,7 @@ module.exports = function(source) {
 	source = source
 	.replace(/\-@\-maybe\-\{([\s\S]+?)\}/mg,function(match,m1){
 		return Math.random()>.5?m1:'';
-	})
+	});
 
 	this.value = source;
 	return source;
