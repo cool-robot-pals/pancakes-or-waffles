@@ -6,7 +6,7 @@ const apiUrl = 'https://www.googleapis.com/customsearch/v1';
 
 module.exports = function(query,params) {
 
-	if(!params) var params = {};
+	if(!params) params = {};
 	if(!params.debug) params.debug = false;
 
 	return new Promise((resolve,reject) => {
@@ -22,7 +22,7 @@ module.exports = function(query,params) {
 				json: true,
 				qs: {
 					q: query
-					   + ' gameplay screenshot -site:deviantart.com  -site:youtube.com',
+						+ ' gameplay screenshot -site:deviantart.com  -site:youtube.com',
 					safe: 'medium',
 					searchType: 'image',
 					imgSize: 'xxlarge',
@@ -47,7 +47,7 @@ module.exports = function(query,params) {
 						body.items[Math.floor(Math.random() * length)].link
 					]);
 				}
-			})
+			});
 		}
 	});
 };

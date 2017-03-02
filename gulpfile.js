@@ -42,6 +42,23 @@ gulp.task('tweet',function(done){
 });
 
 
+gulp.task('upload', function (done) {
+
+	const spawn = require('child_process').spawn;
+	const child = spawn('curl',[
+		'--upload-file',
+		`./${path.join(config.paths.build,`${config.filenames.base}.jpg`)}`,
+		'https://transfer.sh/'
+	]);
+
+	child.stdout.on('data', buffer => {
+		gutil.log('Look at it!!!', gutil.colors.magenta(buffer.toString().replace('\n','')));
+	});
+	child.stdout.on('end', done);
+
+});
+
+
 gulp.task('webshot',function(done){
 	var webshot = require('webshot');
 	var options = {
@@ -56,7 +73,7 @@ gulp.task('webshot',function(done){
 		onLoadFinished: function(){
 			console.log(window.Post.default.posts.length);
 			for(var k in window.Post.default.posts[0]) {
-				console.log(k.toUpperCase()+' - '+JSON.stringify(window.Post.default.posts[0][k]))
+				console.log(k.toUpperCase()+' - '+JSON.stringify(window.Post.default.posts[0][k]));
 			}
 		},
 		onConsoleMessage: function(text){
@@ -87,11 +104,16 @@ gulp.task('webshot',function(done){
 
 gulp.task('webpack', function(done) {
 	webpack(require('./webpack.config.js'),(err,stats)=>{
-		if(err) throw new gutil.PluginError("webpack", err);
-		gutil.log("[webpack]", stats.toString());
+		if(err) throw new gutil.PluginError('webpack', err);
+		gutil.log('[webpack]', stats.toString());
 		done();
-	})
+	});
 });
+
+
+gulp.task('test',
+	gulp.series('webpack','webshot','upload')
+);
 
 
 gulp.task('shitpost',
