@@ -63,6 +63,14 @@ module.exports = {
 				}],
 			},
 			{
+				test: /\.txt$/,
+				use: ['raw-loader']
+			},
+			{
+				test: /\.json$/,
+				use: ['json-loader']
+			},
+			{
 				test: /\.css$/,
 				exclude: [
 					/node_modules/,

@@ -1,0 +1,30 @@
+# this is a comment
+# look chloe no commas
+
+# proper > removes the, a, plual. only does the word (give alcohol)
+# an > uses an instead of a (burn an insect)
+# singular=owned > makes the thing singular when owned (shepard's fur)
+# singular=always > makes the thing always singular
+
+fur (proper)
+tongue
+waffle
+pancake
+video game
+comic book
+trap
+meme
+cat
+dog
+shark
+bear
+gun
+stimpak
+alcohol (proper)
+potion
+triforce
+amulet
+journal
+demon
+monster
+insect (an)

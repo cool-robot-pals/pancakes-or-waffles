@@ -41,6 +41,7 @@ export default (function(){
 
 	let lib = {};
 	lib.makePost = makePost;
+	lib.getValues = getValues;
 	lib.posts = posts;
 
 	/*make app container*/
