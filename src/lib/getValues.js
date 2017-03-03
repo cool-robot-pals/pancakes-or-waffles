@@ -22,7 +22,7 @@ export default () => {
 	let verbs = txtToArr(verbTxt);
 
 	let typesSingular = ['a','the','this'];
-	let typesPlural = ['','these','the'];
+	let typesPlural = ['','these','the','some'];
 
 	let fandoms = (function(people){
 		let fandoms = [];
