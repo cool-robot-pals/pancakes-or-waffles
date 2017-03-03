@@ -1,0 +1,63 @@
+# proper
+# removes the, a, plural. only does the word (give alcohol, shepard's alcohol)
+# -
+# an
+# uses an instead of a (burn an insect, kat's insect)
+# -
+# singular=owned
+# makes the thing singular when owned (sonic's hair, stroke the hairs)
+# -
+# singular=always
+# makes the thing always singular (sonic's gun, eat the gun)
+# -
+# only=ownable
+# only=proper
+# makes the word only be a proper noun or only an ownable
+
+fur (proper)
+tongue (only=ownable)
+ear (only=ownable)
+waffle
+pancake
+video game
+comic book
+trap
+hair (singular=always)
+meme
+cat
+dog
+shark
+bear
+gun
+stimpak
+alcohol (proper)
+potion
+triforce
+amulet
+journal
+demon
+monster
+insect (an)
+
+Arcadia Bay (proper,only=proper)
+Blackwell Academy (proper,only=proper)
+the lighthouse (proper,only=proper)
+Hyrule (proper,only=proper)
+space (proper,only=proper)
+Hell (proper,only=proper)
+Mars (proper,only=proper)
+Venus (proper,only=proper)
+Uranus (proper,only=proper)
+the beach (proper,only=proper)
+the planet (proper,only=proper)
+this location (proper,only=proper)
+the straights (proper,only=proper)
+the gays (proper,only=proper)
+lesbians (proper,only=proper)
+radiation (proper,only=proper)
+this gun (proper,only=proper)
+halloween (proper,only=proper)
+xmas (proper,only=proper)
+anime (proper,only=proper)
+aliens (proper,only=proper)
+earthlings (proper,only=proper)

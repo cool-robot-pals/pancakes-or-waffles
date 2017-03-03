@@ -240,7 +240,7 @@
 	display: inline-block;
 	position: relative;
 	top: -2px;
-	-webkit-transform: scale(.75);
+	transform: scale(.75);
 	right: -25px;
 }
 .post[data-layout="6"] .choice:last-child:before {
@@ -249,7 +249,7 @@
 	display: inline-block;
 	position: relative;
 	top: -2px;
-	-webkit-transform: scale(.75);
+	transform: scale(.75);
 	right: -25px;
 }
 
