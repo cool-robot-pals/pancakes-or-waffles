@@ -37,7 +37,6 @@ visit $1 with
 read
 read $1 with
 watch
-watch with
 watch $1 with
 travel with
 rescue
@@ -58,3 +57,5 @@ argue with
 avoid
 evade
 infiltrate
+take
+steal
