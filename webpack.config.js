@@ -123,6 +123,9 @@ module.exports = {
 	},
 	resolve: {
 		extensions: ['.js', '.jsx'],
+		alias: {
+			'data': path.resolve('./data')
+		},
 		modules: [
 			path.resolve('./src'),
 			'node_modules'
