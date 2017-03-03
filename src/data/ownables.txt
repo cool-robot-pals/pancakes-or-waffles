@@ -1,7 +1,7 @@
 # this is a comment
 # look chloe no commas
 
-# proper > removes the, a, plual. only does the word (give alcohol)
+# proper > removes the, a, plural. only does the word (give alcohol)
 # an > uses an instead of a (burn an insect)
 # singular=owned > makes the thing singular when owned (shepard's fur)
 # singular=always > makes the thing always singular
