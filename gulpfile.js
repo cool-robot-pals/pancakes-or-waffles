@@ -130,10 +130,10 @@ gulp.task('mocha', function(done) {
 
 
 gulp.task('test',
-	gulp.series('webpack',gulp.parallel('mocha','webshot'),'upload')
+	gulp.series(gulp.parallel('mocha','webshot'),'upload')
 );
 
 
 gulp.task('shitpost',
-	gulp.series('webpack','webshot','tweet')
+	gulp.series('webshot','tweet')
 );
