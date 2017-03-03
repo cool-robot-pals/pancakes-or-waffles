@@ -95,6 +95,7 @@ module.exports = {
 				use: [{
 					loader: 'babel-loader',
 					query: {
+						compact: false,
 						plugins: [
 							'transform-decorators-legacy',
 							'transform-object-assign'
@@ -122,6 +123,9 @@ module.exports = {
 	},
 	resolve: {
 		extensions: ['.js', '.jsx'],
+		alias: {
+			'data': path.resolve('./data')
+		},
 		modules: [
 			path.resolve('./src'),
 			'node_modules'
