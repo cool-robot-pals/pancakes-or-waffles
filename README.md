@@ -4,7 +4,7 @@ Creates fake video game screenshots
 <div align="center"><img src="https://pbs.twimg.com/media/C4kTNIgVMAE0SMp.jpg:orig" /></div>
 
 ## Building
-For actually posting you need to get all the variables on [src/env.js](https://github.com/walaura/tough-choices-bot/blob/master/src/env.js) inside your environment. Otherwise you can ignore that.
+To actually post a tweet you need to get all the variables on [src/env.js](https://github.com/walaura/tough-choices-bot/blob/master/src/env.js) inside your environment. Otherwise you can ignore that.
 
     $ npm install
     /*first time*/
@@ -12,8 +12,11 @@ For actually posting you need to get all the variables on [src/env.js](https://g
     $ npm run webpack --watch
     /*for live development*/
     
-    $npm run shitpost
+    $ npm run shitpost
     /*for posting a photo to twitter*/
+	
+	$ npm test
+	/*test the entire post flow, but upload to transfer.sh*/
     
 
 ## Testing
