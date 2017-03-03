@@ -44,8 +44,6 @@ export default () => {
 		let posession = '';
 		let wordList = nouns.filter(noun => !noun.props.only || noun.props.only !== 'proper');
 
-		console.log(wordList);
-
 		if(params.use === 0 && random([1,2]) === 2) {
 			let ownable = random(wordList);
 			let isSingular = random([true,false]);
