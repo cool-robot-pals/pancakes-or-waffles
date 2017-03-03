@@ -95,6 +95,7 @@ module.exports = {
 				use: [{
 					loader: 'babel-loader',
 					query: {
+						compact: false,
 						plugins: [
 							'transform-decorators-legacy',
 							'transform-object-assign'

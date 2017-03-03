@@ -1,5 +1,4 @@
-import ownablesTxt from 'data/ownables.txt';
-import thingTxt from 'data/things.txt';
+import nounsTxt from 'data/nouns.txt';
 import verbTxt from 'data/verbs.txt';
 
 import layoutData from 'data/layouts.json';
@@ -19,8 +18,7 @@ export default () => {
 	let people = peopleData;
 	let layouts = layoutData;
 
-	let ownables = txtToArr(ownablesTxt);
-	let things = txtToArr(thingTxt);
+	let nouns = txtToArr(nounsTxt);
 	let verbs = txtToArr(verbTxt);
 
 	let typesSingular = ['a','the','this'];
@@ -41,14 +39,17 @@ export default () => {
 	let choices = [];
 	let lastChoiceName = '';
 
-	const getPosession = (params) => {
+	const getOwnable = (params) => {
 
 		let posession = '';
+		let wordList = nouns.filter(noun => !noun.props.only || noun.props.only !== 'proper');
+
+		console.log(wordList);
 
 		if(params.use === 0 && random([1,2]) === 2) {
-			let ownable = random(ownables);
+			let ownable = random(wordList);
 			let isSingular = random([true,false]);
-			if(ownable.proper || ownable.singular === 'always' || ownable.singular === 'owned') {
+			if(ownable.props.proper || ownable.props.singular === 'always' || ownable.props.singular === 'owned') {
 				isSingular = false;
 			}
 			posession = pluralize(ownable.value,isSingular?2:1);
@@ -60,30 +61,22 @@ export default () => {
 
 	const getThing = (globalparams,selfparams) => {
 
-		let isOwnable = true;
+		let wordList = nouns.filter(noun => !noun.props.only || noun.props.only !== 'ownable');
+		let ownable = random(nouns);
 
-		if(isOwnable) {
+		if(ownable.props.an) typesSingular[0] = 'an';
 
-			let ownable = random(ownables);
-
-			if(ownable.props.an) typesSingular[0] = 'an';
-
-			if(ownable.props.proper) {
-				return ownable.value;
-			}
-			else {
-				let isSingular = random([true,false]);
-				if(isSingular) {
-					return random(typesSingular)+' '+ownable.value;
-				}
-				else {
-					return random(typesPlural)+' '+pluralize(ownable.value,2);
-				}
-			}
-
+		if(ownable.props.proper) {
+			return ownable.value;
 		}
 		else {
-			return random(things).value;
+			let isSingular = random([true,false]);
+			if(isSingular) {
+				return random(typesSingular)+' '+ownable.value;
+			}
+			else {
+				return random(typesPlural)+' '+pluralize(ownable.value,2);
+			}
 		}
 
 	};
@@ -103,7 +96,7 @@ export default () => {
 		if(!params.verb) params.verb = random(verbs).value;
 		if(!params.thing) params.thing = getThing();
 		if(!params.use) params.use = random([0,0,1]);
-		if(!params.posession) params.posession = getPosession(params);
+		if(!params.posession) params.posession = getOwnable(params);
 		if(!params.personObject) {
 			params.personObject = random(people);
 			/*this is awful*/
