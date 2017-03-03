@@ -17,6 +17,8 @@
 fur (proper)
 tongue (only=ownable)
 ear (only=ownable)
+nose (only=ownlable)
+butt (only=ownlable)
 waffle
 pancake
 video game
