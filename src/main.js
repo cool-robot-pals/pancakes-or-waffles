@@ -51,7 +51,7 @@ export default (function(){
 
 	/*linked bc phantomjs is OLD*/
 	let link = document.createElement('link');
-	link.href = 'https://fonts.googleapis.com/css?family=Roboto:400,400b|Patrick+Hand|Poiret+One|Roboto+Mono:500|Lato:700';
+	link.href = 'https://fonts.googleapis.com/css?family=Roboto:400,400b|Gentium+Book+Basic:700|Patrick+Hand|Poiret+One|Roboto+Mono:500|Lato:700';
 	link.rel = 'stylesheet';
 	document.querySelector('head').appendChild(link);
 

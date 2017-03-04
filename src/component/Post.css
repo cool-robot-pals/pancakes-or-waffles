@@ -304,3 +304,51 @@
 	right: 60.5%;
 	color: #ff0004;
 }
+
+.post[data-layout="8"] {
+	font-family: Gentium Book Basic, serif;
+	font-weight: 800;
+	display: flex;
+	align-items: center;
+	color: #835137;
+}
+
+.post[data-layout="8"] > *:not(.bg) {
+	transform: scale(.8);
+}
+
+.post[data-layout="8"] .choices {
+	box-sizing: border-box;
+	background: url(assets/oblivion/dialog-bottom.png) no-repeat bottom left, url(assets/oblivion/dialog-top.png) top left;
+	width: 949px;
+	height: auto;
+	position: relative;
+	margin: auto;
+	padding: 47px;
+	z-index: 99998;
+}
+
+.post[data-layout="8"] .x1 {
+	z-index: 99999;
+}
+
+.post[data-layout="8"] .x1:before {
+	content: 'Quest added';
+	position: absolute;;
+	left: 0;
+	right: 0;
+	margin: auto;
+	top: 0;
+	bottom: 2.25em;
+	text-align: center;
+	height: 1em;
+}
+
+.post[data-layout="8"] .choices .choice:last-child {
+	color: #292b5c;
+	padding: 2em 1em 1.5em 4em;
+}
+
+.post[data-layout="8"] .choices .choice:first-child {
+	display: none;
+}

@@ -1,0 +1,10 @@
+#0 (lis-serious)
+#1 (lis-normal)
+#3 (fallout)
+#4 (zelda-n64)
+#5 (saints-row)
+#6 (quantic-dream)
+#7 (mass-effect)
+8 (oblivion)
+
+# 2 (bioshock)

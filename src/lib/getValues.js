@@ -1,7 +1,7 @@
 import nounsTxt from 'data/nouns.txt';
-import verbTxt from 'data/verbs.txt';
+import verbsTxt from 'data/verbs.txt';
+import layoutsTxt from 'data/layouts.txt';
 
-import layoutData from 'data/layouts.json';
 import peopleData from 'data/people.json';
 
 import txtToArr from 'lib/txtToArr';
@@ -16,10 +16,10 @@ const capitalizeFirstLetter = function(string) {
 export default () => {
 
 	let people = peopleData;
-	let layouts = layoutData;
 
 	let nouns = txtToArr(nounsTxt);
-	let verbs = txtToArr(verbTxt);
+	let verbs = txtToArr(verbsTxt);
+	let layouts = txtToArr(layoutsTxt);
 
 	let typesSingular = ['a','the','this'];
 	let typesPlural = ['','these','the'];
@@ -143,14 +143,14 @@ export default () => {
 		query = random(people).search;
 	}
 
-	let layout = random(Object.keys(layouts));
+	let layout = random(layouts);
 
 	return {
 		choices: choices,
 		query: query,
 		layout: {
-			id: layout,
-			name: layouts[layout]
+			id: layout.value,
+			name: Object.keys(layout.props)[0]
 		}
 	};
 
