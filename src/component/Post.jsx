@@ -50,7 +50,7 @@ class Post extends React.Component {
 							data-name={extra}
 							styleName='extra'>
 								{this.props.extras[extra]}
-						</div>
+						</div>;
 					})
 				}
 				<div styleName='choices'>
