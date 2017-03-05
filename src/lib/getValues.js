@@ -51,12 +51,12 @@ export default () => {
 			layout = random(layouts);
 			err;
 		}
- 		return {
+		return {
 			id: layout.value,
 			name: Object.keys(layout.props)[0]
-		}
+		};
 
-	}
+	};
 
 	const getOwnable = (params) => {
 

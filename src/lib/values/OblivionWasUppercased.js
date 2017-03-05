@@ -28,7 +28,7 @@ export default class extends AbstractValues {
 			date: this.date,
 			'ui-accept': 'Accept',
 			'ui-reject': 'Reject'
-		}
+		};
 
 	}
 }
