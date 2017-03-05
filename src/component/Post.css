@@ -32,7 +32,7 @@
 	font-family: 'Patrick Hand';
 }
 
-.post[data-layout="0"] .x1 {
+.post[data-layout="0"] .ac-1 {
 	background-image: url(assets/lis/lis-serious.png);
 }
 
@@ -44,7 +44,7 @@
 	text-transform: uppercase;
 }
 
-.post[data-layout="1"] .x1 {
+.post[data-layout="1"] .ac-1 {
 	background-image: url(assets/lis/lis.png);
 }
 
@@ -69,7 +69,7 @@
 	margin-right: 10%;
 }
 
-.post[data-layout="2"] .x1 {
+.post[data-layout="2"] .ac-1 {
 	background-image: url(assets/bioshock.png);
 }
 
@@ -98,7 +98,7 @@
 	text-align: center;
 }
 
-.post[data-layout="3"] .x1 {
+.post[data-layout="3"] .ac-1 {
 	background-image: url(assets/fallout.png);
 }
 
@@ -142,7 +142,7 @@
 	margin: auto;
 }
 
-.post[data-layout="4"] .x1 {
+.post[data-layout="4"] .ac-1 {
 	background-image: url(assets/zelda.png);
 }
 
@@ -161,7 +161,7 @@
 }
 
 
-.post[data-layout="4"] .x2:after {
+.post[data-layout="4"] .ac-2:after {
 	content: 'Yes No';
 	display: block;
 	position: absolute;
@@ -179,7 +179,7 @@
 	text-shadow: 0 2px 2px #000;
 }
 
-.post[data-layout="5"] .x1 {
+.post[data-layout="5"] .ac-1 {
 	background: url(assets/sr.png);
 }
 
@@ -254,7 +254,7 @@
 }
 
 
-.post[data-layout="7"] .x1 {
+.post[data-layout="7"] .ac-1 {
 	background: url(assets/masseffect.png);
 }
 
@@ -274,7 +274,7 @@
 	2px 2px 0 #000;
 }
 
-.post[data-layout="7"] .x2:after {
+.post[data-layout="7"] .ac-2:after {
 	content: 'Investigate';
 	position: absolute;;
 	display: block;
@@ -334,8 +334,8 @@
 
 .post[data-layout="8"] .choices,
 .post[data-layout="8"] .extra,
-.post[data-layout="8"] .x1,
-.post[data-layout="8"] .x2,
+.post[data-layout="8"] .ac-1,
+.post[data-layout="8"] .ac-2,
 .post[data-layout="8"] .x3 {
 	width: 949px;
 	height: 360px;
@@ -344,12 +344,12 @@
 	margin: auto;
 }
 
-.post[data-layout="8"] .x1,
-.post[data-layout="8"] .x2 {
+.post[data-layout="8"] .ac-1,
+.post[data-layout="8"] .ac-2 {
 	z-index: 99999;
 }
 
-.post[data-layout="8"] .x1:before {
+.post[data-layout="8"] .ac-1:before {
 	content: 'Quest added';
 	position: absolute;;
 	margin: auto;
@@ -361,13 +361,13 @@
 	display: block;
 }
 
-.post[data-layout="8"] .x1:after {
+.post[data-layout="8"] .ac-1:after {
 	content: url(assets/oblivion/quest.png);
 	top: 130px;
 	left: 80px;
 	position: relative;
 }
-.post[data-layout="8"] .x2:before {
+.post[data-layout="8"] .ac-2:before {
 	top: 110px;
 	background: linear-gradient(to right,rgba(250,240,210,0), #987751, rgba(250,240,210,0));
 	height: 1px;
