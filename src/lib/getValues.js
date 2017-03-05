@@ -22,7 +22,7 @@ export default () => {
 	let verbs = txtToArr(verbTxt);
 
 	let typesSingular = ['a','the','this'];
-	let typesPlural = ['','these','the'];
+	let typesPlural = ['','these','the','some'];
 
 	let fandoms = (function(people){
 		let fandoms = [];
@@ -44,7 +44,7 @@ export default () => {
 		let posession = '';
 		let wordList = nouns.filter(noun => !noun.props.only || noun.props.only !== 'proper');
 
-		if(params.use === 0 && random([1,2]) === 2) {
+		if(params.use === 0 && random([1,2,3,4]) === 2) {
 			let ownable = random(wordList);
 			let isSingular = random([true,false]);
 			if(ownable.props.proper || ownable.props.singular === 'always' || ownable.props.singular === 'owned') {
