@@ -1,8 +1,9 @@
 import nounsTxt from 'data/nouns.txt';
-import verbTxt from 'data/verbs.txt';
-
-import layoutData from 'data/layouts.json';
+import verbsTxt from 'data/verbs.txt';
+import layoutsTxt from 'data/layouts.txt';
 import peopleData from 'data/people.json';
+
+import OblivionValues from 'lib/values/Oblivion';
 
 import txtToArr from 'lib/txtToArr';
 import random from 'lib/random';
@@ -13,13 +14,14 @@ const capitalizeFirstLetter = function(string) {
 	return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
+/*TODO: refactor this mess*/
+
 export default () => {
 
 	let people = peopleData;
-	let layouts = layoutData;
 
 	let nouns = txtToArr(nounsTxt);
-	let verbs = txtToArr(verbTxt);
+	let verbs = txtToArr(verbsTxt);
 
 	let typesSingular = ['a','the','this'];
 	let typesPlural = ['','these','the','some'];
@@ -38,6 +40,23 @@ export default () => {
 	let crossFandom = Math.random() > .75;
 	let choices = [];
 	let lastChoiceName = '';
+
+	const getLayout = (params) => {
+
+		const layouts = txtToArr(layoutsTxt);
+		let layout;
+		try {
+			layout = layouts.filter(layout => layout.id === params.layout.id)[0];
+		} catch(err) {
+			layout = random(layouts);
+			err;
+		}
+		return {
+			id: layout.value,
+			name: Object.keys(layout.props)[0]
+		};
+
+	};
 
 	const getOwnable = (params) => {
 
@@ -143,15 +162,18 @@ export default () => {
 		query = random(people).search;
 	}
 
-	let layout = random(Object.keys(layouts));
+	let layout = getLayout();
+	let extras = [];
+
+	if(layout.name === 'oblivion') {
+		extras = new OblivionValues().values;
+	}
 
 	return {
 		choices: choices,
 		query: query,
-		layout: {
-			id: layout,
-			name: layouts[layout]
-		}
+		extras: extras,
+		layout: layout
 	};
 
 };
