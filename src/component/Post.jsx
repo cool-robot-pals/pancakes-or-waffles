@@ -42,6 +42,17 @@ class Post extends React.Component {
 				{
 					[1,2].map(extra => <div key={'x'+extra} styleName={'x'+extra} /> )
 				}
+				{
+					Object.keys(this.props.extras).map(extra => {
+						return <div
+							key={'x'+extra}
+							data-val={this.props.extras[extra]}
+							data-name={extra}
+							styleName='extra'>
+								{this.props.extras[extra]}
+						</div>
+					})
+				}
 				<div styleName='choices'>
 					{
 						choices.map(choice => {
@@ -56,4 +67,6 @@ class Post extends React.Component {
 
 }
 
-export default CSSModules(Post,styles);
+export default CSSModules(Post,styles,{
+	errorWhenNotFound: false
+});

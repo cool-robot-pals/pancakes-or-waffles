@@ -1,12 +1,14 @@
-import random from 'lib/random';
+import AbstractValues from 'lib/values/AbstractValues';
+
 import datesTxt from 'data/less-common/oblivion-dates.txt';
 
 import txtToArr from 'lib/txtToArr';
 import random from 'lib/random';
 
-export default class() {
+export default class extends AbstractValues {
 
 	constructor() {
+		super();
 		this.months = txtToArr(datesTxt);
 	}
 
@@ -14,7 +16,7 @@ export default class() {
 
 		const day = Math.ceil(Math.random()*22)+4;
 		const year = Math.ceil(Math.random()*100)+300;
-		const month = random(this.months);
+		const month = random(this.months).value;
 
 		return `${day}th of ${month}, 3E${year}`;
 
@@ -23,7 +25,9 @@ export default class() {
 	get values() {
 
 		return {
-			date: this.date
+			date: this.date,
+			'ui-accept': 'Accept',
+			'ui-reject': 'Reject'
 		}
 
 	}

@@ -18,6 +18,7 @@ const makePost = function() {
 		photoQuery: values.query,
 		choices: values.choices,
 		layout: values.layout,
+		extras: values.extras,
 		key: posts.length
 	};
 
