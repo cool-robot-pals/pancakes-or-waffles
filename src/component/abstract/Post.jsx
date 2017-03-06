@@ -22,7 +22,7 @@ class Post extends React.Component {
 	}
 
 	getMoreProps() {
-		return {}
+		return {};
 	}
 
 	componentDidMount() {

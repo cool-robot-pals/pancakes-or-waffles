@@ -4,13 +4,13 @@
   "description": "Look it's a long story",
   "main": "index.js",
   "scripts": {
-    "eslint": "node_modules/.bin/eslint --ignore-path .gitignore",
-    "webpack": "./node_modules/.bin/webpack",
-    "gulp": "./node_modules/.bin/gulp",
-    "esfix": ".eslint . --fix",
+    "eslint": "eslint --ext=jsx --ext=js --ignore-path .gitignore .",
+    "esfix": "eslint --ext=jsx --ext=js --ignore-path .gitignore --fix .",
     "shitpost": "gulp shitpost",
-    "install": "npm run webpack",
-    "test": "./node_modules/.bin/gulp test"
+    "install": "webpack",
+    "webpack": "webpack",
+    "gulp": "gulp",
+    "test": "gulp test"
   },
   "license": "GPL-3.0",
   "repository": {
