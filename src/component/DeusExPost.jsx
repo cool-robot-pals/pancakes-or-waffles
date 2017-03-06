@@ -13,13 +13,13 @@ class DeusExPost extends Post {
 
 	getMoreProps() {
 
-		let more = {}
+		let more = {};
 		more.choices = this.props.choices
 		.map(choice => {
 			const narrator = new NarratorValues().values;
-			return capitalizeFirstLetter(narrator.prefix.value)+' '+decapitalizeFirstLetter(choice)
+			return capitalizeFirstLetter(narrator.prefix.value)+' '+decapitalizeFirstLetter(choice);
 		})
-		.filter((choice, index) => index === 0)
+		.filter((choice, index) => index === 0);
 		more.extras = new BinaryChoicesValues().values;
 		return more;
 
