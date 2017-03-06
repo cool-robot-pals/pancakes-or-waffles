@@ -1,11 +1,15 @@
 import 'assets/reset.css';
 
-import Post from 'component/Post';
+import OtherPost from 'component/OtherPost';
+
 import getValues from 'lib/getValues';
 import random from 'lib/random';
 
 import {render} from 'react-dom';
 import React from 'react';
+
+import {capitalizeFirstLetter} from 'lib/stringies';
+
 
 let posts = [];
 let $posts = [];
@@ -13,7 +17,7 @@ let $posts = [];
 const makePost = function() {
 
 	let values = getValues();
-
+	let $post;
 	let post = {
 		photoQuery: values.query,
 		choices: values.choices,
@@ -22,18 +26,36 @@ const makePost = function() {
 		key: posts.length
 	};
 
-	let $post =  React.createElement(
-		Post, post
-	);
+	const getPostElement = () => {
+		return new Promise((resolve,reject)=>{
+			System.import(`component/${capitalizeFirstLetter(values.layout.name)}Post`)
+			.then(resolve)
+			.catch(err => {
+				if(err.message.indexOf('Cannot find module') > -1) {
+					resolve(OtherPost)
+				}
+				else {
+					reject(Err)
+				}
+			})
+		})
+	}
 
-	posts.push(post);
-	$posts.push($post);
+	getPostElement()
+	.then(Post => {
+		$post = React.createElement(
+			Post, post
+		);
+		posts.push(post);
+		$posts.push($post);
 
-	render(React.createElement(
-		'div',
-		null,
-		$posts
-	),document.getElementById('tough-choices-bot'));
+		render(React.createElement(
+			'div',
+			null,
+			$posts
+		),document.getElementById('tough-choices-bot'));
+	})
+	.catch(console.error)
 
 };
 

@@ -10,9 +10,7 @@ import random from 'lib/random';
 
 import pluralize from 'pluralize';
 
-const capitalizeFirstLetter = function(string) {
-	return string.charAt(0).toUpperCase() + string.slice(1);
-};
+import {capitalizeFirstLetter,decapitalizeFirstLetter} from 'lib/stringies';
 
 /*TODO: refactor this mess*/
 
