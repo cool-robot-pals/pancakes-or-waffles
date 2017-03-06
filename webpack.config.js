@@ -92,26 +92,7 @@ module.exports = {
 			},
 			{
 				test: /\.jsx?$/,
-				use: [{
-					loader: 'babel-loader',
-					query: {
-						compact: false,
-						plugins: [
-							'transform-decorators-legacy',
-							'transform-object-assign'
-						],
-						presets: [
-							['react'],
-							['target', {
-								presets: ['es2015'],
-								targets: [
-									{name: 'phantom', version: 2}
-								],
-								modules: false
-							}],
-						]
-					}
-				}]
+				loader: 'babel-loader'
 			}
 		]
 	},
