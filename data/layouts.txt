@@ -3,8 +3,6 @@ deus-ex
 oblivion
 mass-effect
 fallout
-
-zelda (4)
-saints-row (5)
-quantic-dream (6)
-# bioshock (2)
+quantic-dream
+zelda
+saints-row
