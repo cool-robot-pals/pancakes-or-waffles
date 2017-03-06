@@ -135,5 +135,5 @@ gulp.task('test',
 
 
 gulp.task('shitpost',
-	gulp.series('webshot','tweet')
+	gulp.series('webpack','webshot','tweet')
 );
