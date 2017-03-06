@@ -32,14 +32,14 @@ const makePost = function() {
 			.then(resolve)
 			.catch(err => {
 				if(err.message.indexOf('Cannot find module') > -1) {
-					resolve(OtherPost)
+					resolve(OtherPost);
 				}
 				else {
-					reject(Err)
+					reject(err);
 				}
-			})
-		})
-	}
+			});
+		});
+	};
 
 	getPostElement()
 	.then(Post => {
@@ -55,7 +55,7 @@ const makePost = function() {
 			$posts
 		),document.getElementById('tough-choices-bot'));
 	})
-	.catch(console.error)
+	.catch(console.error);
 
 };
 
