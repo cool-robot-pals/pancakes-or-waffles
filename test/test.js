@@ -16,9 +16,14 @@ describe('Initialization', function() {
 	});
 	it('should generate 2 choices with stuff on them',function(done){
 		var values = window.Post.default.getValues();
-		if(values.choices.reduce(function(choice){return choice.length;}) > 10) {
+		var length = values.choices.reduce(function(acc,choice){return acc+choice.length;},0);
+		if(length >= 10) {
 			done();
 		}
-		else done(new Error());
+		else {
+			done(new Error(
+				[JSON.stringify(values),length]
+			));
+		}
 	});
 });

@@ -46,6 +46,9 @@ module.exports = {
 		}),
 		new HtmlWebpackPlugin({
 			title: '👁👄👁☝️',
+			minify: {
+				collapseWhitespace: true
+			},
 			template: 'bot.template.ejs',
 			filename: '../test/basic.html',
 			test: true,
