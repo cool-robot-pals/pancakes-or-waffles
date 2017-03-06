@@ -1,5 +1,4 @@
 import React from 'react';
-import CSSModules from 'react-css-modules';
 
 import photoGetter from 'lib/photoGetter';
 
@@ -47,6 +46,12 @@ class Post extends React.Component {
 			<div
 				styleName={'post'}
 				data-layout={this.state.layout.id}
+				data-variant=
+				{
+					this.state.variants.map((variant,idx) => {
+						return `(${idx}=${Math.ceil(Math.random()*variant)})`;
+					})
+				}
 			>
 				{
 					[1,2].map(additionalContainer => {

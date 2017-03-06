@@ -6,11 +6,11 @@
 }
 
 .ac-1 {
-	height: 200px;
-	top: 400px;
-	bottom: auto;
+	height: 200px!important;
+	top: 400px!important;
+	bottom: auto!important;
 	background: url(assets/deus-ex/hud.png) center no-repeat;
-	background-size: contain;
+	background-size: contain!important;
 	z-index: 999;
 }
 
@@ -21,6 +21,10 @@
 
 .bg {
 	z-index: 5!important;
+}
+
+.bubble {
+	position: absolute;
 }
 
 .bubble span {

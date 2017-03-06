@@ -56,7 +56,7 @@ module.exports = {
 			template: 'bot.template.ejs',
 			filename: '../test/basic.html',
 			test: true,
-			base: `file://${__dirname}/${config.paths.build}/../test/basic.html`
+			base: `file://${__dirname}/${config.paths.build}/index.html`
 		})
 	],
 	module: {
