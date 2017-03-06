@@ -56,39 +56,6 @@
 	text-align: center;
 }
 
-.post[data-layout="3"] .ac-1 {
-	background-image: url(assets/fallout.png);
-}
-
-.post[data-layout="3"] {
-	font-family: 'Roboto Mono';
-	color: #3cd584;
-	font-size: 30px;
-}
-
-.post[data-layout="3"] .choices {
-	top: 66%;
-	margin: 0 16%;
-}
-
-.post[data-layout="3"] .choice {
-	margin-bottom: 30px;
-}
-
-.post[data-layout="3"] .choice span {
-	display: inline;
-}
-
-.post[data-layout="3"] .choice:before {
-	content: '[';
-	display:inline;
-}
-
-.post[data-layout="3"] .choice:after {
-	content: ']';
-	display:inline;
-}
-
 .post[data-layout="4"] {
 	font-family: 'Lato';
 	font-size: 30px;
@@ -205,56 +172,4 @@
 	right: -10px;
 	width: 90px;
 	height: 90px;
-}
-
-
-.post[data-layout="7"] .ac-1 {
-	background: url(assets/masseffect.png);
-}
-
-.post[data-layout="7"] {
-	font-family: 'Lato';
-	font-size: 25px;
-	color: #d9e9e8;
-	text-shadow:
-	-1px -1px 0 #000,
-	1px -1px 0 #000,
-	-1px 1px 0 #000,
-	1px 1px 0 #000,
-	-2px -2px 0 #000,
-	2px -2px 0 #000,
-	0 3px 0 #000,
-	-2px 2px 0 #000,
-	2px 2px 0 #000;
-}
-
-.post[data-layout="7"] .ac-2:after {
-	content: 'Investigate';
-	position: absolute;;
-	display: block;
-	left: 61%;
-	top: 76%;
-}
-
-.post[data-layout="7"] .choice span:before {
-	content: '[';
-}
-.post[data-layout="7"] .choice span:after {
-	content: ']';
-}
-
-.post[data-layout="7"] .choice:first-child {
-	position: absolute;
-	top: 70%;
-	text-align: right;
-	right: 59.5%;
-	color: #5cc0ff;
-}
-
-.post[data-layout="7"] .choice:last-child {
-	position: absolute;
-	top: 82%;
-	text-align: right;
-	right: 60.5%;
-	color: #ff0004;
 }

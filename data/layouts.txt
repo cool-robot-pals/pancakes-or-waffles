@@ -1,12 +1,10 @@
 queerbait
 deus-ex
 oblivion
+mass-effect
+fallout
 
-fallout (3)
 zelda (4)
 saints-row (5)
 quantic-dream (6)
-mass-effect (7)
-
-
 # bioshock (2)
