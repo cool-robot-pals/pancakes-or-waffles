@@ -1,12 +1,8 @@
 queerbait
 deus-ex
 oblivion
-
-fallout (3)
-zelda (4)
-saints-row (5)
-quantic-dream (6)
-mass-effect (7)
-
-
-# bioshock (2)
+mass-effect
+fallout
+quantic-dream
+zelda
+saints-row

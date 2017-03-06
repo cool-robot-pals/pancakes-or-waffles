@@ -1,0 +1,54 @@
+.post {
+	composes: post-raw from './abstract/Post.css';
+	font-family: 'Roboto';
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 25px;
+	text-shadow: 0 2px 8px #000;
+}
+
+.choices {
+	height: 200px;
+	top: auto;
+	bottom: auto;
+	right: auto;
+	left: auto;
+	position: absolute;
+	-@align-vertical-alt-: 10%;
+	-@align-alt-: 10%;
+}
+
+.choice span {
+	opacity: .9;
+	display: inline-block;
+}
+
+.choice:last-child {
+	margin-top: -30px;
+	margin-left: 70px;
+}
+
+.choice:first-child:before {
+	background-position: 0 0;
+}
+.choice:last-child:before {
+	background-position: 90px 0;
+}
+
+.choice:before,
+.choice:before {
+	background-image: url(assets/qd/colorful.png);
+	content: '\0020';
+	background-size: 180px 90px;
+	vertical-align: middle;
+	display: inline-block;
+	position: relative;
+	top: -2px;
+	right: -10px;
+	width: 90px;
+	height: 90px;
+}
+
+.post[data-variant*="(0=1)"] .choice:before {
+	background-image: url(assets/qd/white.png);
+}

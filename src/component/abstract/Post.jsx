@@ -45,7 +45,6 @@ class Post extends React.Component {
 		return (
 			<div
 				styleName={'post'}
-				data-layout={this.state.layout.id}
 				data-variant=
 				{
 					this.state.variants.map((variant,idx) => {

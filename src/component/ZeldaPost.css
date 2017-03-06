@@ -1,0 +1,41 @@
+.post {
+	composes: post from './abstract/Post.css';
+	font-family: 'Lato';
+	font-size: 30px;
+	text-shadow: 2px 2px 1px #000;
+}
+
+.bg {
+	width: 960px;
+	margin: auto;
+}
+
+.ac-1 {
+	background-image: url(assets/zelda.png);
+}
+
+.choice:first-child {
+	display: none;
+}
+
+.choice:last-child {
+	position: absolute;
+	top: 64%;
+	left: 20%;
+}
+
+.choice:last-child span:after {
+	content: '?';
+}
+
+
+.ac-2:after {
+	content: 'Yes No';
+	display: block;
+	position: absolute;
+	width: 10px;
+	line-height: 45px;
+	top: 72.5%;
+	left: 26.5%;
+	color: #48ea59;
+}

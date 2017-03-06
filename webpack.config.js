@@ -13,7 +13,7 @@ const pkg = require('./package.json');
 
 module.exports = {
 	entry: {
-		vendor: ['react','react-dom','lodash'],
+		vendor: ['react','react-dom','lodash','es6-promise-promise'],
 		app: 'main'
 	},
 	plugins: [
@@ -41,7 +41,7 @@ module.exports = {
 			filename: '[name].css',
 			allChunks: true
 		}),
-		new webpack.optimize.MinChunkSizePlugin({minChunkSize: 10000}),
+		new webpack.optimize.MinChunkSizePlugin({minChunkSize: 10000000}),
 		new HtmlWebpackPlugin({
 			title: '👁👄👁☝️',
 			template: 'bot.template.ejs',
