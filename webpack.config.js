@@ -37,7 +37,11 @@ module.exports = {
 			filename: '[file].map',
 			exclude: ['vendor.js']
 		}),
-		new ExtractTextPlugin('[name].css'),
+		new ExtractTextPlugin({
+			filename: '[name].css',
+			allChunks: true
+		}),
+		new webpack.optimize.MinChunkSizePlugin({minChunkSize: 10000}),
 		new HtmlWebpackPlugin({
 			title: '👁👄👁☝️',
 			template: 'bot.template.ejs',
@@ -62,7 +66,7 @@ module.exports = {
 				include: [
 					path.resolve(__dirname, 'src/component')
 				],
-				loader: ExtractTextPlugin.extract([
+				use: ExtractTextPlugin.extract([
 					'css-loader?modules&importLoaders=1&localIdentName=tc-[hash:base64:10]',
 					'postcss-loader',
 					'./tools/randomCssLoader'
@@ -95,7 +99,7 @@ module.exports = {
 			},
 			{
 				test: /\.jsx?$/,
-				loader: 'babel-loader'
+				use: 'babel-loader'
 			}
 		]
 	},

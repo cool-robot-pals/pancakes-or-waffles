@@ -1,6 +1,5 @@
 import React from 'react';
 import CSSModules from 'react-css-modules';
-import styles from './Post.css';
 
 import photoGetter from 'lib/photoGetter';
 
@@ -9,12 +8,22 @@ class Post extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {
+		let initialState = {
 			bg: undefined
 		};
-		this.getPhotos = photoGetter(this.props.photoQuery,{
+		this.state = Object.assign(
+			{},
+			initialState,
+			this.props,
+			this.getMoreProps()
+		);
+		this.getPhotos = photoGetter(this.state.photoQuery,{
 			debug: false
 		});
+	}
+
+	getMoreProps() {
+		return {}
 	}
 
 	componentDidMount() {
@@ -33,11 +42,11 @@ class Post extends React.Component {
 		let backgroundStyle = {
 			backgroundImage: `url(${this.state.bg})`
 		};
-		let choices = this.props.choices;
+		let choices = this.state.choices;
 		return (
 			<div
-				styleName='post'
-				data-layout={this.props.layout.id}
+				styleName={'post'}
+				data-layout={this.state.layout.id}
 			>
 				{
 					[1,2].map(additionalContainer => {
@@ -48,13 +57,13 @@ class Post extends React.Component {
 					})
 				}
 				{
-					Object.keys(this.props.extras).map(extra => {
+					Object.keys(this.state.extras).map(extra => {
 						return <div
 							key={'extra-'+extra}
-							data-val={this.props.extras[extra]}
+							data-val={this.state.extras[extra]}
 							data-name={extra}
 							styleName='extra'>
-								{this.props.extras[extra]}
+								<span>{this.state.extras[extra]}</span>
 						</div>;
 					})
 				}
@@ -65,13 +74,11 @@ class Post extends React.Component {
 						})
 					}
 				</div>
-				<div styleName='bg' style={backgroundStyle} />
+				<div styleName='bg' data-sink="true" style={backgroundStyle} />
 			</div>
 		);
 	}
 
 }
 
-export default CSSModules(Post,styles,{
-	errorWhenNotFound: false
-});
+export default Post;

@@ -1,0 +1,68 @@
+.post {
+	composes: post from './abstract/Post.css';
+	font-family: roboto;
+	text-transform: uppercase;
+	font-size: 22px;
+}
+
+.ac-1 {
+	height: 200px;
+	top: 400px;
+	bottom: auto;
+	background: url(assets/deus-ex/hud.png) center no-repeat;
+	background-size: contain;
+	z-index: 999;
+}
+
+.ac-2 {
+	z-index: 6;
+	background: rgba(225,220,160,.2);
+}
+
+.bg {
+	z-index: 5!important;
+}
+
+.bubble span {
+	border-radius: .25em;
+	color: rgba(255,255,255,.8);
+	padding: .5em 1em .75em 1.7em;
+	display: inline-block;
+	text-shadow: 0 4px 1px rgba(0,0,0,.25);
+	position: static;
+	background-color: rgba(15,15,20,.5);
+}
+
+.choice {
+	composes: bubble;
+	text-transform: none;
+	top: 500px;
+	left: 59%;
+	z-index: 888;
+	right: 10%;
+	border-top-left-radius: 20px!important;
+	background: url(assets/deus-ex/ui-artifact.png) no-repeat bottom right;
+	background-size: auto 12px, auto 12px;
+	position: absolute;
+}
+
+.extra {
+	composes: bubble;
+}
+
+.extra[data-name="bad"] {
+	top: 400px;
+	left: 53%;
+}
+.extra[data-name="good"] {
+	right: 60%;
+	top: 520px;
+	left: auto;
+}
+
+.extra span {
+	color: #fff;
+	background: url(assets/deus-ex/ui-artifact.png) no-repeat bottom right,url(assets/deus-ex/ui-artifact-too.png) no-repeat top left;
+	background-size: auto 12px;
+	background-color: rgba(15,15,20,.9);
+}
