@@ -1,14 +1,14 @@
 import 'assets/reset.css';
 
+import {render} from 'react-dom';
+import React from 'react';
+import changeCase from 'change-case';
+
 import OtherPost from 'component/OtherPost';
 
 import getValues from 'lib/getValues';
 import random from 'lib/random';
 
-import {render} from 'react-dom';
-import React from 'react';
-
-import {capitalizeFirstLetter} from 'lib/stringies';
 
 
 let posts = [];
@@ -22,13 +22,14 @@ const makePost = function() {
 		photoQuery: values.query,
 		choices: values.choices,
 		layout: values.layout,
-		extras: values.extras,
+		extras: [],
+		variants: [],
 		key: posts.length
 	};
 
 	const getPostElement = () => {
 		return new Promise((resolve,reject)=>{
-			System.import(`component/${capitalizeFirstLetter(values.layout.name)}Post`)
+			System.import('component/'+changeCase.pascal(`${values.layout.name}-post`))
 			.then(resolve)
 			.catch(err => {
 				if(err.message.indexOf('Cannot find module') > -1) {

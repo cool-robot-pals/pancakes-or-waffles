@@ -1,47 +1,30 @@
-.post {
-	composes: post from './abstract/Post.css'
-}
-
-.post[data-layout="1"],
-.post[data-layout="0"] {
-	font-family: 'Patrick Hand';
-}
-
-.post[data-layout="0"] .ac-1 {
-	background-image: url(assets/lis/lis-serious.png);
-}
-
-.post[data-layout="0"] .bg {
-	opacity: .5;
-}
-
-.post[data-layout="0"] .choice {
-	text-transform: uppercase;
-}
-
-.post[data-layout="1"] .ac-1 {
-	background-image: url(assets/lis/lis.png);
-}
-
-.post[data-layout="0"] .choices,
-.post[data-layout="1"] .choices {
-	top: 71%;
-}
-
-.post[data-layout="0"] .choices .choice,
-.post[data-layout="1"] .choices .choice {
-	width: 40%;
-	margin: 7% 0;
+.post[data-layout] {
+	display:block;
+	width: 1280px;
+	height: 720px;
+	background: #000;
+	position: relative;
+	overflow: hidden;
 	float: left;
-	margin-right: 0;
-	margin-left: 10%;
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	color: #fff;
 }
 
-.post[data-layout="0"] .choices .choice:first-child,
-.post[data-layout="1"] .choices .choice:first-child {
-	text-align: right;
-	margin-left: 0;
-	margin-right: 10%;
+.post[data-layout] > * {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 10;
+	background-position: center center;
+	background-size: cover;
+}
+
+.post[data-layout] > [data-sink] {
+	z-index: 9;
 }
 
 .post[data-layout="2"] .ac-1 {
@@ -274,130 +257,4 @@
 	text-align: right;
 	right: 60.5%;
 	color: #ff0004;
-}
-
-.post[data-layout="8"] {
-	font-family: Gentium Book Basic, serif;
-	font-weight: 800;
-	color: #835137;
-}
-
-.post[data-layout="8"] > *:not(.bg) {
-	transform: scale(.8);
-}
-
-.post[data-layout="8"] .choices {
-	background: url(assets/oblivion/dialog-bottom.png) no-repeat bottom left, url(assets/oblivion/dialog-top.png) top left;
-	padding: 47px;
-	z-index: 99998;
-}
-
-.post[data-layout="8"] .choices:after {
-	position: absolute;
-	top: 47px;
-	left: 47px;
-	right: 47px;
-	bottom: 47px;
-	box-shadow: inset 0 0 60px 30px rgba(100,60,40,.5);
-	content: '\0020';
-	z-index: 10;
-}
-
-.post[data-layout="8"] .choices,
-.post[data-layout="8"] .extra,
-.post[data-layout="8"] .ac-1,
-.post[data-layout="8"] .ac-2,
-.post[data-layout="8"] .x3 {
-	width: 949px;
-	height: 360px;
-	position: absolute;
-	box-sizing: border-box;
-	margin: auto;
-}
-
-.post[data-layout="8"] .ac-1,
-.post[data-layout="8"] .ac-2 {
-	z-index: 99999;
-}
-
-.post[data-layout="8"] .ac-1:before {
-	content: 'Quest added';
-	position: absolute;;
-	margin: auto;
-	top: 65px;
-	text-align: center;
-	left: 0;
-	right: 0;
-	width: 100%;
-	display: block;
-}
-
-.post[data-layout="8"] .ac-1:after {
-	content: url(assets/oblivion/quest.png);
-	top: 130px;
-	left: 80px;
-	position: relative;
-}
-.post[data-layout="8"] .ac-2:before {
-	top: 110px;
-	background: linear-gradient(to right,rgba(250,240,210,0), #987751, rgba(250,240,210,0));
-	height: 1px;
-	display: block;
-	position: relative;
-	content: '\0020';
-}
-
-.post[data-layout="8"] .choices .choice:last-child {
-	color: #292b5c;
-	position: absolute;
-	top: 132px;
-	left: 160px;
-	z-index: 99999;
-}
-
-.post[data-layout="8"] .extra[data-name=date] {
-	font-family: sans-serif;
-	font-size: .5em;
-	color: #b41500;
-	padding-top: 175px;
-	padding-left: 160px;
-	z-index: 9999999;
-}
-
-.post[data-layout="8"] .extra[data-name=ui-accept] {
-	padding-top: 230px;
-	z-index: 9999999;
-	padding-right: 300px;
-	text-align: right;
-}
-.post[data-layout="8"] .extra[data-name=ui-accept]:before {
-	background: url(assets/oblivion/a.png);
-	background-size: cover;
-	content: '\0020';
-	display: inline-block;
-	vertical-align: -40%;
-	margin-right: 10px;
-	height: 50px;
-	width: 50px;
-}
-
-.post[data-layout="8"] .extra[data-name=ui-reject] {
-	padding-top: 230px;
-	padding-right: 80px;
-	z-index: 9999999;
-	text-align: right;
-}
-.post[data-layout="8"] .extra[data-name=ui-reject]:before {
-	background: url(assets/oblivion/b.png);
-	background-size: cover;
-	content: '\0020';
-	display: inline-block;;
-	vertical-align: -40%;
-	margin-right: 10px;
-	height: 50px;
-	width: 50px;
-}
-
-.post[data-layout="8"] .choices .choice:first-child {
-	display: none;
 }

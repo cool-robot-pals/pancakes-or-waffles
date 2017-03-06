@@ -1,11 +1,12 @@
-0 (lisSerious)
-1 (lisNormal)
-3 (fallout)
-4 (zeldaN64)
-5 (saintsRow)
-6 (quanticDream)
-7 (massEffect)
-8 (oblivion)
-9 (deusEx)
+queerbait
+deus-ex
+oblivion
 
-# 2 (bioshock)
+fallout (3)
+zelda (4)
+saints-row (5)
+quantic-dream (6)
+mass-effect (7)
+
+
+# bioshock (2)

@@ -27,6 +27,7 @@
     "babel-preset-react": "^6.23.0",
     "babel-preset-target": "0.0.5",
     "browser-request": "^0.3.3",
+    "change-case": "^3.0.1",
     "clean-webpack-plugin": "^0.1.15",
     "css-loader": "^0.26.1",
     "es6-promise-promise": "^1.0.0",
