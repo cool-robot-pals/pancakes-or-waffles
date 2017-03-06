@@ -364,6 +364,10 @@
 	z-index: 9999999;
 }
 
+.post[data-layout="8"] .extra span {
+	display: inline;
+}
+
 .post[data-layout="8"] .extra[data-name=ui-accept] {
 	padding-top: 230px;
 	z-index: 9999999;
