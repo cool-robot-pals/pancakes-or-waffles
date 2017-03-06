@@ -11,9 +11,10 @@
 		<title><%= htmlWebpackPlugin.options.title %></title>
 	</head>
 	<body>
-		<%if (typeof htmlWebpackPlugin.options.test !== 'undefined') { %>
-			<div id="mocha"></div>
-			<script>mocha.run();</script>
-		<% } %>
 	</body>
+	<%if (typeof htmlWebpackPlugin.options.test !== 'undefined') { %>
+		<div id="mocha"></div>
+		<link href="test.css" rel="stylesheet"></head>
+		<script>mocha.run();</script>
+	<% } %>
 </html>

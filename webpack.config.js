@@ -46,6 +46,9 @@ module.exports = {
 		}),
 		new HtmlWebpackPlugin({
 			title: '👁👄👁☝️',
+			minify: {
+				collapseWhitespace: true
+			},
 			template: 'bot.template.ejs',
 			filename: '../test/basic.html',
 			test: true,
@@ -92,26 +95,7 @@ module.exports = {
 			},
 			{
 				test: /\.jsx?$/,
-				use: [{
-					loader: 'babel-loader',
-					query: {
-						compact: false,
-						plugins: [
-							'transform-decorators-legacy',
-							'transform-object-assign'
-						],
-						presets: [
-							['react'],
-							['target', {
-								presets: ['es2015'],
-								targets: [
-									{name: 'phantom', version: 2}
-								],
-								modules: false
-							}],
-						]
-					}
-				}]
+				loader: 'babel-loader'
 			}
 		]
 	},
