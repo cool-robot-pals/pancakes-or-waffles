@@ -37,7 +37,11 @@ module.exports = {
 			filename: '[file].map',
 			exclude: ['vendor.js']
 		}),
-		new ExtractTextPlugin('[name].css'),
+		new ExtractTextPlugin({
+			filename: '[name].css',
+			allChunks: true
+		}),
+		new webpack.optimize.MinChunkSizePlugin({minChunkSize: 10000}),
 		new HtmlWebpackPlugin({
 			title: '👁👄👁☝️',
 			template: 'bot.template.ejs',
