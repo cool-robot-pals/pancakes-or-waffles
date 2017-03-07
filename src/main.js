@@ -1,11 +1,13 @@
 import 'assets/reset.css';
 
-import Post from 'component/Post';
+import {render} from 'react-dom';
+import React from 'react';
+import changeCase from 'change-case';
+
 import getValues from 'lib/getValues';
 import random from 'lib/random';
 
-import {render} from 'react-dom';
-import React from 'react';
+
 
 let $posts = [];
 let posts = [];

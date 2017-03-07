@@ -3,16 +3,12 @@ import verbsTxt from 'data/verbs.txt';
 import layoutsTxt from 'data/layouts.txt';
 import peopleData from 'data/people.json';
 
-import OblivionValues from 'lib/values/Oblivion';
-
 import txtToArr from 'lib/txtToArr';
 import random from 'lib/random';
 
 import pluralize from 'pluralize';
 
-const capitalizeFirstLetter = function(string) {
-	return string.charAt(0).toUpperCase() + string.slice(1);
-};
+import {capitalizeFirstLetter,decapitalizeFirstLetter} from 'lib/stringies';
 
 /*TODO: refactor this mess*/
 
@@ -46,14 +42,14 @@ export default () => {
 		const layouts = txtToArr(layoutsTxt);
 		let layout;
 		try {
-			layout = layouts.filter(layout => layout.id === params.layout.id)[0];
+			layout = layouts.filter(layout => layout.value === params.layout.name)[0];
 		} catch(err) {
 			layout = random(layouts);
 			err;
 		}
 		return {
-			id: layout.value,
-			name: Object.keys(layout.props)[0]
+			name: layout.value,
+			id: Object.keys(layout.props)[0]
 		};
 
 	};
@@ -163,16 +159,11 @@ export default () => {
 	}
 
 	let layout = getLayout();
-	let extras = [];
-
-	if(layout.name === 'oblivion') {
-		extras = new OblivionValues().values;
-	}
 
 	return {
 		choices: choices,
 		query: query,
-		extras: extras,
+		extras: [],
 		layout: layout
 	};
 

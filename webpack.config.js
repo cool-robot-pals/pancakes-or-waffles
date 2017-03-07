@@ -13,7 +13,7 @@ const pkg = require('./package.json');
 
 module.exports = {
 	entry: {
-		vendor: ['react','react-dom','lodash'],
+		vendor: ['react','react-dom','lodash','es6-promise-promise'],
 		app: 'main'
 	},
 	plugins: [
@@ -41,7 +41,11 @@ module.exports = {
 			filename: '[name].css',
 			allChunks: true
 		}),
+<<<<<<< HEAD
 		new webpack.optimize.MinChunkSizePlugin({minChunkSize: 10000}),
+=======
+		new webpack.optimize.MinChunkSizePlugin({minChunkSize: 10000000}),
+>>>>>>> master
 		new HtmlWebpackPlugin({
 			title: '👁👄👁☝️',
 			template: 'bot.template.ejs',
@@ -56,7 +60,7 @@ module.exports = {
 			template: 'bot.template.ejs',
 			filename: '../test/basic.html',
 			test: true,
-			base: `file://${__dirname}/${config.paths.build}/../test/basic.html`
+			base: `file://${__dirname}/${config.paths.build}/index.html`
 		})
 	],
 	module: {
@@ -66,7 +70,7 @@ module.exports = {
 				include: [
 					path.resolve(__dirname, 'src/component')
 				],
-				loader: ExtractTextPlugin.extract([
+				use: ExtractTextPlugin.extract([
 					'css-loader?modules&importLoaders=1&localIdentName=tc-[hash:base64:10]',
 					'postcss-loader',
 					'./tools/randomCssLoader'
@@ -99,7 +103,7 @@ module.exports = {
 			},
 			{
 				test: /\.jsx?$/,
-				loader: 'babel-loader'
+				use: 'babel-loader'
 			}
 		]
 	},

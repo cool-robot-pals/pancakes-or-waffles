@@ -1,0 +1,33 @@
+.post {
+	composes: post from './abstract/Post.css';
+	font-family: 'Roboto Mono';
+	color: #3cd584!important;
+	font-size: 30px;
+}
+
+.ac-1 {
+	background-image: url(assets/fallout.png);
+}
+
+.choices {
+	top: 66%!important;
+	margin: 0 16%;
+}
+
+.choice {
+	margin-bottom: 30px;
+}
+
+.choice span {
+	display: inline;
+}
+
+.choice:before {
+	content: '[';
+	display:inline;
+}
+
+.choice:after {
+	content: ']';
+	display:inline;
+}
