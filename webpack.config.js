@@ -41,7 +41,7 @@ module.exports = {
 			filename: '[name].css',
 			allChunks: true
 		}),
-		new webpack.optimize.MinChunkSizePlugin({minChunkSize: 10000000}),
+		new webpack.optimize.MinChunkSizePlugin({minChunkSize: 10000}),
 		new HtmlWebpackPlugin({
 			title: '👁👄👁☝️',
 			template: 'bot.template.ejs',

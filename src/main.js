@@ -9,29 +9,35 @@ import random from 'lib/random';
 
 
 
-let posts = [];
 let $posts = [];
+let posts = [];
 
 const makePost = function() {
 
 	let values = getValues();
-	let $post;
-	let post = {
-		photoQuery: values.query,
-		choices: values.choices,
-		extras: [],
-		variants: [],
-		key: posts.length
-	};
 
 	System.import('component/'+changeCase.pascal(`${values.layout.name}-post`))
 	.then(Post => {
 
-		$post = React.createElement(
-			Post, post
+		let $post = React.createElement(
+			Post,
+			{
+				photoQuery: values.query,
+				choices: values.choices,
+				extras: [],
+				variants: [],
+				key: $posts.length
+			}
 		);
-		posts.push(post);
+
 		$posts.push($post);
+		posts.push({
+			photoQuery: $post.props.photoQuery,
+			choices: $post.props.choices,
+			layout: values.layout.name,
+			$element: $post
+		});
+
 		render(React.createElement(
 			'div',
 			null,
