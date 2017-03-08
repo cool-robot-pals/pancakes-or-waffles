@@ -26,4 +26,12 @@ describe('Initialization', function() {
 			));
 		}
 	});
+	it('should have 3+ layouts',function(done){
+		if(window.Post.default.layouts.length > 3) {
+			done();
+		}
+		else {
+			done(new Error());
+		}
+	});
 });

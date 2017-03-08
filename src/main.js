@@ -59,7 +59,7 @@ export default (function(){
 	lib.makePost = makePost;
 	lib.getValues = getValues;
 	lib.posts = posts;
-	lib.posts = layouts;
+	lib.layouts = layouts;
 
 	/*make app container*/
 	let $app = document.createElement('div');
