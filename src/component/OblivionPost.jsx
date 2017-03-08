@@ -4,7 +4,7 @@ import CSSModules from 'react-css-modules';
 import styles from './OblivionPost.css';
 import Post from './abstract/Post.jsx';
 
-import OblivionValues from 'lib/values/Oblivion';
+import OblivionValues from 'getter/less-common/oblivion';
 
 
 class OblivionPost extends Post {
