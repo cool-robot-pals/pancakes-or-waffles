@@ -42,12 +42,12 @@ describe('Initialization', function() {
 			if(rendered >= total) {
 				done();
 			}
-		}
+		};
 		window.Post.default.layouts.map(function(layout){
 			window.Post.default.makePost({
 				layout: layout
-			})
+			});
 			finishedMaybe();
-		})
+		});
 	});
 });
