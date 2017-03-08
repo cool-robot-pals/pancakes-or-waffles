@@ -41,7 +41,7 @@
 	{"name":"Garrus", "search":"garrus mass effect", "fandom":"me"},
 	{"name":"Miranda", "search":"miranda mass effect", "fandom":"me"},
 	{"name":"Tali", "search":"mass effect", "fandom":"me"},
-	{"name":"Elisabeth", "search":"elisabeth bioshock infinite", "fandom":"bs"},
+	{"name":"Elisabeth", "search":"elisabeth bioshock", "fandom":"bs"},
 	{"name":"Booker", "search":"booker bioshock", "fandom":"bs"},
 	{"name":"Fontaine", "search":"fontaine bioshock", "fandom":"bs"},
 	{"name":"Comstock", "search":"Comstock bioshock", "fandom":"bs"},
@@ -59,6 +59,8 @@
 	{"name":"Piper", "search":"piper fallout", "fandom":"fo"},
 	{"name":"Cait", "search":"cait fallout", "fandom":"fo"},
 	{"name":"Curie", "search":"curie fallout", "fandom":"fo"},
+	{"name":"Nilin", "search":"nilin", "fandom":"rmm"},
+	{"name":"Scylla", "search":"remember me game", "fandom":"rmm"},
 	{"name":"Dogmeat", "search":"dog fallout", "fandom":"fo"},
 	{"name":"GLaDOS", "search":"glados portal", "fandom":"portal"},
 	{"name":"Chell", "search":"chell portal", "fandom":"portal"}
