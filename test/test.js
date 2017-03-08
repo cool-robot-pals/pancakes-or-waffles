@@ -34,4 +34,20 @@ describe('Initialization', function() {
 			done(new Error());
 		}
 	});
+	it('should make all layouts without an error',function(done){
+		var total = window.Post.default.layouts.length;
+		var rendered = 0;
+		var finishedMaybe = function() {
+			rendered++;
+			if(rendered >= total) {
+				done();
+			}
+		}
+		window.Post.default.layouts.map(function(layout){
+			window.Post.default.makePost({
+				layout: layout
+			})
+			finishedMaybe();
+		})
+	});
 });

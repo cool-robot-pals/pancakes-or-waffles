@@ -14,12 +14,12 @@ let $posts = [];
 let posts = [];
 let layouts = new layoutGetter().layouts;
 
-const makePost = function() {
+const makePost = function(defaults={}) {
 
 	let values = getValues();
-	let layout = new layoutGetter().value;
+	let layout = new layoutGetter(defaults).value;
 
-	System.import('component/'+changeCase.pascal(`${layout.name}-post`))
+	System.import('component/'+changeCase.pascal(`${layout}-post`))
 	.then(Post => {
 
 		let $post = React.createElement(
@@ -37,7 +37,7 @@ const makePost = function() {
 		posts.push({
 			photoQuery: $post.props.photoQuery,
 			choices: $post.props.choices,
-			layout: layout.name,
+			layout: layout,
 			$element: $post
 		});
 
