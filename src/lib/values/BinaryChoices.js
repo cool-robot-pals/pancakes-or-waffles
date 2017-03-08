@@ -1,6 +1,6 @@
-import AbstractValues from 'lib/values/AbstractValues';
+import abstractGetter from 'getter/abstract/abstract';
 
-export default class extends AbstractValues {
+export default class extends abstractGetter {
 
 	constructor() {
 		super();
