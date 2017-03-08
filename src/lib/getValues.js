@@ -37,23 +37,6 @@ export default () => {
 	let choices = [];
 	let lastChoiceName = '';
 
-	const getLayout = (params) => {
-
-		const layouts = txtToArr(layoutsTxt);
-		let layout;
-		try {
-			layout = layouts.filter(layout => layout.value === params.layout.name)[0];
-		} catch(err) {
-			layout = random(layouts);
-			err;
-		}
-		return {
-			name: layout.value,
-			id: Object.keys(layout.props)[0]
-		};
-
-	};
-
 	const getOwnable = (params) => {
 
 		let posession = '';
@@ -158,13 +141,10 @@ export default () => {
 		query = random(people).search;
 	}
 
-	let layout = getLayout();
-
 	return {
 		choices: choices,
 		query: query,
 		extras: [],
-		layout: layout
 	};
 
 };

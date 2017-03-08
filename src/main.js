@@ -4,6 +4,7 @@ import {render} from 'react-dom';
 import React from 'react';
 import changeCase from 'change-case';
 
+import layoutGetter from 'getter/layout';
 import getValues from 'lib/getValues';
 import random from 'lib/random';
 
@@ -11,12 +12,14 @@ import random from 'lib/random';
 
 let $posts = [];
 let posts = [];
+let layouts = new layoutGetter().layouts;
 
 const makePost = function() {
 
 	let values = getValues();
+	let layout = new layoutGetter().value;
 
-	System.import('component/'+changeCase.pascal(`${values.layout.name}-post`))
+	System.import('component/'+changeCase.pascal(`${layout.name}-post`))
 	.then(Post => {
 
 		let $post = React.createElement(
@@ -34,7 +37,7 @@ const makePost = function() {
 		posts.push({
 			photoQuery: $post.props.photoQuery,
 			choices: $post.props.choices,
-			layout: values.layout.name,
+			layout: layout.name,
 			$element: $post
 		});
 
@@ -56,6 +59,7 @@ export default (function(){
 	lib.makePost = makePost;
 	lib.getValues = getValues;
 	lib.posts = posts;
+	lib.layouts = layouts;
 
 	/*make app container*/
 	let $app = document.createElement('div');

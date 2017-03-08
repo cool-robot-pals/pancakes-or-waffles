@@ -1,11 +1,11 @@
-import AbstractValues from 'lib/values/AbstractValues';
+import abstractGetter from 'getter/abstract/abstract';
 
 import datesTxt from 'data/less-common/oblivion-dates.txt';
 
 import txtToArr from 'lib/txtToArr';
 import random from 'lib/random';
 
-export default class extends AbstractValues {
+export default class extends abstractGetter {
 
 	constructor() {
 		super();
