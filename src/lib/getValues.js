@@ -33,7 +33,7 @@ export default () => {
 	let query;
 
 	let sameVerb = Math.random() > .66;
-	let crossFandom = Math.random() > .75;
+	let crossFandom = Math.random() > .9;
 	let choices = [];
 	let lastChoiceName = '';
 
