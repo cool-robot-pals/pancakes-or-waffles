@@ -33,7 +33,7 @@ export default () => {
 	let query;
 
 	let sameVerb = Math.random() > .66;
-	let crossFandom = Math.random() > .75;
+	let crossFandom = Math.random() > .9;
 	let choices = [];
 	let lastChoiceName = '';
 
@@ -91,7 +91,7 @@ export default () => {
 
 		if(!params.verb) params.verb = random(verbs).value;
 		if(!params.thing) params.thing = getThing();
-		if(!params.use) params.use = random([0,0,1]);
+		if(!params.use) params.use = random([0,0,0,1]);
 		if(!params.posession) params.posession = getOwnable(params);
 		if(!params.personObject) {
 			params.personObject = random(people);

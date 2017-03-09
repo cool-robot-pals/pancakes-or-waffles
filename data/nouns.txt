@@ -23,7 +23,6 @@ waffle
 pancake
 video game
 comic book
-trap
 hair (singular=always)
 meme
 cat
