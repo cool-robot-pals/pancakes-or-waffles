@@ -16,9 +16,38 @@ describe('Initialization', function() {
 	});
 	it('should generate 2 choices with stuff on them',function(done){
 		var values = window.Post.default.getValues();
-		if(values.choices.reduce(function(choice){return choice.length;}) > 10) {
+		var length = values.choices.reduce(function(acc,choice){return acc+choice.length;},0);
+		if(length >= 10) {
 			done();
 		}
-		else done(new Error());
+		else {
+			done(new Error(
+				[JSON.stringify(values),length]
+			));
+		}
+	});
+	it('should have 3+ layouts',function(done){
+		if(window.Post.default.layouts.length > 3) {
+			done();
+		}
+		else {
+			done(new Error());
+		}
+	});
+	it('should make all layouts without an error',function(done){
+		var total = window.Post.default.layouts.length;
+		var rendered = 0;
+		var finishedMaybe = function() {
+			rendered++;
+			if(rendered >= total) {
+				done();
+			}
+		};
+		window.Post.default.layouts.map(function(layout){
+			window.Post.default.makePost({
+				layout: layout
+			});
+			finishedMaybe();
+		});
 	});
 });

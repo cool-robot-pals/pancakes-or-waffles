@@ -1,0 +1,52 @@
+.post-raw {
+	display:block;
+	width: 1280px;
+	height: 720px;
+	background: #000;
+	position: relative;
+	overflow: hidden;
+	float: left;
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	color: #fff;
+}
+
+.post {
+	composes: post-raw;
+}
+
+.cover {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-position: center center;
+	background-size: cover;
+}
+
+.post > * {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-position: center center;
+	background-size: cover;
+}
+
+.post-raw > [data-sink] {
+	z-index: 9;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-position: center center;
+	background-size: cover;
+}
+
+.post-raw > * {
+	z-index: 10;
+}

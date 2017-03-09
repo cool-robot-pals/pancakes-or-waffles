@@ -13,7 +13,7 @@ const pkg = require('./package.json');
 
 module.exports = {
 	entry: {
-		vendor: ['react','react-dom','lodash'],
+		vendor: ['react','react-dom','lodash','es6-promise-promise'],
 		app: 'main'
 	},
 	plugins: [
@@ -37,7 +37,11 @@ module.exports = {
 			filename: '[file].map',
 			exclude: ['vendor.js']
 		}),
-		new ExtractTextPlugin('[name].css'),
+		new ExtractTextPlugin({
+			filename: '[name].css',
+			allChunks: true
+		}),
+		new webpack.optimize.MinChunkSizePlugin({minChunkSize: 10000}),
 		new HtmlWebpackPlugin({
 			title: '👁👄👁☝️',
 			template: 'bot.template.ejs',
@@ -46,10 +50,13 @@ module.exports = {
 		}),
 		new HtmlWebpackPlugin({
 			title: '👁👄👁☝️',
+			minify: {
+				collapseWhitespace: true
+			},
 			template: 'bot.template.ejs',
 			filename: '../test/basic.html',
 			test: true,
-			base: `file://${__dirname}/${config.paths.build}/../test/basic.html`
+			base: `file://${__dirname}/${config.paths.build}/index.html`
 		})
 	],
 	module: {
@@ -59,7 +66,7 @@ module.exports = {
 				include: [
 					path.resolve(__dirname, 'src/component')
 				],
-				loader: ExtractTextPlugin.extract([
+				use: ExtractTextPlugin.extract([
 					'css-loader?modules&importLoaders=1&localIdentName=tc-[hash:base64:10]',
 					'postcss-loader',
 					'./tools/randomCssLoader'
@@ -92,26 +99,7 @@ module.exports = {
 			},
 			{
 				test: /\.jsx?$/,
-				use: [{
-					loader: 'babel-loader',
-					query: {
-						compact: false,
-						plugins: [
-							'transform-decorators-legacy',
-							'transform-object-assign'
-						],
-						presets: [
-							['react'],
-							['target', {
-								presets: ['es2015'],
-								targets: [
-									{name: 'phantom', version: 2}
-								],
-								modules: false
-							}],
-						]
-					}
-				}]
+				use: 'babel-loader'
 			}
 		]
 	},

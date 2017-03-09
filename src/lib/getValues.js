@@ -1,7 +1,6 @@
 import nounsTxt from 'data/nouns.txt';
-import verbTxt from 'data/verbs.txt';
-
-import layoutData from 'data/layouts.json';
+import verbsTxt from 'data/verbs.txt';
+import layoutsTxt from 'data/layouts.txt';
 import peopleData from 'data/people.json';
 
 import txtToArr from 'lib/txtToArr';
@@ -9,17 +8,16 @@ import random from 'lib/random';
 
 import pluralize from 'pluralize';
 
-const capitalizeFirstLetter = function(string) {
-	return string.charAt(0).toUpperCase() + string.slice(1);
-};
+import {capitalizeFirstLetter,decapitalizeFirstLetter} from 'lib/stringies';
+
+/*TODO: refactor this mess*/
 
 export default () => {
 
 	let people = peopleData;
-	let layouts = layoutData;
 
 	let nouns = txtToArr(nounsTxt);
-	let verbs = txtToArr(verbTxt);
+	let verbs = txtToArr(verbsTxt);
 
 	let typesSingular = ['a','the','this'];
 	let typesPlural = ['','these','the','some'];
@@ -35,7 +33,7 @@ export default () => {
 	let query;
 
 	let sameVerb = Math.random() > .66;
-	let crossFandom = Math.random() > .75;
+	let crossFandom = Math.random() > .9;
 	let choices = [];
 	let lastChoiceName = '';
 
@@ -93,7 +91,7 @@ export default () => {
 
 		if(!params.verb) params.verb = random(verbs).value;
 		if(!params.thing) params.thing = getThing();
-		if(!params.use) params.use = random([0,0,1]);
+		if(!params.use) params.use = random([0,0,0,1]);
 		if(!params.posession) params.posession = getOwnable(params);
 		if(!params.personObject) {
 			params.personObject = random(people);
@@ -143,15 +141,10 @@ export default () => {
 		query = random(people).search;
 	}
 
-	let layout = random(Object.keys(layouts));
-
 	return {
 		choices: choices,
 		query: query,
-		layout: {
-			id: layout,
-			name: layouts[layout]
-		}
+		extras: [],
 	};
 
 };

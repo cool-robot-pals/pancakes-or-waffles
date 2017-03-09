@@ -1,38 +1,54 @@
 import 'assets/reset.css';
 
-import Post from 'component/Post';
+import {render} from 'react-dom';
+import React from 'react';
+import changeCase from 'change-case';
+
+import layoutGetter from 'getter/layout';
 import getValues from 'lib/getValues';
 import random from 'lib/random';
 
-import {render} from 'react-dom';
-import React from 'react';
 
-let posts = [];
+
 let $posts = [];
+let posts = [];
+let layouts = new layoutGetter().layouts;
 
-const makePost = function() {
+const makePost = function(defaults={}) {
 
 	let values = getValues();
+	let layout = new layoutGetter(defaults).value;
 
-	let post = {
-		photoQuery: values.query,
-		choices: values.choices,
-		layout: values.layout,
-		key: posts.length
-	};
+	System.import('component/'+changeCase.pascal(`${layout}-post`))
+	.then(Post => {
 
-	let $post =  React.createElement(
-		Post, post
-	);
+		let $post = React.createElement(
+			Post,
+			{
+				photoQuery: values.query,
+				choices: values.choices,
+				extras: [],
+				variants: [],
+				key: $posts.length
+			}
+		);
 
-	posts.push(post);
-	$posts.push($post);
+		$posts.push($post);
+		posts.push({
+			photoQuery: $post.props.photoQuery,
+			choices: $post.props.choices,
+			layout: layout,
+			$element: $post
+		});
 
-	render(React.createElement(
-		'div',
-		null,
-		$posts
-	),document.getElementById('tough-choices-bot'));
+		render(React.createElement(
+			'div',
+			null,
+			$posts
+		),document.getElementById('tough-choices-bot'));
+
+	})
+	.catch(console.error);
 
 };
 
@@ -43,6 +59,7 @@ export default (function(){
 	lib.makePost = makePost;
 	lib.getValues = getValues;
 	lib.posts = posts;
+	lib.layouts = layouts;
 
 	/*make app container*/
 	let $app = document.createElement('div');
@@ -51,7 +68,7 @@ export default (function(){
 
 	/*linked bc phantomjs is OLD*/
 	let link = document.createElement('link');
-	link.href = 'https://fonts.googleapis.com/css?family=Roboto:400,400b|Patrick+Hand|Poiret+One|Roboto+Mono:500|Lato:700';
+	link.href = 'https://fonts.googleapis.com/css?family=Roboto:400,400b|Gentium+Book+Basic:700|Patrick+Hand|Poiret+One|Roboto+Mono:500|Lato:700';
 	link.rel = 'stylesheet';
 	document.querySelector('head').appendChild(link);
 
