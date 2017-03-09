@@ -91,7 +91,7 @@ export default () => {
 
 		if(!params.verb) params.verb = random(verbs).value;
 		if(!params.thing) params.thing = getThing();
-		if(!params.use) params.use = random([0,0,1]);
+		if(!params.use) params.use = random([0,0,0,1]);
 		if(!params.posession) params.posession = getOwnable(params);
 		if(!params.personObject) {
 			params.personObject = random(people);
