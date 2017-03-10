@@ -1,11 +1,11 @@
 const config = require('./bot.config.js');
 
-const webpackStream = require('webpack-stream');
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 
 const env = require('./src/env.js');
 const pkg = require('./package.json');
@@ -13,13 +13,22 @@ const pkg = require('./package.json');
 
 module.exports = {
 	entry: {
-		vendor: ['react','react-dom','lodash','es6-promise-promise'],
-		app: 'main'
+		app: 'main',
+		promise: 'es6-promise-promise'
 	},
 	plugins: [
 		new CleanWebpackPlugin([config.paths.build]),
 		new webpack.ProvidePlugin({
 			Promise: 'es6-promise-promise'
+		}),
+		new webpack.DllReferencePlugin({
+			context: '.',
+			manifest: require(path.resolve('.',config.paths.dll,'main-manifest.json'))
+		}),
+		new webpack.optimize.CommonsChunkPlugin({
+			name: 'promise',
+			filename: 'promise.js',
+			minChunks : 0
 		}),
 		new webpack.DefinePlugin((function(){
 			var rt = {};
@@ -28,14 +37,9 @@ module.exports = {
 			});
 			return rt;
 		})()),
-		new webpack.optimize.CommonsChunkPlugin({
-			name: 'vendor',
-			filename: 'vendor.js',
-			minChunks : 2
-		}),
 		new webpack.SourceMapDevToolPlugin({
 			filename: '[file].map',
-			exclude: ['vendor.js']
+			exclude: [/node_modules/]
 		}),
 		new ExtractTextPlugin({
 			filename: '[name].css',
@@ -57,6 +61,10 @@ module.exports = {
 			filename: '../test/basic.html',
 			test: true,
 			base: `file://${__dirname}/${config.paths.build}/index.html`
+		}),
+		new AddAssetHtmlPlugin({
+			filepath: require.resolve(path.resolve(config.paths.dll,'main.bundle.js')),
+			includeSourcemap: false
 		})
 	],
 	module: {
@@ -99,6 +107,9 @@ module.exports = {
 			},
 			{
 				test: /\.jsx?$/,
+				exclude: [
+					/node_modules/,
+				],
 				use: 'babel-loader'
 			}
 		]
