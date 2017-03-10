@@ -61,7 +61,7 @@ export default () => {
 	const getThing = (globalparams,selfparams) => {
 
 		let wordList = nouns.filter(noun => !noun.props.only || noun.props.only !== 'ownable');
-		let ownable = random(nouns);
+		let ownable = random(wordList);
 
 		if(ownable.props.an) typesSingular[0] = 'an';
 
