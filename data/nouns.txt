@@ -10,6 +10,12 @@
 # singular=always
 # makes the thing always singular (sonic's gun, eat the gun)
 # -
+# plural=owned
+# makes the thing plural when owned (sonic's ears, stroke the ears)
+# -
+# plural=always
+# makes the thing always plural (sonic's waffles, eat the waffles)
+# -
 # only=ownable
 # only=proper
 # makes the word only be a proper noun or only an ownable
@@ -19,8 +25,10 @@ tongue (only=ownable)
 ear (only=ownable)
 nose (only=ownlable)
 butt (only=ownlable)
+shadow (only=ownlable)
 waffle
 pancake
+donut
 video game
 comic book
 hair (singular=always)
@@ -39,6 +47,14 @@ journal
 demon
 monster
 insect (an)
+boat
+car
+taxi
+bus
+box
+switch
+block
+
 
 Arcadia Bay (proper,only=proper)
 Blackwell Academy (proper,only=proper)
