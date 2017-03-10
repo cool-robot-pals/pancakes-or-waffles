@@ -17,10 +17,9 @@ module.exports = {
 		promise: 'es6-promise-promise'
 	},
 	plugins: [
-		new CleanWebpackPlugin([config.paths.build]),
-		new webpack.ProvidePlugin({
-			Promise: 'es6-promise-promise'
-		}),
+		new CleanWebpackPlugin(
+			[config.paths.build]
+		),
 		new webpack.DllReferencePlugin({
 			context: '.',
 			manifest: require(path.resolve('.',config.paths.dll,'main-manifest.json'))
@@ -45,7 +44,9 @@ module.exports = {
 			filename: '[name].css',
 			allChunks: true
 		}),
-		new webpack.optimize.MinChunkSizePlugin({minChunkSize: 10000}),
+		new webpack.optimize.MinChunkSizePlugin({
+			minChunkSize: 10000
+		}),
 		new HtmlWebpackPlugin({
 			title: '👁👄👁☝️',
 			template: 'bot.template.ejs',

@@ -28,6 +28,10 @@ module.exports = {
 		}),
 		new webpack.ProvidePlugin({
 			Promise: 'es6-promise-promise'
+		}),
+		new webpack.BannerPlugin({
+			banner: '/* eslint-disable */',
+			raw: true
 		})
 	]
 
