@@ -21,14 +21,16 @@
 # makes the word only be a proper noun or only an ownable
 
 fur (proper)
-tongue (only=ownable)
+tongue (only=ownable,singular=always)
 ear (only=ownable)
-nose (only=ownlable)
-butt (only=ownlable)
-shadow (only=ownlable)
+nose (only=ownable,singular=always)
+butt (only=ownable,singular=always)
+shadow (only=ownable,singular=always)
 waffle
 pancake
 donut
+cheeseburger
+french fries
 video game
 comic book
 hair (singular=always)
