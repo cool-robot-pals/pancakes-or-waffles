@@ -46,9 +46,12 @@ export default () => {
 			let ownable = random(wordList);
 			let isSingular = random([true,false]);
 			if(ownable.props.proper || ownable.props.singular === 'always' || ownable.props.singular === 'owned') {
+				isSingular = true;
+			}
+			if(ownable.props.plural === 'always' || ownable.props.plural === 'owned') {
 				isSingular = false;
 			}
-			posession = pluralize(ownable.value,isSingular?2:1);
+			posession = pluralize(ownable.value,isSingular?1:2);
 		}
 
 		return posession;
@@ -67,6 +70,12 @@ export default () => {
 		}
 		else {
 			let isSingular = random([true,false]);
+			if(ownable.props.singular === 'always') {
+				isSingular = true;
+			}
+			if(ownable.props.plural === 'always') {
+				isSingular = false;
+			}
 			if(isSingular) {
 				return random(typesSingular)+' '+ownable.value;
 			}
