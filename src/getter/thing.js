@@ -37,13 +37,13 @@ export default class LayoutGetter extends abstractGetter {
 			else {
 				return this.random([true,true,false]);
 			}
-		})()
+		})();
 		const isSingular = (()=>{
 			if(ownable.props.proper || ownable.props.singular === 'always') {
- 				return true;
+				return true;
 			}
 			if(ownable.props.plural === 'always') {
- 				return false;
+				return false;
 			}
 			else {
 				return this.random([true,false]);
@@ -52,12 +52,12 @@ export default class LayoutGetter extends abstractGetter {
 		const pronoun = (()=>{
 			let pronoun = this.random(
 				isSingular?this.pronouns.singular:this.pronouns.plural
-			)
+			);
 			if(ownable.props.an) {
-				if(pronoun.value === 'a') pronoun.value = 'an'
+				if(pronoun.value === 'a') pronoun.value = 'an';
 			}
 			return pronoun;
-		})()
+		})();
 
 		let returnable = [];
 

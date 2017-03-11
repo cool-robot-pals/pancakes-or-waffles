@@ -42,7 +42,7 @@ describe('Initialization', function() {
 			if(rendered >= total) {
 				window.Post.default.posts.map(function(post){
 					console.log(post.choices);
-				})
+				});
 				done();
 			}
 		};
