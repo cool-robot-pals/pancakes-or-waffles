@@ -3,6 +3,7 @@ red
 yellow
 purple
 green
+communist
 british
 cold
 hot
@@ -14,6 +15,7 @@ tiny
 gay
 lesbian
 tasty
+delicious
 weird
 furry
 shiny
