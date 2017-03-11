@@ -21,13 +21,3 @@
 .choice span {
 	display: inline;
 }
-
-.choice:before {
-	content: '[';
-	display:inline;
-}
-
-.choice:after {
-	content: ']';
-	display:inline;
-}
