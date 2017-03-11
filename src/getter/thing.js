@@ -53,16 +53,16 @@ export default class LayoutGetter extends abstractGetter {
 				return this.nouns.filter(noun => !noun.props.only || noun.props.only !== 'ownable');
 			}
 			else if (this.type === 'ownable') {
- 				return this.nouns.filter(noun => !noun.props.only || noun.props.only !== 'proper');
+				return this.nouns.filter(noun => !noun.props.only || noun.props.only !== 'proper');
 			}
 			else {
-				throw `undefined type ${this.type}`
+				throw `undefined type ${this.type}`;
 			}
-		})()
+		})();
 		const noun = this.random(wordList);
 		const usePronoun = (()=>{
 			return this.type === 'thing' && noun.props.proper != true;
-		})()
+		})();
 		const useAdjective = (()=>{
 			if(noun.props.proper) {
 				return false;

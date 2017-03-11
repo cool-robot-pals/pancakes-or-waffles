@@ -124,7 +124,7 @@ module.exports = {
 	resolve: {
 		extensions: ['.js', '.jsx'],
 		alias: {
-			'data': path.resolve('./data')
+			'corpus': path.resolve('./corpus')
 		},
 		modules: [
 			path.resolve('./src'),
