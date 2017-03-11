@@ -78,7 +78,7 @@ module.exports = {
 				use: ExtractTextPlugin.extract([
 					'css-loader?modules&importLoaders=1&localIdentName=tc-[hash:base64:10]',
 					'postcss-loader',
-					'./tools/randomCssLoader'
+					'./'+config.paths.tools+'/randomCssLoader'
 				])
 			},
 			{

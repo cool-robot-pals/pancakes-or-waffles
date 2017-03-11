@@ -1,6 +1,6 @@
 import abstractGetter from 'getter/abstract/abstract';
 
-import datesTxt from 'data/less-common/oblivion-dates.txt';
+import datesTxt from 'corpus/less-common/oblivion-dates.txt';
 
 import txtToArr from 'lib/txtToArr';
 import random from 'lib/random';

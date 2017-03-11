@@ -1,8 +1,8 @@
 import abstractGetter from 'getter/abstract/abstract';
 
-import nounsTxt from 'data/nouns.txt';
-import pronounsTxt from 'data/pronouns-for-nouns.txt';
-import adjectivesTxt from 'data/adjectives.txt';
+import nounsTxt from 'corpus/nouns.txt';
+import pronounsTxt from 'corpus/pronouns-for-nouns.txt';
+import adjectivesTxt from 'corpus/adjectives.txt';
 
 import pluralize from 'pluralize';
 

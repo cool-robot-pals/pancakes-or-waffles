@@ -1,6 +1,6 @@
-import nounsTxt from 'data/nouns.txt';
-import verbsTxt from 'data/verbs.txt';
-import peopleData from 'data/people.json';
+import nounsTxt from 'corpus/nouns.txt';
+import verbsTxt from 'corpus/verbs.txt';
+import peopleData from 'corpus/people.json';
 
 import txtToArr from 'lib/txtToArr';
 import random from 'lib/random';
