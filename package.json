@@ -4,8 +4,8 @@
   "description": "Look it's a long story",
   "main": "index.js",
   "scripts": {
-    "eslint": "eslint --ext=jsx --ext=js --ignore-path .gitignore .",
-    "esfix": "eslint --ext=jsx --ext=js --ignore-path .gitignore --fix .",
+    "eslint": "eslint --ext=jsx --ext=js --ignore-pattern dll --ignore-path .gitignore .",
+    "esfix": "eslint --ext=jsx --ext=js --ignore-pattern dll --ignore-path .gitignore --fix .",
     "shitpost": "gulp shitpost",
     "install": "webpack",
     "webpack": "webpack",
