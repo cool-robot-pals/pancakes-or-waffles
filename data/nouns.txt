@@ -38,6 +38,7 @@ hair (singular=always)
 meme
 cat
 dog
+boar
 shark
 bear
 gun
