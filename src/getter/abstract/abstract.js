@@ -20,6 +20,9 @@ export default class {
 	}
 
 	get values() {
-		return {};
+		return {
+			default: this.getDefault()
+		};
 	}
+
 }

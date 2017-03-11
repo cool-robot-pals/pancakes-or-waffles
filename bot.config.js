@@ -1,7 +1,8 @@
 module.exports = {
 	'paths': {
 		'build': 'build',
-		'dll': 'dll'
+		'dll': 'etc/dll',
+		'tools': 'etc/tools'
 	},
 	'filenames': {
 		'base': 'choice'
