@@ -1,12 +1,13 @@
 import nounsTxt from 'data/nouns.txt';
 import verbsTxt from 'data/verbs.txt';
-import layoutsTxt from 'data/layouts.txt';
 import peopleData from 'data/people.json';
 
 import txtToArr from 'lib/txtToArr';
 import random from 'lib/random';
 
 import pluralize from 'pluralize';
+
+import thingGetter from 'getter/thing';
 
 import {capitalizeFirstLetter,decapitalizeFirstLetter} from 'lib/stringies';
 
@@ -18,9 +19,6 @@ export default () => {
 
 	let nouns = txtToArr(nounsTxt);
 	let verbs = txtToArr(verbsTxt);
-
-	let typesSingular = ['a','the','this'];
-	let typesPlural = ['','these','the','some'];
 
 	let fandoms = (function(people){
 		let fandoms = [];
@@ -59,31 +57,7 @@ export default () => {
 	};
 
 	const getThing = (globalparams,selfparams) => {
-
-		let wordList = nouns.filter(noun => !noun.props.only || noun.props.only !== 'ownable');
-		let ownable = random(wordList);
-
-		if(ownable.props.an) typesSingular[0] = 'an';
-
-		if(ownable.props.proper) {
-			return ownable.value;
-		}
-		else {
-			let isSingular = random([true,false]);
-			if(ownable.props.singular === 'always') {
-				isSingular = true;
-			}
-			if(ownable.props.plural === 'always') {
-				isSingular = false;
-			}
-			if(isSingular) {
-				return random(typesSingular)+' '+ownable.value;
-			}
-			else {
-				return random(typesPlural)+' '+pluralize(ownable.value,2);
-			}
-		}
-
+		return new thingGetter().value;
 	};
 
 	const makeChoice = function(params) {

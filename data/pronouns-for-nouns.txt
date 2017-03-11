@@ -1,0 +1,7 @@
+a (singular)
+the (singular)
+this (singular)
+these (plural)
+the (plural)
+some (plural)
+_empty_ (plural)

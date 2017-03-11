@@ -40,6 +40,9 @@ describe('Initialization', function() {
 		var finishedMaybe = function() {
 			rendered++;
 			if(rendered >= total) {
+				window.Post.default.posts.map(function(post){
+					console.log(post.choices);
+				});
 				done();
 			}
 		};

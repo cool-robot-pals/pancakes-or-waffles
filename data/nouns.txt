@@ -30,7 +30,7 @@ waffle
 pancake
 donut
 cheeseburger
-french fries
+french fries (plural=always)
 video game
 comic book
 hair (singular=always)
