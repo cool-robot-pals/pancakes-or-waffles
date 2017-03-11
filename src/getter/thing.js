@@ -35,7 +35,7 @@ export default class LayoutGetter extends abstractGetter {
 				return false;
 			}
 			else {
-				return this.random([true,false]);
+				return this.random([true,true,false]);
 			}
 		})()
 		const isSingular = (()=>{
