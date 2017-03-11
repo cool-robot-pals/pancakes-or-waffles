@@ -58,4 +58,11 @@ avoid
 evade
 infiltrate
 take
+take down
+mine
+disguise as
+disguise $1 as
+play $1 with
+play with
+give up on
 steal
