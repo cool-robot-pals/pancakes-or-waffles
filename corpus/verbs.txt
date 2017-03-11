@@ -41,6 +41,7 @@ watch
 watch $1 with
 travel with
 rescue
+capture
 cure
 heal
 boop
