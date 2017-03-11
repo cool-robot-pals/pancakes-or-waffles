@@ -1,16 +1,14 @@
 import abstractGetter from 'getter/abstract/abstract';
-import nounsTxt from 'data/nouns.txt';
-import pronounsTxt from 'data/pronouns-for-nouns.txt';
-import adjectivesTxt from 'data/adjectives.txt';
+
+import nounsTxt from 'corpus/nouns.txt';
+import pronounsTxt from 'corpus/pronouns-for-nouns.txt';
+import adjectivesTxt from 'corpus/adjectives.txt';
 
 import pluralize from 'pluralize';
 
-let typesSingular = ['a','the','this'];
-let typesPlural = ['','these','the','some'];
-
 export default class LayoutGetter extends abstractGetter {
 
-	constructor(defaults={},options={}) {
+	constructor(defaults={},options={type:'thing'}) {
 
 		super(defaults,options);
 
@@ -22,38 +20,63 @@ export default class LayoutGetter extends abstractGetter {
 			plural: this.parse(pronounsTxt).filter(pronoun => pronoun.props.plural)
 		};
 
+		this.type = options.type;
+
 	}
 
 
-	getThing() {
+	isSingular(noun) {
+		if(
+			noun.props.proper ||
+			noun.props.singular === 'always' ||
+			(this.type === 'ownable' && noun.props.singular === 'owned') ||
+			(this.type === 'thing' && noun.props.singular === 'thing')
+		) {
+			return true;
+		}
+		if(
+			noun.props.plural === 'always' ||
+			(this.type === 'ownable' && noun.props.plural === 'owned') ||
+			(this.type === 'thing' && noun.props.plural === 'thing')
+		) {
+			return false;
+		}
+		else {
+			return this.random([true,false]);
+		}
+	}
 
-		const wordList = this.nouns.filter(noun => !noun.props.only || noun.props.only !== 'ownable');
-		const ownable = this.random(wordList);
-		const usePronoun = ownable.props.proper != true;
+	getDefault() {
+
+		const wordList = (()=>{
+			if(this.type === 'thing') {
+				return this.nouns.filter(noun => !noun.props.only || noun.props.only !== 'ownable');
+			}
+			else if (this.type === 'ownable') {
+				return this.nouns.filter(noun => !noun.props.only || noun.props.only !== 'proper');
+			}
+			else {
+				throw `undefined type ${this.type}`;
+			}
+		})();
+		const noun = this.random(wordList);
+		const usePronoun = (()=>{
+			return this.type === 'thing' && noun.props.proper != true;
+		})();
 		const useAdjective = (()=>{
-			if(ownable.props.proper) {
+			if(noun.props.proper) {
 				return false;
 			}
 			else {
 				return this.random([true,true,false]);
 			}
 		})();
-		const isSingular = (()=>{
-			if(ownable.props.proper || ownable.props.singular === 'always') {
-				return true;
-			}
-			if(ownable.props.plural === 'always') {
-				return false;
-			}
-			else {
-				return this.random([true,false]);
-			}
-		})();
+		const isSingular = this.isSingular(noun);
 		const pronoun = (()=>{
 			let pronoun = this.random(
 				isSingular?this.pronouns.singular:this.pronouns.plural
 			);
-			if(ownable.props.an) {
+			if(noun.props.an) {
 				if(pronoun.value === 'a') pronoun.value = 'an';
 			}
 			return pronoun;
@@ -61,30 +84,18 @@ export default class LayoutGetter extends abstractGetter {
 
 		let returnable = [];
 
-		if(usePronoun){
-			returnable.push(pronoun.value);
-		}
-		if(useAdjective) {
-			returnable.push(this.random(this.adjectives).value);
-		}
+		if(usePronoun) returnable.push(pronoun.value);
+		if(useAdjective) returnable.push(this.random(this.adjectives).value);
 
 		if(isSingular) {
-			returnable.push(ownable.value);
+			returnable.push(noun.value);
 		}
 		else {
-			returnable.push(pluralize(ownable.value,2));
+			returnable.push(pluralize(noun.value,2));
 		}
 
 		return returnable.join(' ');
 
 	}
 
-
-	get values() {
-
-		return {
-			default: this.getThing()
-		};
-
-	}
 }

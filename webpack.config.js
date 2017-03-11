@@ -78,7 +78,7 @@ module.exports = {
 				use: ExtractTextPlugin.extract([
 					'css-loader?modules&importLoaders=1&localIdentName=tc-[hash:base64:10]',
 					'postcss-loader',
-					'./tools/randomCssLoader'
+					'./'+config.paths.tools+'/randomCssLoader'
 				])
 			},
 			{
@@ -124,7 +124,7 @@ module.exports = {
 	resolve: {
 		extensions: ['.js', '.jsx'],
 		alias: {
-			'data': path.resolve('./data')
+			'corpus': path.resolve('./corpus')
 		},
 		modules: [
 			path.resolve('./src'),

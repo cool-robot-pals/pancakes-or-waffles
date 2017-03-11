@@ -1,6 +1,6 @@
 import abstractGetter from 'getter/abstract/abstract';
 
-import narratorTxt from 'data/less-common/narrator.txt';
+import narratorTxt from 'corpus/less-common/narrator.txt';
 
 export default class extends abstractGetter {
 

@@ -1,6 +1,6 @@
-import nounsTxt from 'data/nouns.txt';
-import verbsTxt from 'data/verbs.txt';
-import peopleData from 'data/people.json';
+import nounsTxt from 'corpus/nouns.txt';
+import verbsTxt from 'corpus/verbs.txt';
+import peopleData from 'corpus/people.json';
 
 import txtToArr from 'lib/txtToArr';
 import random from 'lib/random';
@@ -32,28 +32,19 @@ export default () => {
 
 	let sameVerb = Math.random() > .66;
 	let crossFandom = Math.random() > .9;
+	let hasOwnable = Math.random() > .66;
 	let choices = [];
 	let lastChoiceName = '';
 
 	const getOwnable = (params) => {
-
-		let posession = '';
-		let wordList = nouns.filter(noun => !noun.props.only || noun.props.only !== 'proper');
-
-		if(params.use === 0 && random([1,2,3,4]) === 2) {
-			let ownable = random(wordList);
-			let isSingular = random([true,false]);
-			if(ownable.props.proper || ownable.props.singular === 'always' || ownable.props.singular === 'owned') {
-				isSingular = true;
-			}
-			if(ownable.props.plural === 'always' || ownable.props.plural === 'owned') {
-				isSingular = false;
-			}
-			posession = pluralize(ownable.value,isSingular?1:2);
+		if(params.use === 0 && hasOwnable) {
+			return new thingGetter({},{
+				type: 'ownable'
+			}).value;
 		}
-
-		return posession;
-
+		else {
+			return '';
+		}
 	};
 
 	const getThing = (globalparams,selfparams) => {
