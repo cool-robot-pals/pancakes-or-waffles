@@ -33,6 +33,7 @@ cheeseburger
 french fries (plural=always)
 video game
 comic book
+yuri (proper)
 hair (singular=always)
 meme
 cat
@@ -42,6 +43,7 @@ bear
 gun
 stimpak
 alcohol (proper)
+tea (proper)
 potion
 triforce
 amulet
