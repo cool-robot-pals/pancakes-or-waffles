@@ -18,4 +18,5 @@ tasty
 delicious
 weird
 furry
+lumpy
 shiny
