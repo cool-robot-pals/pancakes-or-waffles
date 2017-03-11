@@ -65,9 +65,9 @@
 	{"name":"Piper", "search":"piper fallout", "fandom":"fo"},
 	{"name":"Cait", "search":"cait fallout", "fandom":"fo"},
 	{"name":"Curie", "search":"curie fallout", "fandom":"fo"},
+	{"name":"Dogmeat", "search":"dogmeat fallout", "fandom":"fo"},
 	{"name":"Nilin", "search":"nilin", "fandom":"rmm"},
 	{"name":"Scylla", "search":"remember me game", "fandom":"rmm"},
-	{"name":"Dogmeat", "search":"dog fallout", "fandom":"fo"},
 	{"name":"GLaDOS", "search":"glados portal", "fandom":"portal"},
 	{"name":"Chell", "search":"chell portal", "fandom":"portal"}
 ]
