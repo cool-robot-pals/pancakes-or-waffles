@@ -3,7 +3,9 @@ import random from 'lib/random';
 
 export default class {
 
-	constructor(defaults={}) {}
+	constructor(defaults={},options={}) {
+		this.options = options;
+	}
 
 	parse(txt) {
 		return txtToArr(txt);
