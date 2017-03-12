@@ -87,7 +87,7 @@ gulp.task('webshot',function(done){
 		}
 	};
 	webshot(
-		path.join(config.paths.build,'index.html'),
+		path.join(config.paths.build,`${config.filenames.base}.html`),
 		path.join(config.paths.build,`${config.filenames.base}.jpg`),
 		options,
 		function(err) {
@@ -114,7 +114,9 @@ gulp.task('webpack', function(done) {
 gulp.task('mocha', function(done) {
 	const mochaPhantomJS = require('gulp-mocha-phantomjs');
 	return gulp
-	.src('test/basic.html')
+	.src(
+		path.join(config.paths.test,`${config.filenames.test}.html`)
+	)
 	.pipe(
 		mochaPhantomJS({
 			suppressStderr: false,

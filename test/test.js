@@ -8,14 +8,14 @@ describe('Initialization', function() {
 		}
 	});
 	it('should generate 2 choices',function(done){
-		var values = window.Post.default.getValues();
+		var values = window.Post.getValues();
 		if(values.choices.length === 2) {
 			done();
 		}
 		else done(new Error());
 	});
 	it('should generate 2 choices with stuff on them',function(done){
-		var values = window.Post.default.getValues();
+		var values = window.Post.getValues();
 		var length = values.choices.reduce(function(acc,choice){return acc+choice.length;},0);
 		if(length >= 10) {
 			done();
@@ -27,7 +27,7 @@ describe('Initialization', function() {
 		}
 	});
 	it('should have 3+ layouts',function(done){
-		if(window.Post.default.layouts.length > 3) {
+		if(window.Post.layouts.length > 3) {
 			done();
 		}
 		else {
@@ -35,26 +35,26 @@ describe('Initialization', function() {
 		}
 	});
 	it('should make all layouts without an error',function(done){
-		var total = window.Post.default.layouts.length;
+		var total = window.Post.layouts.length;
 		var rendered = 0;
 		var finishedMaybe = function() {
 			rendered++;
 			if(rendered >= total) {
 				var checker = setInterval(function(){
-					if(window.Post.default.posts.length > 3 && document.querySelector('#tough-choices-bot div').childNodes.length === window.Post.default.posts.length) {
+					if(window.Post.posts.length > 3 && document.querySelector('#tough-choices-bot div').childNodes.length === window.Post.posts.length) {
 						clearInterval(checker);
 						clearTimeout(fail);
 						done();
 					}
 				},50);
 				var fail = setTimeout(function(){
-					done('wrong post number ('+document.querySelector('#tough-choices-bot div').childNodes.length+'/'+window.Post.default.posts.length+')');
+					done('wrong post number ('+document.querySelector('#tough-choices-bot div').childNodes.length+'/'+window.Post.posts.length+')');
 				},2000);
 			}
 		};
-		window.Post.default.layouts.map(function(layout){
+		window.Post.layouts.map(function(layout){
 			try{
-				window.Post.default.makePost({
+				window.Post.makePost({
 					layout: layout
 				});
 			} catch(err) {
