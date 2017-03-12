@@ -40,14 +40,16 @@ describe('Initialization', function() {
 		var finishedMaybe = function() {
 			rendered++;
 			if(rendered >= total) {
-				setTimeout(function(){
+				var checker = setInterval(function(){
 					if(window.Post.default.posts.length > 3 && document.querySelector('#tough-choices-bot div').childNodes.length === window.Post.default.posts.length) {
+						clearInterval(checker);
+						clearTimeout(fail);
 						done();
 					}
-					else {
-						done('wrong post number');
-					}
-				},200);
+				},50);
+				var fail = setTimeout(function(){
+					done('wrong post number ('+document.querySelector('#tough-choices-bot div').childNodes.length+'/'+window.Post.default.posts.length+')');
+				},2000);
 			}
 		};
 		window.Post.default.layouts.map(function(layout){
