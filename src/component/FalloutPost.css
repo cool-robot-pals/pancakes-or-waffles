@@ -10,13 +10,13 @@
 }
 
 .choices {
-	top: 62%!important;
+	top: 63.5%!important;
 	bottom: 10%!important;
 	margin: 0 15.5%;
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
-	justify-content: center;
+	justify-content: flex-start;
 }
 
 .choice {
