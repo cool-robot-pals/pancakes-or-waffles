@@ -9,12 +9,15 @@ cuddle with
 elope with
 flirt with
 swoon over
+chill with
+hang out with
 sacrifice
 pet
 eat
 eat $1 with
 drink
 drink $1 with
+have $1 with
 join
 forgive
 tell
