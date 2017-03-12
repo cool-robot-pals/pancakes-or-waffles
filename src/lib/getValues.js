@@ -117,6 +117,7 @@ export default () => {
 
 	return {
 		choices: choices,
+		fandom: fandom,
 		query: query,
 		extras: [],
 	};
