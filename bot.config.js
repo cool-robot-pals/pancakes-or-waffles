@@ -2,9 +2,11 @@ module.exports = {
 	'paths': {
 		'build': 'build',
 		'dll': 'etc/dll',
-		'tools': 'etc/tools'
+		'tools': 'etc/tools',
+		'test': 'test'
 	},
 	'filenames': {
-		'base': 'choice'
+		'base': 'choice',
+		'test': 'test'
 	}
 };
