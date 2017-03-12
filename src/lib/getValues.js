@@ -8,12 +8,15 @@ import {capitalizeFirstLetter,decapitalizeFirstLetter} from 'lib/stringies';
 
 import pluralize from 'pluralize';
 
+import ChancesGetter from 'getter/chances';
 import thingGetter from 'getter/thing';
 
 
 /*TODO: refactor this mess*/
 
 export default () => {
+
+	const chances = new ChancesGetter();
 
 	let people = peopleData;
 
@@ -30,9 +33,10 @@ export default () => {
 
 	let query;
 
-	let sameVerb = Math.random() > .66;
-	let crossFandom = Math.random() > .9;
-	let hasOwnable = Math.random() > .66;
+	let sameVerb = chances.should('useSameVerb');
+	let crossFandom = chances.should('crossFandomsOver');
+	let hasOwnable = chances.should('characterHaveOwnable');
+
 	let choices = [];
 	let lastChoiceName = '';
 
@@ -65,7 +69,7 @@ export default () => {
 
 		if(!params.verb) params.verb = random(verbs).value;
 		if(!params.thing) params.thing = getThing();
-		if(!params.use) params.use = random([0,0,0,1]);
+		if(!params.use) params.use = chances.should('useThing')
 		if(!params.posession) params.posession = getOwnable(params);
 		if(!params.personObject) {
 			params.personObject = random(people);
@@ -118,8 +122,7 @@ export default () => {
 	return {
 		choices: choices,
 		fandom: fandom,
-		query: query,
-		extras: [],
+		query: query
 	};
 
 };
