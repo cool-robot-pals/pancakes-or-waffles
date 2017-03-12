@@ -50,8 +50,8 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			title: '👁👄👁☝️',
 			template: 'bot.template.ejs',
-			filename: 'index.html',
-			base: `file://${__dirname}/${config.paths.build}/index.html`
+			filename: `${config.filenames.base}.html`,
+			base: `file://${__dirname}/${config.paths.build}/${config.filenames.base}.html`
 		}),
 		new HtmlWebpackPlugin({
 			title: '👁👄👁☝️',
@@ -59,9 +59,9 @@ module.exports = {
 				collapseWhitespace: true
 			},
 			template: 'bot.template.ejs',
-			filename: '../test/basic.html',
+			filename: `../${config.paths.test}/${config.filenames.test}.html`,
 			test: true,
-			base: `file://${__dirname}/${config.paths.build}/index.html`
+			base: `file://${__dirname}/${config.paths.build}/${config.filenames.base}.html`
 		}),
 		new AddAssetHtmlPlugin({
 			filepath: require.resolve(path.resolve(config.paths.dll,'main.bundle.js')),

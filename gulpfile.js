@@ -71,9 +71,9 @@ gulp.task('webshot',function(done){
 		userAgent: 'Mozilla/4.0 (iPad; CPU OS 4_0_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/4.1 Mobile/9A405 Safari/7534.48.3',
 		quality: 100,
 		onLoadFinished: function(){
-			console.log(window.Post.default.posts.length);
-			for(var k in window.Post.default.posts[0]) {
-				if(k[0]!=='$') console.log(k.toUpperCase()+' - '+JSON.stringify(window.Post.default.posts[0][k]));
+			console.log(window.Post.posts.length);
+			for(var k in window.Post.posts[0]) {
+				if(k[0]!=='$') console.log(k.toUpperCase()+' - '+JSON.stringify(window.Post.posts[0][k]));
 			}
 		},
 		onConsoleMessage: function(text){
@@ -87,7 +87,7 @@ gulp.task('webshot',function(done){
 		}
 	};
 	webshot(
-		path.join(config.paths.build,'index.html'),
+		path.join(config.paths.build,`${config.filenames.base}.html`),
 		path.join(config.paths.build,`${config.filenames.base}.jpg`),
 		options,
 		function(err) {
@@ -114,7 +114,9 @@ gulp.task('webpack', function(done) {
 gulp.task('mocha', function(done) {
 	const mochaPhantomJS = require('gulp-mocha-phantomjs');
 	return gulp
-	.src('test/basic.html')
+	.src(
+		path.join(config.paths.test,`${config.filenames.test}.html`)
+	)
 	.pipe(
 		mochaPhantomJS({
 			suppressStderr: false,

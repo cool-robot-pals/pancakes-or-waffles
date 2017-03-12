@@ -86,7 +86,7 @@ export default class LayoutGetter extends abstractGetter {
 			returnable.push(pluralize(noun.value,2));
 		}
 
-		return returnable.join(' ');
+		return returnable.filter(val => val.length > 0).join(' ');
 
 	}
 
