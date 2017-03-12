@@ -72,7 +72,7 @@ export default class LayoutGetter extends abstractGetter {
 		const pronoun = new PronounGetter({
 			singular: isSingular,
 			noun: noun
-		}).value
+		}).value;
 
 		let returnable = [];
 
