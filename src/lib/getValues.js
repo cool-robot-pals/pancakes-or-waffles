@@ -1,6 +1,6 @@
 import nounsTxt from 'corpus/nouns.txt';
 import verbsTxt from 'corpus/verbs.txt';
-import peopleData from 'data/people.yaml';
+import peopleData from 'json-loader!yaml-loader!corpus/people.yaml';
 
 import txtToArr from 'lib/txtToArr';
 import random from 'lib/random';
