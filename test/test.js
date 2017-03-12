@@ -46,7 +46,7 @@ describe('Initialization', function() {
 						clearTimeout(fail);
 						done();
 					}
-				},50)
+				},50);
 				var fail = setTimeout(function(){
 					done('wrong post number ('+document.querySelector('#tough-choices-bot div').childNodes.length+'/'+window.Post.default.posts.length+')');
 				},2000);
