@@ -4,6 +4,7 @@ import random from 'lib/random';
 export default class {
 
 	constructor(defaults={},options={}) {
+		this.defaults = defaults;
 		this.options = options;
 	}
 
