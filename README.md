@@ -1,7 +1,7 @@
 # tough-choices-bot
 Creates fake video game screenshots
 
-<div align="center"><img src="https://pbs.twimg.com/media/C4kTNIgVMAE0SMp.jpg:orig" /></div>
+<div align="center"><img src="https://pbs.twimg.com/media/C6awIPJXQAAgOcF.jpg:orig" /></div>
 
 ## Building
 To actually post a tweet you need to get all the variables on [src/env.js](https://github.com/walaura/tough-choices-bot/blob/master/src/env.js) inside your environment. Otherwise you can ignore that.
@@ -25,6 +25,3 @@ The bot generates webpages, after doing an initial `webpack` you can just head t
 When it comes to turning them into images, this poor thing runs on phantomJS, which is OLD, even as all js & css code (okay not that one yet) is transpiled and prefixed via babel i like to keep a copy of firefox 10 around to see if anything crashes as it does reporting.
 
 You can ensure code works by running `npm test` which will run the mocha test suite inside the same phantom instance, this tests for some code coverage but even more importantly it ensures the code runs AT ALL inside phantom, which is the most common bug here.
-
-## Why the fuck is this a 100MB react app
-I'm using it as my personal playground okay
