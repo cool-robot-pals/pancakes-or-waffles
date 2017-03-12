@@ -24,7 +24,7 @@ class MassEffectPost extends Post {
 			let more = {};
 			more.extras = {
 				dialog: character+': '+capitalizeFirstLetter(narrator.prefix.value)+' '+decapitalizeFirstLetter(this.props.choices[0])
-			}
+			};
 
 			let values = new BinaryChoicesGetter().values;
 			more.choices = Math.random() >= .5 ? [`[${values.good}]`,`[${values.bad}]`]:[`[${values.bad}]`,`[${values.good}]`];
