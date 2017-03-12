@@ -10,24 +10,26 @@
 }
 
 .choices {
-	top: 66%!important;
-	margin: 0 16%;
+	top: 62%!important;
+	bottom: 10%!important;
+	margin: 0 15.5%;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: center;
 }
 
 .choice {
-	margin-bottom: 30px;
+	line-height: 1.25;
+	padding: .25em 1em;
+}
+
+.choice:first-child {
+	background: rgba(60,210,130,.1);
+	border: 1px solid rgba(60,210,130,.5);
+	margin-bottom: .25em;
 }
 
 .choice span {
 	display: inline;
-}
-
-.choice:before {
-	content: '[';
-	display:inline;
-}
-
-.choice:after {
-	content: ']';
-	display:inline;
 }

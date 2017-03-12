@@ -1,16 +1,18 @@
 .post {
-	composes: post from './abstract/Post.css';
+	composes: post-raw from './abstract/Post.css';
 	font-family: 'Lato';
 	font-size: 30px;
 	text-shadow: 2px 2px 1px #000;
 }
 
 .bg {
+	composes: cover from './abstract/Post.css';
 	width: 960px;
 	margin: auto;
 }
 
 .ac-1 {
+	composes: cover from './abstract/Post.css';
 	background-image: url(assets/zelda.png);
 }
 
@@ -22,6 +24,7 @@
 	position: absolute;
 	top: 64%;
 	left: 20%;
+	z-index: 9999;
 }
 
 .choice:last-child span:after {
@@ -29,13 +32,17 @@
 }
 
 
-.ac-2:after {
-	content: 'Yes No';
+.extra {
 	display: block;
 	position: absolute;
-	width: 10px;
-	line-height: 45px;
-	top: 72.5%;
+	top: 73.4%;
 	left: 26.5%;
+	bottom: auto;
+	right: auto;
+	height: auto;
 	color: #48ea59;
+}
+
+.extra[data-name="bad"] {
+	top: 80%!important;
 }

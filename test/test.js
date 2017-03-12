@@ -40,13 +40,24 @@ describe('Initialization', function() {
 		var finishedMaybe = function() {
 			rendered++;
 			if(rendered >= total) {
-				done();
+				setTimeout(function(){
+					if(window.Post.default.posts.length > 3 && document.querySelector('#tough-choices-bot div').childNodes.length === window.Post.default.posts.length) {
+						done();
+					}
+					else {
+						done('wrong post number');
+					}
+				},200);
 			}
 		};
 		window.Post.default.layouts.map(function(layout){
-			window.Post.default.makePost({
-				layout: layout
-			});
+			try{
+				window.Post.default.makePost({
+					layout: layout
+				});
+			} catch(err) {
+				done(err);
+			}
 			finishedMaybe();
 		});
 	});

@@ -1,14 +1,15 @@
-import nounsTxt from 'data/nouns.txt';
-import verbsTxt from 'data/verbs.txt';
-import layoutsTxt from 'data/layouts.txt';
-import peopleData from 'data/people.json';
+import nounsTxt from 'corpus/nouns.txt';
+import verbsTxt from 'corpus/verbs.txt';
+import peopleData from 'json-loader!yaml-loader!corpus/people.yaml';
 
 import txtToArr from 'lib/txtToArr';
 import random from 'lib/random';
+import {capitalizeFirstLetter,decapitalizeFirstLetter} from 'lib/stringies';
 
 import pluralize from 'pluralize';
 
-import {capitalizeFirstLetter,decapitalizeFirstLetter} from 'lib/stringies';
+import thingGetter from 'getter/thing';
+
 
 /*TODO: refactor this mess*/
 
@@ -18,9 +19,6 @@ export default () => {
 
 	let nouns = txtToArr(nounsTxt);
 	let verbs = txtToArr(verbsTxt);
-
-	let typesSingular = ['a','the','this'];
-	let typesPlural = ['','these','the','some'];
 
 	let fandoms = (function(people){
 		let fandoms = [];
@@ -34,47 +32,23 @@ export default () => {
 
 	let sameVerb = Math.random() > .66;
 	let crossFandom = Math.random() > .9;
+	let hasOwnable = Math.random() > .66;
 	let choices = [];
 	let lastChoiceName = '';
 
 	const getOwnable = (params) => {
-
-		let posession = '';
-		let wordList = nouns.filter(noun => !noun.props.only || noun.props.only !== 'proper');
-
-		if(params.use === 0 && random([1,2,3,4]) === 2) {
-			let ownable = random(wordList);
-			let isSingular = random([true,false]);
-			if(ownable.props.proper || ownable.props.singular === 'always' || ownable.props.singular === 'owned') {
-				isSingular = false;
-			}
-			posession = pluralize(ownable.value,isSingular?2:1);
+		if(params.use === 0 && hasOwnable) {
+			return new thingGetter({},{
+				type: 'ownable'
+			}).value;
 		}
-
-		return posession;
-
+		else {
+			return '';
+		}
 	};
 
 	const getThing = (globalparams,selfparams) => {
-
-		let wordList = nouns.filter(noun => !noun.props.only || noun.props.only !== 'ownable');
-		let ownable = random(nouns);
-
-		if(ownable.props.an) typesSingular[0] = 'an';
-
-		if(ownable.props.proper) {
-			return ownable.value;
-		}
-		else {
-			let isSingular = random([true,false]);
-			if(isSingular) {
-				return random(typesSingular)+' '+ownable.value;
-			}
-			else {
-				return random(typesPlural)+' '+pluralize(ownable.value,2);
-			}
-		}
-
+		return new thingGetter().value;
 	};
 
 	const makeChoice = function(params) {

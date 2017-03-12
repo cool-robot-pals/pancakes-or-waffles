@@ -3,7 +3,9 @@ import random from 'lib/random';
 
 export default class {
 
-	constructor(defaults={}) {}
+	constructor(defaults={},options={}) {
+		this.options = options;
+	}
 
 	parse(txt) {
 		return txtToArr(txt);
@@ -18,6 +20,9 @@ export default class {
 	}
 
 	get values() {
-		return {};
+		return {
+			default: this.getDefault()
+		};
 	}
+
 }

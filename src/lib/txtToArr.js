@@ -20,8 +20,9 @@ export default (str) => {
 					prop = prop.split('=');
 					props[prop[0]] = prop[1]?prop[1]:true;
 				});
-
 			}
+
+			if(chunk === '_empty_') chunk = '';
 
 			return {
 				value: chunk,

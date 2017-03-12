@@ -59,6 +59,7 @@ export default (function(){
 	lib.makePost = makePost;
 	lib.getValues = getValues;
 	lib.posts = posts;
+	lib.$posts = $posts;
 	lib.layouts = layouts;
 
 	/*make app container*/
