@@ -27,6 +27,7 @@ const makePost = function(defaults={}) {
 			{
 				photoQuery: values.query,
 				choices: values.choices,
+				fandom: values.fandom,
 				extras: [],
 				variants: [],
 				key: $posts.length
