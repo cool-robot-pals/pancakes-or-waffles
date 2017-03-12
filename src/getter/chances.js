@@ -13,7 +13,7 @@ export default class ChancesGetter extends abstractGetter {
 
 
 	should(chance) {
-		return Math.random() < this.chances[chance];
+		return Math.random() <= this.chances[chance];
 	}
 
 
