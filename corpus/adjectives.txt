@@ -4,6 +4,7 @@ yellow
 purple
 green
 communist
+capitalist
 british
 cold
 hot
@@ -14,6 +15,7 @@ large
 tiny
 gay
 lesbian
+homosexual
 tasty
 delicious
 weird
