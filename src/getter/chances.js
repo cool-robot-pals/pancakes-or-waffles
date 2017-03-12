@@ -7,7 +7,7 @@ export default class CHancesGetter extends abstractGetter {
 		super(defaults);
 		this.chances = chances;
 		for(var k in this.chances) {
-			this.chances[k] = parseInt(this.chances[k])/100
+			this.chances[k] = parseInt(this.chances[k])/100;
 		}
 	}
 
