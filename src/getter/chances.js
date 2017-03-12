@@ -1,7 +1,7 @@
 import abstractGetter from 'getter/abstract/abstract';
 import chances from 'json-loader!yaml-loader!data/chances.yaml';
 
-export default class CHancesGetter extends abstractGetter {
+export default class ChancesGetter extends abstractGetter {
 
 	constructor(defaults={}) {
 		super(defaults);
@@ -13,7 +13,7 @@ export default class CHancesGetter extends abstractGetter {
 
 
 	should(chance) {
-		return Math.random() > this.chances[chance];
+		return Math.random() < this.chances[chance];
 	}
 
 
