@@ -1,15 +1,15 @@
 import nounsTxt from 'corpus/nouns.txt';
 import verbsTxt from 'corpus/verbs.txt';
-import peopleData from 'corpus/people.json';
+import peopleData from 'json-loader!yaml-loader!corpus/people.yaml';
 
 import txtToArr from 'lib/txtToArr';
 import random from 'lib/random';
+import {capitalizeFirstLetter,decapitalizeFirstLetter} from 'lib/stringies';
 
 import pluralize from 'pluralize';
 
 import thingGetter from 'getter/thing';
 
-import {capitalizeFirstLetter,decapitalizeFirstLetter} from 'lib/stringies';
 
 /*TODO: refactor this mess*/
 
