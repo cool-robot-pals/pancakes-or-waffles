@@ -7,6 +7,7 @@
     "eslint": "eslint --ext=jsx --ext=js --ignore-pattern dll --ignore-path .gitignore .",
     "esfix": "eslint --ext=jsx --ext=js --ignore-pattern dll --ignore-path .gitignore --fix .",
     "shitpost": "gulp shitpost",
+    "localpost": "gulp localpost",
     "install": "webpack",
     "webpack": "webpack",
     "gulp": "gulp",
