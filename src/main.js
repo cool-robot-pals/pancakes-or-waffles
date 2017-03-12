@@ -14,7 +14,7 @@ let $posts = [];
 let posts = [];
 let layouts = new layoutGetter().layouts;
 
-const makePost = function(defaults={}) {
+const makePost = (defaults={}) => {
 
 	let values = getValues();
 	let layout = new layoutGetter(defaults).value;
@@ -54,13 +54,12 @@ const makePost = function(defaults={}) {
 };
 
 
-export default (function(){
+const exportable = (()=>{
 
 	let lib = {};
 	lib.makePost = makePost;
 	lib.getValues = getValues;
 	lib.posts = posts;
-	lib.$posts = $posts;
 	lib.layouts = layouts;
 
 	/*make app container*/
@@ -79,3 +78,6 @@ export default (function(){
 	return lib;
 
 })();
+
+export default exportable;
+module.exports = exportable;

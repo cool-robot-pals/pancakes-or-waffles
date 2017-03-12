@@ -72,3 +72,10 @@ play with
 give up on
 grab
 steal
+entertain
+amuse
+amuse $1 with
+fight
+fight $1 with
+fight $1 alongside
+defeat

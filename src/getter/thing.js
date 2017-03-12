@@ -1,8 +1,8 @@
 import abstractGetter from 'getter/abstract/abstract';
 import ChancesGetter from 'getter/chances';
+import PronounGetter from 'getter/pronoun';
 
 import nounsTxt from 'corpus/nouns.txt';
-import pronounsTxt from 'corpus/pronouns-for-nouns.txt';
 import adjectivesTxt from 'corpus/adjectives.txt';
 
 import pluralize from 'pluralize';
@@ -18,13 +18,6 @@ export default class LayoutGetter extends abstractGetter {
 
 		this.chances = new ChancesGetter();
 
-		this.pronouns = {
-			singular: this.parse(pronounsTxt).filter(pronoun => pronoun.props.singular),
-			plural: this.parse(pronounsTxt).filter(pronoun => pronoun.props.plural)
-		};
-
-		this.type = options.type;
-
 	}
 
 
@@ -33,15 +26,15 @@ export default class LayoutGetter extends abstractGetter {
 		if(
 			noun.props.proper ||
 			noun.props.singular === 'always' ||
-			(this.type === 'ownable' && noun.props.singular === 'owned') ||
-			(this.type === 'thing' && noun.props.singular === 'thing')
+			(this.options.type === 'ownable' && noun.props.singular === 'owned') ||
+			(this.options.type === 'thing' && noun.props.singular === 'thing')
 		) {
 			return true;
 		}
 		if(
 			noun.props.plural === 'always' ||
-			(this.type === 'ownable' && noun.props.plural === 'owned') ||
-			(this.type === 'thing' && noun.props.plural === 'thing')
+			(this.options.type === 'ownable' && noun.props.plural === 'owned') ||
+			(this.options.type === 'thing' && noun.props.plural === 'thing')
 		) {
 			return false;
 		}
@@ -53,19 +46,19 @@ export default class LayoutGetter extends abstractGetter {
 	getDefault() {
 
 		const wordList = (()=>{
-			if(this.type === 'thing') {
+			if(this.options.type === 'thing') {
 				return this.nouns.filter(noun => !noun.props.only || noun.props.only !== 'ownable');
 			}
-			else if (this.type === 'ownable') {
+			else if (this.options.type === 'ownable') {
 				return this.nouns.filter(noun => !noun.props.only || noun.props.only !== 'proper');
 			}
 			else {
-				throw `undefined type ${this.type}`;
+				throw `undefined type ${this.options.type}`;
 			}
 		})();
 		const noun = this.random(wordList);
 		const usePronoun = (()=>{
-			return this.type === 'thing' && noun.props.proper != true;
+			return this.options.type === 'thing' && noun.props.proper != true;
 		})();
 		const useAdjective = (()=>{
 			if(noun.props.proper) {
@@ -76,15 +69,10 @@ export default class LayoutGetter extends abstractGetter {
 			}
 		})();
 		const isSingular = this.isSingular(noun);
-		const pronoun = (()=>{
-			let pronoun = this.random(
-				isSingular?this.pronouns.singular:this.pronouns.plural
-			);
-			if(noun.props.an) {
-				if(pronoun.value === 'a') pronoun.value = 'an';
-			}
-			return pronoun;
-		})();
+		const pronoun = new PronounGetter({
+			singular: isSingular,
+			noun: noun
+		}).value;
 
 		let returnable = [];
 
@@ -98,7 +86,7 @@ export default class LayoutGetter extends abstractGetter {
 			returnable.push(pluralize(noun.value,2));
 		}
 
-		return returnable.join(' ');
+		return returnable.filter(val => val.length > 0).join(' ');
 
 	}
 

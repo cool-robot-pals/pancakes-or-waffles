@@ -60,6 +60,11 @@ box
 switch
 block
 rebel
+sandwich
+headphones (plural=always)
+phone
+bucket
+lamp
 
 
 Arcadia Bay (proper,only=proper)
