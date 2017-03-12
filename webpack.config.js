@@ -93,8 +93,8 @@ module.exports = {
 				use: ['raw-loader']
 			},
 			{
-				test: /\.json$/,
-				use: ['json-loader']
+				test: /\.yaml$/,
+				use: ['yaml-loader']
 			},
 			{
 				test: /\.css$/,
@@ -124,7 +124,8 @@ module.exports = {
 	resolve: {
 		extensions: ['.js', '.jsx'],
 		alias: {
-			'corpus': path.resolve('./corpus')
+			'corpus': path.resolve('./corpus'),
+			'data': path.resolve('./data')
 		},
 		modules: [
 			path.resolve('./src'),

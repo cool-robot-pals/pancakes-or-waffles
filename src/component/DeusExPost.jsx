@@ -1,10 +1,10 @@
 import React from 'react';
 import CSSModules from 'react-css-modules';
-import {capitalizeFirstLetter,decapitalizeFirstLetter} from 'lib/stringies';
 
 import styles from './DeusExPost.css';
 import Post from './abstract/Post.jsx';
 
+import {capitalizeFirstLetter,decapitalizeFirstLetter} from 'lib/stringies';
 import NarratorValues from 'getter/less-common/narrator';
 import BinaryChoicesValues from 'getter/less-common/binaryChoices';
 

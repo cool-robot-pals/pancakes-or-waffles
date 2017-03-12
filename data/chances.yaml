@@ -1,0 +1,10 @@
+useAdjective: 66%
+isSingular: 50%
+useThing: 40%
+useSameVerb: 30%
+crossFandomsOver: 10%
+characterHaveOwnable: 30%
+
+
+#layout-specific
+massEffectHasDialog: 70%
