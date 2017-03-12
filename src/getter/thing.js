@@ -1,4 +1,5 @@
 import abstractGetter from 'getter/abstract/abstract';
+import ChancesGetter from 'getter/chances';
 
 import nounsTxt from 'corpus/nouns.txt';
 import pronounsTxt from 'corpus/pronouns-for-nouns.txt';
@@ -15,6 +16,8 @@ export default class LayoutGetter extends abstractGetter {
 		this.nouns = this.parse(nounsTxt);
 		this.adjectives = this.parse(adjectivesTxt);
 
+		this.chances = new ChancesGetter();
+
 		this.pronouns = {
 			singular: this.parse(pronounsTxt).filter(pronoun => pronoun.props.singular),
 			plural: this.parse(pronounsTxt).filter(pronoun => pronoun.props.plural)
@@ -26,6 +29,7 @@ export default class LayoutGetter extends abstractGetter {
 
 
 	isSingular(noun) {
+
 		if(
 			noun.props.proper ||
 			noun.props.singular === 'always' ||
@@ -42,7 +46,7 @@ export default class LayoutGetter extends abstractGetter {
 			return false;
 		}
 		else {
-			return this.random([true,false]);
+			return this.chances.should('isSingular');
 		}
 	}
 
@@ -68,7 +72,7 @@ export default class LayoutGetter extends abstractGetter {
 				return false;
 			}
 			else {
-				return this.random([true,true,false]);
+				return this.chances.should('useAdjective');
 			}
 		})();
 		const isSingular = this.isSingular(noun);
