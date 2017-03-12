@@ -4,8 +4,8 @@
   "description": "Look it's a long story",
   "main": "index.js",
   "scripts": {
-    "eslint": "eslint --ext=jsx --ext=js --ignore-path .gitignore .",
-    "esfix": "eslint --ext=jsx --ext=js --ignore-path .gitignore --fix .",
+    "eslint": "eslint --ext=jsx --ext=js --ignore-pattern dll --ignore-path .gitignore .",
+    "esfix": "eslint --ext=jsx --ext=js --ignore-pattern dll --ignore-path .gitignore --fix .",
     "shitpost": "gulp shitpost",
     "install": "webpack",
     "webpack": "webpack",
@@ -19,6 +19,7 @@
   },
   "author": "Laura mayhem",
   "dependencies": {
+    "add-asset-html-webpack-plugin": "^1.0.2",
     "autoprefixer": "^6.7.5",
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
@@ -50,8 +51,10 @@
     "twit": "^2.2.5",
     "url-loader": "^0.5.7",
     "webpack": "^2.2.1",
+    "webpack-merge": "^4.0.0",
     "webpack-stream": "^3.2.0",
-    "webshot": "github:walaura/node-webshot"
+    "webshot": "github:walaura/node-webshot",
+    "yaml-loader": "^0.4.0"
   },
   "devDependencies": {
     "gulp-mocha-phantomjs": "^0.12.1"

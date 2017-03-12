@@ -7,6 +7,7 @@ hug with
 cuddle
 cuddle with
 elope with
+flirt with
 swoon over
 sacrifice
 pet
@@ -40,6 +41,7 @@ watch
 watch $1 with
 travel with
 rescue
+capture
 cure
 heal
 boop
@@ -58,4 +60,12 @@ avoid
 evade
 infiltrate
 take
+take down
+mine
+disguise as
+disguise $1 as
+play $1 with
+play with
+give up on
+grab
 steal

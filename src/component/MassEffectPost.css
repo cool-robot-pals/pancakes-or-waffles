@@ -28,11 +28,10 @@
 	top: 76%;
 }
 
-.choice span:before {
-	content: '[';
-}
-.choice span:after {
-	content: ']';
+.extra[data-name="dialog"] {
+	top: 60%!important;
+	margin: 0 10%;
+	text-align: center;
 }
 
 .choice:first-child {

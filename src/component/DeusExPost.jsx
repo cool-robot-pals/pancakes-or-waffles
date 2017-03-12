@@ -1,12 +1,12 @@
 import React from 'react';
 import CSSModules from 'react-css-modules';
-import {capitalizeFirstLetter,decapitalizeFirstLetter} from 'lib/stringies';
 
 import styles from './DeusExPost.css';
 import Post from './abstract/Post.jsx';
 
-import NarratorValues from 'lib/values/Narrator';
-import BinaryChoicesValues from 'lib/values/BinaryChoices';
+import {capitalizeFirstLetter,decapitalizeFirstLetter} from 'lib/stringies';
+import NarratorValues from 'getter/less-common/narrator';
+import BinaryChoicesValues from 'getter/less-common/binaryChoices';
 
 
 class DeusExPost extends Post {
