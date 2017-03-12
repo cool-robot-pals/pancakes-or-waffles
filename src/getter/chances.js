@@ -5,11 +5,13 @@ export default class ChancesGetter extends abstractGetter {
 
 	constructor(defaults={}) {
 		super(defaults);
-		this.chances = chances;
-		for(var k in this.chances) {
-			let float = parseFloat(this.chances[k]);
-			if(isNaN(float)) throw `Invalid value for chance ${k} on chances.yaml, should be convertable to a float (${this.chances[k]})`;
-			this.chances[k] = float/100;
+		if(!this.chances){
+			this.chances = Object.assign({},chances);
+			for(var k in this.chances) {
+				let float = parseFloat(this.chances[k]);
+				if(isNaN(float)) throw `Invalid value for chance ${k} on chances.yaml, should be convertable to a float (${this.chances[k]})`;
+				this.chances[k] = float/100;
+			}
 		}
 	}
 
