@@ -1,18 +1,18 @@
 import abstractGetter from 'getter/abstract/abstract';
 
+import binaries from 'json-loader!yaml-loader!corpus/less-common/binaries.yaml';
+
 export default class extends abstractGetter {
 
 	constructor() {
 		super();
-		this.good = ['accept','support','help','comply','endorse'];
-		this.bad = ['ignore','no','reject','not comply','refuse'];
 	}
 
 	get values() {
 
 		return {
-			good: this.random(this.good),
-			bad: this.random(this.bad)
+			good: this.random(binaries.good),
+			bad: this.random(binaries.bad)
 		};
 
 	}
