@@ -1,5 +1,5 @@
 import abstractGetter from 'getter/abstract/abstract';
-import layoutsTxt from 'corpus/layouts.txt';
+import layoutsTxt from 'data/layouts.txt';
 
 export default class LayoutGetter extends abstractGetter {
 
