@@ -1,14 +1,11 @@
-i should
-they should
-you should
-i want to
-they want to
-i have to
-they have to
-you have to
-i must
-they must
-you must
-surely I'd
-surely they'd
-surely you'd
+[i,you,they] should $1
+[i,they] want to $1
+[i,you,they] have to $1
+[i,you,they] must $1
+surely [I,they,you]'d $1
+it's [about time,time] for [me,you] to $1
+finally [you,i] [must,should] $1
+[at last, at long last] [you,i] [must,should] $1
+if you don't mind me asking, would you $1?
+[I,you] [shall,must,may] $1 as the [legend,prophecy,book,elders] foretold
+You [may,should,shall] $1 because [i,we] [allow,demand] it
