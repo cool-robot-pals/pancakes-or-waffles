@@ -1,11 +1,7 @@
-[i,you,they] should $1
-[i,they] want to $1
-[i,you,they] have to $1
-[i,you,they] must $1
+[I,you,they] [should, must, want to, have to] $1
 surely [I,they,you]'d $1
-it's [about time,time] for [me,you] to $1
-finally [you,i] [must,should] $1
-[at last, at long last] [you,i] [must,should] $1
-if you don't mind me asking, would you $1?
+it's [about time, time, finally time] for [me,you] to $1
+[at last, at long last, finally] [you,I] [must,should] $1
+if you don't mind me asking, [would you, can I, may I] $1?
 [I,you] [shall,must,may] $1 as the [legend,prophecy,book,elders] foretold
-You [may,should,shall] $1 because [i,we] [allow,demand] it
+You [may,should,shall] $1 because [I,we] [allow,demand] it
