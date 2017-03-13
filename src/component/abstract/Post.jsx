@@ -22,20 +22,20 @@ class Post extends React.Component {
 		const unmangledExtras = this.state.extras;
 		this.state.extras = [];
 		Object.keys(unmangledExtras).map(extra => {
-			let style = {}
+			let style = {};
 			if(typeof unmangledExtras[extra] === 'object') {
 				this.state.extras.push({
 					style: unmangledExtras[extra].style,
 					value: unmangledExtras[extra].value,
 					key: extra
-				})
+				});
 			}
 			else {
 				this.state.extras.push({
 					style: {},
 					value: unmangledExtras[extra],
 					key: extra
-				})
+				});
 			}
 		});
 	}

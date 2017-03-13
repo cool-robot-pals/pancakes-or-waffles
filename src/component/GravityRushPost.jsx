@@ -17,20 +17,20 @@ class GravityRushPost extends Post {
 		const padding = 10;
 		const randomPos = (max=padding,min=(100-padding)) => {
  			return Math.floor(Math.random()*(max-min+1)+min);
-		}
+		};
 		if(anchor === 'top') {
-			return[randomPos(padding,padding+5),randomPos()]
+			return[randomPos(padding,padding+5),randomPos()];
 		}
 		if(anchor === 'bottom') {
-			return[randomPos(100-padding,100-padding+5),randomPos()]
+			return[randomPos(100-padding,100-padding+5),randomPos()];
 		}
 		if(anchor === 'left') {
-			return[randomPos(),randomPos(padding,padding+5)]
+			return[randomPos(),randomPos(padding,padding+5)];
 		}
 		if(anchor === 'right') {
-			return[randomPos(),randomPos(100-padding,100-padding+5)]
+			return[randomPos(),randomPos(100-padding,100-padding+5)];
 		}
-		return[randomPos(),randomPos()]
+		return[randomPos(),randomPos()];
 	}
 
 	getMoreProps() {
@@ -47,27 +47,27 @@ class GravityRushPost extends Post {
 			more.extras = {};
 			more.extras['waypoint-1'] = (()=>{
 				let waypoint = {};
-				let position = this.positionMarker(random(anchors))
+				let position = this.positionMarker(random(anchors));
 				waypoint.style = {
 					top: position[0]+'%',
 					left: position[1]+'%',
-				}
-				waypoint.value = Math.ceil(Math.random()*200)+'y'
+				};
+				waypoint.value = Math.ceil(Math.random()*200)+'y';
 				return waypoint;
 			})();
 			more.extras['waypoint-2'] = (()=>{
 				let waypoint = {};
-				let position = this.positionMarker(random(anchors))
+				let position = this.positionMarker(random(anchors));
 				waypoint.style = {
 					top: position[0]+'%',
 					left: position[1]+'%',
-				}
-				waypoint.value = Math.ceil(Math.random()*200)+'y'
+				};
+				waypoint.value = Math.ceil(Math.random()*200)+'y';
 				return waypoint;
 			})();
 		}
 		else {
-			more.choices = [this.props.choices.sort((a, b) => b.length - a.length )[0]]
+			more.choices = [this.props.choices.sort((a, b) => b.length - a.length )[0]];
 			more.extras = new BinaryChoicesValues().values;
 		}
 
