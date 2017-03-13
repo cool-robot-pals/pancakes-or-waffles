@@ -9,3 +9,6 @@ characterHaveOwnable: 30%
 #layout-specific
 massEffectHasDialog: 70%
 gravityRushHaveBothChoices: 50%
+falloutHasDialog: 60%
+falloutRequiresSpecial: 50%
+falloutRequiresSpecialNumber: 50%
