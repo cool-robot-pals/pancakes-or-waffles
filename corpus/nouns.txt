@@ -62,6 +62,7 @@ block
 rebel
 sandwich
 headphones (plural=always)
+moon rocks (plural=always)
 phone
 bucket
 lamp
