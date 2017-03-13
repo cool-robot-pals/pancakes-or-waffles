@@ -7,10 +7,15 @@ import adjectivesTxt from 'corpus/adjectives.txt';
 
 import pluralize from 'pluralize';
 
+const defaultOptions = {
+	type: 'thing'
+};
+
 export default class LayoutGetter extends abstractGetter {
 
-	constructor(defaults={},options={type:'thing'}) {
+	constructor(defaults={},options={}) {
 
+		options = Object.assign({},defaultOptions,options);
 		super(defaults,options);
 
 		this.nouns = this.parse(nounsTxt);
@@ -22,7 +27,6 @@ export default class LayoutGetter extends abstractGetter {
 
 
 	isSingular(noun) {
-
 		if(
 			noun.props.proper ||
 			noun.props.singular === 'always' ||
@@ -46,15 +50,20 @@ export default class LayoutGetter extends abstractGetter {
 	getDefault() {
 
 		const wordList = (()=>{
+			let list = this.nouns;
 			if(this.options.type === 'thing') {
-				return this.nouns.filter(noun => !noun.props.only || noun.props.only !== 'ownable');
+				list = list.filter(noun => !noun.props.only || noun.props.only !== 'ownable');
 			}
 			else if (this.options.type === 'ownable') {
-				return this.nouns.filter(noun => !noun.props.only || noun.props.only !== 'proper');
+				list = list.filter(noun => !noun.props.only || noun.props.only !== 'proper');
 			}
-			else {
-				throw `undefined type ${this.options.type}`;
+			if(this.options.singular === true) {
+				list = list.filter(noun => this.isSingular(noun));
 			}
+			if(this.options.plural === true) {
+				list = list.filter(noun => !this.isSingular(noun));
+			}
+			return list;
 		})();
 		const noun = this.random(wordList);
 		const usePronoun = (()=>{

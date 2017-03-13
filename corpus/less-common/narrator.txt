@@ -8,4 +8,9 @@ finally [you,i] [must,should] $1
 [at last, at long last] [you,i] [must,should] $1
 if you don't mind me asking, would you $1?
 [I,you] [shall,must,may] $1 as the [legend,prophecy,book,elders] foretold
+[I,you] [shall,must,may] $1 as @thing foretold
 You [may,should,shall] $1 because [i,we] [allow,demand] it
+@thing can $1
+@thing.s can $1
+Can @thing $1?
+$1?

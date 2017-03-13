@@ -16,21 +16,12 @@
 	background-image: url(assets/zelda.png);
 }
 
-.choice:first-child {
-	display: none;
-}
-
-.choice:last-child {
+.choice {
 	position: absolute;
 	top: 64%;
 	left: 20%;
 	z-index: 9999;
 }
-
-.choice:last-child span:after {
-	content: '?';
-}
-
 
 .extra {
 	display: block;

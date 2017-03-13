@@ -1,5 +1,7 @@
-const propsregex = /\((.*?)\)/;
-const exploderegex = /\[(.*?)\]/;
+const propsRegex = /\((.*?)\)/;
+const explodeRegex = /\[(.*?)\]/;
+const thingRegex = /\@thing/g;
+const thingPluralRegex = /\@thing.s/g;
 
 const explodeChunkVariables = (chunk) => {
 	let rt = [];
@@ -12,7 +14,7 @@ const explodeChunkVariables = (chunk) => {
 	}
 	else {
 		try {
-			exploded = exploderegex.exec(chunk)[1].split(',');
+			exploded = explodeRegex.exec(chunk)[1].split(',');
 		}
 		catch(err){
 			return rt;
@@ -21,7 +23,7 @@ const explodeChunkVariables = (chunk) => {
 			rt = [];
 			exploded.map(word => {
 				rt.push(
-					chunk.replace(exploderegex,word.trim())
+					chunk.replace(explodeRegex,word.trim())
 				);
 			});
 		}
@@ -40,6 +42,23 @@ export default (str) => {
 			return chunk;
 		})
 		.map(chunk => {
+			if(thingRegex.exec(chunk)) {
+				const ThingGetter = require('getter/thing');
+				let ss = new ThingGetter.default({},{
+					singular: true
+				}).value;
+				chunk = chunk.replace(thingRegex,ss);
+			}
+			if(thingPluralRegex.exec(chunk)) {
+				const ThingGetter = require('getter/thing');
+				let ss = new ThingGetter.default({},{
+					plural: true
+				}).value;
+				chunk = chunk.replace(thingPluralRegex,ss);
+			}
+			return chunk;
+		})
+		.map(chunk => {
 			while(explodeChunkVariables(chunk).length > 0) {
 				chunk = explodeChunkVariables(chunk);
 			}
@@ -53,8 +72,8 @@ export default (str) => {
 			let props = {};
 			let propArray = [];
 			try {
-				propArray = propsregex.exec(chunk)[1].split(',');
-				chunk = chunk.replace(propsregex,'').trim();
+				propArray = propsRegex.exec(chunk)[1].split(',');
+				chunk = chunk.replace(propsRegex,'').trim();
 			} catch(e){
 				true;
 			}
