@@ -1,6 +1,8 @@
 import abstractGetter from 'getter/abstract/abstract';
 
 import narratorTxt from 'corpus/less-common/narrator.txt';
+import {capitalizeFirstLetter,decapitalizeFirstLetter} from 'lib/stringies';
+
 
 export default class extends abstractGetter {
 
@@ -9,11 +11,13 @@ export default class extends abstractGetter {
 		this.narrator = this.parse(narratorTxt);
 	}
 
-	get values() {
+	narrate(sentence) {
+		return capitalizeFirstLetter(this.values.prefix.value).replace('$1',decapitalizeFirstLetter(sentence));
+	}
 
+	get values() {
 		return {
 			prefix: this.random(this.narrator)
 		};
-
 	}
 }
