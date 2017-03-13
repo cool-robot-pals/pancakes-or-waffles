@@ -5,7 +5,9 @@ purple
 green
 communist
 capitalist
+elitist
 british
+french
 cold
 hot
 warm
@@ -19,6 +21,9 @@ homosexual
 tasty
 delicious
 weird
+strange
 furry
 lumpy
 shiny
+cool
+boring
