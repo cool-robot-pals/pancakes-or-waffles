@@ -17,6 +17,7 @@
 	flex-direction: column;
 	align-items: stretch;
 	justify-content: flex-start;
+	text-shadow: 0 2px 10px rgba(60,210,130,.5);
 }
 
 .choice {
