@@ -19,6 +19,25 @@ class Post extends React.Component {
 		this.getPhotos = photoGetter(this.state.photoQuery,{
 			debug: false
 		});
+		const unmangledExtras = this.state.extras;
+		this.state.extras = [];
+		Object.keys(unmangledExtras).map(extra => {
+			let style = {}
+			if(typeof unmangledExtras[extra] === 'object') {
+				this.state.extras.push({
+					style: unmangledExtras[extra].style,
+					value: unmangledExtras[extra].value,
+					key: extra
+				})
+			}
+			else {
+				this.state.extras.push({
+					style: {},
+					value: unmangledExtras[extra],
+					key: extra
+				})
+			}
+		});
 	}
 
 	getMoreProps() {
@@ -61,13 +80,15 @@ class Post extends React.Component {
 					})
 				}
 				{
-					Object.keys(this.state.extras).map(extra => {
+					this.state.extras.map(extra => {
 						return <div
-							key={'extra-'+extra}
-							data-val={this.state.extras[extra]}
-							data-name={extra}
-							styleName='extra'>
-								<span>{this.state.extras[extra]}</span>
+							key={'extra-'+extra.key}
+							data-val={extra.value}
+							data-name={extra.key}
+							styleName='extra'
+							style={extra.style}
+						>
+								<span>{extra.value}</span>
 						</div>;
 					})
 				}

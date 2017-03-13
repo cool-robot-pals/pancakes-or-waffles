@@ -13,7 +13,7 @@ module.exports = function(query,params) {
 
 		if(!env.googleSearchCx || params.debug === true) {
 			resolve([
-				'https://i.ytimg.com/vi/R45OaTeR_Gw/maxresdefault.jpg'
+				'http://cdn3.dualshockers.com/wp-content/uploads/2015/09/GravityRushRemastered-6.jpg'
 			]);
 		}
 		else {
