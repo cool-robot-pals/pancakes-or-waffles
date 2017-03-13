@@ -12,7 +12,7 @@ class Post extends React.Component {
 		};
 		let moreProps = this.getMoreProps();
 		if(moreProps.extras){
-			const unmangledExtras = moreProps.extras.extras;
+			const unmangledExtras = moreProps.extras;
 			moreProps.extras = [];
 			Object.keys(unmangledExtras).map(extra => {
 				let style = {};
