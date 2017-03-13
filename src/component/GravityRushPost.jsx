@@ -16,7 +16,7 @@ class GravityRushPost extends Post {
 	positionMarker(anchor) {
 		const padding = 10;
 		const randomPos = (max=padding,min=(100-padding)) => {
- 			return Math.floor(Math.random()*(max-min+1)+min);
+			return Math.floor(Math.random()*(max-min+1)+min);
 		};
 		if(anchor === 'top') {
 			return[randomPos(padding,padding+5),randomPos()];

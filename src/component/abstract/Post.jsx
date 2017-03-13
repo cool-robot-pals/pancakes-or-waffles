@@ -10,33 +10,36 @@ class Post extends React.Component {
 		let initialState = {
 			bg: undefined
 		};
+		let moreProps = this.getMoreProps();
+		if(moreProps.extras){
+			const unmangledExtras = moreProps.extras.extras;
+			moreProps.extras = [];
+			Object.keys(unmangledExtras).map(extra => {
+				let style = {};
+				if(typeof unmangledExtras[extra] === 'object') {
+					moreProps.extras.push({
+						style: unmangledExtras[extra].style,
+						value: unmangledExtras[extra].value,
+						key: extra
+					});
+				}
+				else {
+					moreProps.extras.push({
+						style: {},
+						value: unmangledExtras[extra],
+						key: extra
+					});
+				}
+			});
+		}
 		this.state = Object.assign(
 			{},
 			initialState,
 			this.props,
-			this.getMoreProps()
+			moreProps
 		);
 		this.getPhotos = photoGetter(this.state.photoQuery,{
 			debug: false
-		});
-		const unmangledExtras = this.state.extras;
-		this.state.extras = [];
-		Object.keys(unmangledExtras).map(extra => {
-			let style = {};
-			if(typeof unmangledExtras[extra] === 'object') {
-				this.state.extras.push({
-					style: unmangledExtras[extra].style,
-					value: unmangledExtras[extra].value,
-					key: extra
-				});
-			}
-			else {
-				this.state.extras.push({
-					style: {},
-					value: unmangledExtras[extra],
-					key: extra
-				});
-			}
 		});
 	}
 
