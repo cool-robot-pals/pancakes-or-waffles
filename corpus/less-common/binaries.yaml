@@ -7,9 +7,13 @@ good:
     - help
     - assist
     - always
+    - okay!
+    - I'll do it!
 bad:
     - ignore
     - no
     - reject
     - refuse
     - pretend to not have heard it
+    - ummmm
+    - maybe
