@@ -10,11 +10,33 @@ class Post extends React.Component {
 		let initialState = {
 			bg: undefined
 		};
+		let moreProps = this.getMoreProps();
+		if(moreProps && moreProps.extras){
+			const unmangledExtras = moreProps.extras;
+			moreProps.extras = [];
+			Object.keys(unmangledExtras).map(extra => {
+				let style = {};
+				if(typeof unmangledExtras[extra] === 'object') {
+					moreProps.extras.push({
+						style: unmangledExtras[extra].style,
+						value: unmangledExtras[extra].value,
+						key: extra
+					});
+				}
+				else {
+					moreProps.extras.push({
+						style: {},
+						value: unmangledExtras[extra],
+						key: extra
+					});
+				}
+			});
+		}
 		this.state = Object.assign(
 			{},
 			initialState,
 			this.props,
-			this.getMoreProps()
+			moreProps
 		);
 		this.getPhotos = photoGetter(this.state.photoQuery,{
 			debug: false
@@ -61,13 +83,15 @@ class Post extends React.Component {
 					})
 				}
 				{
-					Object.keys(this.state.extras).map(extra => {
+					this.state.extras.map(extra => {
 						return <div
-							key={'extra-'+extra}
-							data-val={this.state.extras[extra]}
-							data-name={extra}
-							styleName='extra'>
-								<span>{this.state.extras[extra]}</span>
+							key={'extra-'+extra.key}
+							data-val={extra.value}
+							data-name={extra.key}
+							styleName='extra'
+							style={extra.style}
+						>
+								<span>{extra.value}</span>
 						</div>;
 					})
 				}

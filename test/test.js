@@ -49,7 +49,7 @@ describe('Initialization', function() {
 				},50);
 				var fail = setTimeout(function(){
 					done('wrong post number ('+document.querySelector('#tough-choices-bot div').childNodes.length+'/'+window.Post.posts.length+')');
-				},2000);
+				},1500);
 			}
 		};
 		window.Post.layouts.map(function(layout){
