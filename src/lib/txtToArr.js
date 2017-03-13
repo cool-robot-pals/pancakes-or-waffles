@@ -1,9 +1,14 @@
-const propsregex = /\((.*?)\)/;
-const exploderegex = /\[(.*?)\]/;
+const propsRegex = /\((.*?)\)/;
+const explodeRegex = /\[(.*?)\]/;
+
+const thingRegex = {
+	plural: /\@thing\.s/g,
+	any: /\@thing\.any/g,
+	singular: /\@thing/g
+};
 
 const explodeChunkVariables = (chunk) => {
 	let rt = [];
-	let exploded;
 	if(typeof chunk === 'object') {
 		chunk.map(innerChunk => {
 			rt = rt.concat(explodeChunkVariables(innerChunk));
@@ -11,17 +16,13 @@ const explodeChunkVariables = (chunk) => {
 		return rt;
 	}
 	else {
-		try {
-			exploded = exploderegex.exec(chunk)[1].split(',');
-		}
-		catch(err){
-			return rt;
-		}
+		let exploded = explodeRegex.exec(chunk);
 		if(exploded){
+			exploded = exploded[1].split(',');
 			rt = [];
 			exploded.map(word => {
 				rt.push(
-					chunk.replace(exploderegex,word.trim())
+					chunk.replace(explodeRegex,word.trim())
 				);
 			});
 		}
@@ -40,6 +41,23 @@ export default (str) => {
 			return chunk;
 		})
 		.map(chunk => {
+			Object.keys(thingRegex).map(name => {
+				if(thingRegex[name].test(chunk) !== false) {
+					let options = {};
+					if(name === 'singular') {
+						options.singular = true;
+					}
+					if(name === 'plural') {
+						options.plural = true;
+					}
+					const ThingGetter = require('getter/thing');
+					chunk = chunk.replace(thingRegex[name],new ThingGetter.default({},options).value);
+					console.log(chunk);
+				}
+			});
+			return chunk;
+		})
+		.map(chunk => {
 			while(explodeChunkVariables(chunk).length > 0) {
 				chunk = explodeChunkVariables(chunk);
 			}
@@ -51,21 +69,20 @@ export default (str) => {
 	let arrayWithProps = array
 		.map(chunk => {
 			let props = {};
-			let propArray = [];
-			try {
-				propArray = propsregex.exec(chunk)[1].split(',');
-				chunk = chunk.replace(propsregex,'').trim();
-			} catch(e){
-				true;
+			let propArray = propsRegex.exec(chunk);
+			if(propArray) {
+				propArray = propArray[1].split(',');
+				chunk = chunk.replace(propsRegex,'').trim();
 			}
-
+			else {
+				propArray = [];
+			}
 			if(propArray.length > 0) {
 				propArray.map(prop => {
 					prop = prop.split('=');
 					props[prop[0]] = prop[1]?prop[1]:true;
 				});
 			}
-
 			return {
 				value: chunk,
 				props: props

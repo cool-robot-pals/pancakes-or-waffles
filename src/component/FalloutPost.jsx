@@ -40,7 +40,6 @@ class FalloutPost extends Post {
 
 		let more = {};
 		more.choices = this.props.choices.map(this.parseChoice);
-		console.log(more);
 		return more;
 
 	}
