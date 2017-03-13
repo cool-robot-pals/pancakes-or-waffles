@@ -1,6 +1,6 @@
 {
-  "name": "tough-choices-bot",
-  "version": "0.0.1",
+  "name": "pancakes-or-waffles",
+  "version": "1.0.0",
   "description": "Look it's a long story",
   "main": "index.js",
   "scripts": {
@@ -8,15 +8,14 @@
     "esfix": "eslint --ext=jsx --ext=js --ignore-pattern dll --ignore-path .gitignore --fix .",
     "shitpost": "gulp shitpost",
     "localpost": "gulp localpost",
-    "install": "webpack",
-    "webpack": "webpack",
-    "gulp": "gulp",
-    "test": "gulp test"
+    "release": "gulp release",
+    "test": "gulp test",
+    "install": "webpack"
   },
   "license": "GPL-3.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/walaura/tough-choices-bot.git"
+    "url": "https://github.com/walaura/pancakes-or-waffles.git"
   },
   "author": "Laura mayhem",
   "dependencies": {
@@ -39,6 +38,7 @@
     "file-loader": "^0.10.0",
     "fs-extra": "^2.0.0",
     "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-github-release": "^1.2.1",
     "html-webpack-plugin": "^2.28.0",
     "mocha": "^3.2.0",
     "number-to-text": "^0.3.2",
