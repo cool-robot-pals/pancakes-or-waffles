@@ -22,12 +22,12 @@ const explodeChunkVariables = (chunk) => {
 			exploded.map(word => {
 				rt.push(
 					chunk.replace(exploderegex,word.trim())
-				)
-			})
+				);
+			});
 		}
 		return rt;
 	}
-}
+};
 
 export default (str) => {
 	let array = str
