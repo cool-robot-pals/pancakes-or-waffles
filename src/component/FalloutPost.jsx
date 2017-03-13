@@ -4,28 +4,44 @@ import CSSModules from 'react-css-modules';
 import styles from './FalloutPost.css';
 import Post from './abstract/Post.jsx';
 
-import NarratorValues from 'getter/less-common/narrator';
+import NarratorGetter from 'getter/less-common/narrator';
+import FalloutGetter from 'getter/less-common/fallout';
+import ChancesGetter from 'getter/chances';
 import {capitalizeFirstLetter,decapitalizeFirstLetter} from 'lib/stringies';
 
 
 class FalloutPost extends Post {
 
+	parseChoice (original) {
+
+		const foValues = new FalloutGetter();
+		const chances = new ChancesGetter();
+		let choice = [];
+
+		if(chances.should('falloutRequiresSpecial')) {
+			let special = foValues.values.special;
+			if(chances.should('falloutRequiresSpecialNumber')) {
+				special += ' '+Math.ceil(Math.random()*10)*10;
+			}
+			choice.push(`[${special}]` );
+		}
+
+		if(chances.should('falloutHasDialog')) {
+			let narrator = new NarratorGetter().values;
+			choice.push(capitalizeFirstLetter(narrator.prefix.value)+' '+decapitalizeFirstLetter(original));
+		}
+		else {
+			choice.push(`<${original}>`);
+		}
+		return choice.join(' ');
+
+	}
+
 	getMoreProps() {
 
 		let more = {};
-
-		if(Math.random() > .5) {
-			more.choices = this.props.choices
-			.map(choice => {
-				const narrator = new NarratorValues().values;
-				return capitalizeFirstLetter(narrator.prefix.value)+' '+decapitalizeFirstLetter(choice);
-			});
-		}
-		else {
-			more.choices = this.props.choices
-			.map(choice => `[${choice}]` );
-		}
-
+		more.choices = this.props.choices.map(this.parseChoice);
+		console.log(more);
 		return more;
 
 	}
