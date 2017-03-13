@@ -1,11 +1,14 @@
 const propsRegex = /\((.*?)\)/;
 const explodeRegex = /\[(.*?)\]/;
-const thingRegex = /\@thing/g;
-const thingPluralRegex = /\@thing.s/g;
+
+const thingRegex = {
+	singular: /\@thing/g,
+	plural: /\@thing\.s/g,
+	any: /\@thing\.any/g
+};
 
 const explodeChunkVariables = (chunk) => {
 	let rt = [];
-	let exploded;
 	if(typeof chunk === 'object') {
 		chunk.map(innerChunk => {
 			rt = rt.concat(explodeChunkVariables(innerChunk));
@@ -13,13 +16,9 @@ const explodeChunkVariables = (chunk) => {
 		return rt;
 	}
 	else {
-		try {
-			exploded = explodeRegex.exec(chunk)[1].split(',');
-		}
-		catch(err){
-			return rt;
-		}
+		let exploded = explodeRegex.exec(chunk);
 		if(exploded){
+			exploded = exploded[1].split(',');
 			rt = [];
 			exploded.map(word => {
 				rt.push(
@@ -42,20 +41,20 @@ export default (str) => {
 			return chunk;
 		})
 		.map(chunk => {
-			if(thingRegex.exec(chunk)) {
-				const ThingGetter = require('getter/thing');
-				let ss = new ThingGetter.default({},{
-					singular: true
-				}).value;
-				chunk = chunk.replace(thingRegex,ss);
-			}
-			if(thingPluralRegex.exec(chunk)) {
-				const ThingGetter = require('getter/thing');
-				let ss = new ThingGetter.default({},{
-					plural: true
-				}).value;
-				chunk = chunk.replace(thingPluralRegex,ss);
-			}
+			Object.keys(thingRegex).map(name => {
+				if(thingRegex[name].test(chunk) !== false) {
+					let options = {};
+					if(name === 'singular') {
+						options.singular = true;
+					}
+					if(name === 'plural') {
+						options.plural = true;
+					}
+					const ThingGetter = require('getter/thing');
+					let ss = new ThingGetter.default({},options).value;
+					chunk = chunk.replace(thingRegex,ss);
+				}
+			});
 			return chunk;
 		})
 		.map(chunk => {
@@ -70,21 +69,20 @@ export default (str) => {
 	let arrayWithProps = array
 		.map(chunk => {
 			let props = {};
-			let propArray = [];
-			try {
-				propArray = propsRegex.exec(chunk)[1].split(',');
+			let propArray = propsRegex.exec(chunk);
+			if(propArray) {
+				propArray = propArray[1].split(',');
 				chunk = chunk.replace(propsRegex,'').trim();
-			} catch(e){
-				true;
 			}
-
+			else {
+				propArray = [];
+			}
 			if(propArray.length > 0) {
 				propArray.map(prop => {
 					prop = prop.split('=');
 					props[prop[0]] = prop[1]?prop[1]:true;
 				});
 			}
-
 			return {
 				value: chunk,
 				props: props

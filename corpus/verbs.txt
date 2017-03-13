@@ -1,7 +1,7 @@
 save
 kill
 kiss
-kiss $1 with
+kiss @thing.any with
 hug
 hug with
 cuddle
@@ -14,17 +14,17 @@ hang out with
 sacrifice
 pet
 eat
-eat $1 with
+eat @thing.any with
 drink
-drink $1 with
-have $1 with
+drink @thing.any with
+have @thing.any with
 join
 forgive
 tell
 destroy
 delete
 subdue
-fart $1 at
+fart @thing.any at
 neutralize
 break
 crush
@@ -37,11 +37,11 @@ choose
 pardon
 evict
 visit
-visit $1 with
+visit @thing.any with
 read
-read $1 with
+read @thing.any with
 watch
-watch $1 with
+watch @thing.any with
 travel with
 rescue
 capture
@@ -49,15 +49,15 @@ cure
 heal
 boop
 hack
-give $1 to
-hand $1 to
+give @thing.any to
+hand @thing.any to
 give a hand to
 listen to
-talk to $1 with
+talk to @thing.any with
 talk to
 ask
 ask for
-ask $1 for
+ask @thing.any for
 argue with
 avoid
 evade
@@ -66,16 +66,16 @@ take
 take down
 mine
 disguise as
-disguise $1 as
-play $1 with
+disguise @thing.any as
+play @thing.any with
 play with
 give up on
 grab
 steal
 entertain
 amuse
-amuse $1 with
+amuse @thing.any with
 fight
-fight $1 with
-fight $1 alongside
+fight @thing.any with
+fight @thing.any alongside
 defeat

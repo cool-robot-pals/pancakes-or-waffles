@@ -1,3 +1,11 @@
+# hahaha whoa this one's a fun one
+# [word,word2] exapnds into all its possibilities
+# so like "[i,you] want" will generate
+# two separate sentences for "i want" and "you want"
+
+# then, @thing expands to a thing (nouns.txt), and @thing.s expands
+# to a plural thing, @thing.any gets a random plural or singular thing
+
 [i,you,they] should $1
 [i,they] want to $1
 [i,you,they] have to $1
