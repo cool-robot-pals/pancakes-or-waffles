@@ -11,7 +11,7 @@ class Post extends React.Component {
 			bg: undefined
 		};
 		let moreProps = this.getMoreProps();
-		if(moreProps.extras){
+		if(moreProps && moreProps.extras){
 			const unmangledExtras = moreProps.extras;
 			moreProps.extras = [];
 			Object.keys(unmangledExtras).map(extra => {
