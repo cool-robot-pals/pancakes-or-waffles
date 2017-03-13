@@ -1,7 +1,0 @@
-Roboto:400,400b
-Gentium+Book+Basic:700
-Patrick+Hand
-Poiret+One
-Roboto+Mono:500
-Lato:700,400
-Tulpen+One
