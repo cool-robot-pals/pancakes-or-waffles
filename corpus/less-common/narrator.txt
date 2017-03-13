@@ -1,8 +1,9 @@
-[i,you,they] should
-[i,they] want to
-[i,you,they] have to
-[i,you,they] must
-surely [I,they,you]'d
-it's [about time,time] for [me,you] to
-finally [you,i] [must,should]
-[at last, at long last] [you,i] [must,should]
+[i,you,they] should $1
+[i,they] want to $1
+[i,you,they] have to $1
+[i,you,they] must $1
+surely [I,they,you]'d $1
+it's [about time,time] for [me,you] to $1
+finally [you,i] [must,should] $1
+[at last, at long last] [you,i] [must,should] $1
+if you don't mind me asking, would you $1?

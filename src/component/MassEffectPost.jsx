@@ -14,7 +14,6 @@ class MassEffectPost extends Post {
 
 	getMoreProps() {
 
-		const narrator = new NarratorGetter().values;
 		const character = new CharacterGetter({
 			fandom: this.props.fandom
 		}).value.name;
@@ -23,7 +22,7 @@ class MassEffectPost extends Post {
 		if(chances.should('massEffectHasDialog')){
 			let more = {};
 			more.extras = {
-				dialog: character+': '+capitalizeFirstLetter(narrator.prefix.value)+' '+decapitalizeFirstLetter(this.props.choices[0])
+				dialog: character+': '+new NarratorGetter().narrate(this.props.choices[0])
 			};
 
 			let values = new BinaryChoicesGetter().values;

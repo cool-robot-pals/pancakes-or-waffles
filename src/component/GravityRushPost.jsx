@@ -6,7 +6,6 @@ import Post from './abstract/Post.jsx';
 
 import {capitalizeFirstLetter,decapitalizeFirstLetter} from 'lib/stringies';
 import random from 'lib/random';
-import NarratorValues from 'getter/less-common/narrator';
 import BinaryChoicesValues from 'getter/less-common/binaryChoices';
 import ChancesGetter from 'getter/chances';
 

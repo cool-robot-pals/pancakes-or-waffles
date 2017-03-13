@@ -47,7 +47,6 @@ export default (str) => {
 		});
 
 	array = [].concat.apply([], array);
-	console.log(array);
 
 	let arrayWithProps = array
 		.map(chunk => {

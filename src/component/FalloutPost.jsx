@@ -27,8 +27,7 @@ class FalloutPost extends Post {
 		}
 
 		if(chances.should('falloutHasDialog')) {
-			let narrator = new NarratorGetter().values;
-			choice.push(capitalizeFirstLetter(narrator.prefix.value)+' '+decapitalizeFirstLetter(original));
+			choice.push(new NarratorGetter().narrate(original));
 		}
 		else {
 			choice.push(`<${original}>`);
