@@ -17,7 +17,6 @@ it's [about time, time, finally time] for [me,you] to $1
 if you don't mind me asking, [would you, can I, may I] $1?
 [I,you] [shall,must,may] $1 as the [legend,prophecy,book,elders] foretold
 [I,you] [shall,must,may] $1 as @thing foretold
-You [may,should,shall] $1 because [i,we] [allow,demand] it
 @thing.any can $1
 Can @thing.any $1?
 $1?
