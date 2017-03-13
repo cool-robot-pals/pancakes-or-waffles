@@ -7,6 +7,3 @@ cache:
     - node_modules
 notifications:
   email: false
-after_success:
-  - test $TRAVIS_BRANCH = "master" &&
-    npm run release

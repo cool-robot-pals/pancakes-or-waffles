@@ -131,19 +131,6 @@ gulp.task('mocha', function(done) {
 });
 
 
-gulp.task('release', function(){
-	const release = require('gulp-github-release');
-	return gulp.src('dist/'+config.webpack.filename.dist)
-		.pipe(release({
-			manifest: require('./package.json')
-		}).on('error',e => {
-			console.error(e);
-			this.emit('end');
-		}));
-
-});
-
-
 gulp.task('test',
 	gulp.series('mocha')
 );
