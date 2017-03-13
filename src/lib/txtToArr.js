@@ -2,9 +2,9 @@ const propsRegex = /\((.*?)\)/;
 const explodeRegex = /\[(.*?)\]/;
 
 const thingRegex = {
-	singular: /\@thing/g,
 	plural: /\@thing\.s/g,
-	any: /\@thing\.any/g
+	any: /\@thing\.any/g,
+	singular: /\@thing/g
 };
 
 const explodeChunkVariables = (chunk) => {
@@ -51,8 +51,8 @@ export default (str) => {
 						options.plural = true;
 					}
 					const ThingGetter = require('getter/thing');
-					let ss = new ThingGetter.default({},options).value;
-					chunk = chunk.replace(thingRegex,ss);
+					chunk = chunk.replace(thingRegex[name],new ThingGetter.default({},options).value);
+					console.log(chunk);
 				}
 			});
 			return chunk;
