@@ -6,7 +6,7 @@
 # then, @thing expands to a thing (nouns.txt), and @thing.s expands
 # to a plural thing, @thing.any gets a random plural or singular thing
 
-[I,you,they] should $1
+[I,you,they,somebody] should $1
 [I,they] want to $1
 [I,you,they] have to $1
 [I,you,they] must $1
