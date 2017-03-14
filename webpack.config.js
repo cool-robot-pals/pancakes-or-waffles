@@ -63,7 +63,7 @@ module.exports = {
 				collapseWhitespace: true
 			},
 			template: 'bot.template.ejs',
-			filename: `../${config.paths.test}/${config.filenames.test}.html`,
+			filename: path.join('..',config.paths.test,config.filenames.test+'.html'),
 			test: true,
 			base: `file://${__dirname}/${config.paths.build}/${config.filenames.base}.html`
 		}),
@@ -77,7 +77,7 @@ module.exports = {
 			{
 				test: /\.css$/,
 				include: [
-					path.resolve(__dirname, 'src/component')
+					path.resolve(__dirname,'src','component')
 				],
 				use: ExtractTextPlugin.extract([
 					'css-loader?modules&importLoaders=1&localIdentName=tc-[hash:base64:10]',
@@ -104,7 +104,7 @@ module.exports = {
 				test: /\.css$/,
 				exclude: [
 					/node_modules/,
-					path.resolve(__dirname, 'src/component')
+					path.resolve(__dirname, 'src','component')
 				],
 				use: ExtractTextPlugin.extract({
 					use: ['css-loader','postcss-loader']
@@ -128,11 +128,11 @@ module.exports = {
 	resolve: {
 		extensions: ['.js', '.jsx'],
 		alias: {
-			'corpus': path.resolve('./corpus'),
-			'data': path.resolve('./data')
+			'corpus': path.resolve('.','corpus'),
+			'data': path.resolve('.','data')
 		},
 		modules: [
-			path.resolve('./src'),
+			path.resolve('.','src'),
 			'node_modules'
 		]
 	}
