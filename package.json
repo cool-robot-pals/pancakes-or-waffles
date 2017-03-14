@@ -8,9 +8,7 @@
     "esfix": "eslint --ext=jsx --ext=js --ignore-pattern dll --ignore-path .gitignore --fix .",
     "shitpost": "gulp shitpost",
     "localpost": "gulp localpost",
-    "install": "webpack",
-    "webpack": "webpack",
-    "gulp": "gulp",
+    "install": "webpack --hide-modules",
     "test": "gulp test"
   },
   "license": "GPL-3.0",

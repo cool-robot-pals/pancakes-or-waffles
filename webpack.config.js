@@ -29,6 +29,10 @@ module.exports = {
 			filename: 'promise.js',
 			minChunks : 0
 		}),
+		new webpack.optimize.CommonsChunkPlugin({
+			children: true,
+			minChunks : 2
+		}),
 		new webpack.DefinePlugin((function(){
 			var rt = {};
 			Object.keys(process.env).map(function(key){
@@ -45,7 +49,7 @@ module.exports = {
 			allChunks: true
 		}),
 		new webpack.optimize.MinChunkSizePlugin({
-			minChunkSize: 10000
+			minChunkSize: 200000
 		}),
 		new HtmlWebpackPlugin({
 			title: '👁👄👁☝️',
