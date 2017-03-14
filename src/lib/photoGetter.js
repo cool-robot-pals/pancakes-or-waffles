@@ -22,7 +22,7 @@ module.exports = function(query,params) {
 				json: true,
 				qs: {
 					q: query
-						+ ' gameplay screenshot -site:deviantart.com  -site:youtube.com',
+						+ ' gameplay screenshot -slideshow -site:deviantart.com  -site:youtube.com',
 					safe: 'medium',
 					searchType: 'image',
 					imgSize: 'xxlarge',
@@ -40,8 +40,8 @@ module.exports = function(query,params) {
 						return item.image.width > item.image.height;
 					});
 
-					var length = 30;
-					if(body.items.length < 30) length = body.items.length;
+					var length = 40;
+					if(body.items.length < length) length = body.items.length;
 
 					resolve([
 						body.items[Math.floor(Math.random() * length)].link
