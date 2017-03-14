@@ -9,19 +9,24 @@ const gutil = require('gulp-util');
 const env = require('./src/env.js');
 
 
-gulp.task('tweet',function(done){
+gulp.task('tweet', done => {
 	var Twit = require('twit');
 	if(env.twitterConsumerKey){
 		var T = new Twit({
-			consumer_key:         env.twitterConsumerKey,
-			consumer_secret:      env.twitterConsumerSecret,
-			access_token:         env.twitterAccess,
-			access_token_secret:  env.twitterSecret
+			consumer_key: env.twitterConsumerKey,
+			consumer_secret: env.twitterConsumerSecret,
+			access_token: env.twitterAccess,
+			access_token_secret: env.twitterSecret
 		});
-		var b64content = fs.readFileSync(path.join(config.paths.build,`${config.filenames.base}.jpg`), { encoding: 'base64' });
-		T.post('media/upload', { media_data: b64content }, function (err, data, response) {
+		var b64content = fs.readFileSync(
+			path.join(config.paths.build,config.filenames.base+'.jpg'),
+			{
+				encoding: 'base64'
+			}
+		);
+		T.post('media/upload', { media_data: b64content }, (err, data, response) => {
 			var params = { status: '', media_ids: [data.media_id_string] };
-			T.post('statuses/update', params, function (err, data, response) {
+			T.post('statuses/update', params, (err, data, response) => {
 				if(err) {
 					throw new gutil.PluginError({
 						plugin: 'tweet',
@@ -42,7 +47,7 @@ gulp.task('tweet',function(done){
 });
 
 
-gulp.task('upload', function (done) {
+gulp.task('upload', done => {
 
 	const spawn = require('child_process').spawn;
 	const child = spawn('curl',[
@@ -59,7 +64,7 @@ gulp.task('upload', function (done) {
 });
 
 
-gulp.task('webshot',function(done){
+gulp.task('webshot', done => {
 	var webshot = require('webshot');
 	var options = {
 		renderDelay: 20000,
@@ -87,16 +92,12 @@ gulp.task('webshot',function(done){
 		}
 	};
 	webshot(
-		path.join(config.paths.build,`${config.filenames.base}.html`),
-		path.join(config.paths.build,`${config.filenames.base}.jpg`),
+		path.join(config.paths.build, config.filenames.base+'.html'),
+		path.join(config.paths.build, config.filenames.base+'.jpg'),
 		options,
-		function(err) {
-			if(err) {
-				console.error(err);
-			}
-			else {
-				done();
-			}
+		err => {
+			if(err) console.error(err);
+			else done();
 		}
 	);
 });
@@ -115,7 +116,7 @@ gulp.task('mocha', function(done) {
 	const mochaPhantomJS = require('gulp-mocha-phantomjs');
 	return gulp
 	.src(
-		path.join(config.paths.test,`${config.filenames.test}.html`)
+		path.join(config.paths.test, config.filenames.test+'.html')
 	)
 	.pipe(
 		mochaPhantomJS({
