@@ -2,7 +2,7 @@
 	composes: post-raw from './abstract/Post.css';
 	font-family: 'Roboto';
 	font-style: italic;
-	font-weight: 600;
+	font-weight: 500;
 	font-size: 26px;
 	color: #ced1c7;
 	text-shadow: 2px 8px 10px rgba(0,0,0,.25);

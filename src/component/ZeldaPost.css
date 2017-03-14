@@ -19,8 +19,14 @@
 .choice {
 	position: absolute;
 	top: 64%;
+	bottom: 33%;
 	left: 20%;
+	right: 20%;
 	z-index: 9999;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: center;
 }
 
 .extra {
