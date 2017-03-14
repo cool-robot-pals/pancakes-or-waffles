@@ -1,4 +1,4 @@
-Roboto:400,400b,600i
+Roboto:400,400b,500i
 Gentium+Book+Basic:700
 Patrick+Hand
 Poiret+One
