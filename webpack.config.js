@@ -45,7 +45,7 @@ module.exports = {
 			allChunks: true
 		}),
 		new webpack.optimize.MinChunkSizePlugin({
-			minChunkSize: 10000
+			minChunkSize: 333000
 		}),
 		new HtmlWebpackPlugin({
 			title: '👁👄👁☝️',
