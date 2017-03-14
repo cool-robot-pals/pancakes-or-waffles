@@ -52,7 +52,6 @@ export default (str) => {
 					}
 					const ThingGetter = require('getter/thing');
 					chunk = chunk.replace(thingRegex[name],new ThingGetter.default({},options).value);
-					console.log(chunk);
 				}
 			});
 			return chunk;
