@@ -158,6 +158,7 @@ silly
 skinny
 slow
 small
+spanish
 sparkling
 sparse
 square
