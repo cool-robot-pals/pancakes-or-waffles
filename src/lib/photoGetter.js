@@ -2,6 +2,7 @@ import request from 'browser-request';
 import env from 'env';
 import random from 'lib/random';
 
+const pagesToLoad = 4;
 const apiUrl = 'https://www.googleapis.com/customsearch/v1';
 
 module.exports = function(query,params) {
@@ -17,37 +18,60 @@ module.exports = function(query,params) {
 			]);
 		}
 		else {
-			request({
-				url: apiUrl,
-				json: true,
-				qs: {
-					q: query
-						+ ' gameplay screenshot -slideshow -site:deviantart.com  -site:youtube.com',
-					safe: 'medium',
-					searchType: 'image',
-					imgSize: 'xxlarge',
-					imgType: 'photo',
-					cx: env.googleSearchCx,
-					key: env.googleSearchKey,
-				}
-			},(error,response,body)=>{
 
-				if(error || !body.items) {
-					reject(error?error:'req failed');
-				}
-				else {
-					body.items = body.items.filter(function(item){
-						return item.image.width > item.image.height;
-					});
+			const parameters = {
+				q: [
+					query,
+					'gameplay',
+					'screenshot',
+					'-slideshow',
+					'-site:youtube.com'
+				].join(' '),
+				safe: 'medium',
+				searchType: 'image',
+				imgSize: 'xxlarge',
+				num: 10,
+				imgType: 'photo',
+				cx: env.googleSearchCx,
+				key: env.googleSearchKey,
+			};
 
-					var length = 40;
-					if(body.items.length < length) length = body.items.length;
-
+			let results = [];
+			let pagesLoaded = 0;
+			const onResults = (localResults) => {
+				pagesLoaded++;
+				localResults = localResults.filter(function(item){
+					return item.image.width > item.image.height;
+				});
+				results = results.concat(localResults);
+				if(pagesLoaded >= pagesToLoad) {
 					resolve([
-						body.items[Math.floor(Math.random() * length)].link
+						results[Math.floor(Math.random() * results.length)].link
 					]);
 				}
-			});
+			};
+
+			for(let i = 0; i < pagesToLoad; i++) {
+				request({
+					url: apiUrl,
+					json: true,
+					qs: Object.assign(
+						{},
+						parameters,
+						{
+							start: (10*i)+1
+						}
+					)
+				},(error,response,body)=>{
+					if(error || !body.items) {
+						reject(error?error:'req failed');
+					}
+					else {
+						onResults(body.items);
+					}
+				});
+			}
+
 		}
 	});
 };
