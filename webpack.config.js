@@ -29,6 +29,10 @@ module.exports = {
 			filename: 'promise.js',
 			minChunks : 0
 		}),
+		new webpack.optimize.CommonsChunkPlugin({
+			children: true,
+			minChunks : 2
+		}),
 		new webpack.DefinePlugin((function(){
 			var rt = {};
 			Object.keys(process.env).map(function(key){
