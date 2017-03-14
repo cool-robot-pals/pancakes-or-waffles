@@ -33,9 +33,7 @@ module.exports = function(query,params) {
 		let pagesLoaded = 0;
 		const onResults = (localResults) => {
 			pagesLoaded++;
-			localResults = localResults.filter(function(item){
-				return item.image.width > item.image.height;
-			});
+			localResults = localResults.filter(item => item.image.width > item.image.height);
 			results = results.concat(localResults);
 			if(pagesLoaded >= pagesToLoad) {
 				resolve([
@@ -51,7 +49,7 @@ module.exports = function(query,params) {
 						image: {
 							width: 20,
 							height: 10
-						}
+						},
 						link: 'http://cdn3.dualshockers.com/wp-content/uploads/2015/09/GravityRushRemastered-6.jpg'
 					}
 				]);
