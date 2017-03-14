@@ -49,7 +49,7 @@ module.exports = function(query,params) {
 						results[Math.floor(Math.random() * results.length)].link
 					]);
 				}
-			}
+			};
 
 			for(let i = 0; i < pagesToLoad; i++) {
 				request({
