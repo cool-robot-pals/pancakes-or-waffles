@@ -1,5 +1,5 @@
-# tough-choices-bot
-Creates fake video game screenshots
+# Pancakes or waffles!!
+Creates fake video game screenshots decipting player choices
 
 <div align="center"><img src="https://pbs.twimg.com/media/C6awIPJXQAAgOcF.jpg:orig" /></div>
 
