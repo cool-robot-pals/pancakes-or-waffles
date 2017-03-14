@@ -137,6 +137,7 @@ puny
 purple
 purring
 quaint
+queer
 quick
 quiet
 rapid
