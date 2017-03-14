@@ -41,7 +41,7 @@ module.exports = function(query,params) {
 					});
 
 					var length = 40;
-					if(body.items.length < lenght) length = body.items.length;
+					if(body.items.length < length) length = body.items.length;
 
 					resolve([
 						body.items[Math.floor(Math.random() * length)].link
