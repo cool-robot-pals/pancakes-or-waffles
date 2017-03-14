@@ -1,4 +1,5 @@
 useAdjective: 40%
+useTwoAdjectives: 20%
 isSingular: 50%
 useThing: 40%
 useSameVerb: 30%
