@@ -63,7 +63,6 @@ class Post extends React.Component {
 		let backgroundStyle = {
 			backgroundImage: `url("${this.state.bg}")`
 		};
-		console.log(backgroundStyle.backgroundImage);
 		return (
 			<div
 				styleName={'post'}
