@@ -1,4 +1,4 @@
-const logger = (obj,path='') => {
+const logger = (obj,path=[]) => {
 
 	let rt = [];
 
@@ -7,12 +7,12 @@ const logger = (obj,path='') => {
 			continue;
 		}
 		if(typeof obj[k] === 'object' && !Array.isArray(obj[k])) {
-			rt = rt.concat(logger(obj[k],k));
+			rt = rt.concat(logger(obj[k],path.concat(obj[k])));
 		}
 		else {
 			try {
 				rt.push(
-					(path?path.toUpperCase()+'/':'')
+					path.join('/')
 					+k.toUpperCase()
 					+' - '
 					+JSON.stringify(obj[k])
