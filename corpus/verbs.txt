@@ -79,3 +79,5 @@ fight
 fight @thing.any with
 fight @thing.any alongside
 defeat
+ignore
+marry
