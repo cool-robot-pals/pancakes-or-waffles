@@ -30,7 +30,7 @@ const makePost = (defaults={}) => {
 	};
 	posts.push(post);
 
-	System.import('component/'+changeCase.pascal(`${layout}-post`))
+	System.import('post/'+changeCase.pascal(`${layout}-post`))
 	.then(Post => {
 
 		let $post = React.createElement(

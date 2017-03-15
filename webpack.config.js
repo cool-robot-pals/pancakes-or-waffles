@@ -53,7 +53,10 @@ module.exports = {
 		}),
 		new HtmlWebpackPlugin({
 			title: '👁👄👁☝️',
-			template: 'bot.template.ejs',
+			minify: {
+				collapseWhitespace: true
+			},
+			template: path.join('etc','bot.template.ejs'),
 			filename: `${config.filenames.base}.html`,
 			base: `file://${__dirname}/${config.paths.build}/${config.filenames.base}.html`
 		}),
@@ -62,7 +65,7 @@ module.exports = {
 			minify: {
 				collapseWhitespace: true
 			},
-			template: 'bot.template.ejs',
+			template: path.join('etc','bot.template.ejs'),
 			filename: path.join('..',config.paths.test,config.filenames.test+'.html'),
 			test: true,
 			base: `file://${__dirname}/${config.paths.build}/${config.filenames.base}.html`
@@ -77,7 +80,7 @@ module.exports = {
 			{
 				test: /\.css$/,
 				include: [
-					path.resolve(__dirname,'src','component')
+					path.resolve(__dirname,'src','post')
 				],
 				use: ExtractTextPlugin.extract([
 					'css-loader?modules&importLoaders=1&localIdentName=tc-[hash:base64:10]',
@@ -104,7 +107,7 @@ module.exports = {
 				test: /\.css$/,
 				exclude: [
 					/node_modules/,
-					path.resolve(__dirname, 'src','component')
+					path.resolve(__dirname, 'src','post')
 				],
 				use: ExtractTextPlugin.extract({
 					use: ['css-loader','postcss-loader']

@@ -51,7 +51,7 @@ module.exports = function(query,params) {
 							width: 20,
 							height: 10
 						},
-						link: 'http://cdn3.dualshockers.com/wp-content/uploads/2015/09/GravityRushRemastered-6.jpg'
+						link: 'http://vignette3.wikia.nocookie.net/projectcars/images/8/8c/Project_Cars_Screenshots_(1).JPG/revision/latest?cb=20150324015839'
 					}
 				]);
 			}
