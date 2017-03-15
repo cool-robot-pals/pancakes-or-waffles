@@ -25,12 +25,12 @@ const makePost = (defaults={}) => {
 	let post = {
 		layout: layout,
 		log: function(){
-			return logger(this).join('\n');
+			return logger(this);
 		}
 	};
 	posts.push(post);
 
-	System.import('component/'+changeCase.pascal(`${layout}-post`))
+	System.import('post/'+changeCase.pascal(`${layout}-post`))
 	.then(Post => {
 
 		let $post = React.createElement(
