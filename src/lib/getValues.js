@@ -1,15 +1,13 @@
-import nounsTxt from 'corpus/nouns.txt';
 import verbsTxt from 'corpus/verbs.txt';
-import peopleData from 'json-loader!yaml-loader!corpus/people.yaml';
 
 import txtToArr from 'lib/txtToArr';
 import random from 'lib/random';
-import {capitalizeFirstLetter,decapitalizeFirstLetter} from 'lib/stringies';
-
-import pluralize from 'pluralize';
+import {capitalizeFirstLetter} from 'lib/stringies';
 
 import ChancesGetter from 'getter/chances';
-import thingGetter from 'getter/thing';
+import ThingGetter from 'getter/thing';
+import CharacterGetter from 'getter/character';
+import FandomGetter from 'getter/fandom';
 
 
 /*TODO: refactor this mess*/
@@ -17,32 +15,11 @@ import thingGetter from 'getter/thing';
 export default () => {
 
 	const chances = new ChancesGetter();
-
-	let people = peopleData;
-
-	let nouns = txtToArr(nounsTxt);
-	let verbs = txtToArr(verbsTxt);
-
-	let fandoms = (function(people){
-		let fandoms = [];
-		people.map(function(item){
-			if(fandoms.indexOf(item.fandom) < 0) fandoms.push(item.fandom);
-		});
-		return fandoms;
-	})(people);
-
-	let query;
-
-	let sameVerb = chances.should('useSameVerb');
-	let crossFandom = chances.should('crossFandomsOver');
-	let hasOwnable = chances.should('characterHaveOwnable');
-
-	let choices = [];
-	let lastChoiceName = '';
+	const verbs = txtToArr(verbsTxt);
 
 	const getOwnable = (params) => {
-		if(params.use === 0 && hasOwnable) {
-			return new thingGetter({},{
+		if(params.use === 'CHARACTER' && chances.should('characterHaveOwnable')) {
+			return new ThingGetter({},{
 				type: 'ownable'
 			}).value;
 		}
@@ -51,73 +28,55 @@ export default () => {
 		}
 	};
 
-	const getThing = (globalparams,selfparams) => {
-		return new thingGetter().value;
-	};
+	const makeChoice = function(params={}) {
 
-	const makeChoice = function(params) {
+		let useable;
 
-		let useables = ['person','thing'];
-
-		if(!params) params = {};
-
-		if(params.fandom) {
-			people = people.filter(function(item){
-				return item.fandom === params.fandom;
-			});
-		}
+		if(!params.use) params.use = chances.should('useThing')?'THING':'CHARACTER';
 
 		if(!params.verb) params.verb = random(verbs).value;
-		if(!params.thing) params.thing = getThing();
-		if(!params.use) params.use = chances.should('useThing')?1:0;
+		if(!params.thing) params.thing = new ThingGetter().value;
 		if(!params.posession) params.posession = getOwnable(params);
-		if(!params.personObject) {
-			params.personObject = random(people);
-			/*this is awful*/
-			if(lastChoiceName === params.personObject.name) {
-				params.personObject = random(people);
-				if(lastChoiceName === params.personObject.name) {
-					params.personObject = random(people);
-				}
-			}
-		}
-
-		params.person = capitalizeFirstLetter(params.personObject.name);
-		params.verb = params.verb.replace('$1',getThing());
-
-		if (params.use === 0) {
-			query = params.personObject.search;
-			lastChoiceName = params.personObject.name;
-		}
 
 		if(params.posession) {
 			params.posession = '\'s '+params.posession;
 		}
 
-		return capitalizeFirstLetter(params.verb)+' '+params[useables[params.use]]+params.posession;
+		if(params.use === 'THING') useable = params.thing;
+		if(params.use === 'CHARACTER') useable = params.character;
+
+		return [
+			capitalizeFirstLetter(params.verb),
+			' ',
+			useable,
+			params.posession
+		].join('');
 
 	};
 
-	let verb = undefined;
-	let fandom = undefined;
-	if(!crossFandom) {
-		fandom = random(fandoms);
-	}
-	if(sameVerb) {
-		let verb = random(verbs).value;
-	}
-	choices.push(makeChoice({
-		verb: verb,
-		fandom: fandom
-	}));
-	choices.push(makeChoice({
-		verb: verb,
-		fandom: fandom
-	}));
+	let verb = chances.should('useSameVerb')?random(verbs).value:undefined;
+	let fandom = chances.should('crossFandomsOver')?(new FandomGetter().value):undefined;
 
-	if(!query) {
-		query = random(people).search;
-	}
+	let characters = [
+		new CharacterGetter({
+			fandom: fandom
+		}).values,
+		new CharacterGetter({
+			fandom: fandom
+		}).values
+	];
+	let choices = [
+		makeChoice({
+			character: characters[0].name,
+			verb: verb
+		}),
+		makeChoice({
+			character: characters[1].name,
+			verb: verb
+		})
+	];
+
+	let query = random(characters).search;
 
 	return {
 		choices: choices,

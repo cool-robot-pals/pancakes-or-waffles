@@ -17,7 +17,7 @@ class ZeldaBotwPost extends Post {
 		const narrator = new NarratorGetter().values;
 		const character = new CharacterGetter({
 			fandom: this.props.fandom
-		}).value.name;
+		}).values.name;
 		const chances = new ChancesGetter();
 
 		let more = {};

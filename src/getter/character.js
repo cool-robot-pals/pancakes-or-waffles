@@ -14,7 +14,7 @@ export default class CharacterGetter extends abstractGetter {
 	}
 
 
-	getDefault() {
+	get values() {
 		return this.random(this.people);
 	}
 

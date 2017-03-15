@@ -16,7 +16,7 @@ class MassEffectPost extends Post {
 
 		const character = new CharacterGetter({
 			fandom: this.props.fandom
-		}).value.name;
+		}).values.name;
 		const chances = new ChancesGetter();
 
 		if(chances.should('massEffectHasDialog')){
