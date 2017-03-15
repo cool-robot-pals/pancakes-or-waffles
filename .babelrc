@@ -2,7 +2,8 @@
 	"compact": false,
 	"plugins": [
 		"transform-decorators-legacy",
-		"transform-object-assign"
+		"transform-object-assign",
+		"transform-object-rest-spread"
 	],
 	"presets": [
 		["react"],

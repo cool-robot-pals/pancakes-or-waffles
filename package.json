@@ -57,6 +57,7 @@
     "yaml-loader": "^0.4.0"
   },
   "devDependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "gulp-mocha-phantomjs": "^0.12.1"
   }
 }

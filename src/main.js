@@ -2,11 +2,12 @@ import 'assets/reset.css';
 
 import {render} from 'react-dom';
 import React from 'react';
-import changeCase from 'change-case';
 
-import layoutGetter from 'getter/layout';
+import LayoutGetter from 'getter/layout';
+
+import changeCase from 'change-case';
 import getValues from 'lib/getValues';
-import random from 'lib/random';
+import logger from 'lib/logger';
 import txtToArr from 'lib/txtToArr';
 
 import fontsTxt from 'internal-data/fonts.txt';
@@ -14,12 +15,20 @@ import fontsTxt from 'internal-data/fonts.txt';
 
 let $posts = [];
 let posts = [];
-let layouts = new layoutGetter().layouts;
+let layouts = new LayoutGetter().layouts;
 
 const makePost = (defaults={}) => {
 
 	let values = getValues();
-	let layout = new layoutGetter(defaults).value;
+	let layout = new LayoutGetter(defaults).value;
+
+	let post = {
+		layout: layout,
+		log: function(){
+			return logger(this).join('\n');
+		}
+	};
+	posts.push(post);
 
 	System.import('component/'+changeCase.pascal(`${layout}-post`))
 	.then(Post => {
@@ -30,19 +39,14 @@ const makePost = (defaults={}) => {
 				photoQuery: values.query,
 				choices: values.choices,
 				fandom: values.fandom,
-				extras: [],
-				variants: [],
-				key: $posts.length
+				key: $posts.length,
+				onUpdate: (state) => {
+					Object.assign(post,state);
+				}
 			}
 		);
 
 		$posts.push($post);
-		posts.push({
-			photoQuery: $post.props.photoQuery,
-			choices: $post.props.choices,
-			layout: layout,
-			$element: $post
-		});
 
 		render(React.createElement(
 			'div',

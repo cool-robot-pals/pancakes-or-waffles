@@ -76,10 +76,9 @@ gulp.task('webshot', done => {
 		userAgent: 'Mozilla/4.0 (iPad; CPU OS 4_0_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/4.1 Mobile/9A405 Safari/7534.48.3',
 		quality: 100,
 		onLoadFinished: function(){
-			console.log(window.Post.posts.length);
-			for(var k in window.Post.posts[0]) {
-				if(k[0]!=='$') console.log(k.toUpperCase()+' - '+JSON.stringify(window.Post.posts[0][k]));
-			}
+			setTimeout(function(){
+				console.log(window.Post.posts[0].log());
+			},2000);
 		},
 		onConsoleMessage: function(text){
 			gutil.log(text);
