@@ -75,26 +75,26 @@ export default class PostGetter extends abstractGetter {
 	get values() {
 
 		let verb = this.chances.should('useSameVerb')?this.getVerb():undefined;
-		let fandom = this.chances.should('crossFandomsOver')?(new FandomGetter().value):undefined;
+		let fandom = this.chances.should('crossFandomsOver')?undefined:(new FandomGetter().value);
 
-		let characters = [
-			new CharacterGetter({
-				fandom: fandom
-			}).values,
-			new CharacterGetter({
-				fandom: fandom
-			}).values
-		];
-		let choices = [
-			this.makeChoice({
-				character: characters[0].name,
-				verb: verb
-			}),
-			this.makeChoice({
-				character: characters[1].name,
-				verb: verb
-			})
-		];
+		let characters = []
+		characters.push(new CharacterGetter({
+			fandom: fandom
+		}).values);
+		characters.push(new CharacterGetter({
+			fandom: fandom,
+			skipName: characters[0].name
+		}).values);
+
+		let choices = [];
+		choices.push(this.makeChoice({
+			character: characters[0].name,
+			verb: verb
+		}));
+		choices.push(this.makeChoice({
+			character: characters[1].name,
+			verb: verb
+		}));
 
 		let query = random(characters).search;
 

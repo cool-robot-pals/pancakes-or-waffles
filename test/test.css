@@ -1,34 +1,101 @@
-#mocha {
-	background: #fff;
-	display: block;
-	padding: 2em;
-	font-size: 16px;
-	clear: both;
-	font-family: monospace;;
-	position: fixed;
-	left: 0;
-	top: 0;
-	right: 50%;
-	bottom: 0;
+:root {
+	--sidebar: 5rem;
+	--sidebar-open: 15rem;
 }
 
+* {
+	box-sizing: border-box;
+}
 
-#tough-choices-bot {
-	padding: .5em;
+#mocha {
+	display: block;
+	padding: 10px;
+	clear: both;
+	font-family: 'roboto mono',sans-serif;
 	position: fixed;
-	right: 0;
-	left: 50%;
-	bottom: 0;
 	top: 0;
-	overflow: scroll;;
+	right: 0;
+	width: var(--sidebar-open);
+	overflow: hidden;
+	overflow-y: scroll;
+	border-left: 1px solid #222;
+	color: #fff;
+	z-index: 9999999;
+	transition: width .25s linear;
+}
+
+#mocha > * {
+	opacity: .25;
+	transition: opacity .25s linear;
+}
+
+#mocha:hover > * {
+	opacity: 1;
+}
+
+#mocha #mocha-stats {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: stretch;
+	border-bottom: 1px solid rgba(255,255,255,.5);
+	border-left: 1px solid rgba(255,255,255,.5);
+	border-radius: .2em;
+	overflow: hidden;
+	margin-bottom: 1em;
+}
+
+#mocha #mocha-stats > * {
+	border-right: 1px solid rgba(255,255,255,.5);
+	padding: 1em;
+	width: 33.3333%;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+#mocha #mocha-stats * {
+	font-size: 8px;
+}
+
+#mocha #mocha-stats em {
+	font-size: 12px;
+}
+
+#mocha #mocha-stats .progress {
+	background: #fff;
+	width: 100%;
+}
+
+#mocha * {
+	font-size: 14px;
+	font-weight: 300;
+}
+
+#mocha .test {
+	margin-top: 1em;
+}
+
+#mocha a {
+	color: #000;
+	background: #fff;
+	display: inline-block;
+	text-decoration: none;
+	padding: 0 .25em;
+	border-radius: .2em;
+	mix-blend-mode: lighten;
+}
+
+body {
+	background: #222;
+	padding: 5px;
+	margin-right: var(--sidebar);
 }
 
 
 #tough-choices-bot > div > div {
-	margin: .5em;
-	zoom: .2;
-	border-radius: 1em;
-	overflow: hidden;;
-	box-shadow: 0 4px 10px 2px rgba(0,0,0,.1);
+	margin: 20px;
+	zoom: .30;
+	border-radius: .25em;
+	overflow: hidden;
+	box-shadow: 0 20px 30px 0 rgba(0,0,0,.25);
 	transition: transform .25s linear;
 }
