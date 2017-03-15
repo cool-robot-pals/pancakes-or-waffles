@@ -23,6 +23,7 @@ const makePost = (defaults={}) => {
 	let layout = new LayoutGetter(defaults).value;
 
 	let post = {
+		layout: layout,
 		log: function(){
 			return logger(this);
 		}
