@@ -16,7 +16,6 @@ export default class PronounGetter extends abstractGetter {
 
 
 	getDefault() {
-		console.log(this.options.pronounable);
 		let pronoun = this.random(
 			this.options.singular?this.pronouns.singular:this.pronouns.plural
 		).value;
