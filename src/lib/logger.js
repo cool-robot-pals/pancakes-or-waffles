@@ -9,7 +9,7 @@ const logger = (obj,path=[]) => {
 		if(typeof obj[k] === 'object' && !Array.isArray(obj[k])) {
 			rt = rt.concat(logger(obj[k],path.concat(k)));
 		}
-		else if (typeof obj[k] === 'object' && Array.isArray(obj[k]) && obj[k].length > 2) {
+		else if (typeof obj[k] === 'object' && Array.isArray(obj[k])) {
 			let objFromArray = obj[k].reduce(function(acc, cur, i) {
 				acc[i] = cur; return acc;
 			}, {});

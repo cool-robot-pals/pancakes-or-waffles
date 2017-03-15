@@ -77,7 +77,8 @@ gulp.task('webshot', done => {
 		quality: 100,
 		onLoadFinished: function(){
 			setTimeout(function(){
-				console.log(window.Post.posts[0].log());
+				var log = (window.Post.posts[0].log());
+				log.map(function(line){console.log(line)})
 			},2000);
 		},
 		onConsoleMessage: function(text){
