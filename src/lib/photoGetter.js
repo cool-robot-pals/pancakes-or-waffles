@@ -36,9 +36,10 @@ module.exports = function(query,params) {
 			localResults = localResults.filter(item => item.image.width > item.image.height);
 			results = results.concat(localResults);
 			if(pagesLoaded >= pagesToLoad) {
-				resolve([
-					results[Math.floor(Math.random() * results.length)].link
-				]);
+				resolve({
+					total: results.length,
+					url: random(results).link
+				});
 			}
 		};
 
@@ -65,8 +66,11 @@ module.exports = function(query,params) {
 						}
 					)
 				},(error,response,body)=>{
-					if(error || !body.items) {
+					if(error || !body.items && results.length < 1) {
 						reject(error?error:'req failed');
+					}
+					else if(!body.items) {
+						onResults([]);
 					}
 					else {
 						onResults(body.items);

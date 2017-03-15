@@ -1,57 +1,49 @@
 import React from 'react';
 
 import photoGetter from 'lib/photoGetter';
+import formatPropExtras from 'lib/formatPropExtras';
 
 
 class Post extends React.Component {
 
 	constructor(props) {
 		super(props);
-		let initialState = {
-			bg: undefined
+		this.state = {
+			report: {
+				photoQuery: props.photoQuery
+			},
+			variants: [],
+			variant: [],
+			bg: undefined,
+			fandom: props.fandom,
+			choices: props.choices,
+
+			...this.getMoreProps(),
+			extras: this.extras?formatPropExtras(this.extras):[]
 		};
-		let moreProps = this.getMoreProps();
-		if(moreProps && moreProps.extras){
-			const unmangledExtras = moreProps.extras;
-			moreProps.extras = [];
-			Object.keys(unmangledExtras).map(extra => {
-				let style = {};
-				if(typeof unmangledExtras[extra] === 'object') {
-					moreProps.extras.push({
-						style: unmangledExtras[extra].style,
-						value: unmangledExtras[extra].value,
-						key: extra
-					});
-				}
-				else {
-					moreProps.extras.push({
-						style: {},
-						value: unmangledExtras[extra],
-						key: extra
-					});
-				}
-			});
-		}
-		this.state = Object.assign(
-			{},
-			initialState,
-			this.props,
-			moreProps
-		);
-		this.getPhotos = photoGetter(this.state.photoQuery,{
-			debug: false
+		this.state.variants.map((variant,idx) => {
+			this.state.variant.push(Math.ceil(Math.random()*variant));
 		});
+		this.props.onUpdate(this.state);
 	}
 
 	getMoreProps() {
 		return {};
 	}
 
+	componentDidUpdate() {
+		this.props.onUpdate(this.state);
+	}
+
 	componentDidMount() {
-		this.getPhotos
+		photoGetter(this.props.photoQuery)
 		.then(photos => {
 			this.setState({
-				bg: photos[0]
+				bg: photos.url,
+				report: {
+					...this.state.report,
+					photoQuery: photos
+				}
 			});
 		})
 		.catch(e => {
@@ -60,17 +52,17 @@ class Post extends React.Component {
 	}
 
 	render() {
+		this.props.onUpdate(this.state);
 		let backgroundStyle = {
 			backgroundImage: `url(${this.state.bg})`
 		};
-		let choices = this.state.choices;
 		return (
 			<div
 				styleName={'post'}
 				data-variant=
 				{
-					this.state.variants.map((variant,idx) => {
-						return `(${idx}=${Math.ceil(Math.random()*variant)})`;
+					this.state.variant.map((variant,idx) => {
+						return `(${idx}=${variant})`;
 					})
 				}
 			>
@@ -97,7 +89,7 @@ class Post extends React.Component {
 				}
 				<div styleName='choices'>
 					{
-						choices.map(choice => {
+						this.state.choices.map(choice => {
 							return <div styleName='choice' key={choice}><span key={'wr'+choice}>{choice}</span></div>;
 						})
 					}
