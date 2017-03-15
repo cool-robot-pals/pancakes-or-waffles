@@ -9,6 +9,12 @@ const logger = (obj,path=[]) => {
 		if(typeof obj[k] === 'object' && !Array.isArray(obj[k])) {
 			rt = rt.concat(logger(obj[k],path.concat(k)));
 		}
+		else if (typeof obj[k] === 'object' && Array.isArray(obj[k]) && obj[k].length > 2) {
+			let objFromArray = obj[k].reduce(function(acc, cur, i) {
+				acc[i] = cur; return acc;
+			}, {});
+			rt = rt.concat(logger(objFromArray,path.concat(k)));
+		}
 		else {
 			try {
 				rt.push(
@@ -23,7 +29,7 @@ const logger = (obj,path=[]) => {
 		}
 	}
 
-	return rt.join('\n');
+	return rt;
 
 };
 

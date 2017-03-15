@@ -25,7 +25,7 @@ const makePost = (defaults={}) => {
 	let post = {
 		layout: layout,
 		log: function(){
-			return logger(this);
+			return logger(this).join("\n");
 		}
 	};
 	posts.push(post);
