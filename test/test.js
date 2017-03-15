@@ -8,17 +8,59 @@ describe('Initialization', function() {
 		}
 	});
 	it('should generate 2 choices',function(done){
-		var values = window.Post.default.getValues();
+		var values = window.Post.getValues();
 		if(values.choices.length === 2) {
 			done();
 		}
 		else done(new Error());
 	});
 	it('should generate 2 choices with stuff on them',function(done){
-		var values = window.Post.default.getValues();
-		if(values.choices.reduce(function(choice){return choice.length;}) > 10) {
+		var values = window.Post.getValues();
+		var length = values.choices.reduce(function(acc,choice){return acc+choice.length;},0);
+		if(length >= 10) {
 			done();
 		}
-		else done(new Error());
+		else {
+			done(new Error(
+				[JSON.stringify(values),length]
+			));
+		}
+	});
+	it('should have 3+ layouts',function(done){
+		if(window.Post.layouts.length > 3) {
+			done();
+		}
+		else {
+			done(new Error());
+		}
+	});
+	it('should make all layouts without an error',function(done){
+		var total = window.Post.layouts.length;
+		var rendered = 0;
+		var finishedMaybe = function() {
+			rendered++;
+			if(rendered >= total) {
+				var checker = setInterval(function(){
+					if(window.Post.posts.length > 3 && document.querySelector('#tough-choices-bot div').childNodes.length === window.Post.posts.length) {
+						clearInterval(checker);
+						clearTimeout(fail);
+						done();
+					}
+				},50);
+				var fail = setTimeout(function(){
+					done('wrong post number ('+document.querySelector('#tough-choices-bot div').childNodes.length+'/'+window.Post.posts.length+')');
+				},1500);
+			}
+		};
+		window.Post.layouts.map(function(layout){
+			try{
+				window.Post.makePost({
+					layout: layout
+				});
+			} catch(err) {
+				done(err);
+			}
+			finishedMaybe();
+		});
 	});
 });

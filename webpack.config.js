@@ -1,11 +1,11 @@
 const config = require('./bot.config.js');
 
-const webpackStream = require('webpack-stream');
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 
 const env = require('./src/env.js');
 const pkg = require('./package.json');
@@ -13,13 +13,25 @@ const pkg = require('./package.json');
 
 module.exports = {
 	entry: {
-		vendor: ['react','react-dom','lodash'],
-		app: 'main'
+		app: 'main',
+		promise: 'es6-promise-promise'
 	},
 	plugins: [
-		new CleanWebpackPlugin([config.paths.build]),
-		new webpack.ProvidePlugin({
-			Promise: 'es6-promise-promise'
+		new CleanWebpackPlugin(
+			[config.paths.build]
+		),
+		new webpack.DllReferencePlugin({
+			context: '.',
+			manifest: require(path.resolve('.',config.paths.dll,'main-manifest.json'))
+		}),
+		new webpack.optimize.CommonsChunkPlugin({
+			name: 'promise',
+			filename: 'promise.js',
+			minChunks : 0
+		}),
+		new webpack.optimize.CommonsChunkPlugin({
+			children: true,
+			minChunks : 2
 		}),
 		new webpack.DefinePlugin((function(){
 			var rt = {};
@@ -28,28 +40,39 @@ module.exports = {
 			});
 			return rt;
 		})()),
-		new webpack.optimize.CommonsChunkPlugin({
-			name: 'vendor',
-			filename: 'vendor.js',
-			minChunks : 2
-		}),
 		new webpack.SourceMapDevToolPlugin({
 			filename: '[file].map',
-			exclude: ['vendor.js']
+			exclude: [/node_modules/]
 		}),
-		new ExtractTextPlugin('[name].css'),
+		new ExtractTextPlugin({
+			filename: '[name].css',
+			allChunks: true
+		}),
+		new webpack.optimize.MinChunkSizePlugin({
+			minChunkSize: 200000
+		}),
 		new HtmlWebpackPlugin({
 			title: '👁👄👁☝️',
-			template: 'bot.template.ejs',
-			filename: 'index.html',
-			base: `file://${__dirname}/${config.paths.build}/index.html`
+			minify: {
+				collapseWhitespace: true
+			},
+			template: path.join('etc','bot.template.ejs'),
+			filename: `${config.filenames.base}.html`,
+			base: `file://${__dirname}/${config.paths.build}/${config.filenames.base}.html`
 		}),
 		new HtmlWebpackPlugin({
 			title: '👁👄👁☝️',
-			template: 'bot.template.ejs',
-			filename: '../test/basic.html',
+			minify: {
+				collapseWhitespace: true
+			},
+			template: path.join('etc','bot.template.ejs'),
+			filename: path.join('..',config.paths.test,config.filenames.test+'.html'),
 			test: true,
-			base: `file://${__dirname}/${config.paths.build}/../test/basic.html`
+			base: `file://${__dirname}/${config.paths.build}/${config.filenames.base}.html`
+		}),
+		new AddAssetHtmlPlugin({
+			filepath: require.resolve(path.resolve(config.paths.dll,'main.bundle.js')),
+			includeSourcemap: false
 		})
 	],
 	module: {
@@ -57,12 +80,12 @@ module.exports = {
 			{
 				test: /\.css$/,
 				include: [
-					path.resolve(__dirname, 'src/component')
+					path.resolve(__dirname,'src','post')
 				],
-				loader: ExtractTextPlugin.extract([
+				use: ExtractTextPlugin.extract([
 					'css-loader?modules&importLoaders=1&localIdentName=tc-[hash:base64:10]',
 					'postcss-loader',
-					'./tools/randomCssLoader'
+					'./'+config.paths.tools+'/randomCssLoader'
 				])
 			},
 			{
@@ -77,14 +100,14 @@ module.exports = {
 				use: ['raw-loader']
 			},
 			{
-				test: /\.json$/,
-				use: ['json-loader']
+				test: /\.yaml$/,
+				use: ['yaml-loader']
 			},
 			{
 				test: /\.css$/,
 				exclude: [
 					/node_modules/,
-					path.resolve(__dirname, 'src/component')
+					path.resolve(__dirname, 'src','post')
 				],
 				use: ExtractTextPlugin.extract({
 					use: ['css-loader','postcss-loader']
@@ -92,26 +115,10 @@ module.exports = {
 			},
 			{
 				test: /\.jsx?$/,
-				use: [{
-					loader: 'babel-loader',
-					query: {
-						compact: false,
-						plugins: [
-							'transform-decorators-legacy',
-							'transform-object-assign'
-						],
-						presets: [
-							['react'],
-							['target', {
-								presets: ['es2015'],
-								targets: [
-									{name: 'phantom', version: 2}
-								],
-								modules: false
-							}],
-						]
-					}
-				}]
+				exclude: [
+					/node_modules/,
+				],
+				use: 'babel-loader'
 			}
 		]
 	},
@@ -124,10 +131,11 @@ module.exports = {
 	resolve: {
 		extensions: ['.js', '.jsx'],
 		alias: {
-			'data': path.resolve('./data')
+			'corpus': path.resolve('.','corpus'),
+			'data': path.resolve('.','data')
 		},
 		modules: [
-			path.resolve('./src'),
+			path.resolve('.','src'),
 			'node_modules'
 		]
 	}

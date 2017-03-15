@@ -1,0 +1,22 @@
+# hahaha whoa this one's a fun one
+# [word,word2] exapnds into all its possibilities
+# so like "[i,you] want" will generate
+# two separate sentences for "i want" and "you want"
+
+# then, @thing expands to a thing (nouns.txt), and @thing.s expands
+# to a plural thing, @thing.any gets a random plural or singular thing
+
+[I,you,they,somebody] should $1
+[I,they] want to $1
+[I,you,they] have to $1
+[I,you,they] must $1
+[I,you,they] [should, must, want to, have to] $1
+should [you,we,I] $1?
+surely [I,they,you,we]'d $1
+it's [about time, time, finally time] for [me,you] to $1
+[at last, at long last, finally] [you,I] [must,should] $1
+if you don't mind me asking, [would you, can I, may I] $1?
+[I,you,we] [shall,must,may] $1 as @thing [told,foretold,warned us about,said]
+@thing.any can $1
+[Can,Should] @thing.any $1?
+$1?

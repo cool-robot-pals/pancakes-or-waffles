@@ -9,19 +9,24 @@ const gutil = require('gulp-util');
 const env = require('./src/env.js');
 
 
-gulp.task('tweet',function(done){
+gulp.task('tweet', done => {
 	var Twit = require('twit');
 	if(env.twitterConsumerKey){
 		var T = new Twit({
-			consumer_key:         env.twitterConsumerKey,
-			consumer_secret:      env.twitterConsumerSecret,
-			access_token:         env.twitterAccess,
-			access_token_secret:  env.twitterSecret
+			consumer_key: env.twitterConsumerKey,
+			consumer_secret: env.twitterConsumerSecret,
+			access_token: env.twitterAccess,
+			access_token_secret: env.twitterSecret
 		});
-		var b64content = fs.readFileSync(path.join(config.paths.build,`${config.filenames.base}.jpg`), { encoding: 'base64' });
-		T.post('media/upload', { media_data: b64content }, function (err, data, response) {
+		var b64content = fs.readFileSync(
+			path.join(config.paths.build,config.filenames.base+'.jpg'),
+			{
+				encoding: 'base64'
+			}
+		);
+		T.post('media/upload', { media_data: b64content }, (err, data, response) => {
 			var params = { status: '', media_ids: [data.media_id_string] };
-			T.post('statuses/update', params, function (err, data, response) {
+			T.post('statuses/update', params, (err, data, response) => {
 				if(err) {
 					throw new gutil.PluginError({
 						plugin: 'tweet',
@@ -42,7 +47,7 @@ gulp.task('tweet',function(done){
 });
 
 
-gulp.task('upload', function (done) {
+gulp.task('upload', done => {
 
 	const spawn = require('child_process').spawn;
 	const child = spawn('curl',[
@@ -59,7 +64,7 @@ gulp.task('upload', function (done) {
 });
 
 
-gulp.task('webshot',function(done){
+gulp.task('webshot', done => {
 	var webshot = require('webshot');
 	var options = {
 		renderDelay: 20000,
@@ -69,12 +74,12 @@ gulp.task('webshot',function(done){
 			'web-security':'false'
 		},
 		userAgent: 'Mozilla/4.0 (iPad; CPU OS 4_0_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/4.1 Mobile/9A405 Safari/7534.48.3',
-		quality: 90,
+		quality: 100,
 		onLoadFinished: function(){
-			console.log(window.Post.default.posts.length);
-			for(var k in window.Post.default.posts[0]) {
-				console.log(k.toUpperCase()+' - '+JSON.stringify(window.Post.default.posts[0][k]));
-			}
+			setTimeout(function(){
+				var log = (window.Post.posts[0].log());
+				log.map(function(line){console.log(line);});
+			},2000);
 		},
 		onConsoleMessage: function(text){
 			gutil.log(text);
@@ -87,16 +92,12 @@ gulp.task('webshot',function(done){
 		}
 	};
 	webshot(
-		path.join(config.paths.build,'index.html'),
-		path.join(config.paths.build,`${config.filenames.base}.jpg`),
+		path.join(config.paths.build, config.filenames.base+'.html'),
+		path.join(config.paths.build, config.filenames.base+'.jpg'),
 		options,
-		function(err) {
-			if(err) {
-				console.error(err);
-			}
-			else {
-				done();
-			}
+		err => {
+			if(err) console.error(err);
+			else done();
 		}
 	);
 });
@@ -114,7 +115,9 @@ gulp.task('webpack', function(done) {
 gulp.task('mocha', function(done) {
 	const mochaPhantomJS = require('gulp-mocha-phantomjs');
 	return gulp
-	.src('test/basic.html')
+	.src(
+		path.join(config.paths.test, config.filenames.test+'.html')
+	)
 	.pipe(
 		mochaPhantomJS({
 			suppressStderr: false,
@@ -130,10 +133,15 @@ gulp.task('mocha', function(done) {
 
 
 gulp.task('test',
-	gulp.series(gulp.parallel('mocha','webshot'),'upload')
+	gulp.series('mocha')
 );
 
 
 gulp.task('shitpost',
 	gulp.series('webpack','webshot','tweet')
+);
+
+
+gulp.task('localpost',
+	gulp.series('webpack','webshot','upload')
 );

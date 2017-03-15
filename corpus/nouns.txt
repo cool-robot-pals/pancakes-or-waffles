@@ -1,0 +1,93 @@
+# proper
+# removes the, a, plural. only does the word (give alcohol, shepard's alcohol)
+# -
+# an
+# uses an instead of a (burn an insect, kat's insect)
+# -
+# singular=owned
+# makes the thing singular when owned (sonic's hair, stroke the hairs)
+# -
+# singular=always
+# makes the thing always singular (sonic's gun, eat the gun)
+# -
+# plural=owned
+# makes the thing plural when owned (sonic's ears, stroke the ears)
+# -
+# plural=always
+# makes the thing always plural (sonic's waffles, eat the waffles)
+# -
+# only=ownable
+# only=proper
+# makes the word only be a proper noun or only an ownable
+
+fur (proper)
+tongue (only=ownable,singular=always)
+ear (only=ownable)
+nose (only=ownable,singular=always)
+butt (only=ownable,singular=always)
+shadow (only=ownable,singular=always)
+waffle
+pancake
+donut
+cheeseburger
+french fries (plural=always)
+video game
+comic book
+hair (singular=always)
+meme
+cat
+dog
+boar
+shark
+bear
+gun
+stimpak
+alcohol (proper)
+tea (proper)
+potion
+triforce
+amulet
+journal
+alien
+demon
+monster
+insect (an)
+boat
+car
+taxi
+bus
+box
+switch
+block
+rebel
+sandwich
+headphones (plural=always)
+moon rocks (plural=always)
+phone
+bucket
+lamp
+
+
+Arcadia Bay (proper,only=proper)
+Blackwell Academy (proper,only=proper)
+the lighthouse (proper,only=proper)
+Hyrule (proper,only=proper)
+space (proper,only=proper)
+Hell (proper,only=proper)
+Mars (proper,only=proper)
+Venus (proper,only=proper)
+Uranus (proper,only=proper)
+the pool (proper,only=proper)
+the beach (proper,only=proper)
+the planet (proper,only=proper)
+this location (proper,only=proper)
+the straights (proper,only=proper)
+the gays (proper,only=proper)
+lesbians (proper,only=proper)
+radiation (proper,only=proper)
+halloween (proper,only=proper)
+xmas (proper,only=proper)
+Netflix (proper,only=proper)
+anime (proper,only=proper)
+yuri (proper,only=proper)
+earthlings (proper,only=proper)

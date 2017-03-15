@@ -1,0 +1,15 @@
+useAdjective: 40%
+useTwoAdjectives: 10%
+isSingular: 50%
+useThing: 40%
+useSameVerb: 30%
+crossFandomsOver: 10%
+characterHaveOwnable: 30%
+
+
+#layout-specific
+massEffectHasDialog: 70%
+gravityRushHaveBothChoices: 50%
+falloutHasDialog: 60%
+falloutRequiresSpecial: 50%
+falloutRequiresSpecialNumber: 50%

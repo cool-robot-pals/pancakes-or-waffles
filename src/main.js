@@ -1,48 +1,72 @@
 import 'assets/reset.css';
 
-import Post from 'component/Post';
-import getValues from 'lib/getValues';
-import random from 'lib/random';
-
 import {render} from 'react-dom';
 import React from 'react';
 
-let posts = [];
-let $posts = [];
+import LayoutGetter from 'getter/layout';
 
-const makePost = function() {
+import changeCase from 'change-case';
+import getValues from 'lib/getValues';
+import logger from 'lib/logger';
+import txtToArr from 'lib/txtToArr';
+
+import fontsTxt from 'internal-data/fonts.txt';
+
+
+let $posts = [];
+let posts = [];
+let layouts = new LayoutGetter().layouts;
+
+const makePost = (defaults={}) => {
 
 	let values = getValues();
+	let layout = new LayoutGetter(defaults).value;
 
 	let post = {
-		photoQuery: values.query,
-		choices: values.choices,
-		layout: values.layout,
-		key: posts.length
+		layout: layout,
+		log: function(){
+			return logger(this);
+		}
 	};
-
-	let $post =  React.createElement(
-		Post, post
-	);
-
 	posts.push(post);
-	$posts.push($post);
 
-	render(React.createElement(
-		'div',
-		null,
-		$posts
-	),document.getElementById('tough-choices-bot'));
+	System.import('post/'+changeCase.pascal(`${layout}-post`))
+	.then(Post => {
+
+		let $post = React.createElement(
+			Post,
+			{
+				photoQuery: values.query,
+				choices: values.choices,
+				fandom: values.fandom,
+				key: $posts.length,
+				onUpdate: (state) => {
+					Object.assign(post,state);
+				}
+			}
+		);
+
+		$posts.push($post);
+
+		render(React.createElement(
+			'div',
+			null,
+			$posts
+		),document.getElementById('tough-choices-bot'));
+
+	})
+	.catch(console.error);
 
 };
 
 
-export default (function(){
+const exportable = (()=>{
 
 	let lib = {};
 	lib.makePost = makePost;
 	lib.getValues = getValues;
 	lib.posts = posts;
+	lib.layouts = layouts;
 
 	/*make app container*/
 	let $app = document.createElement('div');
@@ -51,7 +75,8 @@ export default (function(){
 
 	/*linked bc phantomjs is OLD*/
 	let link = document.createElement('link');
-	link.href = 'https://fonts.googleapis.com/css?family=Roboto:400,400b|Patrick+Hand|Poiret+One|Roboto+Mono:500|Lato:700';
+	let fonts = txtToArr(fontsTxt);
+	link.href = 'https://fonts.googleapis.com/css?family='+fonts.map(font => font.value).join('|');
 	link.rel = 'stylesheet';
 	document.querySelector('head').appendChild(link);
 
@@ -60,3 +85,6 @@ export default (function(){
 	return lib;
 
 })();
+
+export default exportable;
+module.exports = exportable;

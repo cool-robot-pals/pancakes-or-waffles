@@ -1,0 +1,42 @@
+.post {
+	composes: post from './abstract/Post.css';
+	font-family: 'Patrick Hand';
+}
+
+.choices {
+	top: 71%!important;
+}
+
+.choice {
+	width: 30%;
+	margin: 0;
+	float: left;
+	margin-right: 10%;
+	margin-left: 10%;
+	height: 100%;
+	display:flex;
+	align-items: center;
+}
+
+.choice:first-child {
+	text-align: right;
+	justify-content: flex-end;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+.post[data-variant*="(0=1)"] .ac-1 {
+	background-image: url(assets/lis/lis-serious.png);
+}
+
+.post[data-variant*="(0=1)"] .bg {
+	opacity: .5;
+}
+
+.post[data-variant*="(0=1)"] .choice {
+	text-transform: uppercase;
+}
+
+.post[data-variant*="(0=2)"] .ac-1 {
+	background-image: url(assets/lis/lis.png);
+}

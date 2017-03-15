@@ -1,0 +1,83 @@
+save
+kill
+kiss
+kiss @thing.any with
+hug
+hug with
+cuddle
+cuddle with
+elope with
+flirt with
+swoon over
+chill with
+hang out with
+sacrifice
+pet
+eat
+eat @thing.any with
+drink
+drink @thing.any with
+have @thing.any with
+join
+forgive
+tell
+destroy
+delete
+subdue
+fart @thing.any at
+neutralize
+break
+crush
+convince
+stroke
+confront
+challenge
+deride
+choose
+pardon
+evict
+visit
+visit @thing.any with
+read
+read @thing.any with
+watch
+watch @thing.any with
+travel with
+rescue
+capture
+cure
+heal
+boop
+hack
+give @thing.any to
+hand @thing.any to
+give a hand to
+listen to
+talk to @thing.any with
+talk to
+ask
+ask for
+ask @thing.any for
+argue with
+avoid
+evade
+infiltrate
+take
+take down
+mine
+disguise as
+disguise @thing.any as
+play @thing.any with
+play with
+give up on
+grab
+steal
+entertain
+amuse
+amuse @thing.any with
+fight
+fight @thing.any with
+fight @thing.any alongside
+defeat
+ignore
+marry
