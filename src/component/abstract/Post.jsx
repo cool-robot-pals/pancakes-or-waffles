@@ -8,22 +8,30 @@ class Post extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {
+		const state = {
 			report: {
 				photoQuery: props.photoQuery
 			},
 			variants: [],
-			variant: [],
 			extras: [],
 			bg: undefined,
 			fandom: props.fandom,
 			choices: props.choices,
 			...this.getMoreProps()
 		};
-		this.state.extras = formatPropExtras(this.state.extras);
-		this.state.variants.map((variant,idx) => {
-			this.state.variant.push(Math.ceil(Math.random()*variant));
-		});
+		this.state = Object.assign({},
+			state,
+			{
+				extras: formatPropExtras(state.extras),
+				get variant() {
+					let rt = [];
+					state.variants.map((variant,idx) => {
+						rt.push(Math.ceil(Math.random()*variant));
+					});
+					return rt;
+				}
+			}
+		);
 		this.props.onUpdate(this.state);
 	}
 
