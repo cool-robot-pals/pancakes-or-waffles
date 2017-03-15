@@ -35,7 +35,7 @@ export default class PostGetter extends abstractGetter {
 			return '';
 		}
 
-	};
+	}
 
 
 	getVerb() {
@@ -69,7 +69,7 @@ export default class PostGetter extends abstractGetter {
 			params.posession
 		].join('');
 
-	};
+	}
 
 
 	get values() {
@@ -77,7 +77,7 @@ export default class PostGetter extends abstractGetter {
 		let verb = this.chances.should('useSameVerb')?this.getVerb():undefined;
 		let fandom = this.chances.should('crossFandomsOver')?undefined:(new FandomGetter().value);
 
-		let characters = []
+		let characters = [];
 		characters.push(new CharacterGetter({
 			fandom: fandom
 		}).values);
