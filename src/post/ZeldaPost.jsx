@@ -21,7 +21,7 @@ class ZeldaPost extends Post {
 
 		let more = {
 			extras : binaryChoices,
-			choices: [new NarratorGetter().narrate(this.props.choices[0])]
+			choices: [new NarratorGetter().narrate(this.post.choices[0])]
 		};
 
 		return more;

@@ -13,7 +13,7 @@ const pkg = require('./package.json');
 
 module.exports = {
 	entry: {
-		app: 'main',
+		app: 'app',
 		promise: 'es6-promise-promise'
 	},
 	plugins: [
