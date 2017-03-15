@@ -78,7 +78,7 @@ gulp.task('webshot', done => {
 		onLoadFinished: function(){
 			setTimeout(function(){
 				var log = (window.Post.posts[0].log());
-				log.map(function(line){console.log(line)})
+				log.map(function(line){console.log(line);});
 			},2000);
 		},
 		onConsoleMessage: function(text){
