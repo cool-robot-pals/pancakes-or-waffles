@@ -1,9 +1,6 @@
 # proper
 # removes the, a, plural. only does the word (give alcohol, shepard's alcohol)
 # -
-# an
-# uses an instead of a (burn an insect, kat's insect)
-# -
 # singular=owned
 # makes the thing singular when owned (sonic's hair, stroke the hairs)
 # -
