@@ -7,5 +7,3 @@ cache:
     - node_modules
 notifications:
   email: false
-after_success:
-    npm run localpost
