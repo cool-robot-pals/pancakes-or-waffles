@@ -40,8 +40,8 @@ class GravityRushPost extends Post {
 
 		if(chances.should('gravityRushHaveBothChoices')){
 			more.choices = [[
-				this.props.choices[0],
-				decapitalizeFirstLetter(this.props.choices[1])
+				this.post.choices[0],
+				decapitalizeFirstLetter(this.post.choices[1])
 			].join(' or ')];
 			more.extras = {};
 			more.extras['waypoint-1'] = (()=>{
@@ -66,7 +66,7 @@ class GravityRushPost extends Post {
 			})();
 		}
 		else {
-			more.choices = [this.props.choices.sort((a, b) => b.length - a.length )[0]];
+			more.choices = [this.post.choices.sort((a, b) => b.length - a.length )[0]];
 			more.extras = new BinaryChoicesValues().values;
 		}
 

@@ -11,10 +11,14 @@ export default class CharacterGetter extends abstractGetter {
 			let revised = this.people.filter(chara => chara.fandom === defaults.fandom);
 			if(revised.length > 0) this.people = revised;
 		}
+		if(defaults.skipName) {
+			let revised = this.people.filter(chara => chara.name !== defaults.skipName);
+			if(revised.length > 0) this.people = revised;
+		}
 	}
 
 
-	getDefault() {
+	get values() {
 		return this.random(this.people);
 	}
 

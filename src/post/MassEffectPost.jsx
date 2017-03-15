@@ -15,14 +15,14 @@ class MassEffectPost extends Post {
 	getMoreProps() {
 
 		const character = new CharacterGetter({
-			fandom: this.props.fandom
-		}).value.name;
+			fandom: this.post.fandom
+		}).values.name;
 		const chances = new ChancesGetter();
 
 		if(chances.should('massEffectHasDialog')){
 			let more = {};
 			more.extras = {
-				dialog: character+': '+new NarratorGetter().narrate(this.props.choices[0])
+				dialog: character+': '+new NarratorGetter().narrate(this.post.choices[0])
 			};
 
 			let values = new BinaryChoicesGetter().values;

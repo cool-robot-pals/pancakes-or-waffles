@@ -8,14 +8,14 @@ describe('Initialization', function() {
 		}
 	});
 	it('should generate 2 choices',function(done){
-		var values = window.Post.getValues();
+		var values = new window.Post.mocha.PostGetter().values;
 		if(values.choices.length === 2) {
 			done();
 		}
 		else done(new Error());
 	});
 	it('should generate 2 choices with stuff on them',function(done){
-		var values = window.Post.getValues();
+		var values = new window.Post.mocha.PostGetter().values;
 		var length = values.choices.reduce(function(acc,choice){return acc+choice.length;},0);
 		if(length >= 10) {
 			done();
@@ -27,7 +27,7 @@ describe('Initialization', function() {
 		}
 	});
 	it('should have 3+ layouts',function(done){
-		if(window.Post.layouts.length > 3) {
+		if(window.Post.mocha.layouts.length > 3) {
 			done();
 		}
 		else {
@@ -35,7 +35,7 @@ describe('Initialization', function() {
 		}
 	});
 	it('should make all layouts without an error',function(done){
-		var total = window.Post.layouts.length;
+		var total = window.Post.mocha.layouts.length;
 		var rendered = 0;
 		var finishedMaybe = function() {
 			rendered++;
@@ -52,7 +52,7 @@ describe('Initialization', function() {
 				},1500);
 			}
 		};
-		window.Post.layouts.map(function(layout){
+		window.Post.mocha.layouts.map(function(layout){
 			try{
 				window.Post.makePost({
 					layout: layout

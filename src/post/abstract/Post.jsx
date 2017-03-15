@@ -1,5 +1,7 @@
 import React from 'react';
 
+import PostGetter from 'getter/post';
+
 import photoGetter from 'lib/photoGetter';
 import formatPropExtras from 'lib/formatPropExtras';
 
@@ -7,16 +9,19 @@ import formatPropExtras from 'lib/formatPropExtras';
 class Post extends React.Component {
 
 	constructor(props) {
+
 		super(props);
+
+		this.post = new PostGetter().values;
+
 		const state = {
-			report: {
-				photoQuery: props.photoQuery
-			},
+			query: this.post.query,
+			fandom: this.post.fandom,
+			choices: this.post.choices,
+			bg: undefined,
 			variants: [],
 			extras: [],
-			bg: undefined,
-			fandom: props.fandom,
-			choices: props.choices,
+			report: {},
 			...this.getMoreProps()
 		};
 		this.state = Object.assign({},
@@ -33,6 +38,7 @@ class Post extends React.Component {
 			}
 		);
 		this.props.onUpdate(this.state);
+
 	}
 
 	getMoreProps() {
@@ -44,7 +50,7 @@ class Post extends React.Component {
 	}
 
 	componentDidMount() {
-		photoGetter(this.props.photoQuery)
+		photoGetter(this.state.query)
 		.then(photos => {
 			this.setState({
 				bg: photos.url,
