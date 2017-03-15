@@ -60,7 +60,6 @@ class Post extends React.Component {
 	}
 
 	render() {
-		this.props.onUpdate(this.state);
 		let backgroundStyle = {
 			backgroundImage: `url(${this.state.bg})`
 		};
