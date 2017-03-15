@@ -2,7 +2,7 @@ import request from 'browser-request';
 import env from 'env';
 import random from 'lib/random';
 
-const pagesToLoad = 4;
+const pagesToLoad = 6;
 const apiUrl = 'https://www.googleapis.com/customsearch/v1';
 
 module.exports = function(query,params) {
