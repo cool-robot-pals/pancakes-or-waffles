@@ -14,13 +14,13 @@ class Post extends React.Component {
 			},
 			variants: [],
 			variant: [],
+			extras: [],
 			bg: undefined,
 			fandom: props.fandom,
 			choices: props.choices,
-
-			...this.getMoreProps(),
-			extras: this.extras?formatPropExtras(this.extras):[]
+			...this.getMoreProps()
 		};
+		this.state.extras = formatPropExtras(this.state.extras);
 		this.state.variants.map((variant,idx) => {
 			this.state.variant.push(Math.ceil(Math.random()*variant));
 		});
