@@ -46,8 +46,8 @@ export default class LayoutGetter extends abstractGetter {
 			return this.chances.should('isSingular');
 		}
 	}
-	
-	
+
+
 	shouldUseAdjective(noun) {
 		if(noun.props.proper) {
 			return false;
@@ -76,21 +76,16 @@ export default class LayoutGetter extends abstractGetter {
 			return list;
 		})();
 		const noun = this.random(wordList);
-		
+
 		const useAdjective = this.shouldUseAdjective(noun);
 		const isSingular = this.isSingular(noun);
-		
+
 		const usePronoun = (()=>{
 			return this.options.type === 'thing' && noun.props.proper != true;
 		})();
-		const pronoun = new PronounGetter({
-			singular: isSingular,
-			noun: noun
-		}).value;
 
 		let returnable = [];
 
-		if(usePronoun) returnable.push(pronoun.value);
 		if(useAdjective) {
 			returnable.push(this.random(this.adjectives).value);
 			if(this.chances.should('useTwoAdjectives')){
@@ -103,6 +98,13 @@ export default class LayoutGetter extends abstractGetter {
 		}
 		else {
 			returnable.push(pluralize(noun.value,2));
+		}
+
+		if(usePronoun) {
+			returnable.unshift(new PronounGetter({},{
+				singular: isSingular,
+				pronounable: returnable[0]
+			}).value);
 		}
 
 		return returnable.filter(val => val.length > 0).join(' ');

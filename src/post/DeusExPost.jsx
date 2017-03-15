@@ -13,7 +13,7 @@ class DeusExPost extends Post {
 	getMoreProps() {
 
 		let more = {};
-		more.choices = this.props.choices
+		more.choices = this.post.choices
 			.map(choice => new NarratorGetter().narrate(choice))
 			.filter((choice, index) => index === 0);
 

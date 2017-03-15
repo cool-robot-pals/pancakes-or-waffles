@@ -4,12 +4,12 @@ import {render} from 'react-dom';
 import React from 'react';
 
 import LayoutGetter from 'getter/layout';
+import PostGetter from 'getter/post';
 
 import changeCase from 'change-case';
-import getValues from 'lib/getValues';
 import logger from 'lib/logger';
-import txtToArr from 'lib/txtToArr';
 
+import txtToArr from 'lib/txtToArr';
 import fontsTxt from 'internal-data/fonts.txt';
 
 
@@ -19,7 +19,7 @@ let layouts = new LayoutGetter().layouts;
 
 const makePost = (defaults={}) => {
 
-	let values = getValues();
+	let values = new PostGetter().values;
 	let layout = new LayoutGetter(defaults).value;
 
 	let post = {
@@ -36,9 +36,6 @@ const makePost = (defaults={}) => {
 		let $post = React.createElement(
 			Post,
 			{
-				photoQuery: values.query,
-				choices: values.choices,
-				fandom: values.fandom,
 				key: $posts.length,
 				onUpdate: (state) => {
 					Object.assign(post,state);
@@ -62,11 +59,14 @@ const makePost = (defaults={}) => {
 
 const exportable = (()=>{
 
-	let lib = {};
-	lib.makePost = makePost;
-	lib.getValues = getValues;
-	lib.posts = posts;
-	lib.layouts = layouts;
+	let lib = {
+		makePost: makePost,
+		posts: posts,
+		mocha: {
+			PostGetter: PostGetter,
+			layouts: layouts
+		}
+	};
 
 	/*make app container*/
 	let $app = document.createElement('div');

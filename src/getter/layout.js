@@ -17,17 +17,9 @@ export default class LayoutGetter extends abstractGetter {
 	}
 
 
-	getLayout() {
+	getDefault() {
 		let layout = this.random(this.layouts);
 		return layout;
 	}
-
-
-	get values() {
-
-		return {
-			default: this.getLayout()
-		};
-
-	}
+	
 }
