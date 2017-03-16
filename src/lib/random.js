@@ -20,7 +20,7 @@ const randomNumber = (key,seed=makeSeed()) => {
 };
 
 const makeSeed = () => {
-	return (Date.now()*Math.random())+"-"+Date.now();
+	return (Date.now()*Math.random())+'-'+Date.now();
 };
 
 const mangleSeed = (seed) => {
