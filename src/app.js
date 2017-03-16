@@ -1,16 +1,16 @@
-import 'assets/reset.css';
+import css from 'assets/reset.css';
+import fontsTxt from 'internal-data/fonts.txt';
 
 import {render} from 'react-dom';
 import React from 'react';
+import changeCase from 'change-case';
 
 import LayoutGetter from 'getter/layout';
 import PostGetter from 'getter/post';
 
-import changeCase from 'change-case';
 import logger from 'lib/logger';
-
 import txtToArr from 'lib/txtToArr';
-import fontsTxt from 'internal-data/fonts.txt';
+import {makeSeed} from 'lib/random';
 
 
 let $posts = [];
@@ -19,7 +19,7 @@ let layouts = new LayoutGetter().layouts;
 
 const makePost = (defaults={}) => {
 
-	const seed = 'fluffybunions';
+	const seed = makeSeed();
 
 	let layout = new LayoutGetter({
 		seed: seed,

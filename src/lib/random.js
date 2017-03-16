@@ -4,12 +4,11 @@ import seedrandom from 'seedrandom';
 const store = {
 	baseSeed: undefined,
 	extend: 0
-}
+};
 
 const randomArray = (arr,seed=makeSeed()) => {
-	console.log(mangleSeed(seed));
 	try {
-		const random = seedrandom(mangleSeed(seed)+JSON.stringify(arr));
+		const random = seedrandom(mangleSeed(seed)+JSON.stringify(arr[0]));
 		return arr[Math.floor(random() * arr.length)];
 	} catch(err) {
 		console.error(err);
@@ -18,11 +17,11 @@ const randomArray = (arr,seed=makeSeed()) => {
 
 const randomNumber = (key,seed=makeSeed()) => {
 	return seedrandom(mangleSeed(seed)+JSON.stringify(key))();
-}
+};
 
 const makeSeed = () => {
 	return Date.now()*Math.random();
-}
+};
 
 const mangleSeed = (seed) => {
 	if(seed != store.seed) {
@@ -31,7 +30,7 @@ const mangleSeed = (seed) => {
 	}
 	store.extend++;
 	return store.seed+store.extend;
-}
+};
 
 export {randomNumber, randomArray, makeSeed};
 

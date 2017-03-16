@@ -6,6 +6,7 @@ const thingRegex = {
 	any: /\@thing\.any/g,
 	singular: /\@thing/g
 };
+const thingRegexKeys = Object.keys(thingRegex);
 
 const explodeChunkVariables = (chunk) => {
 	let rt = [];
@@ -31,7 +32,7 @@ const explodeChunkVariables = (chunk) => {
 };
 
 export default (chunk,seed=makeSeed()) => {
-	Object.keys(thingRegex).map(name => {
+	thingRegexKeys.map(name => {
 		if(thingRegex[name].test(chunk) !== false) {
 			let options = {};
 			if(name === 'singular') {
@@ -42,8 +43,8 @@ export default (chunk,seed=makeSeed()) => {
 			}
 			const ThingGetter = require('getter/thing');
 			chunk = chunk.replace(thingRegex[name],new ThingGetter.default({
-					seed: seed
-				},
+				seed: seed
+			},
 				options
 			).value);
 		}

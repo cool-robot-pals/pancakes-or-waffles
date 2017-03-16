@@ -5,7 +5,7 @@ import {default as random,makeSeed} from 'lib/random';
 const pagesToLoad = 6;
 const apiUrl = 'https://www.googleapis.com/customsearch/v1';
 
-module.exports = function(query,params={
+module.exports = function(query,{
 	debug = false,
 	seed = makeSeed()
 }={}) {
@@ -38,13 +38,13 @@ module.exports = function(query,params={
 			if(pagesLoaded >= pagesToLoad) {
 				resolve({
 					total: results.length,
-					url: random(results,params.seed).link
+					url: random(results,seed).link
 				});
 			}
 		};
 
 		for(let i = 0; i < pagesToLoad; i++) {
-			if(!env.googleSearchCx || params.debug === true) {
+			if(!env.googleSearchCx || debug === true) {
 				onResults([
 					{
 						image: {
