@@ -26,7 +26,7 @@ shadow (only=ownable,singular=always)
 waffle
 pancake
 gender
-patriarchy
+patriarchy (singular=always)
 donut
 cheeseburger
 french fries (plural=always)
