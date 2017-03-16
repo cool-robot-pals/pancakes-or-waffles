@@ -93,3 +93,4 @@ fight @characterOrThing alongside
 defeat
 ignore
 marry
+smell
