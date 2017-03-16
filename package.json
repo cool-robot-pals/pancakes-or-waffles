@@ -39,11 +39,8 @@
     "url-loader": "^0.5.7",
     "webpack": "^2.2.1",
     "webpack-merge": "^4.0.0",
-    "webpack-stream": "^3.2.0",
     "webshot": "github:walaura/node-webshot",
-    "yaml-loader": "^0.4.0"
-  },
-  "devDependencies": {
+    "yaml-loader": "^0.4.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "gulp-mocha-phantomjs": "^0.12.1"
   },
