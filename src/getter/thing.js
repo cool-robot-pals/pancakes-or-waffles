@@ -11,7 +11,7 @@ const defaultOptions = {
 	type: 'thing'
 };
 
-export default class LayoutGetter extends abstractGetter {
+export default class ThingGetter extends abstractGetter {
 
 	constructor(defaults={},options={}) {
 
@@ -21,7 +21,9 @@ export default class LayoutGetter extends abstractGetter {
 		this.nouns = this.parse(nounsTxt);
 		this.adjectives = this.parse(adjectivesTxt);
 
-		this.chances = new ChancesGetter();
+		this.chances = new ChancesGetter({
+			seed: this.seed
+		});
 
 	}
 
@@ -101,7 +103,9 @@ export default class LayoutGetter extends abstractGetter {
 		}
 
 		if(usePronoun) {
-			returnable.unshift(new PronounGetter({},{
+			returnable.unshift(new PronounGetter({
+				seed: this.seed
+			},{
 				singular: isSingular,
 				pronounable: returnable[0]
 			}).value);

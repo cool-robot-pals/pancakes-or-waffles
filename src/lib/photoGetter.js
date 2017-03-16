@@ -1,14 +1,14 @@
 import request from 'browser-request';
 import env from 'env';
-import random from 'lib/random';
+import {default as random,makeSeed} from 'lib/random';
 
 const pagesToLoad = 6;
 const apiUrl = 'https://www.googleapis.com/customsearch/v1';
 
-module.exports = function(query,params) {
-
-	if(!params) params = {};
-	if(!params.debug) params.debug = false;
+module.exports = function(query,params={
+	debug = false,
+	seed = makeSeed()
+}={}) {
 
 	const parameters = {
 		q: [
@@ -38,7 +38,7 @@ module.exports = function(query,params) {
 			if(pagesLoaded >= pagesToLoad) {
 				resolve({
 					total: results.length,
-					url: random(results).link
+					url: random(results,params.seed).link
 				});
 			}
 		};

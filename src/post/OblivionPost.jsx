@@ -10,7 +10,9 @@ import OblivionValues from 'getter/less-common/oblivion';
 class OblivionPost extends Post {
 	getMoreProps() {
 		return {
-			extras: new OblivionValues().values
+			extras: new OblivionValues({
+				seed: this.seed
+			}).values
 		};
 	}
 }

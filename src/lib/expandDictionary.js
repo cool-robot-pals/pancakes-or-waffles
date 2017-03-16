@@ -1,3 +1,5 @@
+import {makeSeed} from 'lib/random';
+
 const explodeRegex = /\[(.*?)\]/;
 const thingRegex = {
 	plural: /\@thing\.s/g,
@@ -28,7 +30,7 @@ const explodeChunkVariables = (chunk) => {
 	}
 };
 
-export default (chunk) => {
+export default (chunk,seed=makeSeed()) => {
 	Object.keys(thingRegex).map(name => {
 		if(thingRegex[name].test(chunk) !== false) {
 			let options = {};
@@ -39,7 +41,11 @@ export default (chunk) => {
 				options.plural = true;
 			}
 			const ThingGetter = require('getter/thing');
-			chunk = chunk.replace(thingRegex[name],new ThingGetter.default({},options).value);
+			chunk = chunk.replace(thingRegex[name],new ThingGetter.default({
+					seed: seed
+				},
+				options
+			).value);
 		}
 	});
 	while(explodeChunkVariables(chunk).length > 0) {

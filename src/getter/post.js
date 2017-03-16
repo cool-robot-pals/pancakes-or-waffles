@@ -2,8 +2,6 @@ import abstractGetter from 'getter/abstract/abstract';
 
 import verbsTxt from 'corpus/verbs.txt';
 
-import txtToArr from 'lib/txtToArr';
-import random from 'lib/random';
 import {capitalizeFirstLetter} from 'lib/stringies';
 
 import ChancesGetter from 'getter/chances';
@@ -18,8 +16,10 @@ export default class PostGetter extends abstractGetter {
 	constructor(defaults={}) {
 
 		super(defaults);
-		this.chances = new ChancesGetter();
-		this.verbs = txtToArr(verbsTxt);
+		this.chances = new ChancesGetter({
+			seed: this.seed
+		});
+		this.verbs = this.parse(verbsTxt);
 
 	}
 
@@ -27,7 +27,9 @@ export default class PostGetter extends abstractGetter {
 	getOwnable(params) {
 
 		if(params.use === 'CHARACTER' && this.chances.should('characterHaveOwnable')) {
-			return new ThingGetter({},{
+			return new ThingGetter({
+				seed: this.seed
+			},{
 				type: 'ownable'
 			}).value;
 		}
@@ -40,7 +42,7 @@ export default class PostGetter extends abstractGetter {
 
 	getVerb() {
 
-		return random(this.verbs).value;
+		return this.random(this.verbs).value;
 
 	}
 
@@ -50,9 +52,10 @@ export default class PostGetter extends abstractGetter {
 		let useable;
 
 		if(!params.use) params.use = this.chances.should('useThing')?'THING':'CHARACTER';
-
 		if(!params.verb) params.verb = this.getVerb();
-		if(!params.thing) params.thing = new ThingGetter().value;
+		if(!params.thing) params.thing = new ThingGetter({
+			seed: this.seed
+		}).value;
 		if(!params.posession) params.posession = this.getOwnable(params);
 
 		if(params.posession) {
@@ -75,13 +78,17 @@ export default class PostGetter extends abstractGetter {
 	get values() {
 
 		let verb = this.chances.should('useSameVerb')?this.getVerb():undefined;
-		let fandom = this.chances.should('crossFandomsOver')?undefined:(new FandomGetter().value);
+		let fandom = this.chances.should('crossFandomsOver')?undefined:(new FandomGetter({
+			seed: this.seed,
+		}).value);
 
 		let characters = [];
 		characters.push(new CharacterGetter({
+			seed: this.seed,
 			fandom: fandom
 		}).values);
 		characters.push(new CharacterGetter({
+			seed: this.seed,
 			fandom: fandom,
 			skipName: characters[0].name
 		}).values);
@@ -96,11 +103,11 @@ export default class PostGetter extends abstractGetter {
 			verb: verb
 		}));
 
-		let query = random(characters).search;
+		let query = this.random(characters).search;
 
 		return {
 			choices: choices,
-			fandom: fandom?fandom:random(characters).fandom,
+			fandom: fandom?fandom:this.random(characters).fandom,
 			query: query
 		};
 

@@ -14,10 +14,14 @@ class DeusExPost extends Post {
 
 		let more = {};
 		more.choices = this.post.choices
-			.map(choice => new NarratorGetter().narrate(choice))
+			.map(choice => new NarratorGetter({
+				seed: this.seed
+			}).narrate(choice))
 			.filter((choice, index) => index === 0);
 
-		more.extras = new BinaryChoicesValues().values;
+		more.extras = new BinaryChoicesValues({
+			seed: this.seed
+		}).values;
 		return more;
 
 	}

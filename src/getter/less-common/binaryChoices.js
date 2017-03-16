@@ -4,8 +4,8 @@ import binaries from 'json-loader!yaml-loader!corpus/less-common/binaries.yaml';
 
 export default class extends abstractGetter {
 
-	constructor() {
-		super();
+	constructor(defaults={}) {
+		super(defaults);
 	}
 
 	get values() {

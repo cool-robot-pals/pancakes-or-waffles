@@ -19,8 +19,12 @@ let layouts = new LayoutGetter().layouts;
 
 const makePost = (defaults={}) => {
 
-	let values = new PostGetter().values;
-	let layout = new LayoutGetter(defaults).value;
+	const seed = 'fluffybunions';
+
+	let layout = new LayoutGetter({
+		seed: seed,
+		...defaults
+	}).value;
 
 	let post = {
 		layout: layout,
@@ -36,6 +40,7 @@ const makePost = (defaults={}) => {
 		let $post = React.createElement(
 			Post,
 			{
+				seed: seed,
 				key: $posts.length,
 				onUpdate: (state) => {
 					Object.assign(post,state);
