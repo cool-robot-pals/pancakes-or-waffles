@@ -13,7 +13,10 @@ export default class {
 	}
 
 	parse(txt) {
-		return txtToArr(txt, this.seed);
+		return txtToArr(txt, {
+			context: this,
+			seed: this.seed
+		});
 	}
 
 	get value() {

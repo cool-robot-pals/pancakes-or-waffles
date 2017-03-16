@@ -28,7 +28,7 @@ const mangleSeed = (seed) => {
 		store.extend = 0;
 		store.seed = seed;
 	}
-	store.extend++;
+	store.extend = store.extend+10;
 	return store.seed+store.extend;
 };
 

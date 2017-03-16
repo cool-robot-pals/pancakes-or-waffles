@@ -2,13 +2,11 @@ import abstractGetter from 'getter/abstract/abstract';
 
 import datesTxt from 'corpus/less-common/oblivion-dates.txt';
 
-import txtToArr from 'lib/txtToArr';
-
 export default class extends abstractGetter {
 
 	constructor(defaults={}) {
 		super(defaults);
-		this.months = txtToArr(datesTxt);
+		this.months = this.parse(datesTxt);
 	}
 
 	get date() {
