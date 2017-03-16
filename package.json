@@ -1,22 +1,9 @@
 {
-  "name": "tough-choices-bot",
-  "version": "0.0.1",
+  "name": "pancakes-or-waffles",
   "description": "Look it's a long story",
-  "main": "index.js",
-  "scripts": {
-    "esfix": "eslint --ext=jsx --ext=js --ignore-pattern dll --ignore-path .gitignore --fix .",
-    "shitpost": "gulp shitpost",
-    "localpost": "gulp localpost",
-    "install": "webpack --hide-modules",
-    "make-dll": "webpack --config etc/vendor-dll.webpack.config",
-    "test": "gulp test"
-  },
-  "license": "GPL-3.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/walaura/tough-choices-bot.git"
-  },
+  "version": "1.0.0",
   "author": "Laura mayhem",
+  "bugs": "https://github.com/walaura/pancakes-or-waffles/issues",
   "dependencies": {
     "add-asset-html-webpack-plugin": "^1.0.2",
     "autoprefixer": "^6.7.5",
@@ -59,5 +46,26 @@
   "devDependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "gulp-mocha-phantomjs": "^0.12.1"
+  },
+  "homepage": "https://twitter.com/pancakesorwaffl",
+  "keywords": [
+    "bot",
+    "generative",
+    "random",
+    "twitter"
+  ],
+  "license": "GPL-3.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/walaura/tough-choices-bot.git"
+  },
+  "scripts": {
+    "esfix": "eslint --ext=jsx --ext=js --ignore-pattern dll --ignore-path .gitignore --fix .",
+    "install": "webpack --hide-modules",
+    "localpost": "gulp localpost",
+    "make-dll": "webpack --config etc/vendor-dll.webpack.config",
+    "shitpost": "gulp shitpost",
+    "test": "gulp test"
   }
 }
