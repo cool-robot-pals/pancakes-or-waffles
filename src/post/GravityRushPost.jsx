@@ -5,7 +5,6 @@ import styles from './GravityRushPost.css';
 import Post from './abstract/Post.jsx';
 
 import {capitalizeFirstLetter,decapitalizeFirstLetter} from 'lib/stringies';
-import {default as random, randomNumber} from 'lib/random';
 import BinaryChoicesValues from 'getter/less-common/binaryChoices';
 import ChancesGetter from 'getter/chances';
 
