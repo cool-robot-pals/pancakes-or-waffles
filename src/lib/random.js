@@ -1,3 +1,37 @@
-module.exports = function(arr) {
-	return arr[Math.floor(Math.random() * arr.length)];
+import seedrandom from 'seedrandom';
+
+
+const store = {
+	baseSeed: undefined,
+	extend: 0
 };
+
+const randomArray = (arr,seed=makeSeed()) => {
+	try {
+		const random = seedrandom(mangleSeed(seed)+JSON.stringify(arr[0]));
+		return arr[Math.floor(random() * arr.length)];
+	} catch(err) {
+		console.error(err);
+	}
+};
+
+const randomNumber = (key,seed=makeSeed()) => {
+	return seedrandom(mangleSeed(seed)+JSON.stringify(key))();
+};
+
+const makeSeed = () => {
+	return Date.now()*Math.random();
+};
+
+const mangleSeed = (seed) => {
+	if(seed != store.seed) {
+		store.extend = 0;
+		store.seed = seed;
+	}
+	store.extend++;
+	return store.seed+store.extend;
+};
+
+export {randomNumber, randomArray, makeSeed};
+
+export default randomArray;

@@ -8,26 +8,33 @@ import NarratorGetter from 'getter/less-common/narrator';
 import FalloutGetter from 'getter/less-common/fallout';
 import ChancesGetter from 'getter/chances';
 import {capitalizeFirstLetter,decapitalizeFirstLetter} from 'lib/stringies';
+import {randomNumber} from 'lib/random';
 
 
 class FalloutPost extends Post {
 
-	parseChoice (original) {
+	parseChoice(original) {
 
-		const foValues = new FalloutGetter();
-		const chances = new ChancesGetter();
+		const foValues = new FalloutGetter({
+			seed: this.seed
+		});
+		const chances = new ChancesGetter({
+			seed: this.seed
+		});
 		let choice = [];
 
 		if(chances.should('falloutRequiresSpecial')) {
 			let special = foValues.values.special;
 			if(chances.should('falloutRequiresSpecialNumber')) {
-				special += ' '+Math.ceil(Math.random()*10)*10;
+				special += ' '+Math.ceil(randomNumber('falloutRequiresSpecialNumber',this.seed)*10)*10;
 			}
 			choice.push(`[${special}]` );
 		}
 
 		if(chances.should('falloutHasDialog')) {
-			choice.push(new NarratorGetter().narrate(original));
+			choice.push(new NarratorGetter({
+				seed: this.seed
+			}).narrate(original));
 		}
 		else {
 			choice.push(`<${original}>`);
@@ -39,7 +46,7 @@ class FalloutPost extends Post {
 	getMoreProps() {
 
 		let more = {};
-		more.choices = this.post.choices.map(this.parseChoice);
+		more.choices = this.post.choices.map(choice => this.parseChoice(choice));
 		return more;
 
 	}

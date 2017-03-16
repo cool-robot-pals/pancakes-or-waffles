@@ -1,16 +1,16 @@
-import 'assets/reset.css';
+import css from 'assets/reset.css';
+import fontsTxt from 'internal-data/fonts.txt';
 
 import {render} from 'react-dom';
 import React from 'react';
+import changeCase from 'change-case';
 
 import LayoutGetter from 'getter/layout';
 import PostGetter from 'getter/post';
 
-import changeCase from 'change-case';
 import logger from 'lib/logger';
-
 import txtToArr from 'lib/txtToArr';
-import fontsTxt from 'internal-data/fonts.txt';
+import {makeSeed} from 'lib/random';
 
 
 let $posts = [];
@@ -19,8 +19,12 @@ let layouts = new LayoutGetter().layouts;
 
 const makePost = (defaults={}) => {
 
-	let values = new PostGetter().values;
-	let layout = new LayoutGetter(defaults).value;
+	const seed = makeSeed();
+
+	let layout = new LayoutGetter({
+		seed: seed,
+		...defaults
+	}).value;
 
 	let post = {
 		layout: layout,
@@ -36,6 +40,7 @@ const makePost = (defaults={}) => {
 		let $post = React.createElement(
 			Post,
 			{
+				seed: seed,
 				key: $posts.length,
 				onUpdate: (state) => {
 					Object.assign(post,state);

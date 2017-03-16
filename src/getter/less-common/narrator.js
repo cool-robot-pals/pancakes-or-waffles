@@ -6,8 +6,8 @@ import {capitalizeFirstLetter,decapitalizeFirstLetter} from 'lib/stringies';
 
 export default class extends abstractGetter {
 
-	constructor() {
-		super();
+	constructor(defaults={}) {
+		super(defaults);
 		this.narrator = this.parse(narratorTxt);
 	}
 

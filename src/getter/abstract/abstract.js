@@ -1,19 +1,24 @@
 import txtToArr from 'lib/txtToArr';
-import random from 'lib/random';
+import {default as random,makeSeed,randomNumber} from 'lib/random';
 
 export default class {
 
 	constructor(defaults={},options={}) {
+		this.seed = defaults.seed?defaults.seed:makeSeed();
 		this.defaults = defaults;
 		this.options = options;
 	}
 
 	parse(txt) {
-		return txtToArr(txt);
+		return txtToArr(txt, this.seed);
 	}
 
 	random(arr) {
-		return random(arr);
+		return random(arr, this.seed);
+	}
+
+	randomNumber(key) {
+		return randomNumber(key, this.seed);
 	}
 
 	get value() {

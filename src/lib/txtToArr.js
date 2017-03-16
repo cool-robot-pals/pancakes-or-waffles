@@ -1,8 +1,9 @@
 import expandDictionary from 'lib/expandDictionary';
+import {makeSeed} from 'lib/random';
 
 const propsRegex = /\((.*?)\)/;
 
-export default (str) => {
+export default (str,seed=makeSeed()) => {
 
 	let array = str.split('\n');
 
@@ -11,7 +12,7 @@ export default (str) => {
 		.filter(chunk => chunk.charAt(0) !== '#')
 		.filter(chunk => chunk.length > 0)
 		.map(chunk => chunk === '_empty_'?'':chunk)
-		.map(expandDictionary);
+		.map(chunk => expandDictionary(chunk,seed));
 
 	array = [].concat.apply([], array);
 
