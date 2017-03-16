@@ -54,7 +54,7 @@ describe('Initialization', function() {
 		};
 		window.Post.mocha.layouts.map(function(layout){
 			try{
-				window.Post.makePost({
+				window.Post.makePost(undefined,{
 					layout: layout
 				});
 			} catch(err) {

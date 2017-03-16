@@ -1,8 +1,20 @@
+# hahaha whoa this one's a fun one
+# [word,word2] exapnds into all its possibilities
+# so like "[i,you] want" will generate
+# two separate sentences for "i want" and "you want"
+
+# then, @thing expands to a thing (nouns.txt), and @thing.plural expands
+# to a plural thing, @thing.singular gets a singular thing
+
+# you also have @characterOrThing and @character
+
 save
 kill
 kiss
-kiss @thing.any with
+kiss @characterOrThing with
 hug
+smash @characterOrThing with
+smash
 hug with
 cuddle
 cuddle with
@@ -14,17 +26,17 @@ hang out with
 sacrifice
 pet
 eat
-eat @thing.any with
+eat @thing with
 drink
-drink @thing.any with
-have @thing.any with
+drink @thing with
+have @thing with
 join
 forgive
 tell
 destroy
 delete
 subdue
-fart @thing.any at
+fart at
 neutralize
 break
 crush
@@ -37,11 +49,11 @@ choose
 pardon
 evict
 visit
-visit @thing.any with
+visit @thing with
 read
-read @thing.any with
+read @thing with
 watch
-watch @thing.any with
+watch @characterOrThing with
 travel with
 rescue
 capture
@@ -49,15 +61,15 @@ cure
 heal
 boop
 hack
-give @thing.any to
-hand @thing.any to
+give @characterOrThing to
+hand @characterOrThing to
 give a hand to
 listen to
-talk to @thing.any with
+talk to @characterOrThing with
 talk to
 ask
 ask for
-ask @thing.any for
+ask @characterOrThing for
 argue with
 avoid
 evade
@@ -66,18 +78,18 @@ take
 take down
 mine
 disguise as
-disguise @thing.any as
-play @thing.any with
+disguise @characterOrThing as
+play @thing with
 play with
 give up on
 grab
 steal
 entertain
 amuse
-amuse @thing.any with
+amuse @characterOrThing with
 fight
-fight @thing.any with
-fight @thing.any alongside
+fight @characterOrThing with
+fight @characterOrThing alongside
 defeat
 ignore
 marry

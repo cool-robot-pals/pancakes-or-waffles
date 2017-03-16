@@ -71,9 +71,7 @@ export default class PostGetter extends abstractGetter {
 
 	get values() {
 
-		let verb = this.chances.should('useSameVerb')?this.getVerb():undefined;
 		let fandom = this.chances.should('crossFandomsOver')?undefined:(this.buildGetter(FandomGetter).value);
-
 		let characters = [];
 		characters.push(this.buildGetter(CharacterGetter,{
 			fandom: fandom
@@ -83,6 +81,9 @@ export default class PostGetter extends abstractGetter {
 			skipName: characters[0].name
 		}).values);
 
+		this.fandom = fandom?fandom:this.randomArray(characters).fandom;
+
+		let verb = this.chances.should('useSameVerb')?this.getVerb():undefined;
 		let choices = [];
 		choices.push(this.makeChoice({
 			character: characters[0].name,
@@ -97,7 +98,7 @@ export default class PostGetter extends abstractGetter {
 
 		return {
 			choices: choices,
-			fandom: fandom?fandom:this.randomArray(characters).fandom,
+			fandom: this.fandom,
 			query: query
 		};
 
