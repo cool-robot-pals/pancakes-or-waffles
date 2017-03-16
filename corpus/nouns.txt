@@ -25,6 +25,8 @@ butt (only=ownable,singular=always)
 shadow (only=ownable,singular=always)
 waffle
 pancake
+gender
+patriarchy
 donut
 cheeseburger
 french fries (plural=always)
