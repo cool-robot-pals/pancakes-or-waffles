@@ -9,6 +9,15 @@ export default class {
 		this.options = options;
 	}
 
+	constructGetter(Getter,defaults={},options={}) {
+		return new Getter({
+			...defaults,
+			seed: this.seed
+		},
+			options
+		);
+	}
+
 	parse(txt) {
 		return txtToArr(txt, this.seed);
 	}

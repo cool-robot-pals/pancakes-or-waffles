@@ -16,9 +16,7 @@ export default class PostGetter extends abstractGetter {
 	constructor(defaults={}) {
 
 		super(defaults);
-		this.chances = new ChancesGetter({
-			seed: this.seed
-		});
+		this.chances = this.constructGetter(ChancesGetter);
 		this.verbs = this.parse(verbsTxt);
 
 	}
@@ -27,9 +25,7 @@ export default class PostGetter extends abstractGetter {
 	getOwnable(params) {
 
 		if(params.use === 'CHARACTER' && this.chances.should('characterHaveOwnable')) {
-			return new ThingGetter({
-				seed: this.seed
-			},{
+			return this.constructGetter(ThingGetter,{},{
 				type: 'ownable'
 			}).value;
 		}
@@ -53,9 +49,7 @@ export default class PostGetter extends abstractGetter {
 
 		if(!params.use) params.use = this.chances.should('useThing')?'THING':'CHARACTER';
 		if(!params.verb) params.verb = this.getVerb();
-		if(!params.thing) params.thing = new ThingGetter({
-			seed: this.seed
-		}).value;
+		if(!params.thing) params.thing = this.constructGetter(ThingGetter).value;
 		if(!params.posession) params.posession = this.getOwnable(params);
 
 		if(params.posession) {
@@ -78,17 +72,13 @@ export default class PostGetter extends abstractGetter {
 	get values() {
 
 		let verb = this.chances.should('useSameVerb')?this.getVerb():undefined;
-		let fandom = this.chances.should('crossFandomsOver')?undefined:(new FandomGetter({
-			seed: this.seed,
-		}).value);
+		let fandom = this.chances.should('crossFandomsOver')?undefined:(this.constructGetter(FandomGetter).value);
 
 		let characters = [];
-		characters.push(new CharacterGetter({
-			seed: this.seed,
+		characters.push(this.constructGetter(CharacterGetter,{
 			fandom: fandom
 		}).values);
-		characters.push(new CharacterGetter({
-			seed: this.seed,
+		characters.push(this.constructGetter(CharacterGetter,{
 			fandom: fandom,
 			skipName: characters[0].name
 		}).values);
