@@ -21,9 +21,7 @@ export default class ThingGetter extends abstractGetter {
 		this.nouns = this.parse(nounsTxt);
 		this.adjectives = this.parse(adjectivesTxt);
 
-		this.chances = new ChancesGetter({
-			seed: this.seed
-		});
+		this.chances = this.buildGetter(ChancesGetter);
 
 	}
 
@@ -103,9 +101,7 @@ export default class ThingGetter extends abstractGetter {
 		}
 
 		if(usePronoun) {
-			returnable.unshift(new PronounGetter({
-				seed: this.seed
-			},{
+			returnable.unshift(this.buildGetter(PronounGetter,{},{
 				singular: isSingular,
 				pronounable: returnable[0]
 			}).value);
