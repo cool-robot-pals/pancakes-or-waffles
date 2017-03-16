@@ -9,7 +9,7 @@ export default class {
 		this.options = options;
 	}
 
-	constructGetter(Getter,defaults={},options={}) {
+	buildGetter(Getter,defaults={},options={}) {
 		return new Getter({
 			...defaults,
 			seed: this.seed
