@@ -45,7 +45,7 @@
     "url-loader": "^0.5.7",
     "webpack": "^2.2.1",
     "webpack-merge": "^4.0.0",
-    "webshot": "github:walaura/node-webshot",
+    "webshot": "git://github.com/walaura/node-webshot",
     "yaml-loader": "^0.4.0"
   },
   "engines": {

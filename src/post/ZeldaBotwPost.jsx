@@ -14,23 +14,20 @@ class ZeldaBotwPost extends Post {
 
 	getMoreProps() {
 
-		const narrator = new NarratorGetter({
-			seed: this.seed
-		}).values;
-		const character = new CharacterGetter({
-			seed: this.seed,
+		const narrator = this.buildGetter(NarratorGetter).values;
+		const character = this.buildGetter(CharacterGetter,{
 			fandom: this.post.fandom
 		}).values.name;
-		const chances = new ChancesGetter();
+		const chances = this.buildGetter(ChancesGetter);
 
 		let more = {};
 		more.extras = {
 			character: character,
-			dialog: new NarratorGetter({seed:this.seed}).narrate(this.post.choices[0])
+			dialog: this.buildGetter(NarratorGetter).narrate(this.post.choices[0])
 		};
 
-		let values = new BinaryChoicesGetter({seed:this.seed}).values;
-		more.choices = Math.random() >= .5 ? [values.good,values.bad]:[values.bad,values.good];
+		let values = this.buildGetter(BinaryChoicesGetter).values;
+		more.choices = this.randomNumber(109231729) >= .5 ? [values.good,values.bad]:[values.bad,values.good];
 		more.choices = more.choices.map(capitalizeFirstLetter);
 		return more;
 

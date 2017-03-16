@@ -5,7 +5,6 @@ import styles from './GravityRushPost.css';
 import Post from './abstract/Post.jsx';
 
 import {capitalizeFirstLetter,decapitalizeFirstLetter} from 'lib/stringies';
-import {default as random, randomNumber} from 'lib/random';
 import BinaryChoicesValues from 'getter/less-common/binaryChoices';
 import ChancesGetter from 'getter/chances';
 
@@ -15,7 +14,7 @@ class GravityRushPost extends Post {
 	positionMarker(anchor) {
 		const padding = 10;
 		const randomPos = (max=padding,min=(100-padding)) => {
-			return Math.floor(randomNumber(max+min,this.seed)*(max-min+1)+min);
+			return Math.floor(this.randomNumber(max+min)*(max-min+1)+min);
 		};
 		if(anchor === 'top') {
 			return[randomPos(padding,padding+5),randomPos()];
@@ -46,30 +45,28 @@ class GravityRushPost extends Post {
 			more.extras = {};
 			more.extras['waypoint-1'] = (()=>{
 				let waypoint = {};
-				let position = this.positionMarker(random(anchors,this.seed));
+				let position = this.positionMarker(this.randomArray(anchors));
 				waypoint.style = {
 					top: position[0]+'%',
 					left: position[1]+'%',
 				};
-				waypoint.value = Math.ceil(randomNumber(waypoint,this.seed)*200)+'y';
+				waypoint.value = Math.ceil(this.randomNumber(waypoint)*200)+'y';
 				return waypoint;
 			})();
 			more.extras['waypoint-2'] = (()=>{
 				let waypoint = {};
-				let position = this.positionMarker(random(anchors,this.seed));
+				let position = this.positionMarker(this.randomArray(anchors));
 				waypoint.style = {
 					top: position[0]+'%',
 					left: position[1]+'%',
 				};
-				waypoint.value = Math.ceil(randomNumber(waypoint,this.seed)*200)+'y';
+				waypoint.value = Math.ceil(this.randomNumber(waypoint)*200)+'y';
 				return waypoint;
 			})();
 		}
 		else {
 			more.choices = [this.post.choices.sort((a, b) => b.length - a.length )[0]];
-			more.extras = new BinaryChoicesValues({
-				seed: this.seed
-			}).values;
+			more.extras = this.buildGetter(BinaryChoicesValues).values;
 		}
 
 		return more;
