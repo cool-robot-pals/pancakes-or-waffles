@@ -3,7 +3,7 @@ import {makeSeed} from 'lib/random';
 
 const propsRegex = /\((.*?)\)/;
 
-export default (str,seed=makeSeed()) => {
+export default (str,{seed=makeSeed(),context={}}={}) => {
 
 	let array = str.split('\n');
 
@@ -12,7 +12,10 @@ export default (str,seed=makeSeed()) => {
 		.filter(chunk => chunk.charAt(0) !== '#')
 		.filter(chunk => chunk.length > 0)
 		.map(chunk => chunk === '_empty_'?'':chunk)
-		.map(chunk => expandDictionary(chunk,seed));
+		.map(chunk => expandDictionary(chunk,{
+			seed:seed,
+			context:context
+		}));
 
 	array = [].concat.apply([], array);
 
