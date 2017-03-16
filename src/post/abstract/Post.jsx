@@ -4,8 +4,9 @@ import PostGetter from 'getter/post';
 
 import photoGetter from 'lib/photoGetter';
 import formatPropExtras from 'lib/formatPropExtras';
+import usesGetter from 'lib/decorator/usesGetter';
 
-
+@usesGetter
 class Post extends React.Component {
 
 	constructor(props) {

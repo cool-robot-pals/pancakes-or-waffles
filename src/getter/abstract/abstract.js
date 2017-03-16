@@ -1,6 +1,9 @@
 import txtToArr from 'lib/txtToArr';
-import {makeSeed,randomNumber,randomArray} from 'lib/random';
+import {makeSeed} from 'lib/random';
 
+import usesGetter from 'lib/decorator/usesGetter';
+
+@usesGetter
 export default class {
 
 	constructor(defaults={},options={}) {
@@ -9,25 +12,8 @@ export default class {
 		this.options = options;
 	}
 
-	buildGetter(Getter,defaults={},options={}) {
-		return new Getter({
-			...defaults,
-			seed: this.seed
-		},
-			options
-		);
-	}
-
 	parse(txt) {
 		return txtToArr(txt, this.seed);
-	}
-
-	randomArray(arr) {
-		return randomArray(arr, this.seed);
-	}
-
-	randomNumber(key) {
-		return randomNumber(key, this.seed);
 	}
 
 	get value() {
