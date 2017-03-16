@@ -27,6 +27,7 @@ waffle
 pancake
 gender
 patriarchy (singular=always)
+cis tears (proper)
 donut
 cheeseburger
 french fries (plural=always)
