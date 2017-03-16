@@ -3,12 +3,11 @@ import abstractGetter from 'getter/abstract/abstract';
 import datesTxt from 'corpus/less-common/oblivion-dates.txt';
 
 import txtToArr from 'lib/txtToArr';
-import random from 'lib/random';
 
 export default class extends abstractGetter {
 
-	constructor() {
-		super();
+	constructor(defaults={}) {
+		super(defaults);
 		this.months = txtToArr(datesTxt);
 	}
 
@@ -16,7 +15,7 @@ export default class extends abstractGetter {
 
 		const day = Math.ceil(Math.random()*22)+4;
 		const year = Math.ceil(Math.random()*100)+300;
-		const month = random(this.months).value;
+		const month = this.randomArray(this.months).value;
 
 		return `${day}th of ${month}, 3E${year}`;
 

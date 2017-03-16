@@ -4,17 +4,22 @@ import PostGetter from 'getter/post';
 
 import photoGetter from 'lib/photoGetter';
 import formatPropExtras from 'lib/formatPropExtras';
+import usesGetter from 'lib/decorator/usesGetter';
 
-
+@usesGetter
 class Post extends React.Component {
 
 	constructor(props) {
 
 		super(props);
 
-		this.post = new PostGetter().values;
+		this.seed = props.seed;
+		this.post = new PostGetter({
+			seed: this.seed
+		}).values;
 
 		const state = {
+			seed: this.seed,
 			query: this.post.query,
 			fandom: this.post.fandom,
 			choices: this.post.choices,
@@ -50,7 +55,9 @@ class Post extends React.Component {
 	}
 
 	componentDidMount() {
-		photoGetter(this.state.query)
+		photoGetter(this.state.query,{
+			seed: this.seed
+		})
 		.then(photos => {
 			this.setState({
 				bg: photos.url,

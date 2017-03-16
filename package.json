@@ -1,29 +1,18 @@
 {
-  "name": "tough-choices-bot",
-  "version": "0.0.1",
+  "name": "pancakes-or-waffles",
   "description": "Look it's a long story",
-  "main": "index.js",
-  "scripts": {
-    "esfix": "eslint --ext=jsx --ext=js --ignore-pattern dll --ignore-path .gitignore --fix .",
-    "shitpost": "gulp shitpost",
-    "localpost": "gulp localpost",
-    "install": "webpack --hide-modules",
-    "make-dll": "webpack --config etc/vendor-dll.webpack.config",
-    "test": "gulp test"
-  },
-  "license": "GPL-3.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/walaura/tough-choices-bot.git"
-  },
+  "version": "1.0.0",
   "author": "Laura mayhem",
+  "bugs": "https://github.com/walaura/pancakes-or-waffles/issues",
   "dependencies": {
     "add-asset-html-webpack-plugin": "^1.0.2",
     "autoprefixer": "^6.7.5",
     "babel-core": "^6.21.0",
+    "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.10",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-object-assign": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-react": "^6.23.0",
     "babel-preset-target": "0.0.5",
     "browser-request": "^0.3.3",
@@ -37,27 +26,50 @@
     "file-loader": "^0.10.0",
     "fs-extra": "^2.0.0",
     "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-mocha-phantomjs": "^0.12.1",
     "html-webpack-plugin": "^2.28.0",
+    "minimist": "^1.2.0",
     "mocha": "^3.2.0",
     "number-to-text": "^0.3.2",
     "phantomjs2": "^2.2.0",
     "pluralize": "^4.0.0",
     "postcss-loader": "^1.3.1",
+    "query-string": "^4.3.2",
     "raw-loader": "^0.5.1",
     "react": "^15.4.2",
     "react-css-modules": "^4.1.0",
     "react-dom": "^15.4.2",
+    "seedrandom": "^2.4.2",
     "style-loader": "^0.13.1",
     "twit": "^2.2.5",
     "url-loader": "^0.5.7",
     "webpack": "^2.2.1",
     "webpack-merge": "^4.0.0",
-    "webpack-stream": "^3.2.0",
-    "webshot": "github:walaura/node-webshot",
+    "webshot": "git://github.com/walaura/node-webshot",
     "yaml-loader": "^0.4.0"
   },
-  "devDependencies": {
-    "babel-plugin-transform-object-rest-spread": "^6.23.0",
-    "gulp-mocha-phantomjs": "^0.12.1"
+  "engines": {
+    "node": "^7.5.0"
+  },
+  "homepage": "https://twitter.com/pancakesorwaffl",
+  "keywords": [
+    "bot",
+    "generative",
+    "random",
+    "twitter"
+  ],
+  "license": "GPL-3.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/walaura/tough-choices-bot.git"
+  },
+  "scripts": {
+    "esfix": "eslint --ext=jsx --ext=js --ignore-pattern dll --ignore-path .gitignore --fix .",
+    "install": "webpack --hide-modules",
+    "localpost": "gulp localpost",
+    "make-dll": "webpack --config etc/vendor-dll.webpack.config",
+    "shitpost": "gulp shitpost",
+    "test": "gulp test"
   }
 }

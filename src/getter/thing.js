@@ -11,7 +11,7 @@ const defaultOptions = {
 	type: 'thing'
 };
 
-export default class LayoutGetter extends abstractGetter {
+export default class ThingGetter extends abstractGetter {
 
 	constructor(defaults={},options={}) {
 
@@ -21,7 +21,7 @@ export default class LayoutGetter extends abstractGetter {
 		this.nouns = this.parse(nounsTxt);
 		this.adjectives = this.parse(adjectivesTxt);
 
-		this.chances = new ChancesGetter();
+		this.chances = this.buildGetter(ChancesGetter);
 
 	}
 
@@ -75,7 +75,7 @@ export default class LayoutGetter extends abstractGetter {
 			}
 			return list;
 		})();
-		const noun = this.random(wordList);
+		const noun = this.randomArray(wordList);
 
 		const useAdjective = this.shouldUseAdjective(noun);
 		const isSingular = this.isSingular(noun);
@@ -87,9 +87,9 @@ export default class LayoutGetter extends abstractGetter {
 		let returnable = [];
 
 		if(useAdjective) {
-			returnable.push(this.random(this.adjectives).value);
+			returnable.push(this.randomArray(this.adjectives).value);
 			if(this.chances.should('useTwoAdjectives')){
-				returnable.push(this.random(this.adjectives).value);
+				returnable.push(this.randomArray(this.adjectives).value);
 			}
 		}
 
@@ -101,7 +101,7 @@ export default class LayoutGetter extends abstractGetter {
 		}
 
 		if(usePronoun) {
-			returnable.unshift(new PronounGetter({},{
+			returnable.unshift(this.buildGetter(PronounGetter,{},{
 				singular: isSingular,
 				pronounable: returnable[0]
 			}).value);

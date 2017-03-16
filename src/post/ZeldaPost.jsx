@@ -12,8 +12,8 @@ class ZeldaPost extends Post {
 
 	getMoreProps() {
 
-		const binaryChoices = new BinaryChoicesValues().values;
-		const narrator = new NarratorGetter().values;
+		const binaryChoices = new BinaryChoicesValues({seed:this.seed}).values;
+		const narrator = new NarratorGetter({seed:this.seed}).values;
 
 		for(let k in binaryChoices) {
 			binaryChoices[k] = capitalizeFirstLetter(binaryChoices[k]);
@@ -21,7 +21,7 @@ class ZeldaPost extends Post {
 
 		let more = {
 			extras : binaryChoices,
-			choices: [new NarratorGetter().narrate(this.post.choices[0])]
+			choices: [new NarratorGetter({seed:this.seed}).narrate(this.post.choices[0])]
 		};
 
 		return more;

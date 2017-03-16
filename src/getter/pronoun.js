@@ -16,7 +16,7 @@ export default class PronounGetter extends abstractGetter {
 
 
 	getDefault() {
-		let pronoun = this.random(
+		let pronoun = this.randomArray(
 			this.options.singular?this.pronouns.singular:this.pronouns.plural
 		).value;
 		if(pronoun === 'a' && ['a','e','i','o','u'].indexOf(this.options.pronounable.toLowerCase().charAt(0)) >= 0) {
@@ -26,7 +26,7 @@ export default class PronounGetter extends abstractGetter {
 			pronoun = '';
 		}
 		if(pronoun === '_number_') {
-			let largeNumber = this.random([true,false]);
+			let largeNumber = this.randomArray([true,false]);
 			pronoun = numberToText.convertToText(Math.ceil(Math.random()*(largeNumber?99:9)),{
 				case: 'lowerCase'
 			});

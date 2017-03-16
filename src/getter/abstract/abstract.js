@@ -1,19 +1,19 @@
 import txtToArr from 'lib/txtToArr';
-import random from 'lib/random';
+import {makeSeed} from 'lib/random';
 
+import usesGetter from 'lib/decorator/usesGetter';
+
+@usesGetter
 export default class {
 
 	constructor(defaults={},options={}) {
+		this.seed = defaults.seed?defaults.seed:makeSeed();
 		this.defaults = defaults;
 		this.options = options;
 	}
 
 	parse(txt) {
-		return txtToArr(txt);
-	}
-
-	random(arr) {
-		return random(arr);
+		return txtToArr(txt, this.seed);
 	}
 
 	get value() {

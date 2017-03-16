@@ -4,14 +4,14 @@ import specialTxt from 'corpus/less-common/fo-special.txt';
 
 export default class FalloutGetter extends abstractGetter {
 
-	constructor() {
-		super();
+	constructor(defaults={}) {
+		super(defaults);
 		this.special = this.parse(specialTxt);
 	}
 
 	get values() {
 		return {
-			special: this.random(this.special).value
+			special: this.randomArray(this.special).value
 		};
 	}
 }
