@@ -21,5 +21,5 @@ export default class LayoutGetter extends abstractGetter {
 		let layout = this.randomArray(this.layouts);
 		return layout;
 	}
-	
+
 }
