@@ -47,49 +47,50 @@ export default (chunk,{context={},seed=makeSeed()}) => {
 				CharacterGetter = require('getter/character').default;
 			}
 			switch(name) {
-				case 'characterOrThing':
-					let chances = new ChancesGetter({seed:seed});
-					if(chances.should('useThing')) {
-						replacement = new ThingGetter({
-							seed: seed
-						}).value;
-					}
-					else {
-						replacement = new CharacterGetter({
-							seed: seed,
-							fandom: context.fandom
-						}).values.name;
-					}
-					break;
-
-				case 'character':
+			case 'characterOrThing': {
+				let chances = new ChancesGetter({seed:seed});
+				if(chances.should('useThing')) {
+					replacement = new ThingGetter({
+						seed: seed
+					}).value;
+				}
+				else {
 					replacement = new CharacterGetter({
 						seed: seed,
 						fandom: context.fandom
 					}).values.name;
-					break;
-
-				case 'thingSingular':
-					replacement = new ThingGetter({
-						seed: seed
-					},{
-						singular: true
-					}).value
-					break;
-
-				case 'thingPlural':
-					replacement = new ThingGetter({
-						seed: seed
-					},{
-						plural: true
-					}).value;
-					break;
-
-				case 'thing':
-					replacement = new ThingGetter({
-						seed: seed
-					}).value;
-					break;
+				}
+				break;
+			}
+			case 'character':{
+				replacement = new CharacterGetter({
+					seed: seed,
+					fandom: context.fandom
+				}).values.name;
+				break;
+			}
+			case 'thingSingular':{
+				replacement = new ThingGetter({
+					seed: seed
+				},{
+					singular: true
+				}).value;
+				break;
+			}
+			case 'thingPlural':{
+				replacement = new ThingGetter({
+					seed: seed
+				},{
+					plural: true
+				}).value;
+				break;
+			}
+			case 'thing':{
+				replacement = new ThingGetter({
+					seed: seed
+				}).value;
+				break;
+			}
 			}
 			chunk = chunk.replace(lookup[name],replacement);
 		}
