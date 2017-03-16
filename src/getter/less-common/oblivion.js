@@ -15,7 +15,7 @@ export default class extends abstractGetter {
 
 		const day = Math.ceil(Math.random()*22)+4;
 		const year = Math.ceil(Math.random()*100)+300;
-		const month = this.random(this.months).value;
+		const month = this.randomArray(this.months).value;
 
 		return `${day}th of ${month}, 3E${year}`;
 

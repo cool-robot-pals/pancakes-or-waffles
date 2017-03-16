@@ -11,7 +11,7 @@ export default class FalloutGetter extends abstractGetter {
 
 	get values() {
 		return {
-			special: this.random(this.special).value
+			special: this.randomArray(this.special).value
 		};
 	}
 }

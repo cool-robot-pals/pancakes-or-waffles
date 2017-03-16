@@ -13,7 +13,7 @@ export default class FandomGetter extends abstractGetter {
 
 
 	getDefault() {
-		return this.random(this.fandoms);
+		return this.randomArray(this.fandoms);
 	}
 
 

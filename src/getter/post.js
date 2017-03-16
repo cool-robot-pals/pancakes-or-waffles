@@ -42,7 +42,7 @@ export default class PostGetter extends abstractGetter {
 
 	getVerb() {
 
-		return this.random(this.verbs).value;
+		return this.randomArray(this.verbs).value;
 
 	}
 
@@ -103,11 +103,11 @@ export default class PostGetter extends abstractGetter {
 			verb: verb
 		}));
 
-		let query = this.random(characters).search;
+		let query = this.randomArray(characters).search;
 
 		return {
 			choices: choices,
-			fandom: fandom?fandom:this.random(characters).fandom,
+			fandom: fandom?fandom:this.randomArray(characters).fandom,
 			query: query
 		};
 

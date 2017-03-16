@@ -17,7 +17,7 @@ export default class extends abstractGetter {
 
 	get values() {
 		return {
-			prefix: this.random(this.narrator)
+			prefix: this.randomArray(this.narrator)
 		};
 	}
 }
