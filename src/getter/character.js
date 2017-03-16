@@ -19,7 +19,7 @@ export default class CharacterGetter extends abstractGetter {
 
 
 	get values() {
-		return this.random(this.people);
+		return this.randomArray(this.people);
 	}
 
 

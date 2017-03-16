@@ -1,6 +1,6 @@
 import request from 'browser-request';
 import env from 'env';
-import {default as random,makeSeed} from 'lib/random';
+import {randomArray,makeSeed} from 'lib/random';
 
 const pagesToLoad = 6;
 const apiUrl = 'https://www.googleapis.com/customsearch/v1';
@@ -38,7 +38,7 @@ module.exports = function(query,{
 			if(pagesLoaded >= pagesToLoad) {
 				resolve({
 					total: results.length,
-					url: random(results,seed).link
+					url: randomArray(results,seed).link
 				});
 			}
 		};

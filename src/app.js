@@ -4,6 +4,7 @@ import fontsTxt from 'internal-data/fonts.txt';
 import {render} from 'react-dom';
 import React from 'react';
 import changeCase from 'change-case';
+import queryString from 'query-string';
 
 import LayoutGetter from 'getter/layout';
 import PostGetter from 'getter/post';
@@ -17,9 +18,7 @@ let $posts = [];
 let posts = [];
 let layouts = new LayoutGetter().layouts;
 
-const makePost = (defaults={}) => {
-
-	const seed = makeSeed();
+const makePost = (seed=makeSeed(),defaults={}) => {
 
 	let layout = new LayoutGetter({
 		seed: seed,
@@ -73,6 +72,10 @@ const exportable = (()=>{
 		}
 	};
 
+	/*qs*/
+	const queryStringParser = require('query-string');
+	const queryString = queryStringParser.parse(location.search);
+
 	/*make app container*/
 	let $app = document.createElement('div');
 	$app.id= 'tough-choices-bot';
@@ -85,7 +88,7 @@ const exportable = (()=>{
 	link.rel = 'stylesheet';
 	document.querySelector('head').appendChild(link);
 
-	lib.makePost();
+	lib.makePost(queryString.seed?queryString.seed:undefined);
 
 	return lib;
 

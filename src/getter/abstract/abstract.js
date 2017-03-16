@@ -1,5 +1,5 @@
 import txtToArr from 'lib/txtToArr';
-import {default as random,makeSeed,randomNumber} from 'lib/random';
+import {makeSeed,randomNumber,randomArray} from 'lib/random';
 
 export default class {
 
@@ -9,12 +9,21 @@ export default class {
 		this.options = options;
 	}
 
+	buildGetter(Getter,defaults={},options={}) {
+		return new Getter({
+			...defaults,
+			seed: this.seed
+		},
+			options
+		);
+	}
+
 	parse(txt) {
 		return txtToArr(txt, this.seed);
 	}
 
-	random(arr) {
-		return random(arr, this.seed);
+	randomArray(arr) {
+		return randomArray(arr, this.seed);
 	}
 
 	randomNumber(key) {

@@ -5,6 +5,7 @@ const webpack = require('webpack');
 const path = require('path');
 const fs = require('fs-extra');
 const gutil = require('gulp-util');
+const argv = require('minimist')(process.argv.slice(2));
 
 const env = require('./src/env.js');
 
@@ -65,10 +66,9 @@ gulp.task('upload', done => {
 
 
 gulp.task('webshot', done => {
-	var webshot = require('webshot');
-	var options = {
+	const webshot = require('webshot');
+	const options = {
 		renderDelay: 20000,
-		siteType: 'file',
 		phantomConfig: {
 			'local-to-remote-url-access':'true',
 			'web-security':'false'
@@ -91,8 +91,12 @@ gulp.task('webshot', done => {
 			height: 720
 		}
 	};
+
+	let url = 'file://'+path.resolve(config.paths.build, config.filenames.base+'.html');
+	if(argv && argv.seed) url += '?seed='+argv.seed;
+
 	webshot(
-		path.join(config.paths.build, config.filenames.base+'.html'),
+		url,
 		path.join(config.paths.build, config.filenames.base+'.jpg'),
 		options,
 		err => {

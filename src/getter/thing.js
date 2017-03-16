@@ -77,7 +77,7 @@ export default class ThingGetter extends abstractGetter {
 			}
 			return list;
 		})();
-		const noun = this.random(wordList);
+		const noun = this.randomArray(wordList);
 
 		const useAdjective = this.shouldUseAdjective(noun);
 		const isSingular = this.isSingular(noun);
@@ -89,9 +89,9 @@ export default class ThingGetter extends abstractGetter {
 		let returnable = [];
 
 		if(useAdjective) {
-			returnable.push(this.random(this.adjectives).value);
+			returnable.push(this.randomArray(this.adjectives).value);
 			if(this.chances.should('useTwoAdjectives')){
-				returnable.push(this.random(this.adjectives).value);
+				returnable.push(this.randomArray(this.adjectives).value);
 			}
 		}
 

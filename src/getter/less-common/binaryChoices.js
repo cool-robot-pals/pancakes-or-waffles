@@ -11,8 +11,8 @@ export default class extends abstractGetter {
 	get values() {
 
 		return {
-			good: this.random(binaries.good),
-			bad: this.random(binaries.bad)
+			good: this.randomArray(binaries.good),
+			bad: this.randomArray(binaries.bad)
 		};
 
 	}
