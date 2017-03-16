@@ -6,7 +6,7 @@ const path = require('path');
 
 module.exports = {
 	entry: {
-		main: ['react','react-dom','lodash','react-css-modules','es6-promise-promise']
+		main: ['react','react-dom','lodash','react-css-modules','es6-promise-promise','change-case','query-string','sentence-case','seedrandom']
 	},
 	module: {
 		rules: [
