@@ -6,13 +6,13 @@
 # then, @thing expands to a thing (nouns.txt), and @thing.s expands
 # to a plural thing, @thing.any gets a random plural or singular thing
 
-[I,you,they,we,somebody] [should, must, want to, have to] $1[!,,?]
-should [you,we,I] $1?
-surely [I,they,you,we]'d $1
+[I,you,we] [should, must, want to, have to] $1[!,,?]
+[should,is it cool if] [you,we,I] $1?
+surely [I,you,we]'d $1
 it's [about time, time, finally time] for [me,you] to $1
 [at last, at long last, finally] [you,I] [must,should] $1
-if you don't mind me asking, [would you, can I, may I] $1?
+if you don't mind me [asking,questioning], [would you, can I, may I] $1?
 [I,you,we] [shall,must,may] $1 as @thing [told,foretold,warned us about,said]
 @thing.any can $1
-[Can,Should] @thing.any $1?
+[Can,Should,May] @thing.any $1?
 $1[?,!]
