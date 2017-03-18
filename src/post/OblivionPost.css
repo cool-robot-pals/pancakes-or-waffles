@@ -6,7 +6,7 @@
 }
 
 .post > *:not(.bg) {
-	transform: scale(.75);
+	transform: scale(.50);
 }
 
 .choices {
