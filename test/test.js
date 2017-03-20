@@ -34,8 +34,9 @@ describe('Initialization', function() {
 			done(new Error());
 		}
 	});
-	it('should make all layouts without an error',function(done){
-		var total = window.Post.mocha.layouts.length;
+	it('should make all layouts thrice ('+(window.Post.mocha.layouts.length*3)+') without an error',function(done){
+		var layouts = [].concat(window.Post.mocha.layouts,window.Post.mocha.layouts,window.Post.mocha.layouts);
+		var total = layouts.length;
 		var rendered = 0;
 		var finishedMaybe = function() {
 			rendered++;
@@ -52,7 +53,7 @@ describe('Initialization', function() {
 				},1500);
 			}
 		};
-		window.Post.mocha.layouts.map(function(layout){
+		layouts.map(function(layout){
 			try{
 				window.Post.makePost(undefined,{
 					layout: layout
