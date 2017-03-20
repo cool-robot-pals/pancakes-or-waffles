@@ -24,7 +24,7 @@ export default class {
 		return expandKeywords(string, {
 			context: this,
 			seed: this.seed
-		})
+		});
 	}
 
 	get value() {
