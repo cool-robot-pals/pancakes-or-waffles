@@ -1,9 +1,9 @@
 import abstractGetter from 'getter/abstract/abstract';
 import ChancesGetter from 'getter/chances';
 import PronounGetter from 'getter/pronoun';
+import AdjectiveGetter from 'getter/adjective';
 
 import nounsTxt from 'corpus/nouns.txt';
-import adjectivesTxt from 'corpus/adjectives.txt';
 
 import pluralize from 'pluralize';
 
@@ -19,7 +19,6 @@ export default class ThingGetter extends abstractGetter {
 		super(defaults,options);
 
 		this.nouns = this.parse(nounsTxt);
-		this.adjectives = this.parse(adjectivesTxt);
 
 		this.chances = this.buildGetter(ChancesGetter);
 
@@ -57,6 +56,7 @@ export default class ThingGetter extends abstractGetter {
 		}
 	}
 
+
 	getDefault() {
 
 		const wordList = (()=>{
@@ -75,7 +75,7 @@ export default class ThingGetter extends abstractGetter {
 			}
 			return list;
 		})();
-		const noun = this.randomArray(wordList);
+		const noun = this.expand(this.randomArray(wordList));
 
 		const useAdjective = this.shouldUseAdjective(noun);
 		const isSingular = this.isSingular(noun);
@@ -87,9 +87,9 @@ export default class ThingGetter extends abstractGetter {
 		let returnable = [];
 
 		if(useAdjective) {
-			returnable.push(this.randomArray(this.adjectives).value);
+			returnable.push(this.buildGetter(AdjectiveGetter).value);
 			if(this.chances.should('useTwoAdjectives')){
-				returnable.push(this.randomArray(this.adjectives).value);
+				returnable.push(this.buildGetter(AdjectiveGetter).value);
 			}
 		}
 

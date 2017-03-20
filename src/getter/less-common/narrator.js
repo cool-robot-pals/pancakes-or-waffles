@@ -12,12 +12,12 @@ export default class extends abstractGetter {
 	}
 
 	narrate(sentence) {
-		return capitalizeFirstLetter(this.values.prefix.value).replace('$1',decapitalizeFirstLetter(sentence));
+		return capitalizeFirstLetter(this.values.narration).replace('$1',decapitalizeFirstLetter(sentence));
 	}
 
 	get values() {
 		return {
-			prefix: this.randomArray(this.narrator)
+			narration: this.expand(this.randomArray(this.narrator).value)
 		};
 	}
 }

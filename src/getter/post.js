@@ -1,11 +1,10 @@
 import abstractGetter from 'getter/abstract/abstract';
 
-import verbsTxt from 'corpus/verbs.txt';
-
 import {capitalizeFirstLetter} from 'lib/stringies';
 
 import ChancesGetter from 'getter/chances';
 import ThingGetter from 'getter/thing';
+import VerbGetter from 'getter/verb';
 import CharacterGetter from 'getter/character';
 import FandomGetter from 'getter/fandom';
 
@@ -17,7 +16,6 @@ export default class PostGetter extends abstractGetter {
 
 		super(defaults);
 		this.chances = this.buildGetter(ChancesGetter);
-		this.verbs = this.parse(verbsTxt);
 
 	}
 
@@ -36,19 +34,12 @@ export default class PostGetter extends abstractGetter {
 	}
 
 
-	getVerb() {
-
-		return this.randomArray(this.verbs).value;
-
-	}
-
-
 	makeChoice(params={}) {
 
 		let useable;
 
 		if(!params.use) params.use = this.chances.should('useThing')?'THING':'CHARACTER';
-		if(!params.verb) params.verb = this.getVerb();
+		if(!params.verb) params.verb = this.buildGetter(VerbGetter).value;
 		if(!params.thing) params.thing = this.buildGetter(ThingGetter).value;
 		if(!params.posession) params.posession = this.getOwnable(params);
 
@@ -83,7 +74,7 @@ export default class PostGetter extends abstractGetter {
 
 		this.fandom = fandom?fandom:this.randomArray(characters).fandom;
 
-		let verb = this.chances.should('useSameVerb')?this.getVerb():undefined;
+		let verb = this.chances.should('useSameVerb')?this.buildGetter(VerbGetter).value:undefined;
 		let choices = [];
 		choices.push(this.makeChoice({
 			character: characters[0].name,
