@@ -10,7 +10,7 @@ export default class VerbGetter extends abstractGetter {
 	}
 
 	getDefault() {
-		return this.expand(this.randomArray(this.adjectives).value);
+		return this.expand(this.randomArray(this.verbs).value);
 	}
 
 
