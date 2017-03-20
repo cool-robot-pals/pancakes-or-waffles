@@ -12,10 +12,7 @@ export default (str,{seed=makeSeed(),context={}}={}) => {
 		.filter(chunk => chunk.charAt(0) !== '#')
 		.filter(chunk => chunk.length > 0)
 		.map(chunk => chunk === '_empty_'?'':chunk)
-		.map(chunk => expandDictionary(chunk,{
-			seed:seed,
-			context:context
-		}));
+		.map(chunk => expandDictionary(chunk);
 
 	array = [].concat.apply([], array);
 
