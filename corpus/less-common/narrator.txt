@@ -7,4 +7,5 @@ if you don't mind me [asking,questioning], [would you, can I, may I] $1?
 [I,you,we] [shall,must,may] $1 as @characterOrThing [told,foretold,warned us about,said]
 @characterOrThing can $1
 [Can,Should,May] @characterOrThing $1?
+I can't resist this inmense desire to $1
 $1[?,!]
