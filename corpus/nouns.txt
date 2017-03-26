@@ -40,6 +40,7 @@ dog
 boar
 shark
 bear
+raccoon
 gun
 stimpak
 alcohol (proper)
