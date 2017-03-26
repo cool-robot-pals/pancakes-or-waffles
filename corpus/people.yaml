@@ -121,6 +121,24 @@
 - name: Shepard
   search: femshep mass effect
   fandom: me
+- name: Cora
+  search: andromeda mass effect
+  fandom: me
+- name: Peebee
+  search: andromeda mass effect
+  fandom: me
+- name: Ryder
+  search: andromeda mass effect
+  fandom: me
+- name: Vetra
+  search: andromeda mass effect
+  fandom: me
+- name: Liam
+  search: andromeda mass effect
+  fandom: me
+- name: Jaal
+  search: andromeda mass effect
+  fandom: me
 - name: Liara
   search: liara mass effect
   fandom: me
