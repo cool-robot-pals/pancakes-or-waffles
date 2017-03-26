@@ -124,18 +124,18 @@ module.exports = {
 	},
 	output: {
 		filename: 'post.js',
-		path: config.paths.build,
+		path: path.resolve(__dirname, config.paths.build),
 		library: 'Post',
 		libraryTarget: 'umd'
 	},
 	resolve: {
 		extensions: ['.js', '.jsx'],
 		alias: {
-			'corpus': path.resolve('.','corpus'),
-			'data': path.resolve('.','data')
+			'corpus': path.resolve(__dirname,'corpus'),
+			'data': path.resolve(__dirname,'data')
 		},
 		modules: [
-			path.resolve('.','src'),
+			path.resolve(__dirname,'src'),
 			'node_modules'
 		]
 	}
