@@ -62,6 +62,7 @@ switch
 block
 rebel
 sandwich
+vampire
 headphones (plural=always)
 moon rocks (plural=always)
 phone
