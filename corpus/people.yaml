@@ -130,26 +130,26 @@
 - name: Nona
   search: oxenfree (radio or art)
   fandom: oxenfree
-- name: Shepard
-  search: femshep mass effect
-  fandom: me
 - name: Cora
   search: andromeda mass effect
-  fandom: me
+  fandom: mea
 - name: Peebee
-  search: andromeda mass effect
+  search: peebee mass effect
   fandom: me
 - name: Ryder
-  search: andromeda mass effect
-  fandom: me
+  search: ryder mass effect
+  fandom: mea
 - name: Vetra
   search: andromeda mass effect
-  fandom: me
-- name: Liam
+  fandom: mea
+- name: Suvi
   search: andromeda mass effect
-  fandom: me
-- name: Jaal
+  fandom: mea
+- name: Drack
   search: andromeda mass effect
+  fandom: mea
+- name: Shepard
+  search: femshep mass effect
   fandom: me
 - name: Liara
   search: liara mass effect
