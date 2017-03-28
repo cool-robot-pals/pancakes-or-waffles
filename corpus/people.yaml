@@ -12,13 +12,25 @@
   fandom: nintendo
 - name: Midna
   search: twilight princess
-  fandom: nintendo
+  fandom: zelda
 - name: Zelda
   search: zelda game
-  fandom: nintendo
+  fandom: zelda
 - name: Link
-  search: ocarina of time
-  fandom: nintendo
+  search: breath of the wild
+  fandom: zelda
+- name: Fox
+  search: star fox
+  fandom: sfa
+- name: Slippy
+  search: star fox adventures
+  fandom: sfa
+- name: Tricky
+  search: star fox adventures
+  fandom: sfa
+- name: Krystal
+  search: star fox krystal
+  fandom: sfa
 - name: Rubi
   search: wet rubi
   fandom: wet
