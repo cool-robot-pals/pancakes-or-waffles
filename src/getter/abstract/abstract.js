@@ -22,7 +22,7 @@ export default class {
 
 	expand(string) {
 		return expandKeywords(string, {
-			context: this,
+			context: this.defaults,
 			seed: this.seed
 		});
 	}

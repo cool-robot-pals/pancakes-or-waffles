@@ -15,12 +15,8 @@ class FalloutPost extends Post {
 
 	parseChoice(original) {
 
-		const foValues = new FalloutGetter({
-			seed: this.seed
-		});
-		const chances = new ChancesGetter({
-			seed: this.seed
-		});
+		const foValues = this.buildGetter(FalloutGetter);
+		const chances = this.buildGetter(ChancesGetter);
 		let choice = [];
 
 		if(chances.should('falloutRequiresSpecial')) {
@@ -32,9 +28,7 @@ class FalloutPost extends Post {
 		}
 
 		if(chances.should('falloutHasDialog')) {
-			choice.push(new NarratorGetter({
-				seed: this.seed
-			}).narrate(original));
+			choice.push(this.buildGetter(NarratorGetter).narrate(original));
 		}
 		else {
 			choice.push(`<${original}>`);

@@ -8,5 +8,5 @@ if you don't mind me [asking,questioning], [would you, can I, may I] $1?
 @characterOrThing can $1
 [Can,Should,May] @characterOrThing $1?
 I can't resist this @adjective desire to $1
-Nobody in our @thing feels that way about @character. In fact, we $1
+Nobody in @thing feels that way about @character. In fact, we $1
 $1[?,!]

@@ -56,6 +56,7 @@ insect (an)
 boat
 car
 taxi
+office (singular=always)
 bus
 box
 switch

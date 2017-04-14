@@ -18,6 +18,8 @@ class Post extends React.Component {
 			seed: this.seed
 		}).values;
 
+		this.defaults = this.post;
+
 		const state = {
 			seed: this.seed,
 			query: this.post.query,
