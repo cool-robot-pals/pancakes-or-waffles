@@ -6,6 +6,7 @@ export default function(Target) {
 
 		buildGetter(Getter,defaults={},options={}) {
 			return new Getter({
+				fandom: this.defaults.fandom,
 				...defaults,
 				seed: this.seed
 			},

@@ -14,16 +14,14 @@ class ZeldaBotwPost extends Post {
 
 	getMoreProps() {
 
-		const narrator = this.buildGetter(NarratorGetter).values;
-		const character = this.buildGetter(CharacterGetter,{
-			fandom: this.post.fandom
-		}).values.name;
+		const dialog = this.buildGetter(NarratorGetter).narrate(this.post.choices[0]);
+		const character = this.buildGetter(CharacterGetter).values.name;
 		const chances = this.buildGetter(ChancesGetter);
 
 		let more = {};
 		more.extras = {
 			character: character,
-			dialog: this.buildGetter(NarratorGetter).narrate(this.post.choices[0])
+			dialog: dialog
 		};
 
 		let values = this.buildGetter(BinaryChoicesGetter).values;

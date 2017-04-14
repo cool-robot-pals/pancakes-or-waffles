@@ -8,6 +8,7 @@ export default class extends abstractGetter {
 
 	constructor(defaults={}) {
 		super(defaults);
+		this.fandom = this.defaults.fandom;
 		this.narrator = this.parse(narratorTxt);
 	}
 

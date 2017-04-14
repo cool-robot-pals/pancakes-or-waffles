@@ -16,6 +16,7 @@ export default class PostGetter extends abstractGetter {
 
 		super(defaults);
 		this.chances = this.buildGetter(ChancesGetter);
+		this.post = {};
 
 	}
 
@@ -72,7 +73,7 @@ export default class PostGetter extends abstractGetter {
 			skipName: characters[0].name
 		}).values);
 
-		this.fandom = fandom?fandom:this.randomArray(characters).fandom;
+		this.defaults.fandom = fandom?fandom:this.randomArray(characters).fandom;
 
 		let verb = this.chances.should('useSameVerb')?this.buildGetter(VerbGetter).value:undefined;
 		let choices = [];
@@ -89,7 +90,7 @@ export default class PostGetter extends abstractGetter {
 
 		return {
 			choices: choices,
-			fandom: this.fandom,
+			fandom: this.defaults.fandom,
 			query: query
 		};
 
