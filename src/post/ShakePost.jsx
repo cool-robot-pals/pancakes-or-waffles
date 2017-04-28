@@ -10,7 +10,7 @@ class ShakePost extends Post {
 
 	getMoreProps() {
 
- 		return {
+		return {
 			variants: [2,2,4,2],
 			choices: ['Shake the controller to '+decapitalizeFirstLetter(this.post.choices[0])]
 		};
