@@ -14,8 +14,8 @@
 .choice {
 	position: absolute;
 	top: 70%;
-	left: 20%;
-	right: 20%;
+	left: 30%;
+	right: 30%;
 	line-height: 1.4;
 	z-index: 9999;
 	text-align: center;
@@ -45,9 +45,24 @@
 }
 
 .post[data-variant*="(2=1)"] .choice:before {
+	font-size: 2em;
+	top: -3.5em;
+	background-image: url(assets/shake/shake-wii.png);
+	background-size: 80% auto;
+}
+
+.post[data-variant*="(2=2)"] .choice:before {
 	background-image: url(assets/shake/shake-alt.png);
 	background-color: transparent;
 	border: 2px solid #fff;
+}
+
+.post[data-variant*="(2=3)"] .choice:before {
+	font-size: 2em;
+	top: -3em;
+	background-image: url(assets/shake/shake-wii-alt.png);
+	background-color: transparent;
+	background-size: 80% auto;
 }
 
 .post[data-variant*="(3=1)"] .choice:before {
