@@ -19,6 +19,15 @@
 - name: Link
   search: breath of the wild
   fandom: zelda
+- name: 2B
+  search: nier 2b
+  fandom: nier
+- name: 9S
+  search: nier 9s
+  fandom: nier
+- name: A2
+  search: nier automata
+  fandom: nier
 - name: Fox
   search: star fox
   fandom: sfa
