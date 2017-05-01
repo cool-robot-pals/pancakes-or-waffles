@@ -7,8 +7,6 @@
 
 .bg {
 	composes: cover from './abstract/Post.css';
-	width: 960px;
-	margin: auto;
 }
 
 .choice {
