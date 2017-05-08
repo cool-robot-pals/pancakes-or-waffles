@@ -20,6 +20,7 @@ include:
 * Focusing on what is best for the community
 * Showing empathy towards other community members
 * Tabs are cooler than spaces
+* @dasilvacontin is to be feared
 
 Examples of unacceptable behavior by participants include:
 
