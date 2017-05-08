@@ -3,7 +3,3 @@ root = true
 [*]
 indent_style = space
 indent_size = 3
-
-[*.{json,yml,yaml}]
-indent_style = space
-indent_size = 2
