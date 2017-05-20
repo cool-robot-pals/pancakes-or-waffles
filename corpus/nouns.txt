@@ -26,7 +26,6 @@ shadow (only=ownable,singular=always)
 waffle
 pancake
 gender
-patriarchy (singular=always)
 tears (proper)
 donut
 cheeseburger
@@ -70,6 +69,8 @@ phone
 bucket
 lamp
 
+
+patriarchy (only=proper)
 
 Arcadia Bay (proper,only=proper)
 Blackwell Academy (proper,only=proper)
