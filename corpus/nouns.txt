@@ -69,8 +69,7 @@ phone
 bucket
 lamp
 
-
-patriarchy (only=proper)
+patriarchy (singular=always,only=proper)
 
 Arcadia Bay (proper,only=proper)
 Blackwell Academy (proper,only=proper)
