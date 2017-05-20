@@ -69,6 +69,8 @@ moon rocks (plural=always)
 phone
 bucket
 lamp
+romance
+disco
 
 
 Arcadia Bay (proper,only=proper)
