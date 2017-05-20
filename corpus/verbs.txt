@@ -97,3 +97,4 @@ smell
 throw @characterOrThing at
 throw @characterOrThing under
 toot
+panic at

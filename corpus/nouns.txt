@@ -68,6 +68,8 @@ moon rocks (plural=always)
 phone
 bucket
 lamp
+romance
+disco
 
 patriarchy (singular=always,only=proper)
 
