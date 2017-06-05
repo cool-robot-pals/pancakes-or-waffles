@@ -84,7 +84,7 @@ gulp.task('webshot', done => {
 		onConsoleMessage: function(text){
 			gutil.log(text);
 		},
-		phantomPath: require('phantomjs2').path,
+		phantomPath: require('phantomjs-prebuilt').path,
 		errorIfJSException: true,
 		screenSize: {
 			width: 1280,
