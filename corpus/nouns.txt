@@ -46,16 +46,8 @@ alcohol (proper)
 tea (proper)
 potion
 triforce
-amulet
-journal
-alien
-demon
-monster
-insect (an)
-boat
-car
-taxi
-office (singular=always)
+warehouse
+house
 bus
 box
 switch
