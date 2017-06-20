@@ -41,6 +41,8 @@ shark
 bear
 raccoon
 gun
+enemies
+friends
 stimpak
 alcohol (proper)
 tea (proper)
