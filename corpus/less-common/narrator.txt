@@ -10,5 +10,5 @@ $1[?,!]
 Aw, [gee whiz,shucks]... [You,We,I] hate to $1
 $1, @characterOrThing[!?,!,?]
 @character... I promised to $1[! I believe in you!,!]
-[What's with you,Buzz Off,,Help] @character[... , ]I [asked,need,require] you to $1[ ,!]
+[What's with you,Buzz Off,,Help] @character[...,?,!] I [asked,need,require] you to $1[ ,!]
 [Time, It's time] to $1, @character!
