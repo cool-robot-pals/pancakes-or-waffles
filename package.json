@@ -20,7 +20,7 @@
     "clean-webpack-plugin": "^0.1.15",
     "css-loader": "^0.28.4",
     "es6-promise-promise": "^1.0.0",
-    "eslint": "^3.19.0",
+    "eslint": "^4.2.0",
     "eslint-plugin-react": "^7.0.1",
     "extract-text-webpack-plugin": "^2.0.0-rc.3",
     "file-loader": "^0.11.2",
