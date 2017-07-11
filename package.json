@@ -43,7 +43,7 @@
     "style-loader": "^0.18.2",
     "twit": "^2.2.5",
     "url-loader": "^0.5.7",
-    "webpack": "^2.6.1",
+    "webpack": "^3.1.0",
     "webpack-merge": "^4.0.0",
     "webshot": "git://github.com/walaura/node-webshot",
     "yaml-loader": "^0.4.0"
