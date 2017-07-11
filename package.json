@@ -22,7 +22,7 @@
     "es6-promise-promise": "^1.0.0",
     "eslint": "^3.19.0",
     "eslint-plugin-react": "^7.0.1",
-    "extract-text-webpack-plugin": "^2.0.0-rc.3",
+    "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
     "fs-extra": "^3.0.1",
     "gulp": "github:gulpjs/gulp#4.0",
@@ -43,7 +43,7 @@
     "style-loader": "^0.18.2",
     "twit": "^2.2.5",
     "url-loader": "^0.5.7",
-    "webpack": "^2.6.1",
+    "webpack": "^3.1.0",
     "webpack-merge": "^4.0.0",
     "webshot": "git://github.com/walaura/node-webshot",
     "yaml-loader": "^0.4.0"
