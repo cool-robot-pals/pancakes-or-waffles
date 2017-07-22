@@ -61,20 +61,26 @@
 - name: Krystal
   search: star fox krystal
   fandom: sfa
-- name: Rubi
-  search: wet rubi
-  fandom: wet
-- name: Mr. Ackers
-  search: wet
-  fandom: wet
-- name: Tarantula
-  search: wet
-  fandom: wet
+- name: Pearl
+  search: splatoon pearl
+  fandom: splatoon
+- name: Marina
+  search: splatoon marina
+  fandom: splatoon
+- name: Marie
+  search: splatoon marie
+  fandom: splatoon
+- name: Callie
+  search: splatoon callie
+  fandom: splatoon
 - name: Sonic
   search: sonic
   fandom: sonic
 - name: Shadow
   search: sonic shadow
+  fandom: sonic
+- name: Infinite
+  search: sonic Infinite
   fandom: sonic
 - name: Tails
   search: sonic tails
