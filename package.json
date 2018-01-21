@@ -19,6 +19,7 @@
     "change-case": "^3.0.1",
     "clean-webpack-plugin": "^0.1.15",
     "css-loader": "^0.28.4",
+    "dotenv": "^4.0.0",
     "es6-promise-promise": "^1.0.0",
     "eslint": "^4.2.0",
     "eslint-plugin-react": "^7.0.1",

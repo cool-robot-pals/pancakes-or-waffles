@@ -8,7 +8,7 @@ const gutil = require('gulp-util');
 const argv = require('minimist')(process.argv.slice(2));
 
 const env = require('./src/env.js');
-
+const fetchRandomImage = require('./etc/tools/fetchRandomImage.js');
 
 gulp.task('tweet', done => {
 	var Twit = require('twit');
@@ -136,16 +136,23 @@ gulp.task('mocha', function(done) {
 });
 
 
+gulp.task('fetchRandomImage', function(done) {
+	fetchRandomImage().then(()=>{
+    done();
+  })
+});
+
+
 gulp.task('test',
 	gulp.series('mocha')
 );
 
 
 gulp.task('shitpost',
-	gulp.series('webpack','webshot','tweet')
+	gulp.series('webpack','fetchRandomImage','webshot','tweet')
 );
 
 
 gulp.task('localpost',
-	gulp.series('webpack','webshot','upload')
+	gulp.series('webpack','fetchRandomImage','webshot','upload')
 );

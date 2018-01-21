@@ -2,7 +2,6 @@ import React from 'react';
 
 import PostGetter from 'getter/post';
 
-import photoGetter from 'lib/photoGetter';
 import formatPropExtras from 'lib/formatPropExtras';
 import usesGetter from 'lib/decorator/usesGetter';
 
@@ -57,21 +56,13 @@ class Post extends React.Component {
 	}
 
 	componentDidMount() {
-		photoGetter(this.state.query,{
-			seed: this.seed
-		})
-		.then(photos => {
-			this.setState({
-				bg: photos.url,
-				report: {
-					...this.state.report,
-					photoQuery: photos
-				}
-			});
-		})
-		.catch(e => {
-			console.error(e);
-		});
+    this.setState({
+      bg: './photo.tiff',
+      report: {
+        ...this.state.report,
+        photoQuery: photos
+      }
+    })
 	}
 
 	render() {
