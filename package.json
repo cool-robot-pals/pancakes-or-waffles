@@ -52,7 +52,7 @@
     "yaml-loader": "^0.5.0"
   },
   "engines": {
-    "node": "^7.10.1"
+    "node": "^8.4.0"
   },
   "homepage": "https://twitter.com/pancakesorwaffl",
   "keywords": [
