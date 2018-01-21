@@ -122,17 +122,6 @@ gulp.task('mocha', function(done) {
 	.src(
 		path.join(config.paths.test, config.filenames.test+'.html')
 	)
-	.pipe(
-		mochaPhantomJS({
-			suppressStderr: false,
-			phantomjs: {
-				settings: {
-					webSecurityEnabled: false,
-					localToRemoteUrlAccessEnabled: true
-				}
-			}
-		})
-	);
 });
 
 

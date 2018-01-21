@@ -56,13 +56,13 @@ class Post extends React.Component {
 	}
 
 	componentDidMount() {
-    this.setState({
-      bg: './photo.tiff',
-      report: {
-        ...this.state.report,
-        photoQuery: photos
-      }
-    })
+		this.setState({
+			bg: './photo.tiff',
+			report: {
+				...this.state.report,
+				photoQuery: photos
+			}
+		});
 	}
 
 	render() {
@@ -73,11 +73,11 @@ class Post extends React.Component {
 			<div
 				styleName={'post'}
 				data-variant=
-				{
-					this.state.variant.map((variant,idx) => {
-						return `(${idx}=${variant})`;
-					})
-				}
+					{
+						this.state.variant.map((variant,idx) => {
+							return `(${idx}=${variant})`;
+						})
+					}
 			>
 				{
 					[1,2].map(additionalContainer => {
@@ -96,7 +96,7 @@ class Post extends React.Component {
 							styleName='extra'
 							style={extra.style}
 						>
-								<span>{extra.value}</span>
+							<span>{extra.value}</span>
 						</div>;
 					})
 				}

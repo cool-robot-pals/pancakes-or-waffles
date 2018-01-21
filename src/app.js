@@ -34,29 +34,29 @@ const makePost = (seed=makeSeed(),defaults={}) => {
 	posts.push(post);
 
 	System.import('post/'+changeCase.pascal(`${layout}-post`))
-	.then(Post => {
+		.then(Post => {
 
-		let $post = React.createElement(
-			Post,
-			{
-				seed: seed,
-				key: $posts.length,
-				onUpdate: (state) => {
-					Object.assign(post,state);
+			let $post = React.createElement(
+				Post,
+				{
+					seed: seed,
+					key: $posts.length,
+					onUpdate: (state) => {
+						Object.assign(post,state);
+					}
 				}
-			}
-		);
+			);
 
-		$posts.push($post);
+			$posts.push($post);
 
-		render(React.createElement(
-			'div',
-			null,
-			$posts
-		),document.getElementById('tough-choices-bot'));
+			render(React.createElement(
+				'div',
+				null,
+				$posts
+			),document.getElementById('tough-choices-bot'));
 
-	})
-	.catch(console.error);
+		})
+		.catch(console.error);
 
 };
 

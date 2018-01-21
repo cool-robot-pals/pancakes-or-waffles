@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config();
 
 const request = require('request');
 const http = require('http');
@@ -84,32 +84,32 @@ const fetchImageData = async function(query,{
 };
 
 const download = (uri, filename) =>
-  new Promise((yay, nay) => {
-    request.head(uri, function(err, res, body){
-      console.log('content-type:', res.headers['content-type']);
-      console.log('content-length:', res.headers['content-length']);
-      if(err){
-        nay()
-      }
-      else {
-        request(uri).pipe(fs.createWriteStream(filename)).on('close', yay);
-      }
-    });
-  })
+	new Promise((yay, nay) => {
+		request.head(uri, function(err, res, body){
+			console.log('content-type:', res.headers['content-type']);
+			console.log('content-length:', res.headers['content-length']);
+			if(err){
+				nay();
+			}
+			else {
+				request(uri).pipe(fs.createWriteStream(filename)).on('close', yay);
+			}
+		});
+	});
 
 const saveRandomImage = () => 
-  fetchImageData()
-  .then(photo => 
-    new Promise((yay, nay)=>{
-      mkdirp('build', err => {
-        if (!err) yay(photo)
-        else throw err;
-      })
-    })
-  )
-  .then(photo => 
-    download(photo.url, 'build/undefined')
-  )
+	fetchImageData()
+		.then(photo => 
+			new Promise((yay, nay)=>{
+				mkdirp('build', err => {
+					if (!err) yay(photo);
+					else throw err;
+				});
+			})
+		)
+		.then(photo => 
+			download(photo.url, 'build/undefined')
+		);
   
   
 module.exports = saveRandomImage;
