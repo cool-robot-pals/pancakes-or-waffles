@@ -10,7 +10,7 @@ export default function(Target) {
 				...defaults,
 				seed: this.seed
 			},
-				options
+			options
 			);
 		}
 

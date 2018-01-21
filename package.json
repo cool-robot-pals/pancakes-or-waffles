@@ -19,6 +19,7 @@
     "change-case": "^3.0.1",
     "clean-webpack-plugin": "^0.1.15",
     "css-loader": "^0.28.4",
+    "dotenv": "^4.0.0",
     "es6-promise-promise": "^1.0.0",
     "eslint": "^4.2.0",
     "eslint-plugin-react": "^7.0.1",
@@ -26,6 +27,7 @@
     "file-loader": "^0.11.2",
     "fs-extra": "^3.0.1",
     "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-util": "^3.0.8",
     "gulp-mocha-phantomjs": "^0.12.1",
     "html-webpack-plugin": "^2.28.0",
     "minimist": "^1.2.0",
@@ -71,5 +73,8 @@
     "make-dll": "webpack --config etc/vendor-dll.webpack.config",
     "shitpost": "gulp shitpost",
     "test": "gulp test"
+  },
+  "devDependencies": {
+    "gulp-util": "^3.0.8"
   }
 }
