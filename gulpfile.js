@@ -75,10 +75,7 @@ gulp.task('webshot', done => {
 	const takeScreenshot = async (url, outPath, viewportOptions) => {
 		const browser = await puppeteer.launch();
 		const page = await browser.newPage();
-		await page.setViewport({
-			width: 1280,
-			height: 720
-		})
+		await page.setViewport(viewportOptions)
 		await page.goto(url);
 		await page.screenshot({path: outPath});
 
