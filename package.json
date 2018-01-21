@@ -34,9 +34,9 @@
     "minimist": "^1.2.0",
     "mocha": "^3.2.0",
     "number-to-text": "^0.3.2",
-    "phantomjs-prebuilt": "^2.1.14",
     "pluralize": "^5.0.0",
     "postcss-loader": "^2.0.5",
+    "puppeteer": "^1.0.0",
     "query-string": "^4.3.2",
     "raw-loader": "^0.5.1",
     "react": "^15.4.2",
@@ -48,7 +48,6 @@
     "url-loader": "^0.5.7",
     "webpack": "^3.1.0",
     "webpack-merge": "^4.0.0",
-    "webshot": "git://github.com/walaura/node-webshot",
     "yaml-loader": "^0.5.0"
   },
   "engines": {
