@@ -66,25 +66,25 @@ gulp.task('upload', done => {
 
 
 gulp.task('webshot', done => {
-	const puppeteer = require('puppeteer')
-	const url = 'file://'+path.resolve(config.paths.build, config.filenames.base+'.html')
-	const outPath = path.join(config.paths.build, config.filenames.base+'.jpg')
-	const viewportOptions = {width: 1280, height: 720}
+	const puppeteer = require('puppeteer');
+	const url = 'file://' + path.resolve(config.paths.build, config.filenames.base + '.html');
+	const outPath = path.join(config.paths.build, config.filenames.base + '.jpg');
+	const viewportOptions = { width: 1280, height: 720 };
 
 	// Source: https://github.com/GoogleChrome/puppeteer#usage
 	const takeScreenshot = async (puppet, url, outPath, viewportOptions) => {
 		const browser = await puppet.launch();
 		const page = await browser.newPage();
-		await page.setViewport(viewportOptions)
+		await page.setViewport(viewportOptions);
 		await page.goto(url);
-		await page.screenshot({path: outPath});
+		await page.screenshot({ path: outPath });
 
 		await browser.close();
-	}
+	};
 
 	takeScreenshot(puppeteer, url, outPath, viewportOptions)
 		.then(done)
-		.catch(console.error)
+		.catch(console.error);
 });
 
 
