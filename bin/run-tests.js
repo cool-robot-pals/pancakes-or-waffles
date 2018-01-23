@@ -35,7 +35,7 @@ const listenForMocha = async () => {
 
 		page.on('pageerror', err => {
 			nay(err);
-		})
+		});
 
 		page.goto(url);
 
@@ -54,5 +54,5 @@ server.listen(port, () => {
 			reporter.error(err);
 			console.log(err);
 			process.exit();
-		})
+		});
 });
