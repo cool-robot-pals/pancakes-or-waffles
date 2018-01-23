@@ -40,6 +40,7 @@
     "react": "^15.4.2",
     "react-css-modules": "^4.1.0",
     "react-dom": "^15.4.2",
+    "request": "^2.83.0",
     "seedrandom": "^2.4.2",
     "style-loader": "^0.18.2",
     "twit": "^2.2.5",

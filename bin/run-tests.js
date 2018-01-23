@@ -16,25 +16,43 @@ const outPath = path.join(__dirname, '..', config.paths.build, config.filenames.
 
 // Source: https://github.com/GoogleChrome/puppeteer#usage
 const listenForMocha = async () => {
+
 	const browser = await puppeteer.launch({
-		args: ['--no-sandbox']
+		args: ['--no-sandbox'],
 	});
 	const page = await browser.newPage();
-	await Promise.all(page.goto(url));
 
-  page.on('console', msg => {
-    console.log(msg);
-  });
+	return new Promise((yay, nay) => {
 
-	await page.waitFor(2000);
-	await browser.close();
-	return log;
+		page.on('console', msg => {
+			if(msg.text() === 'done'){
+				yay();
+			}
+			else {
+				console.log(msg.text());
+			}
+		});
+
+		page.on('pageerror', err => {
+			nay(err);
+		})
+
+		page.goto(url);
+
+	});
+
 };
 
-server.listen(port, ()=>{
+server.listen(port, () => {
 	reporter.success('Server running');
-	listenForMocha().then((log)=>{
-		reporter.success('Tests ran');
-		process.exit();
-	}).catch(reporter.error);
+	listenForMocha()
+		.then(()=>{
+			reporter.success('Tests ran');
+			process.exit();
+		})
+		.catch((err)=>{
+			reporter.error(err);
+			console.log(err);
+			process.exit();
+		})
 });

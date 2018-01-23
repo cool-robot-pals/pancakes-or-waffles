@@ -10,7 +10,7 @@ const pagesToLoad = 1;
 const apiUrl = 'https://www.googleapis.com/customsearch/v1';
 
 const googleImageSearch = async function(query,{
-	debug = true
+	debug = false
 }={}) {
 
 	const parameters = {

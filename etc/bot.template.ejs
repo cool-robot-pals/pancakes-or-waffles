@@ -12,6 +12,6 @@
 		<script src="test/test.js"></script>
 		<div id="mocha"></div>
 		<link href="test/test.css" rel="stylesheet"></head>
-		<script>mocha.run();</script>
+		<script>mocha.reporter('spec').run((failures)=>{if(failures > 0){throw 0}else{console.log('done')}});</script>
 	<% } %>
 </html>
