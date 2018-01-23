@@ -7,12 +7,8 @@ const app = express();
 
 app.use(express.static(path.resolve(__dirname, '../build')));
 app.get('/', (req, res, next) => res.sendFile(path.resolve(__dirname, '../build/index.html')));
-app.get('/get-info', (req, res, next) =>
-	googleImageSearch(req.query.query).then(image=>
-		res.json({
-			image
-		})
-	)
+app.get('/get-image', (req, res, next) =>
+	googleImageSearch(req.query.query).then(res.json)
 );
 
 module.exports = app;
