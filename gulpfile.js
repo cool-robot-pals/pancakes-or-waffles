@@ -66,44 +66,25 @@ gulp.task('upload', done => {
 
 
 gulp.task('webshot', done => {
-	const webshot = require('webshot');
-	const options = {
-		renderDelay: 20000,
-		phantomConfig: {
-			'local-to-remote-url-access':'true',
-			'web-security':'false'
-		},
-		userAgent: 'Mozilla/4.0 (iPad; CPU OS 4_0_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/4.1 Mobile/9A405 Safari/7534.48.3',
-		quality: 100,
-		onLoadFinished: function(){
-			setTimeout(function(){
-				var log = (window.Post.posts[0].log());
-				log.map(function(line){console.log(line);});
-			},2000);
-		},
-		onConsoleMessage: function(text){
-			gutil.log(text);
-		},
-		phantomPath: require('phantomjs-prebuilt').path,
-		errorIfJSException: true,
-		screenSize: {
-			width: 1280,
-			height: 720
-		}
+	const puppeteer = require('puppeteer');
+	const url = 'file://' + path.resolve(config.paths.build, config.filenames.base + '.html');
+	const outPath = path.join(config.paths.build, config.filenames.base + '.jpg');
+	const viewportOptions = { width: 1280, height: 720 };
+
+	// Source: https://github.com/GoogleChrome/puppeteer#usage
+	const takeScreenshot = async (puppet, url, outPath, viewportOptions) => {
+		const browser = await puppet.launch();
+		const page = await browser.newPage();
+		await page.setViewport(viewportOptions);
+		await page.goto(url);
+		await page.screenshot({ path: outPath });
+
+		await browser.close();
 	};
 
-	let url = 'file://'+path.resolve(config.paths.build, config.filenames.base+'.html');
-	if(argv && argv.seed) url += '?seed='+argv.seed;
-
-	webshot(
-		url,
-		path.join(config.paths.build, config.filenames.base+'.jpg'),
-		options,
-		err => {
-			if(err) console.error(err);
-			else done();
-		}
-	);
+	takeScreenshot(puppeteer, url, outPath, viewportOptions)
+		.then(done)
+		.catch(console.error);
 });
 
 
