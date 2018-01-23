@@ -73,7 +73,9 @@ gulp.task('webshot', done => {
 
 	// Source: https://github.com/GoogleChrome/puppeteer#usage
 	const takeScreenshot = async (puppet, url, outPath, viewportOptions) => {
-		const browser = await puppet.launch();
+		const browser = await puppet.launch({
+			args: ['--no-sandbox']
+		});
 		const page = await browser.newPage();
 		await page.setViewport(viewportOptions);
 		await page.goto(url);
