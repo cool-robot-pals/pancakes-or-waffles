@@ -58,7 +58,6 @@ module.exports = {
 			},
 			template: path.join('etc','bot.template.ejs'),
 			filename: `${config.filenames.base}.html`,
-			base: `file://${__dirname}/${config.paths.build}/${config.filenames.base}.html`
 		}),
 		new HtmlWebpackPlugin({
 			title: '👁👄👁☝️',
@@ -66,7 +65,7 @@ module.exports = {
 				collapseWhitespace: true
 			},
 			template: path.join('etc','bot.template.ejs'),
-			filename: path.join('..',config.paths.test,config.filenames.test+'.html'),
+			filename: path.join('..',config.paths.build,config.filenames.test+'.html'),
 			test: true,
 			base: `file://${__dirname}/${config.paths.build}/${config.filenames.base}.html`
 		}),
