@@ -1,3 +1,7 @@
+const library = require('../src/app.js');
+
+window.Post = library;
+
 describe('Initialization', function() {
 	it('window.post should exist',function(done){
 		if(window.Post) {

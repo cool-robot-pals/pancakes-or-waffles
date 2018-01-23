@@ -34,7 +34,7 @@ const makePost = (seed=makeSeed(),defaults={}) => {
 	posts.push(post);
 
 	System.import('post/'+changeCase.pascal(`${layout}-post`))
-	.then(Post => {
+		.then(Post => {
 
 			let $post = React.createElement(
 				Post,
