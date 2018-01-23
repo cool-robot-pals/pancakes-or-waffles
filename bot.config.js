@@ -8,7 +8,7 @@ module.exports = {
 		'test': 'test'
 	},
 	'filenames': {
-		'base': 'choice',
+		'base': 'index',
 		'test': 'test'
 	}
 };

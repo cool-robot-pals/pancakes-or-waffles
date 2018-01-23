@@ -7,7 +7,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 
-const env = require('./src/env.js');
 const pkg = require('./package.json');
 
 
@@ -33,13 +32,6 @@ module.exports = {
 			children: true,
 			minChunks : 2
 		}),
-		new webpack.DefinePlugin((function(){
-			var rt = {};
-			Object.keys(process.env).map(function(key){
-				rt['process.env.'+key] = '"'+process.env[key]+'"';
-			});
-			return rt;
-		})()),
 		new webpack.SourceMapDevToolPlugin({
 			filename: '[file].map',
 			exclude: [/node_modules/]
@@ -58,7 +50,6 @@ module.exports = {
 			},
 			template: path.join('etc','bot.template.ejs'),
 			filename: `${config.filenames.base}.html`,
-			base: `file://${__dirname}/${config.paths.build}/${config.filenames.base}.html`
 		}),
 		new HtmlWebpackPlugin({
 			title: '👁👄👁☝️',
@@ -66,7 +57,7 @@ module.exports = {
 				collapseWhitespace: true
 			},
 			template: path.join('etc','bot.template.ejs'),
-			filename: path.join('..',config.paths.test,config.filenames.test+'.html'),
+			filename: path.join('..',config.paths.build,config.filenames.test+'.html'),
 			test: true,
 			base: `file://${__dirname}/${config.paths.build}/${config.filenames.base}.html`
 		}),

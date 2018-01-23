@@ -56,13 +56,19 @@ class Post extends React.Component {
 	}
 
 	componentDidMount() {
-		this.setState({
-			bg: './photo.tiff',
-			report: {
-				...this.state.report,
-				photoQuery: photos
-			}
-		});
+		fetch(`/get-image/?query=${this.state.query}`).then(res => res.json())
+			.then(image =>
+				this.setState({
+					bg: image.url,
+					report: {
+						...this.state.report,
+						photoQuery: image
+					}
+				})
+			)
+			.catch(e =>
+				console.error(e)
+			);
 	}
 
 	render() {

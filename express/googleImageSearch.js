@@ -1,13 +1,16 @@
-import request from 'browser-request';
-import env from 'env';
-import {randomArray,makeSeed} from 'lib/random';
+require('dotenv').config();
 
-const pagesToLoad = 6;
+const request = require('request');
+const http = require('http');
+const https = require('https');
+const fs = require('fs');
+const mkdirp = require('mkdirp');
+
+const pagesToLoad = 1;
 const apiUrl = 'https://www.googleapis.com/customsearch/v1';
 
-module.exports = function(query,{
-	debug = false,
-	seed = makeSeed()
+const googleImageSearch = async function(query,{
+	debug = false
 }={}) {
 
 	const parameters = {
@@ -23,8 +26,8 @@ module.exports = function(query,{
 		imgSize: 'xxlarge',
 		num: 10,
 		imgType: 'photo',
-		cx: env.googleSearchCx,
-		key: env.googleSearchKey
+		cx: process.env.MC_GOOGLE_CX,
+		key: process.env.MC_GOOGLE_KEY
 	};
 
 	return new Promise((resolve,reject) => {
@@ -38,13 +41,13 @@ module.exports = function(query,{
 			if(pagesLoaded >= pagesToLoad) {
 				resolve({
 					total: results.length,
-					url: randomArray(results,seed).link
+					url: results[Math.floor(Math.random() * results.length)].link
 				});
 			}
 		};
 
 		for(let i = 0; i < pagesToLoad; i++) {
-			if(!env.googleSearchCx || debug === true) {
+			if(!process.env.MC_GOOGLE_CX || debug === true) {
 				onResults([
 					{
 						image: {
@@ -59,12 +62,10 @@ module.exports = function(query,{
 				request({
 					url: apiUrl,
 					json: true,
-					qs: Object.assign(
-						{}, parameters,
-						{
-							start: (10*i)+1
-						}
-					)
+					qs: {
+						...parameters,
+						start: (10*i)+1
+					}
 				},(error,response,body)=>{
 					if(error || !body.items && results.length < 1) {
 						reject(error?error:'req failed');
@@ -81,3 +82,5 @@ module.exports = function(query,{
 
 	});
 };
+
+module.exports = googleImageSearch;
