@@ -7,7 +7,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 
-const env = require('./src/env.js');
 const pkg = require('./package.json');
 
 
@@ -33,13 +32,6 @@ module.exports = {
 			children: true,
 			minChunks : 2
 		}),
-		new webpack.DefinePlugin((function(){
-			var rt = {};
-			Object.keys(process.env).map(function(key){
-				rt['process.env.'+key] = '"'+process.env[key]+'"';
-			});
-			return rt;
-		})()),
 		new webpack.SourceMapDevToolPlugin({
 			filename: '[file].map',
 			exclude: [/node_modules/]
