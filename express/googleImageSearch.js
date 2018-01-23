@@ -9,8 +9,8 @@ const mkdirp = require('mkdirp');
 const pagesToLoad = 1;
 const apiUrl = 'https://www.googleapis.com/customsearch/v1';
 
-const fetchImageData = async function(query,{
-	debug = false
+const googleImageSearch = async function(query,{
+	debug = true
 }={}) {
 
 	const parameters = {
@@ -83,33 +83,4 @@ const fetchImageData = async function(query,{
 	});
 };
 
-const download = (uri, filename) =>
-	new Promise((yay, nay) => {
-		request.head(uri, function(err, res, body){
-			console.log('content-type:', res.headers['content-type']);
-			console.log('content-length:', res.headers['content-length']);
-			if(err){
-				nay();
-			}
-			else {
-				request(uri).pipe(fs.createWriteStream(filename)).on('close', yay);
-			}
-		});
-	});
-
-const saveRandomImage = () => 
-	fetchImageData()
-		.then(photo => 
-			new Promise((yay, nay)=>{
-				mkdirp('build', err => {
-					if (!err) yay(photo);
-					else throw err;
-				});
-			})
-		)
-		.then(photo => 
-			download(photo.url, 'build/undefined')
-		);
-  
-  
-module.exports = saveRandomImage;
+module.exports = googleImageSearch;
