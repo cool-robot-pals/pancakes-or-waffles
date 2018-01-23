@@ -16,6 +16,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-react": "^6.23.0",
     "babel-preset-target": "0.0.5",
+    "chalk": "^2.3.0",
     "change-case": "^3.0.1",
     "clean-webpack-plugin": "^0.1.15",
     "css-loader": "^0.28.4",
