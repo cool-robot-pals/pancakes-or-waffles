@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 /*eslint no-console:0 */
+/*global window */
 
 require('dotenv').config();
 
