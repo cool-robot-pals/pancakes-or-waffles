@@ -1,12 +1,12 @@
 import {makeSeed} from 'lib/random';
 
 const lookup = {
-	thingPlural: /\@thing.plural\.s/g,
-	thingSingular: /\@thing.singular/g,
-	thing: /\@thing/g,
-	adjective: /\@adjective/g,
-	characterOrThing: /\@characterOrThing/g,
-	character: /\@character/g,
+	thingPlural: /@thing.plural\.s/g,
+	thingSingular: /@thing.singular/g,
+	thing: /@thing/g,
+	adjective: /@adjective/g,
+	characterOrThing: /@characterOrThing/g,
+	character: /@character/g,
 };
 const lookupKeys = Object.keys(lookup);
 

@@ -33,7 +33,7 @@ const makePost = (seed=makeSeed(),defaults={}) => {
 	};
 	posts.push(post);
 
-	System.import('post/'+changeCase.pascal(`${layout}-post`))
+	System.import('post/'+changeCase.pascal(`${layout}-post`)) // eslint-disable-line no-undef
 		.then(Post => {
 
 			let $post = React.createElement(

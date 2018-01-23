@@ -68,7 +68,7 @@ class Post extends React.Component {
 			)
 			.catch(e =>
 				console.error(e)
-  	);
+			);
 	}
 
 	render() {

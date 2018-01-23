@@ -22,7 +22,7 @@ module.exports = function(source) {
 		.replace(new RegExp('-@negaposi-', 'g'),random(['-','']));
 
 	source = source
-		.replace(/\-@\-maybe\-\{([\s\S]+?)\}/mg,function(match,m1){
+		.replace(/-@-maybe-\{([\s\S]+?)\}/mg,function(match,m1){
 			return Math.random()>.5?m1:'';
 		});
 

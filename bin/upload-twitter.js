@@ -5,6 +5,7 @@ require('dotenv').config();
 
 const path = require('path');
 const Twit = require('twit');
+const fs = require('fs');
 const reporter = require('./tools/reporter.js');
 const config = require('../bot.config.js');
 
