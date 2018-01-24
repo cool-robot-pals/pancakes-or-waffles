@@ -80,7 +80,7 @@ module.exports = {
 				})
 			},
 			{
-				test: /\.jsx?$/,
+				test: /\.js$/,
 				exclude: [
 					/node_modules/,
 				],
@@ -95,7 +95,6 @@ module.exports = {
 		libraryTarget: 'umd'
 	},
 	resolve: {
-		extensions: ['.js', '.jsx'],
 		alias: {
 			'corpus': path.resolve(__dirname,'corpus'),
 			'data': path.resolve(__dirname,'data')

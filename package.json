@@ -52,7 +52,7 @@
     "url": "https://github.com/walaura/tough-choices-bot.git"
   },
   "scripts": {
-    "esfix": "eslint --ext=jsx --ext=js --ignore-pattern dll --ignore-path .gitignore --fix .",
+    "esfix": "eslint --ignore-path .gitignore --fix .",
     "webpack": "webpack --hide-modules",
     "install": "npm run webpack",
     "localpost": "npm run webpack && ./bin/screenshot.js && ./bin/upload.js",

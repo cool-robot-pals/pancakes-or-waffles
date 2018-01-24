@@ -36,6 +36,6 @@ const abstractGetter = class {
 		};
 	}
 
-}
+};
 
 export default usesGetter(abstractGetter);

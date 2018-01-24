@@ -36,7 +36,7 @@ const makePost = (seed=makeSeed(),defaults={}) => {
 	System.import('post/'+postname) // eslint-disable-line no-undef
 		.then(PostJs =>
 			new PostJs.default({
-					seed: seed,
+				seed: seed,
 			})
 		).then(postInstance =>
 			Promise.all([
@@ -48,7 +48,7 @@ const makePost = (seed=makeSeed(),defaults={}) => {
 			document.getElementById('tough-choices-bot').appendChild(postInstance.$element);
 		})
 		.catch(err=>{
-			debugger;
+			
 			console.error(err);
 		});
 

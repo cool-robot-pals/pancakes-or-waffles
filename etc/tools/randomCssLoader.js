@@ -29,4 +29,4 @@ export default function(source) {
 	this.value = source;
 	return source;
 
-};
+}
