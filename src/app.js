@@ -23,7 +23,7 @@ const makePost = (seed=makeSeed(),defaults={}) => {
 		...defaults
 	}).value;
 
-	let post = {
+	const post = {
 		layout: layout,
 		log: function(){
 			return logger(this);
@@ -31,9 +31,11 @@ const makePost = (seed=makeSeed(),defaults={}) => {
 	};
 	posts.push(post);
 
-	System.import('post/'+changeCase.pascal(`${layout}-post`)) // eslint-disable-line no-undef
-		.then(Post =>
-			new Post({
+	const postname = changeCase.pascal(`${layout}-post`);
+
+	System.import('post/'+postname) // eslint-disable-line no-undef
+		.then(PostJs =>
+			new PostJs.default({
 					seed: seed,
 			})
 		).then(postInstance =>
@@ -45,7 +47,10 @@ const makePost = (seed=makeSeed(),defaults={}) => {
 			$posts.push(postInstance);
 			document.getElementById('tough-choices-bot').appendChild(postInstance.$element);
 		})
-		.catch(console.error);
+		.catch(err=>{
+			debugger;
+			console.error(err);
+		});
 
 };
 
@@ -84,4 +89,3 @@ const exportable = (()=>{
 })();
 
 export default exportable;
-module.exports = exportable;

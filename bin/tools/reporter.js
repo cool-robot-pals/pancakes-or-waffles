@@ -10,4 +10,4 @@ const reporter = {
 
 };
 
-module.exports = reporter;
+export default reporter;

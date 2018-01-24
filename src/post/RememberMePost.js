@@ -7,4 +7,4 @@ import Post from './abstract/Post.js';
 
 class CustomPost extends Post {}
 
-module.exports = addStyles(CustomPost,styles);
+export default addStyles(CustomPost,styles);

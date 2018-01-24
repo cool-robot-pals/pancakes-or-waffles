@@ -50,8 +50,6 @@ class Post {
 
 	get $element() {
 
-		console.log(this.styles);
-
     const template =
     `
       <div

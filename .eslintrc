@@ -3,19 +3,14 @@
         "node": true,
         "es6" : true
     },
-    "extends": ["eslint:recommended","plugin:react/recommended"],
-    "parser": "babel-eslint",
+    "extends": ["eslint:recommended"],
     "parserOptions": {
         "ecmaVersion": 2017,
         "ecmaFeatures": {
             "experimentalObjectRestSpread": true,
-            "jsx": true
         },
         "sourceType": "module"
     },
-    "plugins": [
-        "react"
-    ],
     "rules": {
         "indent": [
             "error",
@@ -35,6 +30,5 @@
         ],
         "no-console": 0,
         "no-unused-vars": 0,
-        "react/prop-types": 0
     }
 }

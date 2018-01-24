@@ -7,10 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 
-const pkg = require('./package.json');
-
-
-module.exports = {
+export default {
 	entry: {
 		app: 'app'
 	},
@@ -18,15 +15,6 @@ module.exports = {
 		new CleanWebpackPlugin(
 			[config.paths.build]
 		),
-		new webpack.optimize.CommonsChunkPlugin({
-			name: 'promise',
-			filename: 'promise.js',
-			minChunks : 0
-		}),
-		new webpack.optimize.CommonsChunkPlugin({
-			children: true,
-			minChunks : 2
-		}),
 		new webpack.SourceMapDevToolPlugin({
 			filename: '[file].map',
 			exclude: [/node_modules/]
@@ -34,9 +22,6 @@ module.exports = {
 		new ExtractTextPlugin({
 			filename: '[name].css',
 			allChunks: true
-		}),
-		new webpack.optimize.MinChunkSizePlugin({
-			minChunkSize: 200000
 		}),
 		new HtmlWebpackPlugin({
 			title: '👁👄👁☝️',
