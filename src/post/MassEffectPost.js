@@ -28,6 +28,9 @@ class CustomPost extends Post {
 			more.choices = this.randomNumber('moreChoices') >= .5 ? [`[${values.good}]`,`[${values.bad}]`]:[`[${values.bad}]`,`[${values.good}]`];
 			return more;
 		}
+		else {
+			return {};
+		}
 
 	}
 
