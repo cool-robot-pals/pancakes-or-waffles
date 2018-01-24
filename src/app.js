@@ -12,28 +12,19 @@ import txtToArr from 'lib/txtToArr';
 import {makeSeed} from 'lib/random';
 
 
-let $posts = [];
-let posts = [];
-let layouts = new LayoutGetter().layouts;
+const posts = [];
+const layouts = new LayoutGetter().layouts;
 
 const makePost = (seed=makeSeed(),defaults={}) => {
 
-	let layout = new LayoutGetter({
+	const layout = new LayoutGetter({
 		seed: seed,
 		...defaults
 	}).value;
 
-	const post = {
-		layout: layout,
-		log: function(){
-			return logger(this);
-		}
-	};
-	posts.push(post);
-
 	const postname = changeCase.pascal(`${layout}-post`);
 
-	System.import('post/'+postname) // eslint-disable-line no-undef
+	return System.import('post/'+postname) // eslint-disable-line no-undef
 		.then(PostJs =>
 			new PostJs.default({
 				seed: seed,
@@ -44,27 +35,21 @@ const makePost = (seed=makeSeed(),defaults={}) => {
 				postInstance.onReadyState
 			])
 		).then(([postInstance]) => {
-			$posts.push(postInstance);
+			posts.push(postInstance);
 			document.getElementById('tough-choices-bot').appendChild(postInstance.$element);
 		})
 		.catch(err=>{
-			
 			console.error(err);
 		});
 
 };
 
+const mochaExports = {
+	PostGetter: PostGetter,
+	layouts: layouts
+};
 
-const exportable = (()=>{
-
-	let lib = {
-		makePost: makePost,
-		posts: posts,
-		mocha: {
-			PostGetter: PostGetter,
-			layouts: layouts
-		}
-	};
+const boot = () => {
 
 	/*qs*/
 	const queryStringParser = require('query-string');
@@ -82,10 +67,10 @@ const exportable = (()=>{
 	link.rel = 'stylesheet';
 	document.querySelector('head').appendChild(link);
 
-	lib.makePost(queryString.seed?queryString.seed:undefined);
+	makePost(queryString.seed?queryString.seed:undefined);
 
-	return lib;
+};
 
-})();
+boot();
 
-export default exportable;
+export { posts, makePost, mochaExports as mocha };

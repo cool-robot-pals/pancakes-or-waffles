@@ -1,6 +1,5 @@
-
-
 import PostGetter from 'getter/post';
+import logger from 'lib/logger';
 
 import formatPropExtras from 'lib/formatPropExtras';
 import usesGetter from 'lib/decorator/usesGetter';
@@ -34,6 +33,10 @@ class Post {
 			return Promise.resolve();
 		});
 
+	}
+
+	logState() {
+		return logger(this.state);
 	}
 
 	getMoreProps() {
