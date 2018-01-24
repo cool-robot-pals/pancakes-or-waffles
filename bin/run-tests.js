@@ -53,6 +53,6 @@ server.listen(port, () => {
 		.catch((err)=>{
 			reporter.error(err);
 			console.log(err);
-			process.exit();
+			process.exit(1);
 		});
 });
