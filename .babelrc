@@ -1,13 +1,11 @@
 {
 	"compact": false,
 	"plugins": [
-		"transform-decorators-legacy",
 		"transform-object-assign",
 		"transform-async-to-generator",
 		"transform-object-rest-spread"
 	],
 	"presets": [
-		["react"],
 		["target", {
 			"presets": ["es2015"],
 			"targets": [
