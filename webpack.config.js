@@ -7,7 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 
-export default {
+module.exports = {
 	entry: {
 		app: 'app'
 	},
