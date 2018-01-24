@@ -34,27 +34,18 @@ const makePost = (seed=makeSeed(),defaults={}) => {
 	posts.push(post);
 
 	System.import('post/'+changeCase.pascal(`${layout}-post`)) // eslint-disable-line no-undef
-		.then(Post => {
-
-			let $post = React.createElement(
-				Post,
-				{
+		.then(Post =>
+			new Post({
 					seed: seed,
-					key: $posts.length,
-					onUpdate: (state) => {
-						Object.assign(post,state);
-					}
-				}
-			);
-
-			$posts.push($post);
-
-			render(React.createElement(
-				'div',
-				null,
-				$posts
-			),document.getElementById('tough-choices-bot'));
-
+			})
+		).then(postInstance =>
+			Promise.all([
+				postInstance,
+				postInstance.onReadyState
+			])
+		).then(([postInstance]) => {
+			$posts.push(postInstance);
+			document.getElementById('tough-choices-bot').appendChild(postInstance.$element);
 		})
 		.catch(console.error);
 

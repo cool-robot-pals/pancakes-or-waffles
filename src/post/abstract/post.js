@@ -31,12 +31,12 @@ class Post {
     			...extraProps,
           extras: formatPropExtras(extraProps.extras),
     		};
-        return Promise.success();
+        return Promise.resolve();
     })
 
 	}
 
-	async getMoreProps() {
+	getMoreProps() {
 		return {};
 	}
 
@@ -48,19 +48,22 @@ class Post {
     return rt;
   }
 
-	render() {
-    return
+	get $element() {
+
+		console.log(this.styles);
+
+    const template =
     `
       <div
-        styleName="post"
+        class="${this.styles.post}"
         data-variant="${this.variant.map((variant,idx) => `(${idx}=${variant})`)}"
       >
         ${
           [1,2].map(additionalContainer =>
             `<div
-              styleName="ac-${additionalContainer}""
+							class="${this.styles['ac-'+additionalContainer]}"
             ></div>`
-          )
+          ).join('')
         }
         ${
           this.state.extras.map(extra =>
@@ -68,23 +71,28 @@ class Post {
               key="extra-${extra.key}"
               data-val="${extra.value}"
               data-name="${extra.key}"
-              styleName="extra"
+              class="${this.styles.extra}"
               style="${extra.style}"
             >
               <span>${extra.value}</span>
             </div>`
-          )
+          ).join('')
         }
-        <div styleName="choices">
+        <div class="${this.styles.choices}">
           ${
             this.state.choices.map(choice =>
-              `<div styleName="choice"><span>${choice}</span></div>`
-            )
+              `<div class="${this.styles.choice}"><span>${choice}</span></div>`
+            ).join('')
           }
         </div>
-        <div styleName="bg" data-sink="true" style="url('${this.state.bg}')" />
+        <div class="${this.styles.bg}" data-sink="true" style="background-image: url('${this.state.bg}')" />
       </div>
     `
+
+		const $div = document.createElement('div');
+		$div.innerHTML = template;
+
+		return $div;
 	}
 
 }

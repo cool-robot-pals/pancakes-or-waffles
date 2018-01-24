@@ -1,4 +1,4 @@
-export default (unmangledExtras) => {
+export default (unmangledExtras={}) => {
 	let extras = [];
 	Object.keys(unmangledExtras).map(extra => {
 		let style = {};
