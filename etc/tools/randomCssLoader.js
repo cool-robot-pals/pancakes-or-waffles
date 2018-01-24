@@ -29,4 +29,4 @@ module.exports = function(source) {
 	this.value = source;
 	return source;
 
-}
+};
