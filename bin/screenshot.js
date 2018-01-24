@@ -25,10 +25,10 @@ const takeScreenshot = async () => {
 		page.setViewport({ width: 1280, height: 720 }),
 		page.goto(url)
 	]);
-	const log = await page.evaluate(() => {
-		return (window.Pancakes.posts[0].logState());
-	});
 	await page.waitFor(2000);
+	const log = await page.evaluate(() => 
+		(window.Pancakes.posts[0].logState());
+	);
 	await page.screenshot({ path: outPath });
 
 	await browser.close();
