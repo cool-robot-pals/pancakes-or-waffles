@@ -1,8 +1,6 @@
 import css from 'assets/reset.css';
 import fontsTxt from 'internal-data/fonts.txt';
 
-import {render} from 'react-dom';
-import React from 'react';
 import changeCase from 'change-case';
 import queryString from 'query-string';
 
@@ -25,7 +23,7 @@ const makePost = (seed=makeSeed(),defaults={}) => {
 		...defaults
 	}).value;
 
-	let post = {
+	const post = {
 		layout: layout,
 		log: function(){
 			return logger(this);
@@ -33,30 +31,26 @@ const makePost = (seed=makeSeed(),defaults={}) => {
 	};
 	posts.push(post);
 
-	System.import('post/'+changeCase.pascal(`${layout}-post`)) // eslint-disable-line no-undef
-		.then(Post => {
+	const postname = changeCase.pascal(`${layout}-post`);
 
-			let $post = React.createElement(
-				Post,
-				{
-					seed: seed,
-					key: $posts.length,
-					onUpdate: (state) => {
-						Object.assign(post,state);
-					}
-				}
-			);
-
-			$posts.push($post);
-
-			render(React.createElement(
-				'div',
-				null,
-				$posts
-			),document.getElementById('tough-choices-bot'));
-
+	System.import('post/'+postname) // eslint-disable-line no-undef
+		.then(PostJs =>
+			new PostJs.default({
+				seed: seed,
+			})
+		).then(postInstance =>
+			Promise.all([
+				postInstance,
+				postInstance.onReadyState
+			])
+		).then(([postInstance]) => {
+			$posts.push(postInstance);
+			document.getElementById('tough-choices-bot').appendChild(postInstance.$element);
 		})
-		.catch(console.error);
+		.catch(err=>{
+			
+			console.error(err);
+		});
 
 };
 
@@ -95,4 +89,3 @@ const exportable = (()=>{
 })();
 
 export default exportable;
-module.exports = exportable;

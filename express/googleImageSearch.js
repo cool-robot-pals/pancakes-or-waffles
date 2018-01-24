@@ -6,12 +6,10 @@ const https = require('https');
 const fs = require('fs');
 const mkdirp = require('mkdirp');
 
-const pagesToLoad = 1;
+const pagesToLoad = 6;
 const apiUrl = 'https://www.googleapis.com/customsearch/v1';
 
-const googleImageSearch = async function(query,{
-	debug = false
-}={}) {
+const googleImageSearch = async function(query) {
 
 	const parameters = {
 		q: [
@@ -47,7 +45,7 @@ const googleImageSearch = async function(query,{
 		};
 
 		for(let i = 0; i < pagesToLoad; i++) {
-			if(!process.env.MC_GOOGLE_CX || debug === true) {
+			if(!process.env.MC_GOOGLE_CX) {
 				onResults([
 					{
 						image: {

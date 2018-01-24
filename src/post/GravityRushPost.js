@@ -1,15 +1,15 @@
-import React from 'react';
-import CSSModules from 'react-css-modules';
+import addStyles from 'lib/decorator/addStyles';
+
 
 import styles from './GravityRushPost.css';
-import Post from './abstract/Post.jsx';
+import Post from './abstract/Post.js';
 
 import {capitalizeFirstLetter,decapitalizeFirstLetter} from 'lib/stringies';
 import BinaryChoicesValues from 'getter/less-common/binaryChoices';
 import ChancesGetter from 'getter/chances';
 
 
-class GravityRushPost extends Post {
+class CustomPost extends Post {
 
 	positionMarker(anchor) {
 		const padding = 10;
@@ -75,6 +75,4 @@ class GravityRushPost extends Post {
 
 }
 
-module.exports = CSSModules(GravityRushPost,styles,{
-	errorWhenNotFound: false
-});
+export default addStyles(CustomPost,styles);

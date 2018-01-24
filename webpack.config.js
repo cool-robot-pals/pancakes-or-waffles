@@ -1,4 +1,4 @@
-const config = require('./bot.config.js');
+const config = require('./.pancakerc');
 
 const webpack = require('webpack');
 const path = require('path');
@@ -7,31 +7,14 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 
-const pkg = require('./package.json');
-
-
 module.exports = {
 	entry: {
-		app: 'app',
-		promise: 'es6-promise-promise'
+		app: 'app'
 	},
 	plugins: [
 		new CleanWebpackPlugin(
 			[config.paths.build]
 		),
-		new webpack.DllReferencePlugin({
-			context: '.',
-			manifest: require(path.resolve('.',config.paths.dll,'main-manifest.json'))
-		}),
-		new webpack.optimize.CommonsChunkPlugin({
-			name: 'promise',
-			filename: 'promise.js',
-			minChunks : 0
-		}),
-		new webpack.optimize.CommonsChunkPlugin({
-			children: true,
-			minChunks : 2
-		}),
 		new webpack.SourceMapDevToolPlugin({
 			filename: '[file].map',
 			exclude: [/node_modules/]
@@ -39,9 +22,6 @@ module.exports = {
 		new ExtractTextPlugin({
 			filename: '[name].css',
 			allChunks: true
-		}),
-		new webpack.optimize.MinChunkSizePlugin({
-			minChunkSize: 200000
 		}),
 		new HtmlWebpackPlugin({
 			title: '👁👄👁☝️',
@@ -60,10 +40,6 @@ module.exports = {
 			filename: path.join('..',config.paths.build,config.filenames.test+'.html'),
 			test: true,
 			base: `file://${__dirname}/${config.paths.build}/${config.filenames.base}.html`
-		}),
-		new AddAssetHtmlPlugin({
-			filepath: require.resolve(path.resolve(config.paths.dll,'main.bundle.js')),
-			includeSourcemap: false
 		})
 	],
 	module: {
@@ -75,7 +51,6 @@ module.exports = {
 				],
 				use: ExtractTextPlugin.extract([
 					'css-loader?modules&importLoaders=1&localIdentName=tc-[hash:base64:10]',
-					'postcss-loader',
 					'./'+config.paths.tools+'/randomCssLoader'
 				])
 			},
@@ -101,11 +76,11 @@ module.exports = {
 					path.resolve(__dirname, 'src','post')
 				],
 				use: ExtractTextPlugin.extract({
-					use: ['css-loader','postcss-loader']
+					use: ['css-loader']
 				})
 			},
 			{
-				test: /\.jsx?$/,
+				test: /\.js$/,
 				exclude: [
 					/node_modules/,
 				],
@@ -120,7 +95,6 @@ module.exports = {
 		libraryTarget: 'umd'
 	},
 	resolve: {
-		extensions: ['.js', '.jsx'],
 		alias: {
 			'corpus': path.resolve(__dirname,'corpus'),
 			'data': path.resolve(__dirname,'data')

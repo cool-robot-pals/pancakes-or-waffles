@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "unused-ignores": [
+      "mocha",
+      "eslint",
+      "concurrently",
+      "babel-core",
+      "*-loader"
+    ]
+  }
+}

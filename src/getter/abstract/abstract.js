@@ -4,8 +4,7 @@ import expandKeywords from 'lib/expandKeywords';
 
 import usesGetter from 'lib/decorator/usesGetter';
 
-@usesGetter
-export default class {
+const abstractGetter = class {
 
 	constructor(defaults={},options={}) {
 		this.seed = defaults.seed?defaults.seed:makeSeed();
@@ -37,4 +36,6 @@ export default class {
 		};
 	}
 
-}
+};
+
+export default usesGetter(abstractGetter);

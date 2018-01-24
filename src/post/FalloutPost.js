@@ -1,8 +1,8 @@
-import React from 'react';
-import CSSModules from 'react-css-modules';
+import addStyles from 'lib/decorator/addStyles';
+
 
 import styles from './FalloutPost.css';
-import Post from './abstract/Post.jsx';
+import Post from './abstract/Post.js';
 
 import NarratorGetter from 'getter/less-common/narrator';
 import FalloutGetter from 'getter/less-common/fallout';
@@ -11,7 +11,7 @@ import {capitalizeFirstLetter,decapitalizeFirstLetter} from 'lib/stringies';
 import {randomNumber} from 'lib/random';
 
 
-class FalloutPost extends Post {
+class CustomPost extends Post {
 
 	parseChoice(original) {
 
@@ -47,6 +47,4 @@ class FalloutPost extends Post {
 
 }
 
-module.exports = CSSModules(FalloutPost,styles,{
-	errorWhenNotFound: false
-});
+export default addStyles(CustomPost,styles);

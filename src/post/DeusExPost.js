@@ -1,14 +1,13 @@
-import React from 'react';
-import CSSModules from 'react-css-modules';
+import addStyles from 'lib/decorator/addStyles';
 
 import styles from './DeusExPost.css';
-import Post from './abstract/Post.jsx';
+import Post from './abstract/Post.js';
 
 import NarratorGetter from 'getter/less-common/narrator';
 import BinaryChoicesGetter from 'getter/less-common/binaryChoices';
 
 
-class DeusExPost extends Post {
+class CustomPost extends Post {
 
 	getMoreProps() {
 
@@ -24,6 +23,4 @@ class DeusExPost extends Post {
 
 }
 
-module.exports = CSSModules(DeusExPost,styles,{
-	errorWhenNotFound: false
-});
+export default addStyles(CustomPost,styles);

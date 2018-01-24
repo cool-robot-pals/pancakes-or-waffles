@@ -3,25 +3,38 @@ Creates fake video game screenshots decipting player choices
 
 <div align="center"><img src="https://pbs.twimg.com/media/C6awIPJXQAAgOcF.jpg:orig" /></div>
 
+
 ## Building
-To actually post a tweet you need to get all the variables on [src/env.js](https://github.com/walaura/tough-choices-bot/blob/master/src/env.js) inside your environment. Otherwise you can ignore that.
 
     $ npm install
     /*first time*/
 
-    $ npm run webpack --watch
-    /*for live development*/
+    $ npm run watch
+    /*for live development, on localhost:9191*/
+
+    $ npm run localpost
+    /*for posting a final photo to transfer.sh (private & requires no env. for testing)*/
 
     $ npm run shitpost
     /*for posting a final photo to twitter*/
 
-	$ npm run localpost
-	/*for posting a final photo to transfer.sh (private & requires no env. for testing)*/
+
+## Image Search
+To use Google image search you need an api key and a custom search engine. Get those and add them as env variables. Godspeed. We use [dotenv](https://www.npmjs.com/package/dotenv) so you can add them to a `.env` file for local dev.
+
+- MC_GOOGLE_CX
+-	MC_GOOGLE_KEY
+
+
+## Tweeting
+To actually use `npm run shitpost` you need the following env variables.
+- MC_TWITTER_APPK (consumer_key)
+- MC_TWITTER_APPS (consumer_secret)
+- MC_TWITTER_AT (access_token)
+- MC_TWITTER_S (access_token_secret)
 
 
 ## Testing
-The bot generates webpages, after doing an initial `webpack` you can just head to  `test/index.html` to open the test page ( or `build/index.html` to see the final result)
+The bot generates webpages, after the server is running you can visit `http://localhost:9191` to see the page the bot sees or `http://localhost:9191/test.html` to see a cool dashboard.
 
-<!-- When it comes to turning them into images, this poor thing runs on phantomJS, which is OLD, even as all js & css code (okay not that one yet) is transpiled and prefixed via babel i like to keep a copy of firefox 10 around to see if anything crashes as it does reporting. -->
-
-You can ensure code works by running `npm test` which will run the mocha test suite inside the same phantom instance, this tests for some code coverage but even more importantly it ensures the code runs AT ALL inside phantom, which is the most common bug here.
+You can ensure the code works by running `npm test`.

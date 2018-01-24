@@ -1,14 +1,14 @@
-import React from 'react';
-import CSSModules from 'react-css-modules';
+import addStyles from 'lib/decorator/addStyles';
+
 
 import styles from './ZeldaPost.css';
-import Post from './abstract/Post.jsx';
+import Post from './abstract/Post.js';
 
 import {capitalizeFirstLetter} from 'lib/stringies';
 import BinaryChoicesValues from 'getter/less-common/binaryChoices';
 import NarratorGetter from 'getter/less-common/narrator';
 
-class ZeldaPost extends Post {
+class CustomPost extends Post {
 
 	getMoreProps() {
 
@@ -29,6 +29,4 @@ class ZeldaPost extends Post {
 
 }
 
-module.exports = CSSModules(ZeldaPost,styles,{
-	errorWhenNotFound: false
-});
+export default addStyles(CustomPost,styles);

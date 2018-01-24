@@ -1,12 +1,10 @@
-import React from 'react';
-import CSSModules from 'react-css-modules';
-
 import styles from './ShakePost.css';
-import Post from './abstract/Post.jsx';
+import Post from './abstract/Post.js';
+import addStyles from 'lib/decorator/addStyles';
 
 import {decapitalizeFirstLetter} from 'lib/stringies';
 
-class ShakePost extends Post {
+class CustomPost extends Post {
 
 	getMoreProps() {
 
@@ -19,6 +17,4 @@ class ShakePost extends Post {
 
 }
 
-module.exports = CSSModules(ShakePost,styles,{
-	errorWhenNotFound: false
-});
+export default addStyles(CustomPost,styles);

@@ -5,7 +5,7 @@ require('dotenv').config();
 
 const path = require('path');
 const reporter = require('./tools/reporter.js');
-const config = require('../bot.config.js');
+const config = require('../.pancakerc');
 
 const spawn = require('child_process').spawn;
 const child = spawn('curl',[
