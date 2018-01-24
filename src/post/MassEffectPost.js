@@ -1,8 +1,8 @@
-import React from 'react';
-import CSSModules from 'react-css-modules';
+import addStyles from 'lib/decorator/addStyles';
+
 
 import styles from './MassEffectPost.css';
-import Post from './abstract/Post.jsx';
+import Post from './abstract/Post.js';
 
 import {capitalizeFirstLetter,decapitalizeFirstLetter} from 'lib/stringies';
 
@@ -11,7 +11,7 @@ import CharacterGetter from 'getter/character';
 import NarratorGetter from 'getter/less-common/narrator';
 import BinaryChoicesGetter from 'getter/less-common/binaryChoices';
 
-class MassEffectPost extends Post {
+class CustomPost extends Post {
 
 	getMoreProps() {
 
@@ -33,6 +33,4 @@ class MassEffectPost extends Post {
 
 }
 
-module.exports = CSSModules(MassEffectPost,styles,{
-	errorWhenNotFound: false
-});
+module.exports = addStyles(CustomPost,styles);

@@ -1,8 +1,6 @@
 import css from 'assets/reset.css';
 import fontsTxt from 'internal-data/fonts.txt';
 
-import {render} from 'react-dom';
-import React from 'react';
 import changeCase from 'change-case';
 import queryString from 'query-string';
 

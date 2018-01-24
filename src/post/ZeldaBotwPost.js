@@ -1,8 +1,8 @@
-import React from 'react';
-import CSSModules from 'react-css-modules';
+import addStyles from 'lib/decorator/addStyles';
+
 
 import styles from './ZeldaBotwPost.css';
-import Post from './abstract/Post.jsx';
+import Post from './abstract/Post.js';
 
 import {capitalizeFirstLetter,decapitalizeFirstLetter} from 'lib/stringies';
 import ChancesGetter from 'getter/chances';
@@ -10,7 +10,7 @@ import CharacterGetter from 'getter/character';
 import NarratorGetter from 'getter/less-common/narrator';
 import BinaryChoicesGetter from 'getter/less-common/binaryChoices';
 
-class ZeldaBotwPost extends Post {
+class CustomPost extends Post {
 
 	getMoreProps() {
 
@@ -33,6 +33,4 @@ class ZeldaBotwPost extends Post {
 
 }
 
-module.exports = CSSModules(ZeldaBotwPost,styles,{
-	errorWhenNotFound: false
-});
+module.exports = addStyles(CustomPost,styles);
