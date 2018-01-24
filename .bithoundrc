@@ -1,8 +1,10 @@
-"dependencies": {
-  "unused-ignores": [
-    "mocha",
-    "eslint",
-    "concurrently",
-    "*-loader"
-  ]
+{
+  "dependencies": {
+    "unused-ignores": [
+      "mocha",
+      "eslint",
+      "concurrently",
+      "*-loader"
+    ]
+  }
 }
