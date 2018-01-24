@@ -66,7 +66,6 @@
     "esfix": "eslint --ext=jsx --ext=js --ignore-pattern dll --ignore-path .gitignore --fix .",
     "webpack": "webpack --hide-modules",
     "install": "npm run webpack",
-    "make-dll": "webpack --config etc/vendor-dll.webpack.config",
     "localpost": "npm run webpack && ./bin/screenshot.js && ./bin/upload.js",
     "shitpost": "npm run webpack && ./bin/screenshot.js && ./bin/upload-twitter.js",
     "watch": "open http://localhost:9191 && concurrently \"./bin/start-server.js\" \"webpack --watch\"",
