@@ -28,10 +28,10 @@ To use Google image search you need an api key and a custom search engine. Get t
 
 ## Tweeting
 To actually use `npm run shitpost` you need the following env variables.
-- process.env.MC_TWITTER_APPK (consumer_key)
-- process.env.MC_TWITTER_APPS (consumer_secret)
-- process.env.MC_TWITTER_AT (access_token)
-- process.env.MC_TWITTER_S (access_token_secret)
+- MC_TWITTER_APPK (consumer_key)
+- MC_TWITTER_APPS (consumer_secret)
+- MC_TWITTER_AT (access_token)
+- MC_TWITTER_S (access_token_secret)
 
 
 ## Testing
