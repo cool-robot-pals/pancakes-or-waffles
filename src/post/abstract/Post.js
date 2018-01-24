@@ -64,24 +64,24 @@ class Post {
 					).join('')
 				}
 				${
-				this.state.extras.map(extra =>
-					`<div
-							key="extra-${extra.key}"
-							data-val="${extra.value}"
-							data-name="${extra.key}"
-							class="${this.styles.extra}"
-							style="${extra.style}"
-						>
-							<span>${extra.value}</span>
-						</div>`
+					this.state.extras.map(extra =>
+						`<div
+								key="extra-${extra.key}"
+								data-val="${extra.value}"
+								data-name="${extra.key}"
+								class="${this.styles.extra}"
+								style="${extra.style}"
+							>
+								<span>${extra.value}</span>
+							</div>`
 					).join('')
 				}
 				<div class="${this.styles.choices}">
 					${
-					this.state.choices.map(choice =>
-						`<div class="${this.styles.choice}"><span>${choice}</span></div>`
-					).join('')
-				}
+						this.state.choices.map(choice =>
+							`<div class="${this.styles.choice}"><span>${choice}</span></div>`
+						).join('')
+					}
 				</div>
 				<div class="${this.styles.bg}" data-sink="true" style="background-image: url('${this.state.bg}')" />
 			</div>
