@@ -66,7 +66,6 @@ module.exports = {
 				],
 				use: ExtractTextPlugin.extract([
 					'css-loader?modules&importLoaders=1&localIdentName=tc-[hash:base64:10]',
-					'postcss-loader',
 					'./'+config.paths.tools+'/randomCssLoader'
 				])
 			},
@@ -92,7 +91,7 @@ module.exports = {
 					path.resolve(__dirname, 'src','post')
 				],
 				use: ExtractTextPlugin.extract({
-					use: ['css-loader','postcss-loader']
+					use: ['css-loader']
 				})
 			},
 			{
