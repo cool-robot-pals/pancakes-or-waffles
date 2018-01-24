@@ -2,6 +2,7 @@
   "unused-ignores": [
     "mocha",
     "eslint",
-    "concurrently"
+    "concurrently",
+    "*-loader"
   ]
 }
