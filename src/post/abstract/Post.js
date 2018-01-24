@@ -57,15 +57,15 @@ class Post {
 				data-variant="${this.variant.map((variant,idx) => `(${idx}=${variant})`)}"
 			>
 				${
-	[1,2].map(additionalContainer =>
-		`<div
+					[1,2].map(additionalContainer =>
+						`<div
 							class="${this.styles['ac-'+additionalContainer]}"
 						></div>`
-	).join('')
-}
+					).join('')
+				}
 				${
-	this.state.extras.map(extra =>
-		`<div
+				this.state.extras.map(extra =>
+					`<div
 							key="extra-${extra.key}"
 							data-val="${extra.value}"
 							data-name="${extra.key}"
@@ -74,14 +74,14 @@ class Post {
 						>
 							<span>${extra.value}</span>
 						</div>`
-	).join('')
-}
+					).join('')
+				}
 				<div class="${this.styles.choices}">
 					${
-	this.state.choices.map(choice =>
-		`<div class="${this.styles.choice}"><span>${choice}</span></div>`
-	).join('')
-}
+					this.state.choices.map(choice =>
+						`<div class="${this.styles.choice}"><span>${choice}</span></div>`
+					).join('')
+				}
 				</div>
 				<div class="${this.styles.bg}" data-sink="true" style="background-image: url('${this.state.bg}')" />
 			</div>
