@@ -1,6 +1,6 @@
 const path = require('path');
 
-export default {
+module.exports = {
 	'paths': {
 		'build': 'build',
 		'dll': path.join('etc','dll'),
@@ -11,4 +11,4 @@ export default {
 		'base': 'index',
 		'test': 'test'
 	}
-};
+}

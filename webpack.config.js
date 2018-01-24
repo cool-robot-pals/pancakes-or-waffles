@@ -1,4 +1,4 @@
-const config = require('./bot.config.js');
+const config = require('./.pancakerc');
 
 const webpack = require('webpack');
 const path = require('path');

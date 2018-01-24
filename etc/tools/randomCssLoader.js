@@ -3,7 +3,7 @@ const random = function(arr) {
 };
 
 
-export default function(source) {
+module.exports = function(source) {
 
 	var alignments = ['left','right'];
 	var alignmentsWithCenter = ['left','right','center'];

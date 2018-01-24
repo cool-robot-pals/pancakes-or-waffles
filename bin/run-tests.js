@@ -7,7 +7,7 @@ const puppeteer = require('puppeteer');
 const path = require('path');
 
 const reporter = require('./tools/reporter.js');
-const config = require('../bot.config.js');
+const config = require('../.pancakerc');
 const server = require('../express/app.js');
 
 const port = 1337; /*bite me*/
