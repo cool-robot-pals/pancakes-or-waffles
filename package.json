@@ -6,7 +6,6 @@
   "bugs": "https://github.com/walaura/pancakes-or-waffles/issues",
   "dependencies": {
     "add-asset-html-webpack-plugin": "^2.0.1",
-    "autoprefixer": "^7.1.1",
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
     "babel-preset-stage-2": "^6.24.1",
