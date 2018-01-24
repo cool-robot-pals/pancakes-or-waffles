@@ -26,7 +26,7 @@ const takeScreenshot = async () => {
 		page.goto(url)
 	]);
 	const log = await page.evaluate(() => {
-		return (window.Post.posts[0].log());
+		return (window.Pancakes.posts[0].logState());
 	});
 	await page.waitFor(2000);
 	await page.screenshot({ path: outPath });

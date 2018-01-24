@@ -91,7 +91,7 @@ module.exports = {
 	output: {
 		filename: 'post.js',
 		path: path.resolve(__dirname, config.paths.build),
-		library: 'Post',
+		library: 'Pancakes',
 		libraryTarget: 'umd'
 	},
 	resolve: {
