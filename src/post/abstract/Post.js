@@ -11,19 +11,19 @@ class Post {
 	constructor(props) {
 
 		this.name = props.name;
-		this.seed = props.seed;
+
 		this.post = new PostGetter({
-			seed: this.seed
+			seed: props.seed
 		}).values;
 		this.defaults = this.post;
 		this.state = {};
 
 		this.onReadyState = Promise.all([
 			this.getMoreProps(),
-			fetch(`/get-image/?query=${this.state.query}`).then(res => res.json())
+			fetch(`/get-image/?query=${this.post.query}`).then(res => res.json())
 		]).then(([extraProps,background]) => {
 			this.state = {
-				seed: this.seed,
+				seed: props.seed,
 				query: this.post.query,
 				fandom: this.post.fandom,
 				choices: this.post.choices,
