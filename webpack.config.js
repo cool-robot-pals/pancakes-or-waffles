@@ -50,8 +50,7 @@ module.exports = {
 					path.resolve(__dirname,'src','post')
 				],
 				use: ExtractTextPlugin.extract([
-					'css-loader?modules&importLoaders=1&localIdentName=tc-[hash:base64:10]',
-					'./'+config.paths.tools+'/randomCssLoader'
+					'css-loader?modules&importLoaders=1&localIdentName=tc-[hash:base64:10]'
 				])
 			},
 			{

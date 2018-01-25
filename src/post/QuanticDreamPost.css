@@ -5,17 +5,15 @@
 	font-weight: bold;
 	font-size: 25px;
 	text-shadow: 0 2px 8px #000;
+	padding: 5%;
+	display: flex;
+	align-items: var(--flex-with-center);
+	justify-content: var(--flex);
 }
 
 .choices {
 	height: 200px;
-	top: auto;
-	bottom: auto;
-	right: auto;
-	left: auto;
-	position: absolute;
-	-@align-vertical-alt-: 10%;
-	-@align-alt-: 10%;
+	position: relative;
 }
 
 .choice span {

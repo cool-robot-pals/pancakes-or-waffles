@@ -10,6 +10,7 @@ import PostGetter from 'getter/post';
 import logger from 'lib/logger';
 import txtToArr from 'lib/txtToArr';
 import {makeSeed} from 'lib/random';
+import {getRandomCss} from 'lib/getRandomCss';
 
 
 const posts = [];
@@ -66,6 +67,10 @@ const boot = () => {
 	link.href = 'https://fonts.googleapis.com/css?family='+fonts.map(font => font.value).join('|');
 	link.rel = 'stylesheet';
 	document.querySelector('head').appendChild(link);
+
+	getRandomCss().forEach(variable=>{
+		document.body.style.setProperty(`--${variable.name}`, variable.value);
+	})
 
 	makePost(queryString.seed?queryString.seed:undefined);
 
