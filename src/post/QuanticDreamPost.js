@@ -1,9 +1,4 @@
-import addStyles from 'lib/decorator/addStyles';
-
-
-import styles from './QuanticDreamPost.css';
 import Post from './abstract/Post.js';
-
 
 class CustomPost extends Post {
 	getMoreProps() {
@@ -13,4 +8,4 @@ class CustomPost extends Post {
 	}
 }
 
-export default addStyles(CustomPost,styles);
+export default CustomPost;

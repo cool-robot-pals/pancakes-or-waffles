@@ -1,5 +1,6 @@
+@import url(/src/post/abstract/Post.css);
+
 .post {
-	composes: post-raw from './abstract/Post.css';
 	font-family: 'Lato';
 	font-weight: 400;
 	font-size: 30px;
@@ -17,20 +18,21 @@
 }
 
 .bg {
-	composes: cover from './abstract/Post.css';
 	margin: auto;
 }
 
-.choices {
+.post .choices {
 	background: rgba(0,0,0,.8);
 	position: absolute;
 	border: 1px solid #ebbc64;
 	top: 4em;
 	left: 1em;
+	bottom: inherit;
+	right: inherit;
 	border-radius: 25px;
 	max-width: 25%;
 	padding-left: 3em;
-	background-image: url(assets/gravity-rush/halo.png);
+	background-image: url(/src/assets/gravity-rush/halo.png);
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center bottom;
@@ -57,7 +59,7 @@
 .choices:after {
 	content: '\0020';
 	position: absolute;
-	background: url(assets/gravity-rush/warn.png);
+	background: url(/src/assets/gravity-rush/warn.png);
 	background-size: cover;
 	width: 2em;
 	height: 2em;
@@ -80,12 +82,14 @@
 	left: 25%;
 	font-family: 'Tulpen One';
 	font-weight: 400;
+	right: inherit;
+	bottom: inherit;
 }
 
 .extra[data-name^="waypoint"]:after {
 	content: '\0020';
 	position: absolute;
-	background: url(assets/gravity-rush/waypoint.png);
+	background: url(/src/assets/gravity-rush/waypoint.png);
 	background-size: cover;
 	width: 1em;
 	height: 1em;
@@ -110,6 +114,9 @@
 	max-width: 5em;
 	font-size: 23px;
 	text-transform: capitalize;
+	left: initial;
+	right: initial;
+	top: initial;
 }
 
 .extra[data-name="good"] {
@@ -136,7 +143,7 @@
 .extra[data-name="good"]:after,.extra[data-name="bad"]:after {
 	content: '\0020';
 	position: absolute;
-	background: url(assets/gravity-rush/circle.png);
+	background: url(/src/assets/gravity-rush/circle.png);
 	background-size: contain;
 	width: 1.2em;
 	height: 1.2em;
@@ -149,13 +156,13 @@
 .extra[data-name="bad"]:after {
 	right: .4em;
 	left: auto;
-	background-image: url(assets/gravity-rush/square.png);
+	background-image: url(/src/assets/gravity-rush/square.png);
 }
 
 .extra[data-name="good"]:before,.extra[data-name="bad"]:before {
 	content: '\0020';
 	position: absolute;
-	background: url(assets/gravity-rush/comic.png);
+	background: url(/src/assets/gravity-rush/comic.png);
 	background-repeat: no-repeat;
 	background-size: contain;
 	width: 1em;

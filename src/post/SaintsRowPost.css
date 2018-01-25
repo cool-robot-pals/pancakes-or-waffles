@@ -1,5 +1,6 @@
+@import url(/src/post/abstract/Post.css);
+
 .post {
-	composes: post-raw from './abstract/Post.css';
 	font-family: 'Roboto';
 	text-transform: uppercase;
 	font-weight: bold;
@@ -7,12 +8,10 @@
 }
 
 .ac-1 {
-	composes: cover from './abstract/Post.css';
-	background: url(assets/sr.png);
+	background: url(/src/assets/sr.png);
 }
 
 .choices {
-	composes: cover from './abstract/Post.css';
 	top: 69.9%!important;
 	width: 62%;
 	margin: auto;

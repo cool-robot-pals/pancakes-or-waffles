@@ -1,7 +1,3 @@
-import addStyles from 'lib/decorator/addStyles';
-
-
-import styles from './MassEffectPost.css';
 import Post from './abstract/Post.js';
 
 import {capitalizeFirstLetter,decapitalizeFirstLetter} from 'lib/stringies';
@@ -36,4 +32,4 @@ class CustomPost extends Post {
 
 }
 
-export default addStyles(CustomPost,styles);
+export default CustomPost;

@@ -1,5 +1,6 @@
+@import url(/src/post/abstract/Post.css);
+
 .post {
-	composes: post from './abstract/Post.css';
 	font-family: roboto;
 	text-transform: uppercase;
 	font-size: 22px;
@@ -9,7 +10,7 @@
 	height: 200px!important;
 	top: 400px!important;
 	bottom: auto!important;
-	background: url(assets/deus-ex/hud.png) center no-repeat;
+	background: url(/src/assets/deus-ex/hud.png) center no-repeat;
 	background-size: contain!important;
 	z-index: 999;
 }
@@ -23,11 +24,13 @@
 	z-index: 5!important;
 }
 
-.bubble {
+.extra,
+.choice {
 	position: absolute;
 }
 
-.bubble span {
+.extra span,
+.choice span {
 	border-radius: .25em;
 	color: rgba(255,255,255,.8);
 	padding: .5em 1em .75em 1.7em;
@@ -38,14 +41,13 @@
 }
 
 .choice {
-	composes: bubble;
 	text-transform: none;
 	top: 500px;
 	left: 59%;
 	z-index: 888;
 	right: 10%;
 	border-top-left-radius: 20px!important;
-	background: url(assets/deus-ex/ui-artifact.png) no-repeat bottom right;
+	background: url(/src/assets/deus-ex/ui-artifact.png) no-repeat bottom right;
 	background-size: auto 12px, auto 12px;
 	position: absolute;
 	font-size: 1.2em;
@@ -53,10 +55,6 @@
 
 .choice span {
 	line-height: 1.4;
-}
-
-.extra {
-	composes: bubble;
 }
 
 .extra[data-name="bad"] {
@@ -71,7 +69,7 @@
 
 .extra span {
 	color: #fff;
-	background: url(assets/deus-ex/ui-artifact.png) no-repeat bottom right,url(assets/deus-ex/ui-artifact-too.png) no-repeat top left;
+	background: url(/src/assets/deus-ex/ui-artifact.png) no-repeat bottom right,url(/src/assets/deus-ex/ui-artifact-too.png) no-repeat top left;
 	background-size: auto 12px;
 	background-color: rgba(15,15,20,.9);
 }

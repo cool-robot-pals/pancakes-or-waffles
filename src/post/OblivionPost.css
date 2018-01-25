@@ -1,5 +1,6 @@
+@import url(/src/post/abstract/Post.css);
+
 .post {
-	composes: post from './abstract/Post.css';
 	font-family: Gentium Book Basic, serif;
 	font-weight: 800;
 	color: #835137!important;
@@ -10,7 +11,7 @@
 }
 
 .choices {
-	background: url(assets/oblivion/dialog-bottom.png) no-repeat bottom left, url(assets/oblivion/dialog-top.png) top left!important;
+	background: url(/src/assets/oblivion/dialog-bottom.png) no-repeat bottom left, url(/src/assets/oblivion/dialog-top.png) top left!important;
 	background-size: auto, auto!important;
 	padding: 47px;
 	z-index: 99998;
@@ -46,7 +47,7 @@
 
 .ac-1:before {
 	content: 'Quest added';
-	position: absolute;;
+	position: absolute;
 	margin: auto;
 	top: 65px;
 	text-align: center;
@@ -57,7 +58,7 @@
 }
 
 .ac-1:after {
-	content: url(assets/oblivion/quest.png);
+	content: url(/src/assets/oblivion/quest.png);
 	top: 130px;
 	left: 80px;
 	z-index: 999999;
@@ -100,7 +101,7 @@
 	text-align: right;
 }
 .extra[data-name=ui-accept]:before {
-	background: url(assets/oblivion/a.png);
+	background: url(/src/assets/oblivion/a.png);
 	background-size: cover;
 	content: '\0020';
 	display: inline-block;
@@ -117,7 +118,7 @@
 	text-align: right;
 }
 .extra[data-name=ui-reject]:before {
-	background: url(assets/oblivion/b.png);
+	background: url(/src/assets/oblivion/b.png);
 	background-size: cover;
 	content: '\0020';
 	display: inline-block;;

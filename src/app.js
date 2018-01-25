@@ -1,4 +1,3 @@
-import css from 'assets/reset.css';
 import fontsTxt from 'internal-data/fonts.txt';
 
 import changeCase from 'change-case';
@@ -10,34 +9,34 @@ import PostGetter from 'getter/post';
 import logger from 'lib/logger';
 import txtToArr from 'lib/txtToArr';
 import {makeSeed} from 'lib/random';
-import {getRandomCss} from 'lib/getRandomCss';
 
 
 const posts = [];
 const layouts = new LayoutGetter().layouts;
 
-const makePost = (seed=makeSeed(),defaults={}) => {
+const makePost = async (seed=makeSeed(),defaults={}) => {
 
 	const layout = new LayoutGetter({
 		seed: seed,
 		...defaults
 	}).value;
 
-	const postname = changeCase.pascal(`${layout}-post`);
+	const postName = changeCase.pascal(`${layout}-post`);
 
-	return System.import('post/'+postname) // eslint-disable-line no-undef
+	return System.import('post/'+postName+'.js') // eslint-disable-line no-undef
 		.then(PostJs =>
 			new PostJs.default({
 				seed: seed,
+				name: postName,
 			})
 		).then(postInstance =>
 			Promise.all([
 				postInstance,
-				postInstance.onReadyState
+				postInstance.getElement()
 			])
-		).then(([postInstance]) => {
+		).then(([postInstance, $element]) => {
 			posts.push(postInstance);
-			document.getElementById('tough-choices-bot').appendChild(postInstance.$element);
+			document.getElementById('tough-choices-bot').appendChild($element);
 		})
 		.catch(err=>{
 			console.error(err);
@@ -67,10 +66,6 @@ const boot = () => {
 	link.href = 'https://fonts.googleapis.com/css?family='+fonts.map(font => font.value).join('|');
 	link.rel = 'stylesheet';
 	document.querySelector('head').appendChild(link);
-
-	getRandomCss().forEach(variable=>{
-		document.body.style.setProperty(`--${variable.name}`, variable.value);
-	});
 
 	makePost(queryString.seed?queryString.seed:undefined);
 
