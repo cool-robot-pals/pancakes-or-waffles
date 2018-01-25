@@ -1,4 +1,4 @@
-import {randomArray} from './random.js'
+import {randomArray} from './random.js';
 
 const getRandomCssBase = () =>
 	[
@@ -10,9 +10,9 @@ const getRandomCssBase = () =>
 			name: 'flex-with-center',
 			value: randomArray(['flex-start','center','flex-end']),
 		}
-	]
+	];
 
 export const getRandomCss = () => [
 	...getRandomCssBase(),
-	...getRandomCssBase().map(key => {key.name += '-alt'; return key})
-]
+	...getRandomCssBase().map(key => {key.name += '-alt'; return key;})
+];

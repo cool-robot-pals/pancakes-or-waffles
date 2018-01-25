@@ -70,7 +70,7 @@ const boot = () => {
 
 	getRandomCss().forEach(variable=>{
 		document.body.style.setProperty(`--${variable.name}`, variable.value);
-	})
+	});
 
 	makePost(queryString.seed?queryString.seed:undefined);
 
