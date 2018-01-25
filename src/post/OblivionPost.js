@@ -4,7 +4,7 @@ import OblivionValues from 'getter/less-common/oblivion';
 
 
 class CustomPost extends Post {
-	getMoreProps() {
+	getMoreProps(post) {
 		return {
 			extras: new OblivionValues({
 				seed: this.seed

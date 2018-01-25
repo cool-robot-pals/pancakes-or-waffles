@@ -27,7 +27,7 @@ class CustomPost extends Post {
 		return[randomPos(),randomPos()];
 	}
 
-	getMoreProps() {
+	getMoreProps(post) {
 
 		const chances = new ChancesGetter();
 		const anchors = ['top','bottom','left','right'];
@@ -35,8 +35,8 @@ class CustomPost extends Post {
 
 		if(chances.should('gravityRushHaveBothChoices')){
 			more.choices = [[
-				this.post.choices[0],
-				decapitalizeFirstLetter(this.post.choices[1])
+				post.choices[0],
+				decapitalizeFirstLetter(post.choices[1])
 			].join(' or ')];
 			more.extras = {};
 			more.extras['waypoint-1'] = (()=>{
@@ -61,7 +61,7 @@ class CustomPost extends Post {
 			})();
 		}
 		else {
-			more.choices = [this.post.choices.sort((a, b) => b.length - a.length )[0]];
+			more.choices = [post.choices.sort((a, b) => b.length - a.length )[0]];
 			more.extras = this.buildGetter(BinaryChoicesValues).values;
 		}
 

@@ -6,7 +6,7 @@ import NarratorGetter from 'getter/less-common/narrator';
 
 class CustomPost extends Post {
 
-	getMoreProps() {
+	getMoreProps(post) {
 
 		const binaryChoices = this.buildGetter(BinaryChoicesValues).values;
 
@@ -16,7 +16,7 @@ class CustomPost extends Post {
 
 		let more = {
 			extras : binaryChoices,
-			choices: [this.buildGetter(NarratorGetter).narrate(this.post.choices[0])]
+			choices: [this.buildGetter(NarratorGetter).narrate(post.choices[0])]
 		};
 
 		return more;

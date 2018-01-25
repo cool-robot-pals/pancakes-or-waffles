@@ -2,7 +2,7 @@ import Post from './abstract/Post.js';
 
 
 class CustomPost extends Post {
-	getMoreProps() {
+	getMoreProps(post) {
 		return {
 			variants: [2],
 		};

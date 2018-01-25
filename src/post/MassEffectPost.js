@@ -9,7 +9,7 @@ import BinaryChoicesGetter from 'getter/less-common/binaryChoices';
 
 class CustomPost extends Post {
 
-	getMoreProps() {
+	getMoreProps(post) {
 
 		const character = this.buildGetter(CharacterGetter).values.name;
 		const chances = this.buildGetter(ChancesGetter);
@@ -17,7 +17,7 @@ class CustomPost extends Post {
 		if(chances.should('massEffectHasDialog')){
 			let more = {};
 			more.extras = {
-				dialog: character+': '+this.buildGetter(NarratorGetter).narrate(this.post.choices[0])
+				dialog: character+': '+this.buildGetter(NarratorGetter).narrate(post.choices[0])
 			};
 
 			let values = this.buildGetter(BinaryChoicesGetter).values;

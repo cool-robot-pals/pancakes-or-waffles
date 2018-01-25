@@ -6,10 +6,10 @@ import BinaryChoicesGetter from 'getter/less-common/binaryChoices';
 
 class CustomPost extends Post {
 
-	getMoreProps() {
+	getMoreProps(post) {
 
 		let more = {};
-		more.choices = this.post.choices
+		more.choices = post.choices
 			.map(choice => this.buildGetter(NarratorGetter).narrate(choice))
 			.filter((choice, index) => index === 0);
 
