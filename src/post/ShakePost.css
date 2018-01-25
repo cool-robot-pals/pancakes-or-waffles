@@ -1,12 +1,9 @@
+@import url(/src/post/abstract/Post.css);
+
 .post {
-	composes: post-raw from './abstract/Post.css';
 	font-family: 'Roboto';
 	font-size: 35px;
 	text-shadow: 2px 2px 1px #000;
-}
-
-.bg {
-	composes: cover from './abstract/Post.css';
 }
 
 .choice {
@@ -21,7 +18,7 @@
 
 .choice:before {
 	content: '\0020';
-	background: #fff url(assets/shake/shake.png) no-repeat center center;
+	background: #fff url(/src/assets/shake/shake.png) no-repeat center center;
 	background-size: 60% auto;
 	width: 3em;
 	height: 3em;
@@ -45,12 +42,12 @@
 .post[data-variant*="(2=1)"] .choice:before {
 	font-size: 2em;
 	top: -3.5em;
-	background-image: url(assets/shake/shake-wii.png);
+	background-image: url(/src/assets/shake/shake-wii.png);
 	background-size: 80% auto;
 }
 
 .post[data-variant*="(2=2)"] .choice:before {
-	background-image: url(assets/shake/shake-alt.png);
+	background-image: url(/src/assets/shake/shake-alt.png);
 	background-color: transparent;
 	border: 2px solid #fff;
 }
@@ -58,7 +55,7 @@
 .post[data-variant*="(2=3)"] .choice:before {
 	font-size: 2em;
 	top: -3em;
-	background-image: url(assets/shake/shake-wii-alt.png);
+	background-image: url(/src/assets/shake/shake-wii-alt.png);
 	background-color: transparent;
 	background-size: 80% auto;
 }

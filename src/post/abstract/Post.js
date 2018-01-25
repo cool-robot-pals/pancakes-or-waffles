@@ -2,12 +2,14 @@ import PostGetter from 'getter/post';
 import logger from 'lib/logger';
 
 import formatPropExtras from 'lib/formatPropExtras';
+import escapeHTML from 'lib/escapeHTML';
 import usesGetter from 'lib/decorator/usesGetter';
 
 class Post {
 
 	constructor(props) {
 
+		this.name = props.name;
 		this.seed = props.seed;
 		this.post = new PostGetter({
 			seed: this.seed
@@ -51,19 +53,19 @@ class Post {
 		return rt;
 	}
 
-	get $element() {
+	async getElement() {
+
+		await this.onReadyState;
 
 		const template =
 		`
 			<div
-				class="${this.styles.post}"
+				class="post"
 				data-variant="${this.variant.map((variant,idx) => `(${idx}=${variant})`)}"
 			>
 				${
 					[1,2].map(additionalContainer =>
-						`<div
-							class="${this.styles['ac-'+additionalContainer]}"
-						></div>`
+						`<div class="ac-${additionalContainer}"></div>`
 					).join('')
 				}
 				${
@@ -72,26 +74,33 @@ class Post {
 								key="extra-${extra.key}"
 								data-val="${extra.value}"
 								data-name="${extra.key}"
-								class="${this.styles.extra}"
-								style="${extra.style}"
+								class="extra"
+								style="${Object.keys(extra.style).map(key=>`${key}:${extra.style[key]}`).join(';')}"
 							>
-								<span>${extra.value}</span>
+								<span>${escapeHTML(extra.value)}</span>
 							</div>`
 					).join('')
 				}
-				<div class="${this.styles.choices}">
+				<div class="choices">
 					${
 						this.state.choices.map(choice =>
-							`<div class="${this.styles.choice}"><span>${choice}</span></div>`
+							`<div class="choice"><span>${escapeHTML(choice)}</span></div>`
 						).join('')
 					}
 				</div>
-				<div class="${this.styles.bg}" data-sink="true" style="background-image: url('${this.state.bg}')" />
+				<div class="bg" data-sink="true" style="background-image: url('${this.state.bg}')" />
 			</div>
 		`;
 
 		const $div = document.createElement('div');
-		$div.innerHTML = template;
+		const $shadow = $div.attachShadow({mode: 'open'});
+
+		$shadow.innerHTML = template;
+
+		const $link = document.createElement('link');
+		$link.href = `/src/post/${this.name}.css`;
+		$link.rel = 'stylesheet';
+		$shadow.appendChild($link);
 
 		return $div;
 	}

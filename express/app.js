@@ -16,4 +16,6 @@ app.use('/test', express.static(path.resolve(__dirname, '../test')));
 app.get('/test.html', (req, res, next) => res.sendFile(path.resolve(__dirname, '../build/test.html')));
 app.get('/test/mocha.js', (req, res, next) => res.sendFile(path.resolve(__dirname, '../node_modules/mocha/mocha.js')));
 
+app.use('/src', express.static(path.resolve(__dirname, '../src')));
+
 module.exports = app;

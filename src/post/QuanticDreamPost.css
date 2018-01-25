@@ -1,5 +1,6 @@
+@import url(/src/post/abstract/Post.css);
+
 .post {
-	composes: post-raw from './abstract/Post.css';
 	font-family: 'Roboto';
 	text-transform: uppercase;
 	font-weight: bold;
@@ -35,7 +36,7 @@
 
 .choice:before,
 .choice:before {
-	background-image: url(assets/qd/colorful.png);
+	background-image: url(/src/assets/qd/colorful.png);
 	content: '\0020';
 	background-size: 180px 90px;
 	vertical-align: middle;
@@ -48,5 +49,5 @@
 }
 
 .post[data-variant*="(0=1)"] .choice:before {
-	background-image: url(assets/qd/white.png);
+	background-image: url(/src/assets/qd/white.png);
 }

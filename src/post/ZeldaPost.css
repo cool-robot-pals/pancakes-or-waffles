@@ -1,19 +1,25 @@
+@import url(/src/post/abstract/Post.css);
+
 .post {
-	composes: post-raw from './abstract/Post.css';
 	font-family: 'Lato';
 	font-size: 30px;
 	text-shadow: 2px 2px 1px #000;
 }
 
 .bg {
-	composes: cover from './abstract/Post.css';
 	width: 960px;
 	margin: auto;
 }
 
 .ac-1 {
-	composes: cover from './abstract/Post.css';
-	background-image: url(assets/zelda.png);
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-position: center center;
+	background-size: cover;
+	background-image: url(/src/assets/zelda.png);
 }
 
 .choice {

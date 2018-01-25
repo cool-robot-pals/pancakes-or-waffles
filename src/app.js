@@ -16,28 +16,29 @@ import {getRandomCss} from 'lib/getRandomCss';
 const posts = [];
 const layouts = new LayoutGetter().layouts;
 
-const makePost = (seed=makeSeed(),defaults={}) => {
+const makePost = async (seed=makeSeed(),defaults={}) => {
 
 	const layout = new LayoutGetter({
 		seed: seed,
 		...defaults
 	}).value;
 
-	const postname = changeCase.pascal(`${layout}-post`);
+	const postName = changeCase.pascal(`${layout}-post`);
 
-	return System.import('post/'+postname) // eslint-disable-line no-undef
+	return System.import('post/'+postName) // eslint-disable-line no-undef
 		.then(PostJs =>
 			new PostJs.default({
 				seed: seed,
+				name: postName,
 			})
 		).then(postInstance =>
 			Promise.all([
 				postInstance,
-				postInstance.onReadyState
+				postInstance.getElement()
 			])
-		).then(([postInstance]) => {
+		).then(([postInstance, $element]) => {
 			posts.push(postInstance);
-			document.getElementById('tough-choices-bot').appendChild(postInstance.$element);
+			document.getElementById('tough-choices-bot').appendChild($element);
 		})
 		.catch(err=>{
 			console.error(err);

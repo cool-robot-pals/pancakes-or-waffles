@@ -1,5 +1,6 @@
+@import url(/src/post/abstract/Post.css);
+
 .post {
-	composes: post from './abstract/Post.css';
 	font-family: 'Roboto';
 	font-size: 30px;
 	perspective: 1500px;
@@ -10,7 +11,7 @@
 	width: 60px;
 	height: 40px;
 	display: inline-block;
-	background: url(assets/remember-me/circle.png) no-repeat top left;
+	background: url(/src/assets/remember-me/circle.png) no-repeat top left;
 	background-size: contain;
 	position: absolute;
 	left: -80px;
@@ -36,7 +37,7 @@
 }
 
 .choice:last-child:before {
-	background-image: url(assets/remember-me/cross.png);
+	background-image: url(/src/assets/remember-me/cross.png);
 }
 
 .choice span {

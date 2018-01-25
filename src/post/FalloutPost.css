@@ -1,12 +1,13 @@
+@import url(/src/post/abstract/Post.css);
+
 .post {
-	composes: post from './abstract/Post.css';
 	font-family: 'Roboto Mono';
 	color: #3cd584!important;
 	font-size: 30px;
 }
 
 .ac-1 {
-	background-image: url(assets/fallout.png);
+	background-image: url(/src/assets/fallout.png);
 }
 
 .choices {
