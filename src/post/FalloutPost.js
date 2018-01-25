@@ -33,10 +33,10 @@ class CustomPost extends Post {
 
 	}
 
-	getMoreProps() {
+	getMoreProps(post) {
 
 		let more = {};
-		more.choices = this.post.choices.map(choice => this.parseChoice(choice));
+		more.choices = post.choices.map(choice => this.parseChoice(choice));
 		return more;
 
 	}

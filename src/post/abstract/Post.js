@@ -10,23 +10,26 @@ class Post {
 
 	constructor(props) {
 
+		/*secret internal things*/
 		this.name = props.name;
 		this.seed = props.seed;
-		this.post = new PostGetter({
-			seed: this.seed
+
+
+		const post = new PostGetter({
+			seed: props.seed
 		}).values;
-		this.defaults = this.post;
+		this.defaults = post;
 		this.state = {};
 
 		this.onReadyState = Promise.all([
-			this.getMoreProps(),
-			fetch(`/get-image/?query=${this.state.query}`).then(res => res.json())
+			this.getMoreProps(post),
+			fetch(`/get-image/?query=${post.query}`).then(res => res.json())
 		]).then(([extraProps,background]) => {
 			this.state = {
-				seed: this.seed,
-				query: this.post.query,
-				fandom: this.post.fandom,
-				choices: this.post.choices,
+				seed: props.seed,
+				query: post.query,
+				fandom: post.fandom,
+				choices: post.choices,
 				bg: background.url,
 				variants: [],
 				report: {},
@@ -42,7 +45,7 @@ class Post {
 		return logger(this.state);
 	}
 
-	getMoreProps() {
+	getMoreProps(post) {
 		return {};
 	}
 

@@ -4,11 +4,11 @@ import {decapitalizeFirstLetter} from 'lib/stringies';
 
 class CustomPost extends Post {
 
-	getMoreProps() {
+	getMoreProps(post) {
 
 		return {
 			variants: [2,2,4,2],
-			choices: ['Shake the controller to '+decapitalizeFirstLetter(this.post.choices[0])]
+			choices: ['Shake the controller to '+decapitalizeFirstLetter(post.choices[0])]
 		};
 
 	}
