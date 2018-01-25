@@ -1,6 +1,3 @@
-import addStyles from 'lib/decorator/addStyles';
-
-import styles from './OblivionPost.css';
 import Post from './abstract/Post.js';
 
 import OblivionValues from 'getter/less-common/oblivion';
@@ -16,4 +13,4 @@ class CustomPost extends Post {
 	}
 }
 
-export default addStyles(CustomPost,styles);
+export default CustomPost;

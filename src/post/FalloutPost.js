@@ -1,7 +1,3 @@
-import addStyles from 'lib/decorator/addStyles';
-
-
-import styles from './FalloutPost.css';
 import Post from './abstract/Post.js';
 
 import NarratorGetter from 'getter/less-common/narrator';
@@ -47,4 +43,4 @@ class CustomPost extends Post {
 
 }
 
-export default addStyles(CustomPost,styles);
+export default CustomPost;

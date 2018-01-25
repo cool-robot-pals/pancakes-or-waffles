@@ -1,4 +1,3 @@
-import css from 'assets/reset.css';
 import fontsTxt from 'internal-data/fonts.txt';
 
 import changeCase from 'change-case';
@@ -10,7 +9,6 @@ import PostGetter from 'getter/post';
 import logger from 'lib/logger';
 import txtToArr from 'lib/txtToArr';
 import {makeSeed} from 'lib/random';
-import {getRandomCss} from 'lib/getRandomCss';
 
 
 const posts = [];
@@ -25,7 +23,7 @@ const makePost = async (seed=makeSeed(),defaults={}) => {
 
 	const postName = changeCase.pascal(`${layout}-post`);
 
-	return System.import('post/'+postName) // eslint-disable-line no-undef
+	return System.import('post/'+postName+'.js') // eslint-disable-line no-undef
 		.then(PostJs =>
 			new PostJs.default({
 				seed: seed,
@@ -68,10 +66,6 @@ const boot = () => {
 	link.href = 'https://fonts.googleapis.com/css?family='+fonts.map(font => font.value).join('|');
 	link.rel = 'stylesheet';
 	document.querySelector('head').appendChild(link);
-
-	getRandomCss().forEach(variable=>{
-		document.body.style.setProperty(`--${variable.name}`, variable.value);
-	});
 
 	makePost(queryString.seed?queryString.seed:undefined);
 

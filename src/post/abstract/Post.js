@@ -4,6 +4,7 @@ import logger from 'lib/logger';
 import formatPropExtras from 'lib/formatPropExtras';
 import escapeHTML from 'lib/escapeHTML';
 import usesGetter from 'lib/decorator/usesGetter';
+import {getRandomCss} from 'lib/getRandomCss';
 
 class Post {
 
@@ -101,6 +102,10 @@ class Post {
 		$link.href = `/src/post/${this.name}.css`;
 		$link.rel = 'stylesheet';
 		$shadow.appendChild($link);
+
+		getRandomCss().forEach(variable=>{
+			$shadow.children[0].style.setProperty(`--${variable.name}`, variable.value);
+		});
 
 		return $div;
 	}

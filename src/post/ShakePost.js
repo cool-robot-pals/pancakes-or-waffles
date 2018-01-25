@@ -1,6 +1,4 @@
-import styles from './ShakePost.css';
 import Post from './abstract/Post.js';
-import addStyles from 'lib/decorator/addStyles';
 
 import {decapitalizeFirstLetter} from 'lib/stringies';
 
@@ -17,4 +15,4 @@ class CustomPost extends Post {
 
 }
 
-export default addStyles(CustomPost,styles);
+export default CustomPost;

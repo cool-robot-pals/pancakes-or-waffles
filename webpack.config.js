@@ -19,10 +19,6 @@ module.exports = {
 			filename: '[file].map',
 			exclude: [/node_modules/]
 		}),
-		new ExtractTextPlugin({
-			filename: '[name].css',
-			allChunks: true
-		}),
 		new HtmlWebpackPlugin({
 			title: '👁👄👁☝️',
 			minify: {
@@ -45,38 +41,12 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.css$/,
-				include: [
-					path.resolve(__dirname,'src','post')
-				],
-				use: ExtractTextPlugin.extract([
-					'css-loader?modules&importLoaders=1&localIdentName=tc-[hash:base64:10]'
-				])
-			},
-			{
-				test: /\.(png|jpg)$/,
-				use: [{
-					loader: 'url-loader',
-					options: { limit: 10 }
-				}],
-			},
-			{
 				test: /\.txt$/,
 				use: ['raw-loader']
 			},
 			{
 				test: /\.yaml$/,
 				use: ['yaml-loader']
-			},
-			{
-				test: /\.css$/,
-				exclude: [
-					/node_modules/,
-					path.resolve(__dirname, 'src','post')
-				],
-				use: ExtractTextPlugin.extract({
-					use: ['css-loader']
-				})
 			},
 			{
 				test: /\.js$/,
