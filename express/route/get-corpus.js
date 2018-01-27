@@ -5,7 +5,7 @@ const yamlParser = require('js-yaml');
 
 const route = (req, res, next) => {
 
-	const path = __dirname+`/../../corpus/${req.params.item}${req.param(0)?'/'+req.param(0):''}`;
+	const path = __dirname+`/../../corpus/${req.params.item}${req.params[0]?'/'+req.params[0]:''}`;
 
 	try {
 		fs.accessSync(`${path}.txt`, fs.constants.R_OK);
