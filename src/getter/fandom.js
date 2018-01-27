@@ -14,7 +14,7 @@ export default class FandomGetter extends abstractGetter {
 			peopleWithFandoms.map(item => item.fandom)
 		).then(fandoms =>
 			[...new Set(fandoms)]
-		)
+		);
 	}
 
 

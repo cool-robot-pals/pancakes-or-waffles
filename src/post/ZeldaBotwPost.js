@@ -12,7 +12,7 @@ class CustomPost extends Post {
 		super(...args);
 		this.narrator = this.buildGetter(NarratorGetter);
 		this.choices = this.buildGetter(BinaryChoicesGetter);
-		this.character = this.buildGetter(CharacterGetter)
+		this.character = this.buildGetter(CharacterGetter);
 	}
 
 	async getMoreProps(post) {
@@ -27,7 +27,7 @@ class CustomPost extends Post {
 			dialog: dialog
 		};
 
-		more.choices = [choices.good,choices.bad]
+		more.choices = [choices.good,choices.bad];
 		more.choices = more.choices.map(capitalizeFirstLetter);
 		if(this.randomNumber(109231729) >= .5){
 			more.choices = more.choices.reverse();

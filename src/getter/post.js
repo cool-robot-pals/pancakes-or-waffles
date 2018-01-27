@@ -71,7 +71,7 @@ export default class PostGetter extends abstractGetter {
 
 		const characters = await this.buildGetter(CharacterGetter,{
 			fandom: fandom
-		}).getArray(2)
+		}).getArray(2);
 
 		this.defaults.fandom = fandom?fandom:this.randomArray(characters).fandom;
 

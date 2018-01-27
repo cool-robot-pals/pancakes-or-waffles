@@ -17,9 +17,9 @@ class CustomPost extends Post {
 		let more = {};
 		more.choices = await Promise.all(
 			post.choices
-			.map(choice => this.narrator.narrate(choice))
-			.filter((choice, index) => index === 0)
-		)
+				.map(choice => this.narrator.narrate(choice))
+				.filter((choice, index) => index === 0)
+		);
 
 		more.extras = await this.choices.get();
 		return more;

@@ -43,9 +43,9 @@ const abstractGetter = class {
 
 	async get() {
 		return await
-			this.fetch()
+		this.fetch()
 			.then(fetched => this.filter(fetched, this.context))
-			.then(filtered => this.reduce(filtered))
+			.then(filtered => this.reduce(filtered));
 	}
 
 	async getButNot(...keys) {
@@ -54,20 +54,20 @@ const abstractGetter = class {
 		const withFilter = await fetchable.filter(item =>
 			solvedKeys.reduce(
 				(acc, key) => (acc && !this.compareFetchResults(key, item))
-			, true)
+				, true)
 		);
 		if(withFilter.length < 1) {
-			return this.reduce(fetchable)
+			return this.reduce(fetchable);
 		}
 		else {
-			return this.reduce(withFilter)
+			return this.reduce(withFilter);
 		}
 	}
 
 	async getArray(length) {
 		const rt = [];
 		for(let i = 0; i < length; i++) {
-			rt.push(this.getButNot(...rt))
+			rt.push(this.getButNot(...rt));
 		}
 		return await Promise.all(rt);
 	}
@@ -95,19 +95,19 @@ const abstractGetter = class {
 	}
 
 
-		parse(txt) {
-			return txtToArr(txt, {
-				context: this,
-				seed: this.seed
-			});
-		}
+	parse(txt) {
+		return txtToArr(txt, {
+			context: this,
+			seed: this.seed
+		});
+	}
 
-		xpndSync(string) {
-			return expandKeywords(string, {
-				context: this.defaults,
-				seed: this.seed
-			});
-		}
+	xpndSync(string) {
+		return expandKeywords(string, {
+			context: this.defaults,
+			seed: this.seed
+		});
+	}
 
 };
 

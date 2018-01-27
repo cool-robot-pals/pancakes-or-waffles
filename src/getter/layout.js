@@ -18,6 +18,6 @@ export default class LayoutGetter extends abstractGetter {
 		}
 	}
 
-	async get(){return'zelda-botw'}
+	async get(){return'zelda-botw';}
 
 }

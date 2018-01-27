@@ -19,7 +19,7 @@ export default class ChancesGetter extends abstractGetter {
 				chances[k] = valueAsfloat/100;
 			});
 			return chances;
-		})
+		});
 	}
 
 

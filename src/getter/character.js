@@ -4,7 +4,7 @@ export default class CharacterGetter extends abstractGetter {
 
 	constructor(...props) {
 		super(...props);
-		this.remote = 'people'
+		this.remote = 'people';
 	}
 
 	async filter(characters, context) {
