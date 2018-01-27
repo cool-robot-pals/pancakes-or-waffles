@@ -21,6 +21,6 @@ app.get('/get-corpus/:item*', require('./route/get-corpus.js'));
 const spdyApp = spdy.createServer({
 	key: fs.readFileSync(`${__dirname}/../server.key`),
 	cert: fs.readFileSync(`${__dirname}/../server.crt`)
-}, app)
+}, app);
 
 module.exports = spdyApp;
