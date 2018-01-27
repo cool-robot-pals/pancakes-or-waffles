@@ -5,25 +5,28 @@ import {randomNumber} from 'lib/random';
 
 export default class ChancesGetter extends abstractGetter {
 
-	constructor(defaults={}) {
-		super(defaults);
-		if(!this.chances){
-			this.chances = Object.assign({},chances);
-			for(var k in this.chances) {
-				let float = parseFloat(this.chances[k]);
-				if(isNaN(float)) throw `Invalid value for chance ${k} on chances.yaml, should be convertable to a float (${this.chances[k]})`;
-				this.chances[k] = float/100;
-			}
-		}
+	constructor(...props) {
+		super(...props);
+		this.remote = 'data/chances';
 	}
 
 
-	should(chance) {
-		return randomNumber(chance,this.seed) <= this.chances[chance];
+	async fetchOnce() {
+		return super.fetchOnce().then(chances => {
+			Object.keys(chances).forEach(k => {
+				const valueAsfloat = parseFloat(chances[k]);
+				if(isNaN(valueAsfloat)) throw `Invalid value for chance ${k} on chances.yaml, should be convertable to a float (${this.chances[k]})`;
+				chances[k] = valueAsfloat/100;
+			});
+			return chances;
+		})
 	}
 
 
-	get values() {
-		return this.chances;
+	async should(chance) {
+		const chances = await this.fetch();
+		console.log(chances);
+		return randomNumber(chance,this.seed) <= chances[chance];
 	}
+
 }

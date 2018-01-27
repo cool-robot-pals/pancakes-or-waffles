@@ -22,9 +22,9 @@ export default class PostGetter extends abstractGetter {
 	}
 
 
-	getOwnable(params) {
+	async getOwnable(params) {
 
-		if(params.use === 'CHARACTER' && this.chances.should('characterHaveOwnable')) {
+		if(params.use === 'CHARACTER' && await this.chances.should('characterHaveOwnable')) {
 			return this.buildGetter(ThingGetter,{},{
 				type: 'ownable'
 			}).value;
@@ -40,10 +40,10 @@ export default class PostGetter extends abstractGetter {
 
 		let useable;
 
-		if(!params.use) params.use = this.chances.should('useThing')?'THING':'CHARACTER';
+		if(!params.use) params.use = await this.chances.should('useThing')?'THING':'CHARACTER';
 		if(!params.verb) params.verb = await this.verb.get();
 		if(!params.thing) params.thing = this.buildGetter(ThingGetter).value;
-		if(!params.posession) params.posession = this.getOwnable(params);
+		if(!params.posession) params.posession = await this.getOwnable(params);
 
 		if(params.posession) {
 			params.posession = '\'s '+params.posession;
@@ -64,7 +64,7 @@ export default class PostGetter extends abstractGetter {
 
 	async get() {
 
-		let fandom = this.chances.should('crossFandomsOver')?undefined:(this.buildGetter(FandomGetter).value);
+		let fandom = await this.chances.should('crossFandomsOver')?undefined:(this.buildGetter(FandomGetter).value);
 		let characters = [];
 		characters.push(this.buildGetter(CharacterGetter,{
 			fandom: fandom
@@ -76,7 +76,7 @@ export default class PostGetter extends abstractGetter {
 
 		this.defaults.fandom = fandom?fandom:this.randomArray(characters).fandom;
 
-		const verb = this.chances.should('useSameVerb') ?
+		const verb = await this.chances.should('useSameVerb') ?
 			await this.verb.get() :
 			null;
 		const choices = await Promise.all([

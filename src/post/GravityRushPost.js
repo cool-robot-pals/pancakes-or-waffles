@@ -7,6 +7,11 @@ import ChancesGetter from 'getter/chances';
 
 class CustomPost extends Post {
 
+	constructor(...args) {
+		super(...args);
+		this.chances = this.buildGetter(ChancesGetter);
+	}
+
 	positionMarker(anchor) {
 		const padding = 10;
 		const randomPos = (max=padding,min=(100-padding)) => {
@@ -29,11 +34,10 @@ class CustomPost extends Post {
 
 	async getMoreProps(post) {
 
-		const chances = new ChancesGetter();
 		const anchors = ['top','bottom','left','right'];
 		let more = {};
 
-		if(chances.should('gravityRushHaveBothChoices')){
+		if(await this.chances.should('gravityRushHaveBothChoices')){
 			more.choices = [[
 				post.choices[0],
 				decapitalizeFirstLetter(post.choices[1])

@@ -31,7 +31,12 @@ const abstractGetter = class {
 		return this.xpndSync(string);
 	}
 
-	async fetch() {
+	fetch() {
+		if(!this._fetched) this._fetched = this.fetchOnce();
+		return this._fetched;
+	}
+
+	async fetchOnce() {
 		return await fetchItem(this.remote);
 	}
 

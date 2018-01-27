@@ -27,7 +27,8 @@ export default (chunk,{context={},seed=makeSeed()}) => {
 			switch(name) {
 			case 'characterOrThing': {
 				let chances = new ChancesGetter({seed:seed});
-				if(chances.should('useThing')) {
+				//if(chances.should('useThing')) {
+				if(Math.random > .5)) {
 					replacement = new ThingGetter({
 						seed: seed
 					}).value;

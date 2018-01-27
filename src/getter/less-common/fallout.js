@@ -1,17 +1,15 @@
 import abstractGetter from 'getter/abstract/abstract';
 
-import specialTxt from 'corpus/less-common/fo-special.txt';
-
 export default class FalloutGetter extends abstractGetter {
 
-	constructor(defaults={}) {
-		super(defaults);
-		this.special = this.parse(specialTxt);
+	constructor(...props) {
+		super(...props);
+		this.remote = 'less-common/fo-special';
 	}
 
-	get values() {
-		return {
-			special: this.xpndSync(this.randomArray(this.special).value)
-		};
+	async get() {
+		return await this.expandKeywords(
+			await super.get()
+		);
 	}
 }
