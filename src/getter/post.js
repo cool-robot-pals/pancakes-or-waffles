@@ -64,8 +64,11 @@ export default class PostGetter extends abstractGetter {
 
 	async get() {
 
-		let fandom = await this.chances.should('crossFandomsOver')?undefined:(this.buildGetter(FandomGetter).value);
-		let characters = [];
+		const fandom = await this.chances.should('crossFandomsOver')
+			? null
+			: await this.buildGetter(FandomGetter).get();
+
+		const characters = [];
 		characters.push(this.buildGetter(CharacterGetter,{
 			fandom: fandom
 		}).values);

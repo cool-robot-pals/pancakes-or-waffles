@@ -3,17 +3,20 @@ import people from 'json-loader!yaml-loader!corpus/people.yaml';
 
 export default class FandomGetter extends abstractGetter {
 
-	constructor(defaults={}) {
-		super(defaults);
-		this.fandoms = [];
-		people.map(item => {
-			if(this.fandoms.indexOf(item.fandom) < 0) this.fandoms.push(item.fandom);
-		});
+	constructor(...props) {
+		super(...props);
+		this.remote = 'people';
 	}
 
 
-	getDefault() {
-		return this.randomArray(this.fandoms);
+	async fetchOnce() {
+		return super.fetchOnce().then(peopleWithFandoms =>
+			peopleWithFandoms.map(item => {
+				item.fandom
+			})
+		).then(fandoms =>
+			[...new Set(fandoms)]
+		)
 	}
 
 
