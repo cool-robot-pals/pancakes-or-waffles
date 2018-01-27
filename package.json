@@ -25,6 +25,7 @@
     "raw-loader": "^0.5.1",
     "request": "^2.83.0",
     "seedrandom": "^2.4.2",
+    "spdy": "^3.4.7",
     "twit": "^2.2.5",
     "url-loader": "^0.6.2",
     "webpack": "^3.1.0",
@@ -47,12 +48,13 @@
     "url": "https://github.com/walaura/tough-choices-bot.git"
   },
   "scripts": {
+    "sign": "openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -keyout server.key -out server.crt -subj \"/C=US/ST=AZ/L=Bitter Springs/O=Pancakes/CN=www.example.com\"",
     "esfix": "eslint --ignore-path .gitignore --fix .",
     "webpack": "webpack --hide-modules",
-    "install": "npm run webpack",
+    "install": "npm run webpack && npm run sign",
     "localpost": "node ./bin/screenshot.js && node ./bin/upload.js",
     "shitpost": "node ./bin/screenshot.js && node ./bin/upload-twitter.js",
-    "watch": "open http://localhost:9191 && concurrently \"node ./bin/start-server.js\" \"webpack --watch\"",
+    "watch": "open https://localhost:9191 && concurrently \"node ./bin/start-server.js\" \"webpack --watch\"",
     "test": "node ./bin/run-tests.js"
   },
   "devDependencies": {

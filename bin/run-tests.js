@@ -11,7 +11,7 @@ const config = require('../.pancakerc');
 const server = require('../express/app.js');
 
 const port = 1337; /*bite me*/
-const url = `http://localhost:${port}/test.html`;
+const url = `https://localhost:${port}/test.html`;
 const outPath = path.join(__dirname, '..', config.paths.build, config.filenames.base + '.jpg');
 
 // Source: https://github.com/GoogleChrome/puppeteer#usage
@@ -19,6 +19,7 @@ const listenForMocha = async () => {
 
 	const browser = await puppeteer.launch({
 		args: ['--no-sandbox'],
+		ignoreHTTPSErrors: true
 	});
 	const page = await browser.newPage();
 

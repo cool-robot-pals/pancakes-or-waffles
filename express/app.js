@@ -1,5 +1,7 @@
 const express = require('express');
 const path = require('path');
+const spdy = require('spdy');
+const fs = require('fs');
 
 const app = express();
 
@@ -16,4 +18,9 @@ app.get('/test', require('./route/test.js'));
 app.get('/get-image', require('./route/get-image.js'));
 app.get('/get-corpus/:item*', require('./route/get-corpus.js'));
 
-module.exports = app;
+const spdyApp = spdy.createServer({
+	key: fs.readFileSync(`${__dirname}/../server.key`),
+	cert: fs.readFileSync(`${__dirname}/../server.crt`)
+}, app)
+
+module.exports = spdyApp;
