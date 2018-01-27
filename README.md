@@ -35,6 +35,6 @@ To actually use `npm run shitpost` you need the following env variables.
 
 
 ## Testing
-The bot generates webpages, after the server is running you can visit `http://localhost:9191` to see the page the bot sees or `http://localhost:9191/test.html` to see a cool dashboard.
+The bot generates webpages, after the server is running you can visit `https://localhost:9191` to see the page the bot sees or `https://localhost:9191/test` to see a cool dashboard.
 
 You can ensure the code works by running `npm test`.

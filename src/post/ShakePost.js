@@ -4,7 +4,7 @@ import {decapitalizeFirstLetter} from 'lib/stringies';
 
 class CustomPost extends Post {
 
-	getMoreProps(post) {
+	async getMoreProps(post) {
 
 		return {
 			variants: [2,2,4,2],

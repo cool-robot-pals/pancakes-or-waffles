@@ -16,6 +16,7 @@ export default class PostGetter extends abstractGetter {
 
 		super(defaults);
 		this.chances = this.buildGetter(ChancesGetter);
+		this.verb = this.buildGetter(VerbGetter);
 		this.post = {};
 
 	}
@@ -35,12 +36,12 @@ export default class PostGetter extends abstractGetter {
 	}
 
 
-	makeChoice(params={}) {
+	async makeChoice(params={}) {
 
 		let useable;
 
 		if(!params.use) params.use = this.chances.should('useThing')?'THING':'CHARACTER';
-		if(!params.verb) params.verb = this.buildGetter(VerbGetter).value;
+		if(!params.verb) params.verb = await this.verb.get();
 		if(!params.thing) params.thing = this.buildGetter(ThingGetter).value;
 		if(!params.posession) params.posession = this.getOwnable(params);
 
@@ -61,7 +62,7 @@ export default class PostGetter extends abstractGetter {
 	}
 
 
-	get values() {
+	async get() {
 
 		let fandom = this.chances.should('crossFandomsOver')?undefined:(this.buildGetter(FandomGetter).value);
 		let characters = [];
@@ -75,18 +76,21 @@ export default class PostGetter extends abstractGetter {
 
 		this.defaults.fandom = fandom?fandom:this.randomArray(characters).fandom;
 
-		let verb = this.chances.should('useSameVerb')?this.buildGetter(VerbGetter).value:undefined;
-		let choices = [];
-		choices.push(this.makeChoice({
-			character: characters[0].name,
-			verb: verb
-		}));
-		choices.push(this.makeChoice({
-			character: characters[1].name,
-			verb: verb
-		}));
+		const verb = this.chances.should('useSameVerb') ?
+			await this.verb.get() :
+			null;
+		const choices = await Promise.all([
+			this.makeChoice({
+				character: characters[0].name,
+				verb: verb
+			}),
+			this.makeChoice({
+				character: characters[1].name,
+				verb: verb
+			})
+		]);
 
-		let query = this.randomArray(characters).search;
+		const query = this.randomArray(characters).search;
 
 		return {
 			choices: choices,

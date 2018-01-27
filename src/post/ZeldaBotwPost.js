@@ -8,9 +8,14 @@ import BinaryChoicesGetter from 'getter/less-common/binaryChoices';
 
 class CustomPost extends Post {
 
-	getMoreProps(post) {
+	constructor(...args) {
+		super(...args);
+		this.narrator = this.buildGetter(NarratorGetter);
+	}
 
-		const dialog = this.buildGetter(NarratorGetter).narrate(post.choices[0]);
+	async getMoreProps(post) {
+
+		const dialog = await this.narrator.narrate(post.choices[0]);
 		const character = this.buildGetter(CharacterGetter).values.name;
 		const chances = this.buildGetter(ChancesGetter);
 

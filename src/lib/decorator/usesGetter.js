@@ -1,12 +1,16 @@
-import {randomNumber,randomArray} from 'lib/random';
+import {randomNumber,randomArray, makeSeed} from 'lib/random';
 
 export default function(Target) {
 
 	return class usesGetter extends Target {
 
+		attachRandomSeed(seed=makeSeed()) {
+			this.seed = seed;
+		}
+
 		buildGetter(Getter,defaults={},options={}) {
 			return new Getter({
-				fandom: this.defaults.fandom,
+				fandom: this.defaults ? this.defaults.fandom : null,
 				...defaults,
 				seed: this.seed
 			},

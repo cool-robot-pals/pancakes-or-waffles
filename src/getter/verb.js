@@ -1,17 +1,16 @@
 import abstractGetter from 'getter/abstract/abstract';
-import verbsTxt from 'corpus/verbs.txt';
-
 
 export default class VerbGetter extends abstractGetter {
 
-	constructor(defaults={},options={}) {
-		super(defaults,options);
-		this.verbs = this.parse(verbsTxt);
+	constructor(...props) {
+		super(...props);
+		this.remote = 'verbs';
 	}
 
-	getDefault() {
-		return this.expand(this.randomArray(this.verbs).value);
+	async get() {
+		return await this.expandKeywords(
+			await super.get()
+		);
 	}
-
 
 }

@@ -1,9 +1,10 @@
-import expandDictionary from 'lib/expandDictionary';
-import {makeSeed} from 'lib/random';
+const expandBracketWords = require('./txt/expandBracketWords.js');
 
 const propsRegex = /\((.*?)\)/;
 
-export default (str,{seed=makeSeed(),context={}}={}) => {
+export const parse = (str) => {
+
+	console.info('DEPRECATED use async fetch()->get() like LayoutGetter');
 
 	let array = str.split('\n');
 
@@ -12,11 +13,11 @@ export default (str,{seed=makeSeed(),context={}}={}) => {
 		.filter(chunk => chunk.charAt(0) !== '#')
 		.filter(chunk => chunk.length > 0)
 		.map(chunk => chunk === '_empty_'?'':chunk)
-		.map(chunk => expandDictionary(chunk));
+		.map(chunk => expandBracketWords(chunk));
 
 	array = [].concat.apply([], array);
 
-	let arrayWithProps = array
+	const arrayWithProps = array
 		.map(chunk => {
 			let props = {};
 			let propArray = propsRegex.exec(chunk);
@@ -38,5 +39,7 @@ export default (str,{seed=makeSeed(),context={}}={}) => {
 				props: props
 			};
 		});
+
 	return arrayWithProps;
+
 };

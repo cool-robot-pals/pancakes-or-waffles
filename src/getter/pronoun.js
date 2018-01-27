@@ -31,7 +31,7 @@ export default class PronounGetter extends abstractGetter {
 				case: 'lowerCase'
 			});
 		}
-		return this.expand(pronoun);
+		return this.xpndSync(pronoun);
 	}
 
 

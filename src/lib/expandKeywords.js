@@ -14,7 +14,7 @@ let ChancesGetter,ThingGetter,CharacterGetter,AdjectiveGetter;
 
 export default (chunk,{context={},seed=makeSeed()}) => {
 
-	lookupKeys.map(name => {
+	lookupKeys.forEach(name => {
 		if(lookup[name].test(chunk) !== false) {
 			let options = {};
 			let replacement;

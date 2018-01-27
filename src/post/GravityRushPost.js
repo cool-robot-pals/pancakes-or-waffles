@@ -27,7 +27,7 @@ class CustomPost extends Post {
 		return[randomPos(),randomPos()];
 	}
 
-	getMoreProps(post) {
+	async getMoreProps(post) {
 
 		const chances = new ChancesGetter();
 		const anchors = ['top','bottom','left','right'];

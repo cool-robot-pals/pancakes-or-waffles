@@ -23,7 +23,7 @@ const explodeChunkVariables = (chunk) => {
 	}
 };
 
-export default (chunk) => {
+module.exports = (chunk) => {
 
 	while(explodeChunkVariables(chunk).length > 0) {
 		chunk = explodeChunkVariables(chunk);

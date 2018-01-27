@@ -9,7 +9,12 @@ import {randomNumber} from 'lib/random';
 
 class CustomPost extends Post {
 
-	parseChoice(original) {
+	constructor(...args) {
+		super(...args);
+		this.narrator = this.buildGetter(NarratorGetter);
+	}
+
+	async parseChoice(original) {
 
 		const foValues = this.buildGetter(FalloutGetter);
 		const chances = this.buildGetter(ChancesGetter);
@@ -24,7 +29,7 @@ class CustomPost extends Post {
 		}
 
 		if(chances.should('falloutHasDialog')) {
-			choice.push(this.buildGetter(NarratorGetter).narrate(original));
+			choice.push(await this.narrator.narrate(original));
 		}
 		else {
 			choice.push(`<${original}>`);
@@ -33,10 +38,10 @@ class CustomPost extends Post {
 
 	}
 
-	getMoreProps(post) {
+	async getMoreProps(post) {
 
 		let more = {};
-		more.choices = post.choices.map(choice => this.parseChoice(choice));
+		more.choices = await(Promise.all(post.choices.map(choice => this.parseChoice(choice))));
 		return more;
 
 	}
