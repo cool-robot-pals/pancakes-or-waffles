@@ -22,12 +22,12 @@ const abstractGetter = class {
 
 	/*filter it based on context*/
 	async filter(fetched, context) {
-		return await fetched;
+		return fetched;
 	}
 
 	/*turn it to 1 element*/
 	async reduce(fetched) {
-		return this.randomArray(await fetched);
+		return this.randomArray(fetched);
 	}
 
 	/*used by getButNot as a filter function*/

@@ -19,7 +19,7 @@ class CustomPost extends Post {
 
 	async getMoreProps(post) {
 
-		const character = await this.character.get().name;
+		const character = (await this.character.get()).name;
 
 		if(await this.chances.should('massEffectHasDialog')){
 			let more = {};

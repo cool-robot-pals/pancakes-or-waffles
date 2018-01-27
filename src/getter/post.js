@@ -69,8 +69,6 @@ export default class PostGetter extends abstractGetter {
 			? await this.buildGetter(FandomGetter).get()
 			: await this.buildGetter(FandomGetter).get();
 
-			console.log(fandom);
-
 		const characters = await this.buildGetter(CharacterGetter,{
 			fandom: fandom
 		}).getArray(2)

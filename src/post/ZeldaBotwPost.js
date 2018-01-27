@@ -18,7 +18,7 @@ class CustomPost extends Post {
 	async getMoreProps(post) {
 
 		const dialog = await this.narrator.narrate(post.choices[0]);
-		const character = await this.character.get().name;
+		const character = (await this.character.get()).name;
 		const choices = await this.choices.get();
 
 		let more = {};
