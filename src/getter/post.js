@@ -26,9 +26,9 @@ export default class PostGetter extends abstractGetter {
 	async getOwnable(params) {
 
 		if(params.use === 'CHARACTER' && await this.chances.should('characterHaveOwnable')) {
-			return this.buildGetter(ThingGetter,{},{
+			return await this.buildGetter(ThingGetter,{},{
 				type: 'ownable'
-			}).value;
+			}).get();
 		}
 		else {
 			return '';
