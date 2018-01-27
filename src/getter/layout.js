@@ -19,7 +19,7 @@ export default class LayoutGetter extends abstractGetter {
 	}
 
 	async get () {
-		return 'mass-effect'
+		return 'oblivion'
 	}
 
 }
