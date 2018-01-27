@@ -13,6 +13,7 @@ class CustomPost extends Post {
 		super(...args);
 		this.narrator = this.buildGetter(NarratorGetter);
 		this.chances = this.buildGetter(ChancesGetter);
+		this.choices = this.buildGetter(BinaryChoicesGetter);
 	}
 
 	async getMoreProps(post) {
@@ -25,7 +26,7 @@ class CustomPost extends Post {
 				dialog: `${character}: ${await this.narrator.narrate(post.choices[0])}`
 			};
 
-			let values = this.buildGetter(BinaryChoicesGetter).values;
+			const values = await this.choices.get();
 			more.choices = this.randomNumber('moreChoices') >= .5 ? [`[${values.good}]`,`[${values.bad}]`]:[`[${values.bad}]`,`[${values.good}]`];
 			return more;
 		}

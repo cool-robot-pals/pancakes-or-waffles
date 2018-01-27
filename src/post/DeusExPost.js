@@ -9,6 +9,7 @@ class CustomPost extends Post {
 	constructor(...args) {
 		super(...args);
 		this.narrator = this.buildGetter(NarratorGetter);
+		this.choices = this.buildGetter(BinaryChoicesGetter);
 	}
 
 	async getMoreProps(post) {
@@ -18,7 +19,7 @@ class CustomPost extends Post {
 			.map(async (choice) => await this.narrator.narrate(choice))
 			.filter((choice, index) => index === 0);
 
-		more.extras = this.buildGetter(BinaryChoicesGetter).values;
+		more.extras = await this.choices.get();
 		return more;
 
 	}
