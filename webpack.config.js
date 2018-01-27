@@ -20,14 +20,6 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.txt$/,
-				use: ['raw-loader']
-			},
-			{
-				test: /\.yaml$/,
-				use: ['yaml-loader']
-			},
-			{
 				test: /\.js$/,
 				exclude: [
 					/node_modules/,
