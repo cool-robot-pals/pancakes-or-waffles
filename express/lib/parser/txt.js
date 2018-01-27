@@ -2,9 +2,7 @@ const expandBracketWords = require('./txt/expandBracketWords.js');
 
 const propsRegex = /\((.*?)\)/;
 
-export const parse = (str) => {
-
-	console.info('DEPRECATED use async fetch()->get() like LayoutGetter');
+const parse = (str) => {
 
 	let array = str.split('\n');
 
@@ -40,6 +38,17 @@ export const parse = (str) => {
 			};
 		});
 
+	const propCount = arrayWithProps.reduce((acc,current) => {
+		return acc + Object.keys(current.props).length
+	}, 0)
+
+	if(propCount < 1) {
+		return arrayWithProps.map(item => item.value);
+	}
+	else {
 		return arrayWithProps;
+	}
 
 };
+
+module.exports = parse;

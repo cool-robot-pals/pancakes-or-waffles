@@ -10,7 +10,7 @@ export default class AdjectiveGetter extends abstractGetter {
 	}
 
 	getDefault() {
-		return this.expand(this.randomArray(this.adjectives).value);
+		return this.xpndSync(this.randomArray(this.adjectives).value);
 	}
 
 

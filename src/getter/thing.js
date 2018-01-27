@@ -75,7 +75,7 @@ export default class ThingGetter extends abstractGetter {
 			}
 			return list;
 		})();
-		const noun = this.expand(this.randomArray(wordList));
+		const noun = this.xpndSync(this.randomArray(wordList));
 
 		const useAdjective = this.shouldUseAdjective(noun);
 		const isSingular = this.isSingular(noun);
@@ -84,7 +84,7 @@ export default class ThingGetter extends abstractGetter {
 			return this.options.type === 'thing' && noun.props.proper != true;
 		})();
 
-		let returnable = [];
+		const returnable = [];
 
 		if(useAdjective) {
 			returnable.push(this.buildGetter(AdjectiveGetter).value);
@@ -107,7 +107,7 @@ export default class ThingGetter extends abstractGetter {
 			}).value);
 		}
 
-		return returnable.filter(val => val.length > 0).join(' ');
+		return returnable.filter(value => value && value.length > 0).join(' ');
 
 	}
 

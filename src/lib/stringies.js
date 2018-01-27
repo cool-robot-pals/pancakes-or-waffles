@@ -1,6 +1,9 @@
-export const capitalizeFirstLetter = (string) => {
-	return string.charAt(0).toUpperCase() + string.slice(1);
-};
-export const decapitalizeFirstLetter = (string) => {
-	return string.charAt(0).toLowerCase() + string.slice(1);
-};
+export const capitalizeFirstLetter = str =>
+	typeof str === 'string'
+		?	str.charAt(0).toUpperCase() + str.slice(1)
+		: str
+
+export const decapitalizeFirstLetter = str =>
+	typeof str === 'string' 
+		? str.charAt(0).toLowerCase() + str.slice(1)
+		: str

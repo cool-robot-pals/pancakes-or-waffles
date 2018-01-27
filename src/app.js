@@ -1,5 +1,3 @@
-import fontsTxt from 'internal-data/fonts.txt';
-
 import changeCase from 'change-case';
 import queryString from 'query-string';
 
@@ -7,7 +5,6 @@ import LayoutGetter from 'getter/layout';
 import PostGetter from 'getter/post';
 
 import logger from 'lib/logger';
-import {parse as txtToArr} from 'lib/parser/txt';
 import {makeSeed} from 'lib/random';
 
 
@@ -62,8 +59,16 @@ const boot = () => {
 
 	/*linked bc phantomjs is OLD*/
 	let link = document.createElement('link');
-	let fonts = txtToArr(fontsTxt);
-	link.href = 'https://fonts.googleapis.com/css?family='+fonts.map(font => font.value).join('|');
+	let fonts = [
+		'Roboto:400,500i',
+		'Gentium+Book+Basic:700',
+		'Patrick+Hand',
+		'Poiret+One',
+		'Roboto+Mono:500',
+		'Lato:700,400',
+		'Tulpen+One',
+	]
+	link.href = 'https://fonts.googleapis.com/css?family='+fonts.join('|');
 	link.rel = 'stylesheet';
 	document.querySelector('head').appendChild(link);
 

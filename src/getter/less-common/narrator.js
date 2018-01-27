@@ -18,7 +18,7 @@ export default class extends abstractGetter {
 
 	get values() {
 		return {
-			narration: this.expand(this.randomArray(this.narrator).value)
+			narration: this.xpndSync(this.randomArray(this.narrator).value)
 		};
 	}
 }

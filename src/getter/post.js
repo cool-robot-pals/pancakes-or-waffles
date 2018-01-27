@@ -78,7 +78,7 @@ export default class PostGetter extends abstractGetter {
 
 		const verb = this.chances.should('useSameVerb') ?
 			await this.verb.get() :
-			undefined;
+			null;
 		const choices = await Promise.all([
 			this.makeChoice({
 				character: characters[0].name,

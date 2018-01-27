@@ -1,15 +1,10 @@
-import {parse as parseTxt} from './parser/txt';
-
 const fetchCache = [];
 const cachedTextFetch = rq => {
 	if(!fetchCache[rq]) {
-		fetchCache[rq] = fetch(rq).then(response=>response.text());
+		fetchCache[rq] = fetch(rq).then(response=>response.json());
 	}
 	return fetchCache[rq];
 };
 
-export const fetchTxt = async (path) =>
-	cachedTextFetch(`/corpus/${path}.txt`).then(parseTxt);
-
-export const fetchYaml = async (path) =>
-	cachedTextFetch(`/corpus/${path}.yaml`);
+export const fetchItem = async (path) =>
+	cachedTextFetch(`/get-corpus/${path}`)

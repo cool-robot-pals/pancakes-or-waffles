@@ -1,10 +1,15 @@
 import abstractGetter from 'getter/abstract/abstract';
-import {fetchTxt} from 'lib/fetchCorpusItem';
+
 
 export default class LayoutGetter extends abstractGetter {
 
+	constructor(...props) {
+		super(...props);
+		this.remote = 'data/layouts'
+	}
+
 	async fetch() {
-		const layouts = (await fetchTxt('data/layouts')).map(layoutTxt=>layoutTxt.value);
+		const layouts = await super.fetch();
 		if(this.defaults.layout) {
 			return layouts.filter(layout => layout === this.defaults.layout);
 		}
@@ -14,8 +19,7 @@ export default class LayoutGetter extends abstractGetter {
 	}
 
 	async get() {
-		let layout = this.randomArray(await this.fetch());
-		return layout;
+		return this.randomArray(await this.fetch());
 	}
 
 }
