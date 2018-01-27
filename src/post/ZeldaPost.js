@@ -1,7 +1,7 @@
 import Post from './abstract/Post.js';
 
 import {capitalizeFirstLetter} from 'lib/stringies';
-import BinaryChoicesValues from 'getter/less-common/binaryChoices';
+import BinaryChoicesGetter from 'getter/less-common/binaryChoices';
 import NarratorGetter from 'getter/less-common/narrator';
 
 class CustomPost extends Post {
@@ -9,11 +9,12 @@ class CustomPost extends Post {
 	constructor(...args) {
 		super(...args);
 		this.narrator = this.buildGetter(NarratorGetter);
+		this.choices = this.buildGetter(BinaryChoicesGetter);
 	}
 
 	async getMoreProps(post) {
 
-		const binaryChoices = this.buildGetter(BinaryChoicesValues).values;
+		const binaryChoices = await this.choices.get();
 
 		for(let k in binaryChoices) {
 			binaryChoices[k] = capitalizeFirstLetter(binaryChoices[k]);

@@ -8,18 +8,14 @@ export default class LayoutGetter extends abstractGetter {
 		this.remote = 'data/layouts';
 	}
 
-	async fetch() {
-		const layouts = await super.fetch();
+	async fetchOnce() {
+		const layouts = await super.fetchOnce();
 		if(this.defaults.layout) {
 			return layouts.filter(layout => layout === this.defaults.layout);
 		}
 		else {
 			return layouts;
 		}
-	}
-
-	async get() {
-		return this.randomArray(await this.fetch());
 	}
 
 }

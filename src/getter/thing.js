@@ -3,8 +3,6 @@ import ChancesGetter from 'getter/chances';
 import PronounGetter from 'getter/pronoun';
 import AdjectiveGetter from 'getter/adjective';
 
-import nounsTxt from 'corpus/nouns.txt';
-
 import pluralize from 'pluralize';
 
 const defaultOptions = {
@@ -15,17 +13,21 @@ export default class ThingGetter extends abstractGetter {
 
 	constructor(defaults={},options={}) {
 
-		options = Object.assign({},defaultOptions,options);
+		options = {
+			...defaultOptions,
+			options,
+		};
+
 		super(defaults,options);
 
-		this.nouns = this.parse(nounsTxt);
-
+		this.remote = 'nouns';
 		this.chances = this.buildGetter(ChancesGetter);
+		this.adjectives = this.buildGetter(AdjectiveGetter);
 
 	}
 
 
-	isSingular(noun) {
+	async isSingular(noun) {
 		if(
 			noun.props.proper ||
 			noun.props.singular === 'always' ||
@@ -42,54 +44,50 @@ export default class ThingGetter extends abstractGetter {
 			return false;
 		}
 		else {
-			return this.chances.should('isSingular');
+			return await this.chances.should('isSingular');
 		}
 	}
 
 
-	shouldUseAdjective(noun) {
+	async shouldUseAdjective(noun) {
 		if(noun.props.proper) {
 			return false;
 		}
 		else {
-			return this.chances.should('useAdjective');
+			return await this.chances.should('useAdjective');
 		}
 	}
 
 
-	getDefault() {
+	async filter(list, context) {
+		if(this.options.type === 'thing') {
+			list = list.filter(noun => !noun.props.only || noun.props.only !== 'ownable');
+		}
+		else if (this.options.type === 'ownable') {
+			list = list.filter(noun => !noun.props.only || noun.props.only !== 'proper');
+		}
+		if(this.options.singular === true) {
+			list = list.filter(async noun => await this.isSingular(noun));
+		}
+		if(this.options.plural === true) {
+			list = list.filter(async noun => await !this.isSingular(noun));
+		}
+		return list;
+	}
 
-		const wordList = (()=>{
-			let list = this.nouns;
-			if(this.options.type === 'thing') {
-				list = list.filter(noun => !noun.props.only || noun.props.only !== 'ownable');
-			}
-			else if (this.options.type === 'ownable') {
-				list = list.filter(noun => !noun.props.only || noun.props.only !== 'proper');
-			}
-			if(this.options.singular === true) {
-				list = list.filter(noun => this.isSingular(noun));
-			}
-			if(this.options.plural === true) {
-				list = list.filter(noun => !this.isSingular(noun));
-			}
-			return list;
-		})();
-		const noun = this.xpndSync(this.randomArray(wordList));
 
-		const useAdjective = this.shouldUseAdjective(noun);
-		const isSingular = this.isSingular(noun);
+	async reduce(wordList) {
 
-		const usePronoun = (()=>{
-			return this.options.type === 'thing' && noun.props.proper != true;
-		})();
-
+		const noun = await this.expandKeywordHelper(this.randomArray(wordList));
+		const useAdjective = await this.shouldUseAdjective(noun);
+		const isSingular = await this.isSingular(noun);
+		const usePronoun = this.options.type === 'thing' && noun.props.proper != true;
 		const returnable = [];
 
 		if(useAdjective) {
-			returnable.push(this.buildGetter(AdjectiveGetter).value);
-			if(this.chances.should('useTwoAdjectives')){
-				returnable.push(this.buildGetter(AdjectiveGetter).value);
+			returnable.push(this.adjectives.get());
+			if(await this.chances.should('useTwoAdjectives')){
+				returnable.push(this.adjectives.get());
 			}
 		}
 
@@ -101,10 +99,10 @@ export default class ThingGetter extends abstractGetter {
 		}
 
 		if(usePronoun) {
-			returnable.unshift(this.buildGetter(PronounGetter,{},{
+			returnable.unshift(await this.buildGetter(PronounGetter,{},{
 				singular: isSingular,
 				pronounable: returnable[0]
-			}).value);
+			}).get());
 		}
 
 		return returnable.filter(value => value && value.length > 0).join(' ');

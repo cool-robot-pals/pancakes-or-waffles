@@ -12,20 +12,22 @@ class CustomPost extends Post {
 	constructor(...args) {
 		super(...args);
 		this.narrator = this.buildGetter(NarratorGetter);
+		this.chances = this.buildGetter(ChancesGetter);
+		this.choices = this.buildGetter(BinaryChoicesGetter);
+		this.character = this.buildGetter(CharacterGetter);
 	}
 
 	async getMoreProps(post) {
 
-		const character = this.buildGetter(CharacterGetter).values.name;
-		const chances = this.buildGetter(ChancesGetter);
+		const character = (await this.character.get()).name;
 
-		if(chances.should('massEffectHasDialog')){
+		if(await this.chances.should('massEffectHasDialog')){
 			let more = {};
 			more.extras = {
 				dialog: `${character}: ${await this.narrator.narrate(post.choices[0])}`
 			};
 
-			let values = this.buildGetter(BinaryChoicesGetter).values;
+			const values = await this.choices.get();
 			more.choices = this.randomNumber('moreChoices') >= .5 ? [`[${values.good}]`,`[${values.bad}]`]:[`[${values.bad}]`,`[${values.good}]`];
 			return more;
 		}

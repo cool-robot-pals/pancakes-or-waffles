@@ -3,7 +3,7 @@ import logger from 'lib/logger';
 
 import formatPropExtras from 'lib/formatPropExtras';
 import escapeHTML from 'lib/escapeHTML';
-import usesGetter from 'lib/decorator/usesGetter';
+import usesSeededGetter from 'lib/decorator/usesSeededGetter';
 import {getRandomCss} from 'lib/getRandomCss';
 
 class Post {
@@ -27,7 +27,7 @@ class Post {
 		]);
 
 		this.state = {
-			seed: this.seed,
+			seed: this._seed,
 			query: post.query,
 			fandom: post.fandom,
 			choices: post.choices,
@@ -115,4 +115,4 @@ class Post {
 
 }
 
-export default usesGetter(Post);
+export default usesSeededGetter(Post);

@@ -10,74 +10,75 @@ const lookup = {
 };
 const lookupKeys = Object.keys(lookup);
 
-let ChancesGetter,ThingGetter,CharacterGetter,AdjectiveGetter;
+let ChancesGetter, ThingGetter, CharacterGetter, AdjectiveGetter;
 
-export default (chunk,{context={},seed=makeSeed()}) => {
-
-	lookupKeys.forEach(name => {
-		if(lookup[name].test(chunk) !== false) {
-			let options = {};
-			let replacement;
-			if(!ChancesGetter) {
-				ChancesGetter = require('getter/chances').default;
-				ThingGetter = require('getter/thing').default;
-				CharacterGetter = require('getter/character').default;
-				AdjectiveGetter = require('getter/adjective').default;
-			}
-			switch(name) {
-			case 'characterOrThing': {
-				let chances = new ChancesGetter({seed:seed});
-				if(chances.should('useThing')) {
-					replacement = new ThingGetter({
-						seed: seed
-					}).value;
-				}
-				else {
-					replacement = new CharacterGetter({
-						seed: seed,
-						fandom: context.fandom
-					}).values.name;
-				}
-				break;
-			}
-			case 'character':{
-				replacement = new CharacterGetter({
-					seed: seed,
-					fandom: context.fandom
-				}).values.name;
-				break;
-			}
-			case 'adjective':{
-				replacement = new AdjectiveGetter({
-					seed: seed
-				}).value;
-				break;
-			}
-			case 'thingSingular':{
-				replacement = new ThingGetter({
-					seed: seed
-				},{
-					singular: true
-				}).value;
-				break;
-			}
-			case 'thingPlural':{
-				replacement = new ThingGetter({
-					seed: seed
-				},{
-					plural: true
-				}).value;
-				break;
-			}
-			case 'thing':{
-				replacement = new ThingGetter({
-					seed: seed
-				}).value;
-				break;
-			}
-			}
-			chunk = chunk.replace(lookup[name],replacement);
+const getReplacement = async (name, context, seed) => {
+	switch(name) {
+	case 'characterOrThing': {
+		const chances = new ChancesGetter({seed:seed});
+		if(await chances.should('useThing')) {
+			return await new ThingGetter({
+				seed: seed
+			}).get();
 		}
-	});
+		else {
+			return (await new CharacterGetter({
+				seed: seed,
+				fandom: context.fandom
+			}).get()).name;
+		}
+	}
+	case 'character':{
+		return (await new CharacterGetter({
+			seed: seed,
+			fandom: context.fandom
+		}).get()).name;
+	}
+	case 'adjective':{
+		return await new AdjectiveGetter({
+			seed: seed
+		}).get();
+	}
+	case 'thingSingular':{
+		return await new ThingGetter({
+			seed: seed
+		},{
+			singular: true
+		}).get();
+	}
+	case 'thingPlural':{
+		return await new ThingGetter({
+			seed: seed
+		},{
+			plural: true
+		}).get();
+	}
+	case 'thing':{
+		return await new ThingGetter({
+			seed: seed
+		}).get();
+	}
+	}
+};
+
+const transformChunk = async (chunk, replacer, context, seed) => {
+	if(lookup[replacer].test(chunk) !== false) {
+		ChancesGetter = require('getter/chances').default;
+		ThingGetter = require('getter/thing').default;
+		CharacterGetter = require('getter/character').default;
+		AdjectiveGetter = require('getter/adjective').default;
+
+		const replacement = await getReplacement(replacer, context, seed);
+
+		chunk = chunk.replace(lookup[replacer], replacement);
+	}
 	return chunk;
+};
+
+export default async (chunk, {context={},seed=makeSeed()} ) => {
+
+	for (let replacer of lookupKeys) {
+		chunk = await transformChunk(chunk, replacer, context, seed);
+	}
+	return await chunk;
 };

@@ -17,17 +17,18 @@ export default class PostGetter extends abstractGetter {
 		super(defaults);
 		this.chances = this.buildGetter(ChancesGetter);
 		this.verb = this.buildGetter(VerbGetter);
+		this.thing = this.buildGetter(ThingGetter);
 		this.post = {};
 
 	}
 
 
-	getOwnable(params) {
+	async getOwnable(params) {
 
-		if(params.use === 'CHARACTER' && this.chances.should('characterHaveOwnable')) {
-			return this.buildGetter(ThingGetter,{},{
+		if(params.use === 'CHARACTER' && await this.chances.should('characterHaveOwnable')) {
+			return await this.buildGetter(ThingGetter,{},{
 				type: 'ownable'
-			}).value;
+			}).get();
 		}
 		else {
 			return '';
@@ -40,10 +41,10 @@ export default class PostGetter extends abstractGetter {
 
 		let useable;
 
-		if(!params.use) params.use = this.chances.should('useThing')?'THING':'CHARACTER';
+		if(!params.use) params.use = await this.chances.should('useThing')?'THING':'CHARACTER';
 		if(!params.verb) params.verb = await this.verb.get();
-		if(!params.thing) params.thing = this.buildGetter(ThingGetter).value;
-		if(!params.posession) params.posession = this.getOwnable(params);
+		if(!params.thing) params.thing = await this.thing.get();
+		if(!params.posession) params.posession = await this.getOwnable(params);
 
 		if(params.posession) {
 			params.posession = '\'s '+params.posession;
@@ -64,19 +65,17 @@ export default class PostGetter extends abstractGetter {
 
 	async get() {
 
-		let fandom = this.chances.should('crossFandomsOver')?undefined:(this.buildGetter(FandomGetter).value);
-		let characters = [];
-		characters.push(this.buildGetter(CharacterGetter,{
+		const fandom = await this.chances.should('crossFandomsOver')
+			? await this.buildGetter(FandomGetter).get()
+			: await this.buildGetter(FandomGetter).get();
+
+		const characters = await this.buildGetter(CharacterGetter,{
 			fandom: fandom
-		}).values);
-		characters.push(this.buildGetter(CharacterGetter,{
-			fandom: fandom,
-			skipName: characters[0].name
-		}).values);
+		}).getArray(2);
 
 		this.defaults.fandom = fandom?fandom:this.randomArray(characters).fandom;
 
-		const verb = this.chances.should('useSameVerb') ?
+		const verb = await this.chances.should('useSameVerb') ?
 			await this.verb.get() :
 			null;
 		const choices = await Promise.all([

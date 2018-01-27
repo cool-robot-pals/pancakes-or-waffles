@@ -1,31 +1,27 @@
 import abstractGetter from 'getter/abstract/abstract';
 
-import datesTxt from 'corpus/less-common/oblivion-dates.txt';
-
 export default class extends abstractGetter {
 
-	constructor(defaults={}) {
-		super(defaults);
-		this.months = this.parse(datesTxt);
+	constructor(...props) {
+		super(...props);
+		this.remote = 'less-common/oblivion-dates';
 	}
 
-	get date() {
+	async getDate() {
 
 		const day = Math.ceil(Math.random()*22)+4;
 		const year = Math.ceil(Math.random()*100)+300;
-		const month = this.xpndSync(this.randomArray(this.months).value);
+		const month = await this.expandKeywordHelper(this.randomArray(await this.fetch()));
 
 		return `${day}th of ${month}, 3E${year}`;
 
 	}
 
-	get values() {
-
+	async reduce() {
 		return {
-			date: this.date,
+			date: await this.getDate(),
 			'ui-accept': 'Accept',
 			'ui-reject': 'Reject'
 		};
-
 	}
 }

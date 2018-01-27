@@ -1,11 +1,17 @@
 import Post from './abstract/Post.js';
 
 import {capitalizeFirstLetter,decapitalizeFirstLetter} from 'lib/stringies';
-import BinaryChoicesValues from 'getter/less-common/binaryChoices';
+import BinaryChoicesGetter from 'getter/less-common/binaryChoices';
 import ChancesGetter from 'getter/chances';
 
 
 class CustomPost extends Post {
+
+	constructor(...args) {
+		super(...args);
+		this.chances = this.buildGetter(ChancesGetter);
+		this.choices = this.buildGetter(BinaryChoicesGetter);
+	}
 
 	positionMarker(anchor) {
 		const padding = 10;
@@ -29,11 +35,10 @@ class CustomPost extends Post {
 
 	async getMoreProps(post) {
 
-		const chances = new ChancesGetter();
 		const anchors = ['top','bottom','left','right'];
 		let more = {};
 
-		if(chances.should('gravityRushHaveBothChoices')){
+		if(await this.chances.should('gravityRushHaveBothChoices')){
 			more.choices = [[
 				post.choices[0],
 				decapitalizeFirstLetter(post.choices[1])
@@ -62,7 +67,7 @@ class CustomPost extends Post {
 		}
 		else {
 			more.choices = [post.choices.sort((a, b) => b.length - a.length )[0]];
-			more.extras = this.buildGetter(BinaryChoicesValues).values;
+			more.extras = await this.choices.get();
 		}
 
 		return more;

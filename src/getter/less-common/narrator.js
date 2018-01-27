@@ -1,6 +1,5 @@
 import abstractGetter from 'getter/abstract/abstract';
 
-import narratorTxt from 'corpus/less-common/narrator.txt';
 import {capitalizeFirstLetter,decapitalizeFirstLetter} from 'lib/stringies';
 
 
@@ -15,9 +14,9 @@ export default class extends abstractGetter {
 		return capitalizeFirstLetter(await this.get()).replace('$1',decapitalizeFirstLetter(sentence));
 	}
 
-	async get() {
-		return await this.expandKeywords(
-			await super.get()
+	async reduce(list) {
+		return await this.expandKeywordHelper(
+			this.randomArray(list)
 		);
 	}
 

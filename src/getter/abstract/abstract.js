@@ -2,55 +2,84 @@ import {parse as txtToArr} from 'lib/parser/txt';
 import {fetchItem} from 'lib/fetchCorpusItem';
 import expandKeywords from 'lib/expandKeywords';
 
-import usesGetter from 'lib/decorator/usesGetter';
+import usesSeededGetter from 'lib/decorator/usesSeededGetter';
 
 const abstractGetter = class {
 
-	constructor(defaults={},options={}) {
-		this.attachRandomSeed(defaults.seed);
-		this.defaults = defaults;
+	constructor(context={},options={}) {
+		this.attachRandomSeed(context._seed);
+		this.context = context;
 		this.options = options;
 		this.remote = '';
+
+		this.defaults = context;
 	}
 
-	parse(txt) {
-		return txtToArr(txt, {
-			context: this,
-			seed: this.seed
-		});
-	}
-
-	xpndSync(string) {
-		return expandKeywords(string, {
-			context: this.defaults,
-			seed: this.seed
-		});
-	}
-
-	async expandKeywords(string) {
-		return this.xpndSync(string);
-	}
-
-	async fetch() {
+	/*retrieve data from server, do 1-time formatting*/
+	async fetchOnce() {
 		return await fetchItem(this.remote);
 	}
 
+	/*filter it based on context*/
+	async filter(fetched, context) {
+		return fetched;
+	}
+
+	/*turn it to 1 element*/
+	async reduce(fetched) {
+		return this.randomArray(fetched);
+	}
+
+	/*used by getButNot as a filter function*/
+	compareFetchResults(original, comparison) {
+		return original === comparison;
+	}
+
+	/*public api*/
+	fetch() {
+		if(!this._fetched) this._fetched = this.fetchOnce();
+		return this._fetched;
+	}
+
 	async get() {
-		return this.randomArray(await this.fetch());
+		return await
+		this.fetch()
+			.then(fetched => this.filter(fetched, this.context))
+			.then(filtered => this.reduce(filtered));
 	}
 
-	get value() {
-		console.info('DEPRECATED use async fetch()->get() like LayoutGetter');
-		return this.values.default;
+	async getButNot(...keys) {
+		const solvedKeys = await Promise.all(keys);
+		const fetchable = await this.fetch().then(fetched => this.filter(fetched, this.context));
+		const withFilter = await fetchable.filter(item =>
+			solvedKeys.reduce(
+				(acc, key) => (acc && !this.compareFetchResults(key, item))
+				, true)
+		);
+		if(withFilter.length < 1) {
+			return this.reduce(fetchable);
+		}
+		else {
+			return this.reduce(withFilter);
+		}
 	}
 
-	get values() {
-		console.info('DEPRECATED use async fetch()->get() like LayoutGetter');
-		return {
-			default: this.getDefault()
-		};
+	async getArray(length) {
+		const rt = [];
+		for(let i = 0; i < length; i++) {
+			rt.push(this.getButNot(...rt));
+		}
+		return await Promise.all(rt);
+	}
+
+	/*helper methods*/
+	async expandKeywordHelper(string) {
+		return await expandKeywords(string, {
+			context: this.defaults,
+			seed: this._seed
+		});
 	}
 
 };
 
-export default usesGetter(abstractGetter);
+export default usesSeededGetter(abstractGetter);
