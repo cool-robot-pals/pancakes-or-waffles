@@ -1,27 +1,29 @@
 import abstractGetter from 'getter/abstract/abstract';
-import pronounsTxt from 'corpus/pronouns-for-nouns.txt';
 
 import numberToText from 'number-to-text';
 import numberToTextConv from 'number-to-text/converters/en-us';
 
 export default class PronounGetter extends abstractGetter {
 
-	constructor(defaults={},options={}) {
-		super(defaults,options);
-		this.pronouns = {
-			singular: this.parse(pronounsTxt).filter(pronoun => pronoun.props.singular),
-			plural: this.parse(pronounsTxt).filter(pronoun => pronoun.props.plural)
+	constructor(...props) {
+		super(...props);
+	}
+
+	async fetchOnce() {
+		const pronouns = super.fetchOnce();
+		return {
+			singular: pronouns.filter(pronoun => pronoun.props.singular),
+			plural: pronouns.filter(pronoun => pronoun.props.plural)
 		};
 	}
 
 	async get() {
-		return this.values.default;
-	}
-
-	getDefault() {
 		let pronoun = this.randomArray(
-			this.options.singular?this.pronouns.singular:this.pronouns.plural
+			this.options.singular
+				? (await this.fetch()).singular
+				: (await this.fetch()).plural
 		).value;
+
 		if(pronoun === 'a' && ['a','e','i','o','u'].indexOf(this.options.pronounable.toLowerCase().charAt(0)) >= 0) {
 			pronoun = 'an';
 		}
@@ -29,12 +31,13 @@ export default class PronounGetter extends abstractGetter {
 			pronoun = '';
 		}
 		if(pronoun === '_number_') {
-			let largeNumber = this.randomArray([true,false]);
-			pronoun = numberToText.convertToText(Math.ceil(Math.random()*(largeNumber?99:9)),{
+			const isLargeNumber = this.randomArray([true,false]);
+			pronoun = numberToText.convertToText(Math.ceil(Math.random()*(isLargeNumber?99:9)),{
 				case: 'lowerCase'
 			});
 		}
-		return this.xpndSync(pronoun);
+
+		return await this.expandKeywords(pronoun);
 	}
 
 
