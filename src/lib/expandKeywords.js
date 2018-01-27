@@ -27,20 +27,17 @@ const getReplacement = async (name, context, seed) => {
 				fandom: context.fandom
 			}).get()).name;
 		}
-		break;
 	}
 	case 'character':{
 		return (await new CharacterGetter({
 			seed: seed,
 			fandom: context.fandom
 		}).get()).name;
-		break;
 	}
 	case 'adjective':{
 		return await new AdjectiveGetter({
 			seed: seed
 		}).get();
-		break;
 	}
 	case 'thingSingular':{
 		return await new ThingGetter({
@@ -48,7 +45,6 @@ const getReplacement = async (name, context, seed) => {
 		},{
 			singular: true
 		}).get();
-		break;
 	}
 	case 'thingPlural':{
 		return await new ThingGetter({
@@ -56,13 +52,11 @@ const getReplacement = async (name, context, seed) => {
 		},{
 			plural: true
 		}).get();
-		break;
 	}
 	case 'thing':{
 		return await new ThingGetter({
 			seed: seed
 		}).get();
-		break;
 	}
 	}
 };
