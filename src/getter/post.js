@@ -17,6 +17,7 @@ export default class PostGetter extends abstractGetter {
 		super(defaults);
 		this.chances = this.buildGetter(ChancesGetter);
 		this.verb = this.buildGetter(VerbGetter);
+		this.thing = this.buildGetter(ThingGetter);
 		this.post = {};
 
 	}
@@ -42,7 +43,7 @@ export default class PostGetter extends abstractGetter {
 
 		if(!params.use) params.use = await this.chances.should('useThing')?'THING':'CHARACTER';
 		if(!params.verb) params.verb = await this.verb.get();
-		if(!params.thing) params.thing = this.buildGetter(ThingGetter).value;
+		if(!params.thing) params.thing = await this.thing.get();
 		if(!params.posession) params.posession = await this.getOwnable(params);
 
 		if(params.posession) {

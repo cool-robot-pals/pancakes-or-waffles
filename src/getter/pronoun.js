@@ -14,6 +14,9 @@ export default class PronounGetter extends abstractGetter {
 		};
 	}
 
+	async get() {
+		return this.values.default;
+	}
 
 	getDefault() {
 		let pronoun = this.randomArray(

@@ -44,6 +44,10 @@ const abstractGetter = class {
 		return this.randomArray(await this.fetch());
 	}
 
+	getDefault() {
+		return 'AAAAAAAA';
+	}
+
 	get value() {
 		console.info('DEPRECATED use async fetch()->get() like LayoutGetter');
 		return this.values.default;
