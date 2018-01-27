@@ -14,58 +14,58 @@ let ChancesGetter, ThingGetter, CharacterGetter, AdjectiveGetter;
 
 const getReplacement = async (name, context, seed) => {
 	switch(name) {
-		case 'characterOrThing': {
-			const chances = new ChancesGetter({seed:seed});
-			if(await chances.should('useThing')) {
-				return await new ThingGetter({
-					seed: seed
-				}).get();
-			}
-			else {
-				return (await new CharacterGetter({
-					seed: seed,
-					fandom: context.fandom
-				}).get()).name;
-			}
-			break;
+	case 'characterOrThing': {
+		const chances = new ChancesGetter({seed:seed});
+		if(await chances.should('useThing')) {
+			return await new ThingGetter({
+				seed: seed
+			}).get();
 		}
-		case 'character':{
+		else {
 			return (await new CharacterGetter({
 				seed: seed,
 				fandom: context.fandom
 			}).get()).name;
-			break;
 		}
-		case 'adjective':{
-			return await new AdjectiveGetter({
-				seed: seed
-			}).get();
-			break;
-		}
-		case 'thingSingular':{
-			return await new ThingGetter({
-				seed: seed
-			},{
-				singular: true
-			}).get();
-			break;
-		}
-		case 'thingPlural':{
-			return await new ThingGetter({
-				seed: seed
-			},{
-				plural: true
-			}).get();
-			break;
-		}
-		case 'thing':{
-			return await new ThingGetter({
-				seed: seed
-			}).get();
-			break;
-		}
+		break;
 	}
-}
+	case 'character':{
+		return (await new CharacterGetter({
+			seed: seed,
+			fandom: context.fandom
+		}).get()).name;
+		break;
+	}
+	case 'adjective':{
+		return await new AdjectiveGetter({
+			seed: seed
+		}).get();
+		break;
+	}
+	case 'thingSingular':{
+		return await new ThingGetter({
+			seed: seed
+		},{
+			singular: true
+		}).get();
+		break;
+	}
+	case 'thingPlural':{
+		return await new ThingGetter({
+			seed: seed
+		},{
+			plural: true
+		}).get();
+		break;
+	}
+	case 'thing':{
+		return await new ThingGetter({
+			seed: seed
+		}).get();
+		break;
+	}
+	}
+};
 
 const transformChunk = async (chunk, replacer, context, seed) => {
 	if(lookup[replacer].test(chunk) !== false) {
@@ -79,7 +79,7 @@ const transformChunk = async (chunk, replacer, context, seed) => {
 		chunk = chunk.replace(lookup[replacer], replacement);
 	}
 	return chunk;
-}
+};
 
 export default async (chunk, {context={},seed=makeSeed()} ) => {
 

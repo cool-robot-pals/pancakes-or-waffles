@@ -1,5 +1,4 @@
 import abstractGetter from 'getter/abstract/abstract';
-import chances from 'json-loader!yaml-loader!data/chances.yaml';
 import {randomNumber} from 'lib/random';
 
 

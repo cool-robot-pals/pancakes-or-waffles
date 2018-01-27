@@ -1,6 +1,5 @@
 import abstractGetter from 'getter/abstract/abstract';
 
-import narratorTxt from 'corpus/less-common/narrator.txt';
 import {capitalizeFirstLetter,decapitalizeFirstLetter} from 'lib/stringies';
 
 

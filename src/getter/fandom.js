@@ -1,5 +1,4 @@
 import abstractGetter from 'getter/abstract/abstract';
-import people from 'json-loader!yaml-loader!corpus/people.yaml';
 
 export default class FandomGetter extends abstractGetter {
 
