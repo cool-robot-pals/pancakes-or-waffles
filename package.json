@@ -50,8 +50,8 @@
     "esfix": "eslint --ignore-path .gitignore --fix .",
     "webpack": "webpack --hide-modules",
     "install": "npm run webpack",
-    "localpost": "npm run webpack && node ./bin/screenshot.js && node ./bin/upload.js",
-    "shitpost": "npm run webpack && node ./bin/screenshot.js && node ./bin/upload-twitter.js",
+    "localpost": "node ./bin/screenshot.js && node ./bin/upload.js",
+    "shitpost": "node ./bin/screenshot.js && node ./bin/upload-twitter.js",
     "watch": "open http://localhost:9191 && concurrently \"./bin/start-server.js\" \"webpack --watch\"",
     "test": "./bin/run-tests.js"
   }
