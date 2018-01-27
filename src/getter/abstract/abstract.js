@@ -74,7 +74,10 @@ const abstractGetter = class {
 
 	/*helper methods*/
 	async expandKeywordHelper(string) {
-		return this.xpndSync(string);
+		return await expandKeywords(string, {
+			context: this.defaults,
+			seed: this.seed
+		});
 	}
 
 	/*legacy*/
@@ -92,21 +95,6 @@ const abstractGetter = class {
 		return {
 			default: this.getDefault()
 		};
-	}
-
-
-	parse(txt) {
-		return txtToArr(txt, {
-			context: this,
-			seed: this.seed
-		});
-	}
-
-	xpndSync(string) {
-		return expandKeywords(string, {
-			context: this.defaults,
-			seed: this.seed
-		});
 	}
 
 };
