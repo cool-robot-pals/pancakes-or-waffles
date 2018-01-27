@@ -25,7 +25,7 @@
     "seedrandom": "^2.4.2",
     "spdy": "^3.4.7",
     "twit": "^2.2.5",
-    "webpack": "^3.1.0",
+    "webpack": "^3.1.0"
   },
   "engines": {
     "node": "^8.4.0"
