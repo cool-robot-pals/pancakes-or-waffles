@@ -52,7 +52,7 @@
     "install": "npm run webpack",
     "localpost": "node ./bin/screenshot.js && node ./bin/upload.js",
     "shitpost": "node ./bin/screenshot.js && node ./bin/upload-twitter.js",
-    "watch": "open http://localhost:9191 && concurrently \"./bin/start-server.js\" \"webpack --watch\"",
-    "test": "./bin/run-tests.js"
+    "watch": "open http://localhost:9191 && concurrently \"node ./bin/start-server.js\" \"webpack --watch\"",
+    "test": "node ./bin/run-tests.js"
   }
 }
