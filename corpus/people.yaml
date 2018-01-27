@@ -28,39 +28,6 @@
 - name: A2
   search: nier automata
   fandom: nier
-- name: Ninjara
-  search: arms nintendo
-  fandom: arms
-- name: Spring Man
-  search: arms nintendo
-  fandom: arms
-- name: RIbbon Girl
-  search: arms nintendo
-  fandom: arms
-- name: Mechanica
-  search: arms nintendo
-  fandom: arms
-- name: Master Mummy
-  search: arms nintendo
-  fandom: arms
-- name: Helix
-  search: arms nintendo
-  fandom: arms
-- name: Min Min
-  search: arms nintendo
-  fandom: arms
-- name: Fox
-  search: star fox
-  fandom: sfa
-- name: Slippy
-  search: star fox adventures
-  fandom: sfa
-- name: Tricky
-  search: star fox adventures
-  fandom: sfa
-- name: Krystal
-  search: star fox krystal
-  fandom: sfa
 - name: Pearl
   search: splatoon pearl
   fandom: splatoon
@@ -199,15 +166,6 @@
 - name: Tali
   search: mass effect
   fandom: me
-- name: Pigsy
-  search: enslaved pigsy
-  fandom: enslaved
-- name: Trip
-  search: enslaved trip
-  fandom: enslaved
-- name: Monkey
-  search: enslaved monkey
-  fandom: enslaved
 - name: Elisabeth
   search: elisabeth bioshock
   fandom: bs
@@ -277,3 +235,51 @@
 - name: Chell
   search: chell portal
   fandom: portal
+- name: Joel
+  search: joel tlou
+  fandom: tlou
+- name: Ellie
+  search: ellie tlou
+  fandom: tlou
+- name: Tess
+  search: tlou
+  fandom: tlou
+- name: Cuphead
+  search: cuphead
+  fandom: cuphead
+- name: Mugman
+  search: cuphead
+  fandom: cuphead
+- name: this car
+  search: forza
+  fandom: forza
+- name: this other car
+  search: forza horizon
+  fandom: forza
+- name: Banjo
+  search: banjo kazooie
+  fandom: rare
+- name: Kazooie
+  search: banjo kazooie
+  fandom: rare
+- name: Yooka
+  search: banjo kazooie
+  fandom: rare
+- name: Laylee
+  search: banjo kazooie
+  fandom: rare
+- name: Marcus
+  search: marcus gears
+  fandom: gow
+- name: Kait
+  search: kait gears
+  fandom: gow
+- name: Aloy
+  search: horizon zero dawn aloy
+  fandom: hzd
+- name: Rost
+  search: horizon zero dawn
+  fandom: hzd
+- name: Teersa
+  search: horizon zero dawn
+  fandom: hzd
