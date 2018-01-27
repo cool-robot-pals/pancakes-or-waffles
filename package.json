@@ -51,7 +51,7 @@
     "localpost": "node ./bin/screenshot.js && node ./bin/upload.js",
     "shitpost": "node ./bin/screenshot.js && node ./bin/upload-twitter.js",
     "watch": "open https://localhost:9191 && concurrently \"node ./bin/start-server.js\" \"webpack --watch\"",
-    "test": "node ./bin/run-tests.js"
+    "test": "concurrently \"node ./bin/run-tests.js\" \"npm run localpost\""
   },
   "devDependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.26.0"
