@@ -1,21 +1,16 @@
 import abstractGetter from 'getter/abstract/abstract';
-import adjectivesTxt from 'corpus/adjectives.txt';
-
 
 export default class AdjectiveGetter extends abstractGetter {
 
-	constructor(defaults={},options={}) {
-		super(defaults,options);
-		this.adjectives = this.parse(adjectivesTxt);
+	constructor(...props) {
+		super(...props);
+		this.remote = 'adjectives';
 	}
 
-	async get() {
-		return this.values.default;
+	async reduce(list) {
+		return await this.expandKeywordHelper(
+			this.randomArray(list)
+		);
 	}
-
-	getDefault() {
-		return this.xpndSync(this.randomArray(this.adjectives).value);
-	}
-
 
 }
