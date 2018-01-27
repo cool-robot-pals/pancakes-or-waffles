@@ -10,34 +10,36 @@ class Post {
 
 	constructor(props) {
 
-		/*secret internal things*/
+		this.attachRandomSeed(props.seed)
 		this.name = props.name;
-		this.seed = props.seed;
-
-
-		const post = new PostGetter({
-			seed: props.seed
-		}).values;
-		this.defaults = post;
 		this.state = {};
 
-		this.onReadyState = Promise.all([
+	}
+
+	async onReadyState() {
+
+		const post = await this.buildGetter(PostGetter).get();
+		this.defaults = post;
+
+		const [extraProps,background] = await Promise.all([
 			this.getMoreProps(post),
 			fetch(`/get-image/?query=${post.query}`).then(res => res.json())
-		]).then(([extraProps,background]) => {
-			this.state = {
-				seed: props.seed,
-				query: post.query,
-				fandom: post.fandom,
-				choices: post.choices,
-				bg: background.url,
-				variants: [],
-				report: {},
-				...extraProps,
-				extras: formatPropExtras(extraProps.extras),
-			};
-			return Promise.resolve();
-		});
+		]);
+
+		console.log(12);
+
+		this.state = {
+			seed: this.seed,
+			query: post.query,
+			fandom: post.fandom,
+			choices: post.choices,
+			bg: background.url,
+			variants: [],
+			report: {},
+			...extraProps,
+			extras: formatPropExtras(extraProps.extras),
+		};
+
 
 	}
 
@@ -59,7 +61,7 @@ class Post {
 
 	async getElement() {
 
-		await this.onReadyState;
+		await this.onReadyState();
 
 		const template =
 		`

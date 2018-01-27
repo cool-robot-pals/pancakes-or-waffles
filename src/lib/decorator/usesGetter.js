@@ -10,7 +10,7 @@ export default function(Target) {
 
 		buildGetter(Getter,defaults={},options={}) {
 			return new Getter({
-				fandom: this.defaults.fandom,
+				fandom: this.defaults ? this.defaults.fandom : null,
 				...defaults,
 				seed: this.seed
 			},
