@@ -6,44 +6,78 @@ import usesGetter from 'lib/decorator/usesGetter';
 
 const abstractGetter = class {
 
-	constructor(defaults={},options={}) {
-		this.attachRandomSeed(defaults.seed);
-		this.defaults = defaults;
+	constructor(context={},options={}) {
+		this.attachRandomSeed(context.seed);
+		this.context = context;
 		this.options = options;
 		this.remote = '';
+
+		this.defaults = context;
 	}
 
-	parse(txt) {
-		return txtToArr(txt, {
-			context: this,
-			seed: this.seed
-		});
+	/*retrieve data from server, do 1-time formatting*/
+	async fetchOnce() {
+		return await fetchItem(this.remote);
 	}
 
-	xpndSync(string) {
-		return expandKeywords(string, {
-			context: this.defaults,
-			seed: this.seed
-		});
+	/*filter it based on context*/
+	async filter(fetched, context) {
+		return await fetched;
 	}
 
-	async expandKeywords(string) {
-		return this.xpndSync(string);
+	/*turn it to 1 element*/
+	async reduce(fetched) {
+		return this.randomArray(await fetched);
 	}
 
+	/*used by getButNot as a filter function*/
+	compareFetchResults(original, comparison) {
+		return original === comparison;
+	}
+
+	/*public api*/
 	fetch() {
 		if(!this._fetched) this._fetched = this.fetchOnce();
 		return this._fetched;
 	}
 
-	async fetchOnce() {
-		return await fetchItem(this.remote);
-	}
-
 	async get() {
-		return this.randomArray(await this.fetch());
+		return await
+			this.fetch()
+			.then(fetched => this.filter(fetched, this.context))
+			.then(filtered => this.reduce(filtered))
 	}
 
+	async getButNot(...keys) {
+		const solvedKeys = await Promise.all(keys);
+		const fetchable = await this.fetch().then(fetched => this.filter(fetched, this.context));
+		const withFilter = await fetchable.filter(item =>
+			solvedKeys.reduce(
+				(acc, key) => (acc && !this.compareFetchResults(key, item))
+			, true)
+		);
+		if(withFilter.length < 1) {
+			return this.reduce(fetchable)
+		}
+		else {
+			return this.reduce(withFilter)
+		}
+	}
+
+	async getArray(length) {
+		const rt = [];
+		for(let i = 0; i < length; i++) {
+			rt.push(this.getButNot(...rt))
+		}
+		return await Promise.all(rt);
+	}
+
+	/*helper methods*/
+	async expandKeywordHelper(string) {
+		return this.xpndSync(string);
+	}
+
+	/*legacy*/
 	getDefault() {
 		return 'AAAAAAAA';
 	}
@@ -59,6 +93,21 @@ const abstractGetter = class {
 			default: this.getDefault()
 		};
 	}
+
+
+		parse(txt) {
+			return txtToArr(txt, {
+				context: this,
+				seed: this.seed
+			});
+		}
+
+		xpndSync(string) {
+			return expandKeywords(string, {
+				context: this.defaults,
+				seed: this.seed
+			});
+		}
 
 };
 

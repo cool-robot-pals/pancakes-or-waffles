@@ -77,7 +77,7 @@ export default class ThingGetter extends abstractGetter {
 			}
 			return list;
 		})();
-		const noun = await this.expandKeywords(this.randomArray(wordList));
+		const noun = await this.expandKeywordHelper(this.randomArray(wordList));
 		const useAdjective = await this.shouldUseAdjective(noun);
 		const isSingular = await this.isSingular(noun);
 		const usePronoun = this.options.type === 'thing' && noun.props.proper != true;

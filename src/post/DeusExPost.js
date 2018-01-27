@@ -15,7 +15,7 @@ class CustomPost extends Post {
 	async getMoreProps(post) {
 
 		let more = {};
-		more.choices = post.choices
+		more.choices = await post.choices
 			.map(async (choice) => await this.narrator.narrate(choice))
 			.filter((choice, index) => index === 0);
 

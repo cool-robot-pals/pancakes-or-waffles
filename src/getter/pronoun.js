@@ -38,7 +38,7 @@ export default class PronounGetter extends abstractGetter {
 			});
 		}
 
-		return await this.expandKeywords(pronoun);
+		return await this.expandKeywordHelper(pronoun);
 	}
 
 

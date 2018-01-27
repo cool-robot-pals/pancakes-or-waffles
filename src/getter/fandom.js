@@ -11,9 +11,7 @@ export default class FandomGetter extends abstractGetter {
 
 	async fetchOnce() {
 		return super.fetchOnce().then(peopleWithFandoms =>
-			peopleWithFandoms.map(item => {
-				item.fandom
-			})
+			peopleWithFandoms.map(item => item.fandom)
 		).then(fandoms =>
 			[...new Set(fandoms)]
 		)

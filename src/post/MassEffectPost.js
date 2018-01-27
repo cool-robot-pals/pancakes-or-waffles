@@ -14,11 +14,12 @@ class CustomPost extends Post {
 		this.narrator = this.buildGetter(NarratorGetter);
 		this.chances = this.buildGetter(ChancesGetter);
 		this.choices = this.buildGetter(BinaryChoicesGetter);
+		this.character = this.buildGetter(CharacterGetter);
 	}
 
 	async getMoreProps(post) {
 
-		const character = this.buildGetter(CharacterGetter).values.name;
+		const character = await this.character.get().name;
 
 		if(await this.chances.should('massEffectHasDialog')){
 			let more = {};

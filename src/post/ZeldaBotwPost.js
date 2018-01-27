@@ -12,12 +12,13 @@ class CustomPost extends Post {
 		super(...args);
 		this.narrator = this.buildGetter(NarratorGetter);
 		this.choices = this.buildGetter(BinaryChoicesGetter);
+		this.character = this.buildGetter(CharacterGetter)
 	}
 
 	async getMoreProps(post) {
 
 		const dialog = await this.narrator.narrate(post.choices[0]);
-		const character = this.buildGetter(CharacterGetter).values.name;
+		const character = await this.character.get().name;
 		const choices = await this.choices.get();
 
 		let more = {};

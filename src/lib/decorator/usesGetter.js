@@ -8,10 +8,9 @@ export default function(Target) {
 			this.seed = seed;
 		}
 
-		buildGetter(Getter,defaults={},options={}) {
+		buildGetter(Getter,context={},options={}) {
 			return new Getter({
-				fandom: this.defaults ? this.defaults.fandom : null,
-				...defaults,
+				...context,
 				seed: this.seed
 			},
 			options

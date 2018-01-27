@@ -16,7 +16,7 @@ export default class extends abstractGetter {
 	}
 
 	async get() {
-		return await this.expandKeywords(
+		return await this.expandKeywordHelper(
 			await super.get()
 		);
 	}

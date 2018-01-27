@@ -11,7 +11,7 @@ export default class extends abstractGetter {
 
 		const day = Math.ceil(Math.random()*22)+4;
 		const year = Math.ceil(Math.random()*100)+300;
-		const month = await this.expandKeywords(this.randomArray(await this.fetch()));
+		const month = await this.expandKeywordHelper(this.randomArray(await this.fetch()));
 
 		return `${day}th of ${month}, 3E${year}`;
 
