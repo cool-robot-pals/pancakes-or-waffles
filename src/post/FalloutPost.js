@@ -23,7 +23,7 @@ class CustomPost extends Post {
 		if(await this.chances.should('falloutRequiresSpecial')) {
 			let special = await this.dialog.get();
 			if(await this.chances.should('falloutRequiresSpecialNumber')) {
-				special += ' '+Math.ceil(randomNumber('falloutRequiresSpecialNumber',this.seed)*10)*10;
+				special += ' '+Math.ceil(randomNumber('falloutRequiresSpecialNumber',this._seed)*10)*10;
 			}
 			choice.push(`[${special}]`);
 		}

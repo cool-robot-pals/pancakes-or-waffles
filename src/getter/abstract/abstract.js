@@ -2,12 +2,12 @@ import {parse as txtToArr} from 'lib/parser/txt';
 import {fetchItem} from 'lib/fetchCorpusItem';
 import expandKeywords from 'lib/expandKeywords';
 
-import usesGetter from 'lib/decorator/usesGetter';
+import usesSeededGetter from 'lib/decorator/usesSeededGetter';
 
 const abstractGetter = class {
 
 	constructor(context={},options={}) {
-		this.attachRandomSeed(context.seed);
+		this.attachRandomSeed(context._seed);
 		this.context = context;
 		this.options = options;
 		this.remote = '';
@@ -76,27 +76,10 @@ const abstractGetter = class {
 	async expandKeywordHelper(string) {
 		return await expandKeywords(string, {
 			context: this.defaults,
-			seed: this.seed
+			seed: this._seed
 		});
-	}
-
-	/*legacy*/
-	getDefault() {
-		return 'AAAAAAAA';
-	}
-
-	get value() {
-		console.info('DEPRECATED use async fetch()->get() like LayoutGetter');
-		return this.values.default;
-	}
-
-	get values() {
-		console.info('DEPRECATED use async fetch()->get() like LayoutGetter');
-		return {
-			default: this.getDefault()
-		};
 	}
 
 };
 
-export default usesGetter(abstractGetter);
+export default usesSeededGetter(abstractGetter);
