@@ -10,7 +10,7 @@ const reporter = require('./tools/reporter.js');
 const config = require('../.pancakerc');
 const server = require('../express/app.js');
 
-const port = 1337; /*bite me*/
+const port = 9292;
 const url = `https://localhost:${port}/test`;
 const outPath = path.join(__dirname, '..', config.paths.build, config.filenames.base + '.jpg');
 
