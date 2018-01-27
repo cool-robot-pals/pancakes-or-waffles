@@ -3,8 +3,8 @@ const path = require('path');
 
 const googleImageSearch = require('./googleImageSearch.js');
 
-const indexRoute = require('./route/index.js')
-const testRoute = require('./route/test.js')
+const indexRoute = require('./route/index.js');
+const testRoute = require('./route/test.js');
 
 const app = express();
 

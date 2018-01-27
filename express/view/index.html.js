@@ -38,6 +38,6 @@ const render = (options={}) =>
 		`:''
 	}
 </html>
-`
+`;
 
 module.exports = render;

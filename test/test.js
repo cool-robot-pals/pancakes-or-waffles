@@ -22,7 +22,7 @@ describe('Initialization', function() {
 				done();
 			}
 			else done(new Error());
-		})
+		});
 	});
 	it('should generate 2 choices with stuff on them',function(done){
 		new window.Pancakes.mocha.PostGetter().get().then(values=>{
@@ -35,7 +35,7 @@ describe('Initialization', function() {
 					[JSON.stringify(values),length]
 				));
 			}
-		})
+		});
 	});
 	it('should have 3+ layouts', async function(){
 		if((await window.Pancakes.mocha.layouts).length > 3) {
