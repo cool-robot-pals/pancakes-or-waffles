@@ -76,7 +76,9 @@ export default class PostGetter extends abstractGetter {
 
 		this.defaults.fandom = fandom?fandom:this.randomArray(characters).fandom;
 
-		const verb = this.chances.should('useSameVerb')?this.verb.get():undefined;
+		const verb = this.chances.should('useSameVerb') ?
+			await this.verb.get() :
+			undefined;
 		const choices = await Promise.all([
 			this.makeChoice({
 				character: characters[0].name,

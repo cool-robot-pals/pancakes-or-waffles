@@ -1,7 +1,15 @@
 import {parse as parseTxt} from './parser/txt';
 
+const fetchCache = [];
+const cachedTextFetch = rq => {
+	if(!fetchCache[rq]) {
+		fetchCache[rq] = fetch(rq).then(response=>response.text());
+	}
+	return fetchCache[rq];
+}
+
 export const fetchTxt = async (path) =>
-	fetch(`/corpus/${path}.txt`).then(response=>response.text()).then(parseTxt);
+	cachedTextFetch(`/corpus/${path}.txt`).then(parseTxt);
 
 export const fetchYaml = async (path) =>
-	fetch(`/corpus/${path}.yaml`).then(response=>response.text());
+	cachedTextFetch(`/corpus/${path}.yaml`);
