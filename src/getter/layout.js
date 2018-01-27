@@ -18,8 +18,4 @@ export default class LayoutGetter extends abstractGetter {
 		}
 	}
 
-	async get () {
-		return 'oblivion'
-	}
-
 }

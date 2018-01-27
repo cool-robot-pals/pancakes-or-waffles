@@ -1,19 +1,17 @@
 import abstractGetter from 'getter/abstract/abstract';
 
-import binaries from 'json-loader!yaml-loader!corpus/less-common/binaries.yaml';
-
 export default class extends abstractGetter {
 
-	constructor(defaults={}) {
-		super(defaults);
+	constructor(...props) {
+		super(...props);
+		this.remote = 'less-common/binaries';
 	}
 
-	get values() {
-
+	async get() {
+		const binaries = await this.fetch();
 		return {
-			good: this.xpndSync(this.randomArray(binaries.good)),
-			bad: this.xpndSync(this.randomArray(binaries.bad))
+			good: this.randomArray(binaries.good),
+			bad: this.randomArray(binaries.bad)
 		};
-
 	}
 }
