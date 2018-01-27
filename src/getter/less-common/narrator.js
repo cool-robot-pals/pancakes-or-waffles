@@ -6,19 +6,19 @@ import {capitalizeFirstLetter,decapitalizeFirstLetter} from 'lib/stringies';
 
 export default class extends abstractGetter {
 
-	constructor(defaults={}) {
-		super(defaults);
-		this.fandom = this.defaults.fandom;
-		this.narrator = this.parse(narratorTxt);
+	constructor(...props) {
+		super(...props);
+		this.remote = 'less-common/narrator';
 	}
 
-	narrate(sentence) {
-		return capitalizeFirstLetter(this.values.narration).replace('$1',decapitalizeFirstLetter(sentence));
+	async narrate(sentence) {
+		return capitalizeFirstLetter(await this.get()).replace('$1',decapitalizeFirstLetter(sentence));
 	}
 
-	get values() {
-		return {
-			narration: this.xpndSync(this.randomArray(this.narrator).value)
-		};
+	async get() {
+		return await this.expandKeywords(
+			await super.get()
+		);
 	}
+
 }

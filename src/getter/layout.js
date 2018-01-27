@@ -5,7 +5,7 @@ export default class LayoutGetter extends abstractGetter {
 
 	constructor(...props) {
 		super(...props);
-		this.remote = 'data/layouts'
+		this.remote = 'data/layouts';
 	}
 
 	async fetch() {

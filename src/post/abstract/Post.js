@@ -45,7 +45,7 @@ class Post {
 		return logger(this.state);
 	}
 
-	getMoreProps(post) {
+	async getMoreProps(post) {
 		return {};
 	}
 

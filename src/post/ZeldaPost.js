@@ -6,7 +6,12 @@ import NarratorGetter from 'getter/less-common/narrator';
 
 class CustomPost extends Post {
 
-	getMoreProps(post) {
+	constructor(...args) {
+		super(...args);
+		this.narrator = this.buildGetter(NarratorGetter);
+	}
+
+	async getMoreProps(post) {
 
 		const binaryChoices = this.buildGetter(BinaryChoicesValues).values;
 
@@ -16,7 +21,7 @@ class CustomPost extends Post {
 
 		let more = {
 			extras : binaryChoices,
-			choices: [this.buildGetter(NarratorGetter).narrate(post.choices[0])]
+			choices: [(await this.narrator.narrate(post.choices[0]))]
 		};
 
 		return more;

@@ -45,9 +45,9 @@ describe('Initialization', function() {
 			return Promise.reject(new Error());
 		}
 	});
-	it('should make all layouts thrice without an error', function(done){
+	it('should make all layouts twice without an error', function(done){
 		window.Pancakes.mocha.layouts.then(fetchedLayouts=>{
-			var layouts = [...fetchedLayouts,...fetchedLayouts,...fetchedLayouts];
+			var layouts = [...fetchedLayouts,...fetchedLayouts];
 			var total = layouts.length;
 			var rendered = 0;
 			var finishedMaybe = function() {
@@ -62,7 +62,7 @@ describe('Initialization', function() {
 					},50);
 					var fail = setTimeout(function(){
 						done('wrong post number ('+document.querySelector('#tough-choices-bot').childNodes.length+'/'+window.Pancakes.posts.length+')');
-					},1500);
+					},2000);
 				}
 			};
 			layouts.map(function(layout){
@@ -76,5 +76,5 @@ describe('Initialization', function() {
 				finishedMaybe();
 			});
 		});
-	});
+	}).timeout(5000);
 });

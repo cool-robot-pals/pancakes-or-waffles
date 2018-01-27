@@ -39,8 +39,8 @@ const parse = (str) => {
 		});
 
 	const propCount = arrayWithProps.reduce((acc,current) => {
-		return acc + Object.keys(current.props).length
-	}, 0)
+		return acc + Object.keys(current.props).length;
+	}, 0);
 
 	if(propCount < 1) {
 		return arrayWithProps.map(item => item.value);

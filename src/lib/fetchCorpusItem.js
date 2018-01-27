@@ -7,4 +7,4 @@ const cachedTextFetch = rq => {
 };
 
 export const fetchItem = async (path) =>
-	cachedTextFetch(`/get-corpus/${path}`)
+	cachedTextFetch(`/get-corpus/${path}`);

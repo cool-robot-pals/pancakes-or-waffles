@@ -31,12 +31,12 @@ const abstractGetter = class {
 		return this.xpndSync(string);
 	}
 
-	async fetch () {
+	async fetch() {
 		return await fetchItem(this.remote);
 	}
 
 	async get() {
-
+		return this.randomArray(await this.fetch());
 	}
 
 	get value() {

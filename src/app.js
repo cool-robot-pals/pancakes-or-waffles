@@ -67,7 +67,7 @@ const boot = () => {
 		'Roboto+Mono:500',
 		'Lato:700,400',
 		'Tulpen+One',
-	]
+	];
 	link.href = 'https://fonts.googleapis.com/css?family='+fonts.join('|');
 	link.rel = 'stylesheet';
 	document.querySelector('head').appendChild(link);

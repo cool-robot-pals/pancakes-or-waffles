@@ -40,6 +40,6 @@ export const parse = (str) => {
 			};
 		});
 
-		return arrayWithProps;
+	return arrayWithProps;
 
 };
