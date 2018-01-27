@@ -1,8 +1,12 @@
-import {randomNumber,randomArray} from 'lib/random';
+import {randomNumber,randomArray, makeSeed} from 'lib/random';
 
 export default function(Target) {
 
 	return class usesGetter extends Target {
+
+		attachRandomSeed(seed=makeSeed()) {
+			this.seed = seed;
+		}
 
 		buildGetter(Getter,defaults={},options={}) {
 			return new Getter({

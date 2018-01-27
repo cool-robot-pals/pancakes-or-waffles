@@ -1,9 +1,8 @@
-import expandDictionary from 'lib/expandDictionary';
-import {makeSeed} from 'lib/random';
+import expandBracketWords from './txt/expandBracketWords';
 
 const propsRegex = /\((.*?)\)/;
 
-export default (str,{seed=makeSeed(),context={}}={}) => {
+const parse = (str) => {
 
 	let array = str.split('\n');
 
@@ -12,7 +11,7 @@ export default (str,{seed=makeSeed(),context={}}={}) => {
 		.filter(chunk => chunk.charAt(0) !== '#')
 		.filter(chunk => chunk.length > 0)
 		.map(chunk => chunk === '_empty_'?'':chunk)
-		.map(chunk => expandDictionary(chunk));
+		.map(chunk => expandBracketWords(chunk));
 
 	array = [].concat.apply([], array);
 
@@ -40,3 +39,5 @@ export default (str,{seed=makeSeed(),context={}}={}) => {
 		});
 	return arrayWithProps;
 };
+
+export {parse};

@@ -35,42 +35,44 @@ describe('Initialization', function() {
 			));
 		}
 	});
-	it('should have 3+ layouts',function(done){
-		if(window.Pancakes.mocha.layouts.length > 3) {
-			done();
+	it('should have 3+ layouts', async function(){
+		if((await window.Pancakes.mocha.layouts).length > 3) {
+			return true;
 		}
 		else {
-			done(new Error());
+			return Promise.reject(new Error());
 		}
 	});
-	it('should make all layouts thrice ('+(window.Pancakes.mocha.layouts.length*3)+') without an error',function(done){
-		var layouts = [].concat(window.Pancakes.mocha.layouts,window.Pancakes.mocha.layouts,window.Pancakes.mocha.layouts);
-		var total = layouts.length;
-		var rendered = 0;
-		var finishedMaybe = function() {
-			rendered++;
-			if(rendered >= total) {
-				var checker = setInterval(function(){
-					if(window.Pancakes.posts.length > 3 && document.querySelector('#tough-choices-bot').childNodes.length === window.Pancakes.posts.length) {
-						clearInterval(checker);
-						clearTimeout(fail);
-						done();
-					}
-				},50);
-				var fail = setTimeout(function(){
-					done('wrong post number ('+document.querySelector('#tough-choices-bot').childNodes.length+'/'+window.Pancakes.posts.length+')');
-				},1500);
-			}
-		};
-		layouts.map(function(layout){
-			try{
-				window.Pancakes.makePost(undefined,{
-					layout: layout
-				});
-			} catch(err) {
-				done(err);
-			}
-			finishedMaybe();
+	it('should make all layouts thrice without an error', function(done){
+		window.Pancakes.mocha.layouts.then(fetchedLayouts=>{
+			var layouts = [...fetchedLayouts,...fetchedLayouts,...fetchedLayouts];
+			var total = layouts.length;
+			var rendered = 0;
+			var finishedMaybe = function() {
+				rendered++;
+				if(rendered >= total) {
+					var checker = setInterval(function(){
+						if(window.Pancakes.posts.length > 3 && document.querySelector('#tough-choices-bot').childNodes.length === window.Pancakes.posts.length) {
+							clearInterval(checker);
+							clearTimeout(fail);
+							done();
+						}
+					},50);
+					var fail = setTimeout(function(){
+						done('wrong post number ('+document.querySelector('#tough-choices-bot').childNodes.length+'/'+window.Pancakes.posts.length+')');
+					},1500);
+				}
+			};
+			layouts.map(function(layout){
+				try{
+					window.Pancakes.makePost(undefined,{
+						layout: layout
+					});
+				} catch(err) {
+					done(err);
+				}
+				finishedMaybe();
+			});
 		});
 	});
 });

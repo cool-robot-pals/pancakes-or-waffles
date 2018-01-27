@@ -1,5 +1,4 @@
-import txtToArr from 'lib/txtToArr';
-import {makeSeed} from 'lib/random';
+import {parse as txtToArr} from 'lib/parser/txt';
 import expandKeywords from 'lib/expandKeywords';
 
 import usesGetter from 'lib/decorator/usesGetter';
@@ -7,7 +6,7 @@ import usesGetter from 'lib/decorator/usesGetter';
 const abstractGetter = class {
 
 	constructor(defaults={},options={}) {
-		this.seed = defaults.seed?defaults.seed:makeSeed();
+		this.attachRandomSeed(defaults.seed);
 		this.defaults = defaults;
 		this.options = options;
 	}
@@ -26,11 +25,21 @@ const abstractGetter = class {
 		});
 	}
 
+	async fetch() {
+
+	}
+
+	async get() {
+
+	}
+
 	get value() {
+		console.info('DEPRECATED use async fetch()->get() like LayoutGetter');
 		return this.values.default;
 	}
 
 	get values() {
+		console.info('DEPRECATED use async fetch()->get() like LayoutGetter');
 		return {
 			default: this.getDefault()
 		};

@@ -7,19 +7,18 @@ import LayoutGetter from 'getter/layout';
 import PostGetter from 'getter/post';
 
 import logger from 'lib/logger';
-import txtToArr from 'lib/txtToArr';
+import {parse as txtToArr} from 'lib/parser/txt';
 import {makeSeed} from 'lib/random';
 
 
 const posts = [];
-const layouts = new LayoutGetter().layouts;
 
 const makePost = async (seed=makeSeed(),defaults={}) => {
 
-	const layout = new LayoutGetter({
+	const layout = await new LayoutGetter({
 		seed: seed,
 		...defaults
-	}).value;
+	}).get();
 
 	const postName = changeCase.pascal(`${layout}-post`);
 
@@ -44,9 +43,10 @@ const makePost = async (seed=makeSeed(),defaults={}) => {
 
 };
 
+
 const mochaExports = {
 	PostGetter: PostGetter,
-	layouts: layouts
+	layouts: new LayoutGetter().fetch()
 };
 
 const boot = () => {

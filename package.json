@@ -30,7 +30,8 @@
     "twit": "^2.2.5",
     "url-loader": "^0.6.2",
     "webpack": "^3.1.0",
-    "yaml-loader": "^0.5.0"
+    "yaml-loader": "^0.5.0",
+    "yaml-to-json": "^0.3.0"
   },
   "engines": {
     "node": "^8.4.0"
