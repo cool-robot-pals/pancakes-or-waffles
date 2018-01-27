@@ -7,6 +7,8 @@ const app = express();
 
 app.use('/', express.static(path.resolve(__dirname, '../build')));
 
+app.use('/target', express.static(path.resolve(__dirname, '../target')));
+
 app.use('/test', express.static(path.resolve(__dirname, '../test')));
 app.get('/test/mocha.js', (req, res, next) => res.sendFile(path.resolve(__dirname, '../node_modules/mocha/mocha.js')));
 

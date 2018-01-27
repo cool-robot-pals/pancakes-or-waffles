@@ -26,7 +26,7 @@ const render = (options={}) =>
 	</head>
 	<body>
 	</body>
-	<script src="/post.js"></script>
+	<script module src="/src/app.js"></script>
 	${options.test===true?
 		`
 		<script src="/test/mocha.js"></script>

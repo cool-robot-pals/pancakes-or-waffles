@@ -1,5 +1,5 @@
-import changeCase from 'change-case';
-import queryString from 'query-string';
+import changeCase from './target/npm/change-case';
+import queryString from './target/npm/query-string';
 
 import LayoutGetter from 'getter/layout';
 import PostGetter from 'getter/post';
