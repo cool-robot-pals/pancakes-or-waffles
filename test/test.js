@@ -17,23 +17,25 @@ describe('Initialization', function() {
 		});
 	});
 	it('should generate 2 choices',function(done){
-		var values = new window.Pancakes.mocha.PostGetter().values;
-		if(values.choices.length === 2) {
-			done();
-		}
-		else done(new Error());
+		new window.Pancakes.mocha.PostGetter().get().then(values=>{
+			if(values.choices.length === 2) {
+				done();
+			}
+			else done(new Error());
+		})
 	});
 	it('should generate 2 choices with stuff on them',function(done){
-		var values = new window.Pancakes.mocha.PostGetter().values;
-		var length = values.choices.reduce(function(acc,choice){return acc+choice.length;},0);
-		if(length >= 10) {
-			done();
-		}
-		else {
-			done(new Error(
-				[JSON.stringify(values),length]
-			));
-		}
+		new window.Pancakes.mocha.PostGetter().get().then(values=>{
+			var length = values.choices.reduce(function(acc,choice){return acc+choice.length;},0);
+			if(length >= 10) {
+				done();
+			}
+			else {
+				done(new Error(
+					[JSON.stringify(values),length]
+				));
+			}
+		})
 	});
 	it('should have 3+ layouts', async function(){
 		if((await window.Pancakes.mocha.layouts).length > 3) {

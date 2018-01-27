@@ -5,7 +5,7 @@ import {fetchTxt} from 'lib/fetchCorpusItem';
 export default class VerbGetter extends abstractGetter {
 
 	async fetch () {
-		return await fetchTxt('verbs')
+		return await fetchTxt('verbs');
 	}
 
 	async get() {

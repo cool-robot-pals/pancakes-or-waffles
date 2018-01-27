@@ -2,10 +2,7 @@ const config = require('./.pancakerc');
 
 const webpack = require('webpack');
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 
 module.exports = {
 	entry: {
@@ -18,24 +15,6 @@ module.exports = {
 		new webpack.SourceMapDevToolPlugin({
 			filename: '[file].map',
 			exclude: [/node_modules/]
-		}),
-		new HtmlWebpackPlugin({
-			title: '👁👄👁☝️',
-			minify: {
-				collapseWhitespace: true
-			},
-			template: path.join('etc','bot.template.ejs'),
-			filename: `${config.filenames.base}.html`,
-		}),
-		new HtmlWebpackPlugin({
-			title: '👁👄👁☝️',
-			minify: {
-				collapseWhitespace: true
-			},
-			template: path.join('etc','bot.template.ejs'),
-			filename: path.join('..',config.paths.build,config.filenames.test+'.html'),
-			test: true,
-			base: `file://${__dirname}/${config.paths.build}/${config.filenames.base}.html`
 		})
 	],
 	module: {
@@ -60,6 +39,7 @@ module.exports = {
 	output: {
 		filename: 'post.js',
 		path: path.resolve(__dirname, config.paths.build),
+		publicPath: '/',
 		library: 'Pancakes',
 		libraryTarget: 'umd'
 	},

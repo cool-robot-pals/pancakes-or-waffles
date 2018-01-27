@@ -6,7 +6,7 @@ const cachedTextFetch = rq => {
 		fetchCache[rq] = fetch(rq).then(response=>response.text());
 	}
 	return fetchCache[rq];
-}
+};
 
 export const fetchTxt = async (path) =>
 	cachedTextFetch(`/corpus/${path}.txt`).then(parseTxt);

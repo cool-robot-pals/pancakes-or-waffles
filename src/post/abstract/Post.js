@@ -10,7 +10,7 @@ class Post {
 
 	constructor(props) {
 
-		this.attachRandomSeed(props.seed)
+		this.attachRandomSeed(props.seed);
 		this.name = props.name;
 		this.state = {};
 
@@ -25,8 +25,6 @@ class Post {
 			this.getMoreProps(post),
 			fetch(`/get-image/?query=${post.query}`).then(res => res.json())
 		]);
-
-		console.log(12);
 
 		this.state = {
 			seed: this.seed,
