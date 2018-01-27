@@ -7,10 +7,11 @@ export default class PronounGetter extends abstractGetter {
 
 	constructor(...props) {
 		super(...props);
+		this.remote = 'pronouns-for-nouns';
 	}
 
 	async fetchOnce() {
-		const pronouns = super.fetchOnce();
+		const pronouns = await super.fetchOnce();
 		return {
 			singular: pronouns.filter(pronoun => pronoun.props.singular),
 			plural: pronouns.filter(pronoun => pronoun.props.plural)

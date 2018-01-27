@@ -25,7 +25,6 @@ export default class ChancesGetter extends abstractGetter {
 
 	async should(chance) {
 		const chances = await this.fetch();
-		console.log(chances);
 		return randomNumber(chance,this.seed) <= chances[chance];
 	}
 

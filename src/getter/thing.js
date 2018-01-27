@@ -77,7 +77,6 @@ export default class ThingGetter extends abstractGetter {
 			}
 			return list;
 		})();
-		console.log(wordList);
 		const noun = await this.expandKeywords(this.randomArray(wordList));
 		const useAdjective = await this.shouldUseAdjective(noun);
 		const isSingular = await this.isSingular(noun);
@@ -99,10 +98,10 @@ export default class ThingGetter extends abstractGetter {
 		}
 
 		if(usePronoun) {
-			returnable.unshift(this.buildGetter(PronounGetter,{},{
+			returnable.unshift(await this.buildGetter(PronounGetter,{},{
 				singular: isSingular,
 				pronounable: returnable[0]
-			}).value);
+			}).get());
 		}
 
 		return returnable.filter(value => value && value.length > 0).join(' ');
