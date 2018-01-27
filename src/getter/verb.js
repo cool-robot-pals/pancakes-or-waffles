@@ -7,10 +7,8 @@ export default class VerbGetter extends abstractGetter {
 		this.remote = 'verbs';
 	}
 
-	async get() {
-		return await this.expandKeywordHelper(
-			await super.get()
-		);
+	async reduce(verbs) {
+		return await this.expandKeywordHelper(this.randomArray(verbs));
 	}
 
 }

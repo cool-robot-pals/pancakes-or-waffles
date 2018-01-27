@@ -18,11 +18,11 @@ export default class PronounGetter extends abstractGetter {
 		};
 	}
 
-	async get() {
+	async reduce(pronouns) {
 		let pronoun = this.randomArray(
 			this.options.singular
-				? (await this.fetch()).singular
-				: (await this.fetch()).plural
+				? pronouns.singular
+				: pronouns.plural
 		).value;
 
 		if(pronoun === 'a' && ['a','e','i','o','u'].indexOf(this.options.pronounable.toLowerCase().charAt(0)) >= 0) {

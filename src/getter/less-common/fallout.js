@@ -7,9 +7,9 @@ export default class FalloutGetter extends abstractGetter {
 		this.remote = 'less-common/fo-special';
 	}
 
-	async get() {
+	async reduce(list) {
 		return await this.expandKeywordHelper(
-			await super.get()
+			this.randomArray((list)
 		);
 	}
 }

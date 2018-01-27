@@ -7,8 +7,7 @@ export default class extends abstractGetter {
 		this.remote = 'less-common/binaries';
 	}
 
-	async get() {
-		const binaries = await this.fetch();
+	async reduce(binaries) {
 		return {
 			good: this.randomArray(binaries.good),
 			bad: this.randomArray(binaries.bad)

@@ -17,13 +17,11 @@ export default class extends abstractGetter {
 
 	}
 
-	async get() {
-
+	async reduce() {
 		return {
 			date: await this.getDate(),
 			'ui-accept': 'Accept',
 			'ui-reject': 'Reject'
 		};
-
 	}
 }

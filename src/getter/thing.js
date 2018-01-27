@@ -59,24 +59,25 @@ export default class ThingGetter extends abstractGetter {
 	}
 
 
-	async get() {
+	async filter(list, context) {
+		if(this.options.type === 'thing') {
+			list = list.filter(noun => !noun.props.only || noun.props.only !== 'ownable');
+		}
+		else if (this.options.type === 'ownable') {
+			list = list.filter(noun => !noun.props.only || noun.props.only !== 'proper');
+		}
+		if(this.options.singular === true) {
+			list = list.filter(async noun => await this.isSingular(noun));
+		}
+		if(this.options.plural === true) {
+			list = list.filter(async noun => await !this.isSingular(noun));
+		}
+		return list;
+	}
 
-		const wordList = await (async()=>{
-			let list = await this.fetch();
-			if(this.options.type === 'thing') {
-				list = list.filter(noun => !noun.props.only || noun.props.only !== 'ownable');
-			}
-			else if (this.options.type === 'ownable') {
-				list = list.filter(noun => !noun.props.only || noun.props.only !== 'proper');
-			}
-			if(this.options.singular === true) {
-				list = list.filter(async noun => await this.isSingular(noun));
-			}
-			if(this.options.plural === true) {
-				list = list.filter(async noun => await !this.isSingular(noun));
-			}
-			return list;
-		})();
+
+	async reduce(wordList) {
+
 		const noun = await this.expandKeywordHelper(this.randomArray(wordList));
 		const useAdjective = await this.shouldUseAdjective(noun);
 		const isSingular = await this.isSingular(noun);

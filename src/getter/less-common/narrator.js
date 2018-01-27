@@ -15,9 +15,9 @@ export default class extends abstractGetter {
 		return capitalizeFirstLetter(await this.get()).replace('$1',decapitalizeFirstLetter(sentence));
 	}
 
-	async get() {
+	async reduce(list) {
 		return await this.expandKeywordHelper(
-			await super.get()
+			this.randomArray(list)
 		);
 	}
 
