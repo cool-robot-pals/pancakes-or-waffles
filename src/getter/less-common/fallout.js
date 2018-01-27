@@ -9,7 +9,7 @@ export default class FalloutGetter extends abstractGetter {
 
 	async reduce(list) {
 		return await this.expandKeywordHelper(
-			this.randomArray((list)
+			this.randomArray(list)
 		);
 	}
 }

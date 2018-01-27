@@ -11,7 +11,6 @@ export default class CharacterGetter extends abstractGetter {
 		if(context.fandom) {
 			return characters.filter(char => char.fandom === context.fandom);
 		}
-		console.log(characters);
 		return characters;
 	}
 
