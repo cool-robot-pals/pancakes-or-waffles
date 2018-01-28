@@ -13,14 +13,15 @@ const modules = [
 	'query-string',
 	'seedrandom',
 	'pluralize',
-	'number-to-text/converters/en-us.js',
-	'number-to-text'
+	'number2text'
 ];
 
 try {
 	fs.mkdirSync(path.join(__dirname,'..','target'));
 	fs.mkdirSync(path.join(__dirname,'..','target','npm'));
-} catch(e){}
+} catch(e){
+	/**/
+}
 
 const webpackify = (module) => {
 
@@ -37,12 +38,12 @@ const webpackify = (module) => {
 
 	webpack({
 		entry: entry,
-	  output: {
+		output: {
 			path: path.resolve(path.join(__dirname,'..','target','npm')),
 			filename: `${module.replace('.js','')}.js`,
 			library: '_217878383_',
-  		libraryTarget: "var",
-	  },
+			libraryTarget: 'var',
+		},
 		plugins: [
 			new WrapperPlugin({
 				footer: 'export default _217878383_'
@@ -50,13 +51,10 @@ const webpackify = (module) => {
 		]
 	}, (err, stats) => {
 		if (err || stats.hasErrors()) {
-			console.error(err, stats)
-		}
-		else {
-			console.info(stats);
+			console.error(err, stats);
 		}
 	});
 
-}
+};
 
 modules.forEach(webpackify);

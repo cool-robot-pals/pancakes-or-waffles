@@ -5,19 +5,16 @@
   "author": "Laura mayhem",
   "bugs": "https://github.com/walaura/pancakes-or-waffles/issues",
   "dependencies": {
-    "babel-core": "^6.24.1",
-    "babel-loader": "^7.0.0",
-    "babel-preset-stage-2": "^6.24.1",
     "chalk": "^2.3.0",
     "change-case": "^3.0.1",
     "clean-webpack-plugin": "^0.1.15",
     "concurrently": "^3.5.1",
     "dotenv": "^4.0.0",
-    "eslint": "^4.2.0",
     "express": "^4.16.2",
     "js-yaml": "^3.10.0",
     "mocha": "^5.0.0",
     "number-to-text": "^0.3.2",
+    "number2text": "^1.1.0",
     "pluralize": "^7.0.0",
     "puppeteer": "^1.0.0",
     "query-string": "^5.0.1",
@@ -25,9 +22,7 @@
     "rollup": "^0.55.1",
     "seedrandom": "^2.4.2",
     "spdy": "^3.4.7",
-    "twit": "^2.2.5",
-    "webpack": "^3.1.0",
-    "wrapper-webpack-plugin": "^1.0.0"
+    "twit": "^2.2.5"
   },
   "engines": {
     "node": "^8.4.0"
@@ -48,14 +43,16 @@
   "scripts": {
     "sign": "openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -keyout server.key -out server.crt -subj \"/C=US/ST=AZ/L=Bitter Springs/O=Pancakes/CN=www.example.com\"",
     "esfix": "eslint --ignore-path .gitignore --fix .",
-    "webpack": "webpack --hide-modules",
-    "install": "npm run webpack && npm run sign",
+    "install": "node ./bin/webpack-node-modules.js && npm run sign",
     "localpost": "node ./bin/screenshot.js && node ./bin/upload.js",
     "shitpost": "node ./bin/screenshot.js && node ./bin/upload-twitter.js",
-    "watch": "open https://localhost:9191 && concurrently \"node ./bin/start-server.js\" \"webpack --watch\"",
+    "watch": "open https://localhost:9191 && node ./bin/start-server.js",
     "test": "concurrently \"node ./bin/run-tests.js\" \"npm run localpost\""
   },
   "devDependencies": {
-    "babel-plugin-transform-object-rest-spread": "^6.26.0"
+    "babel-eslint": "^8.2.1",
+    "eslint": "^4.16.0",
+    "webpack": "^3.1.0",
+    "wrapper-webpack-plugin": "^1.0.0"
   }
 }

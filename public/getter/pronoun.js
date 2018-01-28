@@ -1,7 +1,6 @@
 import abstractGetter from './abstract/abstract.js';
 
-import numberToText from '/target/npm/number-to-text.js';
-import numberToTextConv from '/target/npm/number-to-text/converters/en-us.js';
+import numberToText from '/target/npm/number2text.js';
 
 export default class PronounGetter extends abstractGetter {
 
@@ -33,9 +32,7 @@ export default class PronounGetter extends abstractGetter {
 		}
 		if(pronoun === '_number_') {
 			const isLargeNumber = this.randomArray([true,false]);
-			pronoun = numberToText.convertToText(Math.ceil(Math.random()*(isLargeNumber?99:9)),{
-				case: 'lowerCase'
-			});
+			pronoun = numberToText(Math.ceil(Math.random()*(isLargeNumber?99:9)), 'English');
 		}
 
 		return await this.expandKeywordHelper(pronoun);

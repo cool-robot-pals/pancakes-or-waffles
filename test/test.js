@@ -78,3 +78,5 @@ window.describe('Initialization', function() {
 		});
 	}).timeout(5000);
 });
+
+mocha.reporter('spec').run((failures)=>{if(failures > 0){throw 0;}else{console.log('done');}});

@@ -27,7 +27,7 @@ const render = (options={}) =>
 	<body>
 	</body>
 	${!options.test?
-		`<script type="module" src="/app/index.js"></script>`:''
+		'<script type="module" src="/app/index.js"></script>':''
 	}
 	${options.test===true?
 		`
@@ -39,8 +39,9 @@ const render = (options={}) =>
 
 			(async () => {
 				const $script = document.createElement("script");
-				$script.url = '/test/test.js'
-				document.getElementsByTagName("head")[0].appendChild(script);			})()
+				$script.src = '/test/test.js'
+				document.getElementsByTagName("head")[0].appendChild($script);
+			})()
 		</script>
 		<script>
 

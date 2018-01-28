@@ -69,7 +69,7 @@ const transformChunk = async (chunk, replacer, context, seed) => {
 			import('../getter/thing.js'),
 			import('../getter/character.js'),
 			import('../getter/adjective.js')
-		]).then(stuff => stuff.map(imported => imported.default) )
+		]).then(stuff => stuff.map(imported => imported.default) );
 
 		const replacement = await getReplacement(replacer, context, seed);
 
