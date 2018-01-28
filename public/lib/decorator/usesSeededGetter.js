@@ -9,11 +9,6 @@ export default function(Target) {
 		}
 
 		buildGetter(Getter,options={},extraContext={}) {
-			console.error({
-				...this.context,
-				...extraContext,
-				_seed: this._seed
-			});
 			return new Getter({
 				...this.context,
 				...extraContext,

@@ -24,7 +24,7 @@ class CustomPost extends Post {
 			'#00caff',
 			'#ff004c',
 			'#f8ff30',
-		])
+		]);
 
 		return {
 			css: {

@@ -73,14 +73,14 @@ export default class ThingGetter extends abstractGetter {
 			return false;
 		}
 		else {
-			return this.options.type === 'thing'
+			return this.options.type === 'thing';
 		}
 	}
 
 
 	isProperNoun(noun) {
-		if(this.options.forceProper) return true
-		else return noun.props.proper === true
+		if(this.options.forceProper) return true;
+		else return noun.props.proper === true;
 	}
 
 
@@ -125,7 +125,7 @@ export default class ThingGetter extends abstractGetter {
 
 		if(usePronoun) {
 			if(this.isProperNoun(noun)) {
-				returnable.unshift('the')
+				returnable.unshift('the');
 			}
 			else {
 				returnable.unshift(await this.buildGetter(PronounGetter,{

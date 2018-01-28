@@ -4,9 +4,9 @@ class CustomPost extends Post {
 	async getMoreProps(post) {
 		return {
 			css : {
-				'--flex': randomArray(['flex-start','flex-end']),
-				'--flex-with-center': randomArray(['flex-start','center','flex-end']),
-			}
+				'--flex': this.randomArray(['flex-start','flex-end']),
+				'--flex-with-center': this.randomArray(['flex-start','center','flex-end']),
+			},
 			variants: [2],
 		};
 	}
