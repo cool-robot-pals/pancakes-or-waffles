@@ -4,7 +4,6 @@ import logger from '../../lib/logger.js';
 import formatPropExtras from '../../lib/formatPropExtras.js';
 import escapeHTML from '../../lib/escapeHTML.js';
 import usesSeededGetter from '../../lib/decorator/usesSeededGetter.js';
-import {getRandomCss} from '../../lib/getRandomCss.js';
 
 class Post {
 
@@ -110,9 +109,6 @@ class Post {
 		$link.rel = 'stylesheet';
 		$shadow.appendChild($link);
 
-		getRandomCss().forEach(variable=>{
-			$shadow.children[0].style.setProperty(`--${variable.name}`, variable.value);
-		});
 		for(let key in this.state.css) {
 			$shadow.children[0].style.setProperty(key, this.state.css[key]);
 		}
