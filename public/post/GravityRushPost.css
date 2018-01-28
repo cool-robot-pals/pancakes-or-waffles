@@ -1,0 +1,182 @@
+@import url(/app/post/abstract/Post.css);
+
+.post {
+	font-family: 'Lato';
+	font-weight: 400;
+	font-size: 30px;
+	text-shadow: 2px 2px 1px #000;
+	text-shadow:
+	-1px -1px 0 #000,
+	1px -1px 0 #000,
+	-1px 1px 0 #000,
+	1px 1px 0 #000,
+	-2px -2px 0 #000,
+	2px -2px 0 #000,
+	0 3px 0 #000,
+	-2px 2px 0 #000,
+	2px 2px 0 #000;
+}
+
+.bg {
+	margin: auto;
+}
+
+.post .choices {
+	background: rgba(0,0,0,.8);
+	position: absolute;
+	border: 1px solid #ebbc64;
+	top: 4em;
+	left: 1em;
+	bottom: inherit;
+	right: inherit;
+	border-radius: 25px;
+	max-width: 25%;
+	padding-left: 3em;
+	background-image: url(/app/assets/gravity-rush/halo.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center bottom;
+	transform: scale(.85);
+	transform-origin: 0 0;
+	min-height: 3em;
+	display: flex;
+	align-items: center;
+}
+
+.choices:before {
+	content: '\0020';
+	background: #ebbc64;
+	width: 3em;
+	height: 100%;
+	position: absolute;
+	border: 1px solid #000;
+	top: -1px;
+	left: -1px;
+	bottom: -1px;
+	border-radius: 25px 0 0 25px;
+}
+
+.choices:after {
+	content: '\0020';
+	position: absolute;
+	background: url(/app/assets/gravity-rush/warn.png);
+	background-size: cover;
+	width: 2em;
+	height: 2em;
+	top: .5em;
+	left: .5em;
+}
+
+.choice {
+	padding: .45em 1em .5em;
+	text-transform: capitalize;
+}
+
+.choice span {
+	line-height: 1.5;
+}
+
+.extra[data-name^="waypoint"] {
+	position: absolute;
+	top: 25%;
+	left: 25%;
+	font-family: 'Tulpen One';
+	font-weight: 400;
+	right: inherit;
+	bottom: inherit;
+}
+
+.extra[data-name^="waypoint"]:after {
+	content: '\0020';
+	position: absolute;
+	background: url(/app/assets/gravity-rush/waypoint.png);
+	background-size: cover;
+	width: 1em;
+	height: 1em;
+	top: 0;
+	left: 0;
+}
+
+.extra[data-name^="waypoint"] span {
+	position: absolute;
+	bottom: 0em;
+	left: 1em;
+}
+
+.extra[data-name="good"],.extra[data-name="bad"] {
+	position: absolute;
+	bottom: 50%;
+	background: linear-gradient(to bottom,#fff,#ddd);
+	border: 2px solid #000;
+	color: #000;
+	padding: .5em 2.25em;
+	border-radius: 26px;
+	max-width: 5em;
+	font-size: 23px;
+	text-transform: capitalize;
+	left: initial;
+	right: initial;
+	top: initial;
+}
+
+.extra[data-name="good"] {
+	left: 60%;
+	padding-right: 1.25em;
+	box-shadow:
+		-1px 1px 0 0 #000,
+		-2px 2px 0 0 #000,
+		-3px 3px 0 0 #000,
+		-4px 4px 0 0 #000,
+		-5px 5px 0 0 #000;
+}
+.extra[data-name="bad"] {
+	right: 60%;
+	padding-left: 1.25em;
+	box-shadow:
+		1px 1px 0 0 #000,
+		2px 2px 0 0 #000,
+		3px 3px 0 0 #000,
+		4px 4px 0 0 #000,
+		5px 5px 0 0 #000;
+}
+
+.extra[data-name="good"]:after,.extra[data-name="bad"]:after {
+	content: '\0020';
+	position: absolute;
+	background: url(/app/assets/gravity-rush/circle.png);
+	background-size: contain;
+	width: 1.2em;
+	height: 1.2em;
+	top: 0;
+	bottom: 0;
+	left: .4em;
+	margin: auto;
+}
+
+.extra[data-name="bad"]:after {
+	right: .4em;
+	left: auto;
+	background-image: url(/app/assets/gravity-rush/square.png);
+}
+
+.extra[data-name="good"]:before,.extra[data-name="bad"]:before {
+	content: '\0020';
+	position: absolute;
+	background: url(/app/assets/gravity-rush/comic.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	width: 1em;
+	height: 1em;
+	bottom: -.39em;
+	left: -.35em;
+}
+
+.extra[data-name="bad"]:before {
+	right: -.35em;
+	left: auto;
+	transform: scaleX(-1);
+}
+
+.extra[data-name="good"] span,.extra[data-name="bad"] span {
+	text-shadow: none!important;
+}

@@ -1,4 +1,4 @@
-describe('Initialization', function() {
+window.describe('Initialization', function() {
 	it('window.Pancakes should exist',function(done){
 		if(window.Pancakes) {
 			done();

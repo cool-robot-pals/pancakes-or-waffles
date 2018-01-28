@@ -12,7 +12,7 @@ app.use('/target', express.static(path.resolve(__dirname, '../target')));
 app.use('/test', express.static(path.resolve(__dirname, '../test')));
 app.get('/test/mocha.js', (req, res, next) => res.sendFile(path.resolve(__dirname, '../node_modules/mocha/mocha.js')));
 
-app.use('/src', express.static(path.resolve(__dirname, '../src')));
+app.use('/app', express.static(path.resolve(__dirname, '../public')));
 app.use('/corpus', express.static(path.resolve(__dirname, '../corpus')));
 
 app.get('/', require('./route/index.js'));
