@@ -1,0 +1,16 @@
+body {
+	background: #000;
+	-webkit-font-smoothing: antialiased;
+	font-size: 35px;
+}
+
+body, body * {
+	display: block;
+	margin: 0;
+	padding: 0;
+	line-height: 1;
+}
+
+script {
+	display: none;
+}

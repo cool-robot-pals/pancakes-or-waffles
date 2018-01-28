@@ -94,7 +94,7 @@ export default class PostGetter extends abstractGetter {
 
 		this.context.fandom = forceFandom
 			? forceFandom
-			: getRelevantFandom(thingsOrCharacters, characters)
+			: this.getRelevantFandom(thingsOrCharacters, characters)
 
 		const verb = await this.chances.should('useSameVerb') ?
 			await this.verb.get() :
