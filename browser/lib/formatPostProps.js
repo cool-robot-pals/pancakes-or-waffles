@@ -1,4 +1,4 @@
-export default (unmangledExtras={}) => {
+const extras = (unmangledExtras={}) => {
 	let extras = [];
 	Object.keys(unmangledExtras).map(extra => {
 		let style = {};
@@ -19,3 +19,13 @@ export default (unmangledExtras={}) => {
 	});
 	return extras;
 };
+
+const variant = (variants=[]) => {
+	const rt = [];
+	variants.map((variant,idx) => {
+		rt.push(Math.ceil(Math.random()*variant));
+	});
+	return rt;
+};
+
+export { extras, variant };

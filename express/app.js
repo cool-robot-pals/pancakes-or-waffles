@@ -5,18 +5,16 @@ const fs = require('fs');
 
 const app = express();
 
-app.use('/', express.static(path.resolve(__dirname, '../build')));
-
 app.use('/target', express.static(path.resolve(__dirname, '../target')));
+app.use('/view', express.static(path.resolve(__dirname, './view')));
 
-app.use('/test', express.static(path.resolve(__dirname, '../test')));
-app.get('/test/mocha.js', (req, res, next) => res.sendFile(path.resolve(__dirname, '../node_modules/mocha/mocha.js')));
-
-app.use('/app', express.static(path.resolve(__dirname, '../public')));
+app.use('/app', express.static(path.resolve(__dirname, '../browser')));
 app.use('/corpus', express.static(path.resolve(__dirname, '../corpus')));
 
-app.get('/', require('./route/index.js'));
+app.get('/', require('./route/screenshot.js'));
 app.get('/test', require('./route/test.js'));
+app.get('/wall', require('./route/wall.js'));
+
 app.get('/get-image', require('./route/get-image.js'));
 app.get('/get-corpus/:item*', require('./route/get-corpus.js'));
 

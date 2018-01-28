@@ -9,7 +9,7 @@ export default class CharacterGetter extends abstractGetter {
 
 	async filter(characters, context) {
 		if(context.fandom) {
-			return characters.filter(char => char.fandom === context.fandom);
+			return await characters.filter(async char => char.fandom === await context.fandom);
 		}
 		return characters;
 	}

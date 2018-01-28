@@ -5,11 +5,20 @@ import AdjectiveGetter from './adjective.js';
 
 import pluralize from '/target/npm/pluralize.js';
 
+export const TYPE_OWNABLE = 'ownable';
+export const TYPE_THING = 'thing';
+export const TYPE_PROPER = 'proper';
+
+export const MASK_ALWAYS = 'ownable';
+export const MASK_NEVER = 'thing';
+export const MASK_WHEN_OWNABLE = 'whenOwnable';
+export const MASK_WHEN_NOT_OWNABLE = 'whenNotOwnable';
+
 const defaultOptions = {
-	type: 'thing'
+	type: TYPE_THING
 };
 
-export default class ThingGetter extends abstractGetter {
+export const ThingGetter = class extends abstractGetter {
 
 	constructor(defaults={},options={}) {
 
@@ -30,16 +39,16 @@ export default class ThingGetter extends abstractGetter {
 	async isSingular(noun) {
 		if(
 			this.isProperNoun(noun) ||
-			noun.props.singular === 'always' ||
-			(this.options.type === 'ownable' && noun.props.singular === 'owned') ||
-			(this.options.type === 'thing' && noun.props.singular === 'thing')
+			noun.props.singular === MASK_ALWAYS ||
+			(this.options.type === TYPE_OWNABLE && noun.props.singular === MASK_WHEN_OWNABLE) ||
+			(this.options.type === TYPE_THING && noun.props.singular === TYPE_THING)
 		) {
 			return true;
 		}
 		if(
-			noun.props.plural === 'always' ||
-			(this.options.type === 'ownable' && noun.props.plural === 'owned') ||
-			(this.options.type === 'thing' && noun.props.plural === 'thing')
+			noun.props.plural === MASK_ALWAYS ||
+			(this.options.type === TYPE_OWNABLE && noun.props.plural === MASK_WHEN_OWNABLE) ||
+			(this.options.type === TYPE_THING && noun.props.plural === TYPE_THING)
 		) {
 			return false;
 		}
@@ -60,23 +69,26 @@ export default class ThingGetter extends abstractGetter {
 
 
 	async shouldUsePronoun(noun) {
-		if(this.options.forcePronoun === 'never'){
+		if(this.options.forcePronoun === MASK_NEVER){
 			return false;
 		}
-		if(this.options.forcePronoun === 'always'){
+		if(this.options.forcePronoun === MASK_ALWAYS){
 			return true;
 		}
-		if(noun.props.pronoun === 'never') {
+		if(noun.props.pronoun === MASK_NEVER) {
 			return false;
 		}
-		if(noun.props.pronoun === 'always') {
+		if(noun.props.pronoun === MASK_ALWAYS) {
+			return true;
+		}
+		if(noun.props.pronoun === MASK_WHEN_NOT_OWNABLE && this.options.type === TYPE_THING) {
 			return true;
 		}
 		if(this.isProperNoun(noun)) {
 			return false;
 		}
 		else {
-			return this.options.type === 'thing';
+			return this.options.type === TYPE_THING;
 		}
 	}
 
@@ -88,11 +100,11 @@ export default class ThingGetter extends abstractGetter {
 
 
 	async filter(list, context) {
-		if(this.options.type === 'thing') {
-			list = list.filter(noun => !noun.props.only || noun.props.only !== 'ownable');
+		if(this.options.type === TYPE_THING) {
+			list = list.filter(noun => !noun.props.only || noun.props.only !== TYPE_OWNABLE);
 		}
-		else if (this.options.type === 'ownable') {
-			list = list.filter(noun => !noun.props.only || noun.props.only !== 'proper');
+		else if (this.options.type === TYPE_OWNABLE) {
+			list = list.filter(noun => !noun.props.only || noun.props.only !== TYPE_PROPER);
 		}
 		if(this.options.singular === true) {
 			list = list.filter(async noun => await this.isSingular(noun));
@@ -142,4 +154,7 @@ export default class ThingGetter extends abstractGetter {
 
 	}
 
-}
+};
+
+
+export default ThingGetter;

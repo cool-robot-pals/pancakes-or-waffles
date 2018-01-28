@@ -13,7 +13,8 @@ const modules = [
 	'query-string',
 	'seedrandom',
 	'pluralize',
-	'number2text'
+	'number2text',
+	'mocha/mocha.js'
 ];
 
 try {

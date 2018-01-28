@@ -34,22 +34,19 @@ const takeScreenshot = async () => {
 		page.setViewport({ width: 1280, height: 720 }),
 		page.goto(url)
 	]);
+	page.on('console', msg => {
+		console.log(msg.text());
+	});
 	await page.waitFor(2000);
-	const log = await page.evaluate(() =>
-		window.Pancakes.posts[0].logState()
-	);
 	await page.screenshot({ path: outPath });
 
 	await browser.close();
-
-	return log;
 };
 
 server.listen(port, ()=>{
 	reporter.success('Server running');
-	takeScreenshot().then((log)=>{
+	takeScreenshot().then(()=>{
 		reporter.success('Screenshot taken');
-		console.log(log.join('\n'));
 		process.exit();
 	}).catch(reporter.error);
 });
