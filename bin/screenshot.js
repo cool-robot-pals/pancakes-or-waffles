@@ -17,6 +17,12 @@ const port = 1337; /*bite me*/
 const url = `https://localhost:${port}/`;
 const outPath = path.join(__dirname, '..', config.paths.build, config.filenames.base + '.jpg');
 
+try {
+	fs.mkdirSync(path.join(__dirname,'..','target'));
+} catch(e){
+	/**/
+}
+
 // Source: https://github.com/GoogleChrome/puppeteer#usage
 const takeScreenshot = async () => {
 	const browser = await puppeteer.launch({
