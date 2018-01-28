@@ -1,23 +1,30 @@
 # proper
 # removes adjectives & all pronouns but The (give alcohol, shepard's alcohol)
 # -
-# singular=owned
+# -
+# singular=whenOwnable
 # makes the thing singular when owned (sonic's hair, stroke the hairs)
 # -
 # singular=always
 # makes the thing always singular (sonic's gun, eat the gun)
 # -
-# plural=owned
+# -
+# plural=whenOwnable
 # makes the thing plural when owned (sonic's ears, stroke the ears)
 # -
 # plural=always
 # makes the thing always plural (sonic's waffles, eat the waffles)
 # -
+# -
 # pronoun=always
 # makes the thing always have a pronoun
 # -
+# pronoun=whenNotOwnable
+# makes the thing always have a pronoun if it's not owned
+# -
 # pronoun=never
 # makes the thing never have a pronoun
+# -
 # -
 # only=ownable
 # only=proper
@@ -80,9 +87,9 @@ Citadel (proper,only=proper,pronoun=always)
 Hyrule (proper,only=proper)
 space (proper,only=proper)
 Hell (proper,only=proper)
-moon (proper,pronoun=always)
-pool (proper,pronoun=always)
-beach (proper,pronoun=always)
+moon (proper,pronoun=whenNotOwnable)
+pool (proper,pronoun=whenNotOwnable)
+beach (proper,pronoun=whenNotOwnable)
 planet (proper,only=proper,pronoun=always)
 location (proper,pronoun=always)
 straights (proper,only=proper,pronoun=always)

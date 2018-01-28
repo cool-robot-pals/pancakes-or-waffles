@@ -3,7 +3,7 @@ import abstractGetter from './abstract/abstract.js';
 import {capitalizeFirstLetter} from '../lib/stringies.js';
 
 import ChancesGetter from './chances.js';
-import ThingGetter from './thing.js';
+import { ThingGetter, TYPE_OWNABLE } from './thing.js';
 import VerbGetter from './verb.js';
 import CharacterGetter from './character.js';
 import FandomGetter from './fandom.js';
@@ -31,7 +31,7 @@ export default class PostGetter extends abstractGetter {
 
 		if(params.use === USE_CHAR && await this.chances.should('characterHaveOwnable')) {
 			return await this.buildGetter(ThingGetter,{
-				type: 'ownable'
+				type: TYPE_OWNABLE
 			}).get();
 		}
 		else {

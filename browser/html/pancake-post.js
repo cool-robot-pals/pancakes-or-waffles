@@ -29,7 +29,7 @@ class PancakePost extends HTMLElement {
 			:host {
 				width: 1280px;
 				height: 720px;
-				background: red;
+				background: #000;
 			}
 		</style>
 		`
