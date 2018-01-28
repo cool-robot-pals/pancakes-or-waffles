@@ -10,6 +10,7 @@ class PancakePost extends HTMLElement {
 		super();
 		this.$shadow = this.attachShadow({mode: 'open'});
 		this.postData = null;
+		this.q = 0;
 	}
 
 	async attributeChangedCallback(name, oldValue, newValue) {
@@ -22,6 +23,16 @@ class PancakePost extends HTMLElement {
 	}
 
 	async connectedCallback() {
+		this.$shadow.innerHTML =
+		`
+		<style>
+			:host {
+				width: 1280px;
+				height: 720px;
+				background: red;
+			}
+		</style>
+		`
 		if(!this.dataset.seed) {
 			this.dataset.seed = makeSeed();
 		}
@@ -30,14 +41,28 @@ class PancakePost extends HTMLElement {
 		}
 	}
 
+	/*
+	this.q prevents a post being redrawn many times
+	on fast data change by blocking changes if there's
+	many promises racing at once, it's a bit ugly
+	*/
+
 	async fetchAndRender() {
+		this.q++;
 		this.postData = await getPostData(this.dataset);
+		this.q--;
 		this.render();
 	}
 
 	async render() {
-		this.$shadow.innerHTML = render(this.postData);
-		this.dispatchEvent(new CustomEvent('pancake-ready'));
+		if(this.q == 0){
+			this.$shadow.innerHTML = render(await this.postData);
+			this.dispatchEvent(new CustomEvent('pancake-ready',{
+				detail: {
+					postData: this.postData
+				}
+			}));
+		}
 	}
 
 }
