@@ -18,7 +18,7 @@
 
 .choice:before {
 	content: '\0020';
-	background: #fff url(/app/assets/shake/shake.png) no-repeat center center;
+	background: #fff : url(./shake.png) no-repeat center center;
 	background-size: 60% auto;
 	width: 3em;
 	height: 3em;
@@ -42,12 +42,12 @@
 .post[data-variant*="(2=1)"] .choice:before {
 	font-size: 2em;
 	top: -3.5em;
-	background-image: url(/app/assets/shake/shake-wii.png);
+	background-image: url(./shake-wii.png);
 	background-size: 80% auto;
 }
 
 .post[data-variant*="(2=2)"] .choice:before {
-	background-image: url(/app/assets/shake/shake-alt.png);
+	background-image: url(./shake-alt.png);
 	background-color: transparent;
 	border: 2px solid #fff;
 }
@@ -55,7 +55,7 @@
 .post[data-variant*="(2=3)"] .choice:before {
 	font-size: 2em;
 	top: -3em;
-	background-image: url(/app/assets/shake/shake-wii-alt.png);
+	background-image: url(./shake-wii-alt.png);
 	background-color: transparent;
 	background-size: 80% auto;
 }

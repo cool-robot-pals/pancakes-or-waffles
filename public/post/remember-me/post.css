@@ -11,7 +11,7 @@
 	width: 60px;
 	height: 40px;
 	display: inline-block;
-	background: url(/app/assets/remember-me/circle.png) no-repeat top left;
+	background: url(./circle.png) no-repeat top left;
 	background-size: contain;
 	position: absolute;
 	left: -80px;
@@ -37,7 +37,7 @@
 }
 
 .choice:last-child:before {
-	background-image: url(/app/assets/remember-me/cross.png);
+	background-image: url(./cross.png);
 }
 
 .choice span {

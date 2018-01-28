@@ -27,7 +27,7 @@
 }
 
 .post[data-variant*="(0=1)"] .ac-1 {
-	background-image: url(/app/assets/lis/lis-serious.png);
+	background-image: url(./lis-serious.png);
 }
 
 .post[data-variant*="(0=1)"] .bg {
@@ -39,5 +39,5 @@
 }
 
 .post[data-variant*="(0=2)"] .ac-1 {
-	background-image: url(/app/assets/lis/lis.png);
+	background-image: url(./lis.png);
 }

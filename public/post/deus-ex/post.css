@@ -10,7 +10,7 @@
 	height: 200px!important;
 	top: 400px!important;
 	bottom: auto!important;
-	background: url(/app/assets/deus-ex/hud.png) center no-repeat;
+	background: url(./hud.png) center no-repeat;
 	background-size: contain!important;
 	z-index: 999;
 }
@@ -47,7 +47,7 @@
 	z-index: 888;
 	right: 10%;
 	border-top-left-radius: 20px!important;
-	background: url(/app/assets/deus-ex/ui-artifact.png) no-repeat bottom right;
+	background: url(./ui-artifact.png) no-repeat bottom right;
 	background-size: auto 12px, auto 12px;
 	position: absolute;
 	font-size: 1.2em;
@@ -69,7 +69,7 @@
 
 .extra span {
 	color: #fff;
-	background: url(/app/assets/deus-ex/ui-artifact.png) no-repeat bottom right,url(/app/assets/deus-ex/ui-artifact-too.png) no-repeat top left;
+	background: url(./ui-artifact.png) no-repeat bottom right,: url(./ui-artifact-too.png) no-repeat top left;
 	background-size: auto 12px;
 	background-color: rgba(15,15,20,.9);
 }

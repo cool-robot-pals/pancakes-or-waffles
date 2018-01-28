@@ -32,7 +32,7 @@
 	border-radius: 25px;
 	max-width: 25%;
 	padding-left: 3em;
-	background-image: url(/app/assets/gravity-rush/halo.png);
+	background-image: url(./halo.png);
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center bottom;
@@ -59,7 +59,7 @@
 .choices:after {
 	content: '\0020';
 	position: absolute;
-	background: url(/app/assets/gravity-rush/warn.png);
+	background: url(./warn.png);
 	background-size: cover;
 	width: 2em;
 	height: 2em;
@@ -89,7 +89,7 @@
 .extra[data-name^="waypoint"]:after {
 	content: '\0020';
 	position: absolute;
-	background: url(/app/assets/gravity-rush/waypoint.png);
+	background: url(./waypoint.png);
 	background-size: cover;
 	width: 1em;
 	height: 1em;
@@ -143,7 +143,7 @@
 .extra[data-name="good"]:after,.extra[data-name="bad"]:after {
 	content: '\0020';
 	position: absolute;
-	background: url(/app/assets/gravity-rush/circle.png);
+	background: url(./circle.png);
 	background-size: contain;
 	width: 1.2em;
 	height: 1.2em;
@@ -156,13 +156,13 @@
 .extra[data-name="bad"]:after {
 	right: .4em;
 	left: auto;
-	background-image: url(/app/assets/gravity-rush/square.png);
+	background-image: url(./square.png);
 }
 
 .extra[data-name="good"]:before,.extra[data-name="bad"]:before {
 	content: '\0020';
 	position: absolute;
-	background: url(/app/assets/gravity-rush/comic.png);
+	background: url(./comic.png);
 	background-repeat: no-repeat;
 	background-size: contain;
 	width: 1em;

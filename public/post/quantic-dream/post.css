@@ -36,7 +36,7 @@
 
 .choice:before,
 .choice:before {
-	background-image: url(/app/assets/qd/colorful.png);
+	background-image: url(./colorful.png);
 	content: '\0020';
 	background-size: 180px 90px;
 	vertical-align: middle;
@@ -49,5 +49,5 @@
 }
 
 .post[data-variant*="(0=1)"] .choice:before {
-	background-image: url(/app/assets/qd/white.png);
+	background-image: url(./white.png);
 }

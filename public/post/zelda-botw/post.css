@@ -27,7 +27,7 @@
 	align-items: stretch;
 	flex-direction: column;
 	background: rgba(10,10,5,.6);
-	background-image: url(/app/assets/zelda-botw/thing-l.png),url(/app/assets/zelda-botw/thing-r.png);
+	background-image: url(./thing-l.png),: url(./thing-r.png);
 	background-repeat: no-repeat,no-repeat;
 	background-position: 3.5% 50%,96.5% 50%;
 	background-size: 14px,14px;

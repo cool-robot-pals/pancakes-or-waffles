@@ -11,7 +11,7 @@
 }
 
 .choices {
-	background: url(/app/assets/oblivion/dialog-bottom.png) no-repeat bottom left, url(/app/assets/oblivion/dialog-top.png) top left!important;
+	background: url(./dialog-bottom.png) no-repeat bottom left, : url(./dialog-top.png) top left!important;
 	background-size: auto, auto!important;
 	padding: 47px;
 	z-index: 99998;
@@ -58,7 +58,7 @@
 }
 
 .ac-1:after {
-	content: url(/app/assets/oblivion/quest.png);
+	content: url(./quest.png);
 	top: 130px;
 	left: 80px;
 	z-index: 999999;
@@ -101,7 +101,7 @@
 	text-align: right;
 }
 .extra[data-name=ui-accept]:before {
-	background: url(/app/assets/oblivion/a.png);
+	background: url(./a.png);
 	background-size: cover;
 	content: '\0020';
 	display: inline-block;
@@ -118,7 +118,7 @@
 	text-align: right;
 }
 .extra[data-name=ui-reject]:before {
-	background: url(/app/assets/oblivion/b.png);
+	background: url(./b.png);
 	background-size: cover;
 	content: '\0020';
 	display: inline-block;;
