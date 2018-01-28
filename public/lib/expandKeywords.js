@@ -14,6 +14,12 @@ let ChancesGetter, ThingGetter, CharacterGetter, AdjectiveGetter;
 
 const getReplacement = async (name, context, seed) => {
 	switch(name) {
+	case 'character':{
+		return (await new CharacterGetter({
+			seed: seed,
+			fandom: context.fandom
+		}).get()).name;
+	}
 	case 'characterOrThing': {
 		const chances = new ChancesGetter({seed:seed});
 		if(await chances.should('useThing')) {
@@ -28,14 +34,13 @@ const getReplacement = async (name, context, seed) => {
 			}).get()).name;
 		}
 	}
-	case 'character':{
-		return (await new CharacterGetter({
-			seed: seed,
-			fandom: context.fandom
-		}).get()).name;
-	}
 	case 'adjective':{
 		return await new AdjectiveGetter({
+			seed: seed
+		}).get();
+	}
+	case 'thing':{
+		return await new ThingGetter({
 			seed: seed
 		}).get();
 	}
@@ -53,32 +58,25 @@ const getReplacement = async (name, context, seed) => {
 			plural: true
 		}).get();
 	}
-	case 'thing':{
-		return await new ThingGetter({
-			seed: seed
-		}).get();
-	}
 	}
 };
 
 const transformChunk = async (chunk, replacer, context, seed) => {
 	if(lookup[replacer].test(chunk) !== false) {
-
-		[ChancesGetter,ThingGetter,CharacterGetter,AdjectiveGetter] = await Promise.all([
-			import('../getter/chances.js'),
-			import('../getter/thing.js'),
-			import('../getter/character.js'),
-			import('../getter/adjective.js')
-		]).then(stuff => stuff.map(imported => imported.default) );
-
 		const replacement = await getReplacement(replacer, context, seed);
-
 		chunk = chunk.replace(lookup[replacer], replacement);
 	}
 	return chunk;
 };
 
 export default async (chunk, {context={},seed=makeSeed()} ) => {
+
+	[ChancesGetter,ThingGetter,CharacterGetter,AdjectiveGetter] = await Promise.all([
+		import('../getter/chances.js'),
+		import('../getter/thing.js'),
+		import('../getter/character.js'),
+		import('../getter/adjective.js')
+	]).then(stuff => stuff.map(imported => imported.default) );
 
 	for (let replacer of lookupKeys) {
 		chunk = await transformChunk(chunk, replacer, context, seed);

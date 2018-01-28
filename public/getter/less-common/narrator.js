@@ -11,7 +11,7 @@ export default class extends abstractGetter {
 	}
 
 	async narrate(sentence) {
-		return capitalizeFirstLetter(await this.get()).replace('$1',decapitalizeFirstLetter(sentence));
+		return capitalizeFirstLetter((await this.get()).replace('$1',decapitalizeFirstLetter(sentence)));
 	}
 
 	async reduce(list) {
