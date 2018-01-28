@@ -28,7 +28,6 @@ export default class ThingGetter extends abstractGetter {
 
 
 	async isSingular(noun) {
-		console.log(this.isProperNoun(noun));
 		if(
 			this.isProperNoun(noun) ||
 			noun.props.singular === 'always' ||
@@ -129,14 +128,14 @@ export default class ThingGetter extends abstractGetter {
 				returnable.unshift('the')
 			}
 			else {
-				returnable.unshift(await this.buildGetter(PronounGetter,{},{
+				returnable.unshift(await this.buildGetter(PronounGetter,{
 					singular: isSingular,
 					pronounable: returnable[0]
 				}).get());
 			}
 		}
 
-		console.log(returnable);
+		console.log(returnable,isSingular);
 
 		return returnable.filter(value => value && value.length > 0).join(' ');
 
