@@ -11,7 +11,7 @@ export default class LayoutGetter extends abstractGetter {
 	async fetchOnce() {
 		const layouts = await super.fetchOnce();
 		if(this.defaults.layout) {
-			return layouts.filter(layout => layout === this.defaults.layout);
+			return [this.defaults.layout];
 		}
 		else {
 			return layouts;

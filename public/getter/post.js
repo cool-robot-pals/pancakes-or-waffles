@@ -26,7 +26,7 @@ export default class PostGetter extends abstractGetter {
 	async getOwnable(params) {
 
 		if(params.use === 'CHARACTER' && await this.chances.should('characterHaveOwnable')) {
-			return await this.buildGetter(ThingGetter,{},{
+			return await this.buildGetter(ThingGetter,{
 				type: 'ownable'
 			}).get();
 		}
@@ -69,11 +69,11 @@ export default class PostGetter extends abstractGetter {
 			? await this.buildGetter(FandomGetter).get()
 			: await this.buildGetter(FandomGetter).get();
 
-		const characters = await this.buildGetter(CharacterGetter,{
+		const characters = await this.buildGetter(CharacterGetter,{},{
 			fandom: fandom
 		}).getArray(2);
 
-		this.defaults.fandom = fandom?fandom:this.randomArray(characters).fandom;
+		this.defaults.fandom = fandom?fandom:characters[0].fandom;
 
 		const verb = await this.chances.should('useSameVerb') ?
 			await this.verb.get() :

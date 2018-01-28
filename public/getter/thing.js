@@ -15,7 +15,7 @@ export default class ThingGetter extends abstractGetter {
 
 		options = {
 			...defaultOptions,
-			options,
+			...options,
 		};
 
 		super(defaults,options);
@@ -28,8 +28,9 @@ export default class ThingGetter extends abstractGetter {
 
 
 	async isSingular(noun) {
+		console.log(this.isProperNoun(noun));
 		if(
-			noun.props.proper ||
+			this.isProperNoun(noun) ||
 			noun.props.singular === 'always' ||
 			(this.options.type === 'ownable' && noun.props.singular === 'owned') ||
 			(this.options.type === 'thing' && noun.props.singular === 'thing')
@@ -50,12 +51,37 @@ export default class ThingGetter extends abstractGetter {
 
 
 	async shouldUseAdjective(noun) {
-		if(noun.props.proper) {
+		if(this.isProperNoun(noun)) {
 			return false;
 		}
 		else {
 			return await this.chances.should('useAdjective');
 		}
+	}
+
+
+	async shouldUsePronoun(noun) {
+		if(noun.props.pronoun === 'never') {
+			return false;
+		}
+		if(noun.props.pronoun === 'always') {
+			return true;
+		}
+		if(this.isProperNoun(noun)) {
+			return false;
+		}
+		if(this.options.forcePronoun === 'never'){
+			return false;
+		}
+		else {
+			return this.options.type === 'thing'
+		}
+	}
+
+
+	isProperNoun(noun) {
+		if(this.options.forceProper) return true
+		else return noun.props.proper === true
 	}
 
 
@@ -81,13 +107,13 @@ export default class ThingGetter extends abstractGetter {
 		const noun = await this.expandKeywordHelper(this.randomArray(wordList));
 		const useAdjective = await this.shouldUseAdjective(noun);
 		const isSingular = await this.isSingular(noun);
-		const usePronoun = this.options.type === 'thing' && noun.props.proper != true;
+		const usePronoun = await this.shouldUsePronoun(noun);
 		const returnable = [];
 
 		if(useAdjective) {
-			returnable.push(this.adjectives.get());
+			returnable.push(await this.adjectives.get());
 			if(await this.chances.should('useTwoAdjectives')){
-				returnable.push(this.adjectives.get());
+				returnable.push(await this.adjectives.get());
 			}
 		}
 
@@ -99,11 +125,18 @@ export default class ThingGetter extends abstractGetter {
 		}
 
 		if(usePronoun) {
-			returnable.unshift(await this.buildGetter(PronounGetter,{},{
-				singular: isSingular,
-				pronounable: returnable[0]
-			}).get());
+			if(this.isProperNoun(noun)) {
+				returnable.unshift('the')
+			}
+			else {
+				returnable.unshift(await this.buildGetter(PronounGetter,{},{
+					singular: isSingular,
+					pronounable: returnable[0]
+				}).get());
+			}
 		}
+
+		console.log(returnable);
 
 		return returnable.filter(value => value && value.length > 0).join(' ');
 

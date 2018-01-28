@@ -1,0 +1,90 @@
+@import url(./../_abstract/post.css);
+
+.post {
+	font-family: Oswald, serif;
+	text-transform: uppercase;
+	font-weight: 800;
+	color: var(--color-brand)!important;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	perspective: 800px;
+}
+
+.post .content {
+	transform: translateX(var(--trans-x)) translateY(var(--trans-y)) rotateY(var(--angle-y)) rotateX(var(--angle-x)) rotateZ(var(--angle-z)) ;
+	display: grid;
+	grid-template-columns: .2fr 1fr;
+	grid-template-rows: auto auto auto;
+	position: static;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	grid-row-gap: .5em;
+	grid-column-gap: .5em;
+	text-shadow: 0 .5em .5em hsla(0, 0%, 0%, .25);
+	height: fit-content;
+	grid-template-areas:
+		'.      header'
+		'number body'
+		'.      cta';
+}
+
+.content > * {
+	grid-area: body;
+}
+
+div[key=extra-id] {
+	grid-area: number;
+	text-align: right;
+	font-size: 3em;
+}
+
+div[key=extra-id] span:before {
+	content: '#';
+	font-size: 50%;
+	vertical-align: 80%;
+}
+
+div[key=extra-id] span:after {
+	content: '.';
+}
+
+div[key=extra-cta] {
+	grid-area: cta;
+	color: #fff;
+	font-size: .75em;
+}
+
+div[key=extra-header] {
+	grid-area: header;
+}
+
+div[key=extra-header] span {
+	color: #000;
+	background: var(--color-brand);
+	padding: .1em .5em;
+	border-radius: .1em;
+}
+
+.choice {
+	font-size: 3em;
+	color: #fff;
+	max-width: 7em;
+}
+
+div[key=extra-cta] span:before {
+	content: 'A';
+	background: hsla(0, 0%, 0%, .75);
+	height: 1.75em;
+	width: 1.75em;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: .5em;
+	color: #42f468;
+	border: 2px solid currentColor;
+	border-radius: 100%;
+	font-size: .75em;
+}
