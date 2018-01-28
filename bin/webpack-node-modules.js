@@ -7,6 +7,7 @@ const webpack = require('webpack');
 const WrapperPlugin = require('wrapper-webpack-plugin');
 const fs = require('fs');
 const path = require('path');
+const config = require('../.pancakerc');
 
 const modules = [
 	'change-case',
@@ -17,8 +18,8 @@ const modules = [
 ];
 
 try {
-	fs.mkdirSync(path.join(__dirname,'..','target'));
-	fs.mkdirSync(path.join(__dirname,'..','target','npm'));
+	fs.mkdirSync(path.join(__dirname,'..', config.paths.build));
+	fs.mkdirSync(path.join(__dirname,'..', config.paths.build, 'npm'));
 } catch(e){
 	/**/
 }
@@ -39,7 +40,7 @@ const webpackify = (module) => {
 	webpack({
 		entry: entry,
 		output: {
-			path: path.resolve(path.join(__dirname,'..','target','npm')),
+			path: path.resolve(path.join(__dirname, '..', config.paths.build, 'npm')),
 			filename: `${module.replace('.js','')}.js`,
 			library: '_217878383_',
 			libraryTarget: 'var',
