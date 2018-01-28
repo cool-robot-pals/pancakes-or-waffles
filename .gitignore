@@ -1,13 +1,11 @@
 node_modules/*
 npm-debug.log
 
-build
-build/*
-
 .DS_Store
-
 .env
 
-server.key
+/server.key
+/server.crt
 
-server.crt
+/target
+/build

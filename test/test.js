@@ -1,4 +1,4 @@
-describe('Initialization', function() {
+window.describe('Initialization', function() {
 	it('window.Pancakes should exist',function(done){
 		if(window.Pancakes) {
 			done();
@@ -78,3 +78,5 @@ describe('Initialization', function() {
 		});
 	}).timeout(5000);
 });
+
+mocha.reporter('spec').run((failures)=>{if(failures > 0){throw 0;}else{console.log('done');}});

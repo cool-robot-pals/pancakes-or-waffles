@@ -2,13 +2,11 @@ const path = require('path');
 
 module.exports = {
 	'paths': {
-		'build': 'build',
-		'dll': path.join('etc','dll'),
-		'tools': path.join('etc','tools'),
+		'build': 'target',
 		'test': 'test'
 	},
 	'filenames': {
-		'base': 'index',
+		'base': 'post',
 		'test': 'test'
 	}
 }

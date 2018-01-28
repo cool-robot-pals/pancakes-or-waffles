@@ -1,0 +1,21 @@
+import abstractGetter from './abstract/abstract.js';
+
+export default class CharacterGetter extends abstractGetter {
+
+	constructor(...props) {
+		super(...props);
+		this.remote = 'people';
+	}
+
+	async filter(characters, context) {
+		if(context.fandom) {
+			return characters.filter(char => char.fandom === context.fandom);
+		}
+		return characters;
+	}
+
+	compareFetchResults(original, comparison) {
+		return original.name === comparison.name;
+	}
+
+}

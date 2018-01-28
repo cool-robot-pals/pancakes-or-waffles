@@ -26,15 +26,28 @@ const render = (options={}) =>
 	</head>
 	<body>
 	</body>
-	<script src="/post.js"></script>
+	${!options.test?
+		'<script type="module" src="/app/index.js"></script>':''
+	}
 	${options.test===true?
 		`
 		<script src="/test/mocha.js"></script>
 		<script>mocha.setup('bdd');</script>
-		<script src="/test/test.js"></script>
+		<script type="module">
+			import * as Pancake from "/app/index.js";
+			window.Pancakes = Pancake;
+
+			(async () => {
+				const $script = document.createElement("script");
+				$script.src = '/test/test.js'
+				document.getElementsByTagName("head")[0].appendChild($script);
+			})()
+		</script>
+		<script>
+
+		</script>
 		<div id="mocha"></div>
 		<link href="/test/test.css" rel="stylesheet"></head>
-		<script>mocha.reporter('spec').run((failures)=>{if(failures > 0){throw 0}else{console.log('done')}});</script>
 		`:''
 	}
 </html>
