@@ -1,4 +1,4 @@
-@import url(/app/post/abstract/Post.css);
+@import url(./../_abstract/post.css);
 
 .post {
 	font-family: 'Patrick Hand';

@@ -1,6 +1,6 @@
-import Post from './abstract/Post.js';
+import Post from '../_abstract/post.js';
 
-import OblivionDateGetter from '../getter/less-common/oblivion.js';
+import OblivionDateGetter from '../../getter/less-common/oblivion.js';
 
 
 class CustomPost extends Post {

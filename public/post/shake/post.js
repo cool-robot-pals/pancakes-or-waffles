@@ -1,6 +1,6 @@
-import Post from './abstract/Post.js';
+import Post from '../_abstract/post.js';
 
-import {decapitalizeFirstLetter} from '../lib/stringies.js';
+import {decapitalizeFirstLetter} from '../../lib/stringies.js';
 
 class CustomPost extends Post {
 

@@ -1,4 +1,3 @@
-import changeCase from '/target/npm/change-case.js';
 import queryStringParser from '/target/npm/query-string.js';
 
 import LayoutGetter from './getter/layout.js';
@@ -17,13 +16,11 @@ const makePost = async (seed=makeSeed(),defaults={}) => {
 		...defaults
 	}).get();
 
-	const postName = changeCase.pascal(`${layout}-post`);
-
-	return import('./post/'+postName+'.js') // eslint-disable-line no-undef
+	return import('./post/'+layout+'/post.js') // eslint-disable-line no-undef
 		.then(PostJs =>
 			new PostJs.default({
 				seed: seed,
-				name: postName,
+				layout: layout,
 			})
 		).then(postInstance =>
 			Promise.all([

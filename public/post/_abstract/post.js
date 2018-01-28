@@ -11,7 +11,7 @@ class Post {
 	constructor(props) {
 
 		this.attachRandomSeed(props.seed);
-		this.name = props.name;
+		this.layout = props.layout;
 		this.state = {};
 
 	}
@@ -28,6 +28,7 @@ class Post {
 
 		this.state = {
 			seed: this._seed,
+			layout: this.layout,
 			query: post.query,
 			fandom: post.fandom,
 			choices: post.choices,
@@ -102,7 +103,7 @@ class Post {
 		$shadow.innerHTML = template;
 
 		const $link = document.createElement('link');
-		$link.href = `/app/post/${this.name}.css`;
+		$link.href = `/app/post/${this.layout}/post.css`;
 		$link.rel = 'stylesheet';
 		$shadow.appendChild($link);
 

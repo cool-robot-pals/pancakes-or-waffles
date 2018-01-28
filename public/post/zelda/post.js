@@ -1,8 +1,8 @@
-import Post from './abstract/Post.js';
+import Post from '../_abstract/post.js';
 
-import {capitalizeFirstLetter} from '../lib/stringies.js';
-import BinaryChoicesGetter from '../getter/less-common/binaryChoices.js';
-import NarratorGetter from '../getter/less-common/narrator.js';
+import {capitalizeFirstLetter} from '../../lib/stringies.js';
+import BinaryChoicesGetter from '../../getter/less-common/binaryChoices.js';
+import NarratorGetter from '../../getter/less-common/narrator.js';
 
 class CustomPost extends Post {
 

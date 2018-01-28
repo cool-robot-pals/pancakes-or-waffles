@@ -1,10 +1,10 @@
-import Post from './abstract/Post.js';
+import Post from '../_abstract/post.js';
 
-import NarratorGetter from '../getter/less-common/narrator.js';
-import FalloutGetter from '../getter/less-common/fallout.js';
-import ChancesGetter from '../getter/chances.js';
-import {capitalizeFirstLetter,decapitalizeFirstLetter} from '../lib/stringies.js';
-import {randomNumber} from '../lib/random.js';
+import NarratorGetter from '../../getter/less-common/narrator.js';
+import FalloutGetter from '../../getter/less-common/fallout.js';
+import ChancesGetter from '../../getter/chances.js';
+import {capitalizeFirstLetter,decapitalizeFirstLetter} from '../../lib/stringies.js';
+import {randomNumber} from '../../lib/random.js';
 
 
 class CustomPost extends Post {

@@ -1,7 +1,7 @@
-import Post from './abstract/Post.js';
+import Post from '../_abstract/post.js';
 
-import NarratorGetter from '../getter/less-common/narrator.js';
-import BinaryChoicesGetter from '../getter/less-common/binaryChoices.js';
+import NarratorGetter from '../../getter/less-common/narrator.js';
+import BinaryChoicesGetter from '../../getter/less-common/binaryChoices.js';
 
 
 class CustomPost extends Post {
