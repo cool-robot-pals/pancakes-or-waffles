@@ -60,6 +60,12 @@ export default class ThingGetter extends abstractGetter {
 
 
 	async shouldUsePronoun(noun) {
+		if(this.options.forcePronoun === 'never'){
+			return false;
+		}
+		if(this.options.forcePronoun === 'always'){
+			return true;
+		}
 		if(noun.props.pronoun === 'never') {
 			return false;
 		}
@@ -67,9 +73,6 @@ export default class ThingGetter extends abstractGetter {
 			return true;
 		}
 		if(this.isProperNoun(noun)) {
-			return false;
-		}
-		if(this.options.forcePronoun === 'never'){
 			return false;
 		}
 		else {
