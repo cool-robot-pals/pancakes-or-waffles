@@ -77,14 +77,12 @@
 	line-height: 1.5;
 }
 
-.extra[data-name^="waypoint"] {
+.content .extra[data-name^="waypoint"] {
 	position: absolute;
 	top: 25%;
 	left: 25%;
 	font-family: 'Tulpen One';
 	font-weight: 400;
-	right: inherit;
-	bottom: inherit;
 }
 
 .extra[data-name^="waypoint"]:after {
@@ -101,7 +99,7 @@
 .extra[data-name^="waypoint"] span {
 	position: absolute;
 	bottom: 0em;
-	left: 1em;
+	left: 1.25em;
 }
 
 .extra[data-name="good"],.extra[data-name="bad"] {
