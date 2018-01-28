@@ -1,9 +1,6 @@
 import LayoutGetter from '../getter/layout.js';
 import PostGetter from '../getter/post.js';
 
-import escapeHTML from '../lib/escapeHTML.js';
-
-
 const fonts = [
 	'Roboto:400,500i',
 	'Gentium+Book+Basic:700',
@@ -55,14 +52,14 @@ const render = postData => {
 								class="extra"
 								style="${Object.keys(extra.style).map(key=>`${key}:${extra.style[key]}`).join(';')}"
 							>
-								<span>${escapeHTML(extra.value)}</span>
+								<span>${extra.value}</span>
 							</div>`
 					).join('')
 				}
 				<div class="choices">
 					${
 						postData.choices.map(choice =>
-							`<div class="choice"><span>${escapeHTML(choice)}</span></div>`
+							`<div class="choice"><span>${choice}</span></div>`
 						).join('')
 					}
 				</div>

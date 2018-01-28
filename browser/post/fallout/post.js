@@ -6,6 +6,8 @@ import ChancesGetter from '../../getter/chances.js';
 import {capitalizeFirstLetter,decapitalizeFirstLetter} from '../../lib/stringies.js';
 import {randomNumber} from '../../lib/random.js';
 
+import escapeHTML from '../../lib/escapeHTML.js';
+
 
 class CustomPost extends Post {
 
@@ -33,7 +35,7 @@ class CustomPost extends Post {
 		else {
 			choice.push(`<${original}>`);
 		}
-		return choice.join(' ');
+		return escapeHTML(choice.join(' '));
 
 	}
 
