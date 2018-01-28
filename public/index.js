@@ -61,6 +61,7 @@ const boot = () => {
 		'Patrick+Hand',
 		'Poiret+One',
 		'Roboto+Mono:500',
+		'Oswald:600',
 		'Lato:700,400',
 		'Tulpen+One',
 	];

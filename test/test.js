@@ -67,7 +67,7 @@ window.describe('Initialization', function() {
 			};
 			layouts.map(function(layout){
 				try{
-					window.Pancakes.makePost(undefined,{
+					window.Pancakes.makePost(null,{
 						layout: layout
 					});
 				} catch(err) {

@@ -7,6 +7,14 @@
 	text-shadow: 0 2px 2px #000;
 }
 
+.content > * {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
 .ac-1 {
 	background: url(./sr.png);
 }
@@ -14,6 +22,11 @@
 .choices {
 	top: 69.9%!important;
 	width: 62%;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
 	margin: auto;
 }
 

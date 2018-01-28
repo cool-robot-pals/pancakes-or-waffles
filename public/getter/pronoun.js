@@ -24,7 +24,7 @@ export default class PronounGetter extends abstractGetter {
 				: pronouns.plural
 		).value;
 
-		if(pronoun === 'a' && this.options.pronounable && ['a','e','i','o','u'].indexOf(this.options.pronounable.toLowerCase().charAt(0)) >= 0) {
+		if(pronoun === 'a' && this.options.pronounable !== null && this.options.pronounable.toLowerCase && ['a','e','i','o','u'].indexOf(this.options.pronounable.toLowerCase().charAt(0)) >= 0) {
 			pronoun = 'an';
 		}
 		if(pronoun === '_empty_') {

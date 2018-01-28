@@ -18,7 +18,7 @@
 
 .choice:before {
 	content: '\0020';
-	background: #fff : url(./shake.png) no-repeat center center;
+	background: #fff url(./shake.png) no-repeat center center;
 	background-size: 60% auto;
 	width: 3em;
 	height: 3em;

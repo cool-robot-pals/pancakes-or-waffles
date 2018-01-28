@@ -14,12 +14,6 @@ let ChancesGetter, ThingGetter, CharacterGetter, AdjectiveGetter;
 
 const getReplacement = async (name, context, seed) => {
 	switch(name) {
-	case 'character':{
-		return (await new CharacterGetter({
-			seed: seed,
-			fandom: context.fandom
-		}).get()).name;
-	}
 	case 'characterOrThing': {
 		const chances = new ChancesGetter({seed:seed});
 		if(await chances.should('useThing')) {
@@ -34,13 +28,14 @@ const getReplacement = async (name, context, seed) => {
 			}).get()).name;
 		}
 	}
+	case 'character':{
+		return (await new CharacterGetter({
+			seed: seed,
+			fandom: context.fandom
+		}).get()).name;
+	}
 	case 'adjective':{
 		return await new AdjectiveGetter({
-			seed: seed
-		}).get();
-	}
-	case 'thing':{
-		return await new ThingGetter({
 			seed: seed
 		}).get();
 	}
@@ -56,6 +51,11 @@ const getReplacement = async (name, context, seed) => {
 			seed: seed
 		},{
 			plural: true
+		}).get();
+	}
+	case 'thing':{
+		return await new ThingGetter({
+			seed: seed
 		}).get();
 	}
 	}

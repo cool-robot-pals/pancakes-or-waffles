@@ -7,8 +7,7 @@ import ChancesGetter from '../../getter/chances.js';
 
 class CustomPost extends Post {
 
-	constructor(...args) {
-		super(...args);
+	buildGetters() {
 		this.chances = this.buildGetter(ChancesGetter);
 		this.choices = this.buildGetter(BinaryChoicesGetter);
 	}

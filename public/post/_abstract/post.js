@@ -4,7 +4,6 @@ import logger from '../../lib/logger.js';
 import formatPropExtras from '../../lib/formatPropExtras.js';
 import escapeHTML from '../../lib/escapeHTML.js';
 import usesSeededGetter from '../../lib/decorator/usesSeededGetter.js';
-import {getRandomCss} from '../../lib/getRandomCss.js';
 
 class Post {
 
@@ -13,12 +12,21 @@ class Post {
 		this.attachRandomSeed(props.seed);
 		this.layout = props.layout;
 		this.state = {};
-
+		this.context = {};
+		
+		this.postGetter = this.buildGetter(PostGetter).get().then(post=>{
+			this.context = post;
+			this.buildGetters();
+			return post;
+		});
+		
 	}
+	
+	buildGetters() {}
 
 	async onReadyState() {
 
-		const post = await this.buildGetter(PostGetter).get();
+		const post = await this.postGetter;
 		this.defaults = post;
 
 		const [extraProps,background] = await Promise.all([
@@ -35,6 +43,7 @@ class Post {
 			bg: background.url,
 			variants: [],
 			report: {},
+			css: {},
 			...extraProps,
 			extras: formatPropExtras(extraProps.extras),
 		};
@@ -68,30 +77,32 @@ class Post {
 				class="post"
 				data-variant="${this.variant.map((variant,idx) => `(${idx}=${variant})`)}"
 			>
-				${
-					[1,2].map(additionalContainer =>
-						`<div class="ac-${additionalContainer}"></div>`
-					).join('')
-				}
-				${
-					this.state.extras.map(extra =>
-						`<div
-								key="extra-${extra.key}"
-								data-val="${extra.value}"
-								data-name="${extra.key}"
-								class="extra"
-								style="${Object.keys(extra.style).map(key=>`${key}:${extra.style[key]}`).join(';')}"
-							>
-								<span>${escapeHTML(extra.value)}</span>
-							</div>`
-					).join('')
-				}
-				<div class="choices">
+				<div class="content">
 					${
-						this.state.choices.map(choice =>
-							`<div class="choice"><span>${escapeHTML(choice)}</span></div>`
+						[1,2].map(additionalContainer =>
+							`<div class="ac-${additionalContainer}"></div>`
 						).join('')
 					}
+					${
+						this.state.extras.map(extra =>
+							`<div
+									key="extra-${extra.key}"
+									data-val="${extra.value}"
+									data-name="${extra.key}"
+									class="extra"
+									style="${Object.keys(extra.style).map(key=>`${key}:${extra.style[key]}`).join(';')}"
+								>
+									<span>${escapeHTML(extra.value)}</span>
+								</div>`
+						).join('')
+					}
+					<div class="choices">
+						${
+							this.state.choices.map(choice =>
+								`<div class="choice"><span>${escapeHTML(choice)}</span></div>`
+							).join('')
+						}
+					</div>
 				</div>
 				<div class="bg" data-sink="true" style="background-image: url('${this.state.bg}')" />
 			</div>
@@ -107,9 +118,9 @@ class Post {
 		$link.rel = 'stylesheet';
 		$shadow.appendChild($link);
 
-		getRandomCss().forEach(variable=>{
-			$shadow.children[0].style.setProperty(`--${variable.name}`, variable.value);
-		});
+		for(let key in this.state.css) {
+			$shadow.children[0].style.setProperty(key, this.state.css[key]);
+		}
 
 		return $div;
 	}

@@ -27,6 +27,7 @@
 	border: 1px solid #ebbc64;
 	top: 4em;
 	left: 1em;
+	height: fit-content;
 	bottom: inherit;
 	right: inherit;
 	border-radius: 25px;

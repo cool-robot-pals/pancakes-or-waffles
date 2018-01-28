@@ -1,5 +1,5 @@
 # proper
-# removes the, a, plural. only does the word (give alcohol, shepard's alcohol)
+# removes adjectives & all pronouns but The (give alcohol, shepard's alcohol)
 # -
 # singular=owned
 # makes the thing singular when owned (sonic's hair, stroke the hairs)
@@ -12,6 +12,12 @@
 # -
 # plural=always
 # makes the thing always plural (sonic's waffles, eat the waffles)
+# -
+# pronoun=always
+# makes the thing always have a pronoun
+# -
+# pronoun=never
+# makes the thing never have a pronoun
 # -
 # only=ownable
 # only=proper
@@ -62,6 +68,7 @@ moon rocks (plural=always)
 phone
 bucket
 lamp
+lighthouse
 romance
 disco
 
@@ -69,20 +76,18 @@ patriarchy (singular=always,only=proper)
 
 Arcadia Bay (proper,only=proper)
 Blackwell Academy (proper,only=proper)
-the lighthouse (proper,only=proper)
+Citadel (proper,only=proper,pronoun=always)
 Hyrule (proper,only=proper)
 space (proper,only=proper)
 Hell (proper,only=proper)
-Mars (proper,only=proper)
-Venus (proper,only=proper)
-Uranus (proper,only=proper)
-the pool (proper,only=proper)
-the beach (proper,only=proper)
-the planet (proper,only=proper)
-this location (proper,only=proper)
-the straights (proper,only=proper)
-the gays (proper,only=proper)
-lesbians (proper,only=proper)
+moon (proper,pronoun=always)
+pool (proper,pronoun=always)
+beach (proper,pronoun=always)
+planet (proper,only=proper,pronoun=always)
+location (proper,pronoun=always)
+straights (proper,only=proper,pronoun=always)
+gays (proper,only=proper,pronoun=always)
+lesbians (proper,pronoun=always)
 radiation (proper,only=proper)
 halloween (proper,only=proper)
 xmas (proper,only=proper)

@@ -8,9 +8,10 @@ export default function(Target) {
 			this._seed = seed;
 		}
 
-		buildGetter(Getter,context={},options={}) {
+		buildGetter(Getter,options={},extraContext={}) {
 			return new Getter({
-				...context,
+				...this.context,
+				...extraContext,
 				_seed: this._seed
 			},
 			options
