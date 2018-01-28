@@ -33,7 +33,7 @@ class CustomPost extends Post {
 				'--angle-x': (this.randomNumber('forza-x')*10-10)+'deg',
 				'--angle-y': (this.randomNumber('forza-y')*10-5)+'deg',
 				'--angle-z': (this.randomNumber('forza-z')*2-1)+'deg',
-				'--trans-x': (this.randomNumber('forza-tx')*10-5)+'em',
+				'--trans-x': (this.randomNumber('forza-tx')*5-2.5)+'em',
 				'--trans-y': (this.randomNumber('forza-ty')*5-2.5)+'em',
 			},
 			extras: {

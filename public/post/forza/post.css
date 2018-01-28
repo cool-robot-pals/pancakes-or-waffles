@@ -12,7 +12,7 @@
 }
 
 .post .content {
-	transform: translateX(var(--trans-x)) translateY(var(--trans-y)) rotateY(var(--angle-y)) rotateX(var(--angle-x)) rotateZ(var(--angle-z)) ;
+	transform: translateX(var(--trans-x)) translateY(var(--trans-y)) rotateY(var(--angle-y)) rotateX(var(--angle-x)) scale(.75) rotateZ(var(--angle-z)) ;
 	display: grid;
 	grid-template-columns: .2fr 1fr;
 	grid-template-rows: auto auto auto;

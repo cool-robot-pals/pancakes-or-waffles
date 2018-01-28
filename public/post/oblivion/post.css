@@ -6,12 +6,20 @@
 	color: #835137!important;
 }
 
+.content > * {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
 .post > *:not(.bg) {
 	transform: scale(.50);
 }
 
 .choices {
-	background: url(./dialog-bottom.png) no-repeat bottom left, : url(./dialog-top.png) top left!important;
+	background: url(./dialog-bottom.png) no-repeat bottom left, url(./dialog-top.png) top left!important;
 	background-size: auto, auto!important;
 	padding: 47px;
 	z-index: 99998;
