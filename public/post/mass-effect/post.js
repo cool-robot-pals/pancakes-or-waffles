@@ -9,8 +9,7 @@ import BinaryChoicesGetter from '../../getter/less-common/binaryChoices.js';
 
 class CustomPost extends Post {
 
-	constructor(...args) {
-		super(...args);
+	buildGetters() {
 		this.narrator = this.buildGetter(NarratorGetter);
 		this.chances = this.buildGetter(ChancesGetter);
 		this.choices = this.buildGetter(BinaryChoicesGetter);

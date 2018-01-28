@@ -6,8 +6,7 @@ import ThingGetter from '../../getter/thing.js';
 
 class CustomPost extends Post {
 
-	constructor(...args) {
-		super(...args);
+	buildGetters() {
 		this.choices = this.buildGetter(BinaryChoicesGetter);
 		this.thing = this.buildGetter(ThingGetter,{
 			forceProper: true,

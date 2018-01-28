@@ -6,8 +6,7 @@ import NarratorGetter from '../../getter/less-common/narrator.js';
 
 class CustomPost extends Post {
 
-	constructor(...args) {
-		super(...args);
+	buildGetters() {
 		this.narrator = this.buildGetter(NarratorGetter);
 		this.choices = this.buildGetter(BinaryChoicesGetter);
 	}

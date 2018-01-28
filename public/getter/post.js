@@ -66,14 +66,14 @@ export default class PostGetter extends abstractGetter {
 	async get() {
 
 		const fandom = await this.chances.should('crossFandomsOver')
-			? await this.buildGetter(FandomGetter).get()
+			? null
 			: await this.buildGetter(FandomGetter).get();
 
 		const characters = await this.buildGetter(CharacterGetter,{},{
 			fandom: fandom
 		}).getArray(2);
 
-		this.defaults.fandom = fandom?fandom:characters[0].fandom;
+		this.context.fandom = fandom?fandom:characters[0].fandom;
 
 		const verb = await this.chances.should('useSameVerb') ?
 			await this.verb.get() :

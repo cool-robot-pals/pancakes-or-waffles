@@ -12,12 +12,21 @@ class Post {
 		this.attachRandomSeed(props.seed);
 		this.layout = props.layout;
 		this.state = {};
-
+		this.context = {};
+		
+		this.postGetter = this.buildGetter(PostGetter).get().then(post=>{
+			this.context = post;
+			this.buildGetters();
+			return post;
+		});
+		
 	}
+	
+	buildGetters() {}
 
 	async onReadyState() {
 
-		const post = await this.buildGetter(PostGetter).get();
+		const post = await this.postGetter;
 		this.defaults = post;
 
 		const [extraProps,background] = await Promise.all([

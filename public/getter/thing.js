@@ -135,8 +135,6 @@ export default class ThingGetter extends abstractGetter {
 			}
 		}
 
-		console.log(returnable,isSingular);
-
 		return returnable.filter(value => value && value.length > 0).join(' ');
 
 	}

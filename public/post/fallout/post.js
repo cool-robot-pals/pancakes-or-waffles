@@ -9,8 +9,7 @@ import {randomNumber} from '../../lib/random.js';
 
 class CustomPost extends Post {
 
-	constructor(...args) {
-		super(...args);
+	buildGetters() {
 		this.narrator = this.buildGetter(NarratorGetter);
 		this.dialog = this.buildGetter(FalloutGetter);
 		this.chances = this.buildGetter(ChancesGetter);
