@@ -26,6 +26,6 @@ const variant = (variants=[]) => {
 		rt.push(Math.ceil(Math.random()*variant));
 	});
 	return rt;
-}
+};
 
-export { extras, variant }
+export { extras, variant };

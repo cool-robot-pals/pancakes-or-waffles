@@ -15,29 +15,28 @@ export default () => {
 
 		window.afterEach(() => {
 			$wrapper.remove();
-		})
+		});
 
 
 		window.it('should export 1-2 choices', done => {
 			const $pancake = document.createElement('pancake-post');
 			$pancake.addEventListener('pancake-ready',(ev,extra)=>{
 				if(ev.detail.postData.choices.length === 1 || ev.detail.postData.choices.length === 2) {
-					done()
+					done();
 				}
 				else done(new Error());
-			})
+			});
 			$wrapper.appendChild($pancake);
-	  });
-
+		});
 
 		window.it('should expose a log', done => {
 			const $pancake = document.createElement('pancake-post');
 			$pancake.addEventListener('pancake-ready',(ev,extra)=>{
 				if(Object.keys(ev.detail.postData).length > 6) {
-					done()
+					done();
 				}
 				else done(new Error());
-			})
+			});
 			$wrapper.appendChild($pancake);
 		});
 
@@ -46,10 +45,10 @@ export default () => {
 			const $pancake = document.createElement('pancake-post');
 			$pancake.addEventListener('pancake-ready',(ev)=>{
 				if(ev.target.shadowRoot.innerHTML.length > 400) {
-					done()
+					done();
 				}
 				else done(new Error(ev.target.innerHTML.length));
-			})
+			});
 			$wrapper.appendChild($pancake);
 		});
 
@@ -60,10 +59,10 @@ export default () => {
 			$pancake.dataset.seed = '1234';
 			$pancake.addEventListener('pancake-ready',(ev)=>{
 				if(ev.detail.postData.layout === 'forza' && ev.detail.postData.seed === '1234') {
-					done()
+					done();
 				}
 				else done(new Error(ev.detail.postData));
-			})
+			});
 			$wrapper.appendChild($pancake);
 		});
 
@@ -98,7 +97,7 @@ export default () => {
 						$pancake.dataset.layout = layout;
 						$pancake.addEventListener('pancake-ready',(ev)=>{
 							finishedMaybe();
-						})
+						});
 						$wrapper.appendChild($pancake);
 					} catch(err) {
 						done(err);
@@ -113,7 +112,7 @@ export default () => {
 			console.error(failures);
 			throw 0;
 		}
-		console.log('done')
+		console.log('done');
 	});
 
-}
+};

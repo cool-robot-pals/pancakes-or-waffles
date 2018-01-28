@@ -154,7 +154,7 @@ export const ThingGetter = class extends abstractGetter {
 
 	}
 
-}
+};
 
 
 export default ThingGetter;

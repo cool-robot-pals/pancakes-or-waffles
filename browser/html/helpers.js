@@ -21,7 +21,7 @@ const getPostData = async defaults => {
 	const layout = await new LayoutGetter({
 		...defaults
 	}).get();
-	const postJs = await import('../post/'+layout+'/post.js')
+	const postJs = await import('../post/'+layout+'/post.js');
 	const postInstance = new postJs.default({
 		layout: layout,
 		...defaults
@@ -29,7 +29,7 @@ const getPostData = async defaults => {
 
 	return postInstance.getPostData();
 
-}
+};
 
 
 const render = postData => {
@@ -79,6 +79,6 @@ const render = postData => {
 	}
 	return $div.innerHTML;
 
-}
+};
 
-export { render, getPostData }
+export { render, getPostData };

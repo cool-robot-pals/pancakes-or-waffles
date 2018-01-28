@@ -32,7 +32,7 @@ class PancakePost extends HTMLElement {
 				background: #000;
 			}
 		</style>
-		`
+		`;
 		if(!this.dataset.seed) {
 			this.dataset.seed = makeSeed();
 		}

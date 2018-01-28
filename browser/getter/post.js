@@ -58,9 +58,9 @@ export default class PostGetter extends abstractGetter {
 		}
 
 		const useable = await (async ()=>{switch (params.use) {
-			case USE_THING: return await this.thing.get()
-			case USE_CHAR: return params.character
-		}})()
+		case USE_THING: return await this.thing.get();
+		case USE_CHAR: return params.character;
+			}})();
 
 		return [
 			capitalizeFirstLetter(params.verb),
@@ -76,7 +76,7 @@ export default class PostGetter extends abstractGetter {
 		const firstCharacterAt = thingsOrCharacters.indexOf(USE_CHAR);
 		firstCharacterAt > 0
 			? characters[firstCharacterAt].fandom
-			: characters[0].fandom
+			: characters[0].fandom;
 	}
 
 
@@ -94,7 +94,7 @@ export default class PostGetter extends abstractGetter {
 
 		this.context.fandom = forceFandom
 			? forceFandom
-			: this.getRelevantFandom(thingsOrCharacters, characters)
+			: this.getRelevantFandom(thingsOrCharacters, characters);
 
 		const verb = await this.chances.should('useSameVerb') ?
 			await this.verb.get() :
