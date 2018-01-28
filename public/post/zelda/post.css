@@ -1,0 +1,51 @@
+@import url(./../_abstract/post.css);
+
+.post {
+	font-family: 'Lato';
+	font-size: 30px;
+	text-shadow: 2px 2px 1px #000;
+}
+
+.bg {
+	width: 960px;
+	margin: auto;
+}
+
+.ac-1 {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-position: center center;
+	background-size: cover;
+	background-image: url(./zelda.png);
+}
+
+.choice {
+	position: absolute;
+	top: 64%;
+	bottom: 33%;
+	left: 20%;
+	right: 20%;
+	z-index: 9999;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: center;
+}
+
+.extra {
+	display: block;
+	position: absolute;
+	top: 73.4%;
+	left: 26.5%;
+	bottom: auto;
+	right: auto;
+	height: auto;
+	color: #48ea59;
+}
+
+.extra[data-name="bad"] {
+	top: 80%!important;
+}

@@ -10,7 +10,6 @@ const path = require('path');
 const config = require('../.pancakerc');
 
 const modules = [
-	'change-case',
 	'query-string',
 	'seedrandom',
 	'pluralize',

@@ -1,0 +1,52 @@
+@import url(./../_abstract/post.css);
+
+.post {
+	font-family: 'Patrick Hand';
+	font-family: 'Lato';
+	font-size: 25px;
+	color: #d9e9e8;
+	text-shadow:
+	-1px -1px 0 #000,
+	1px -1px 0 #000,
+	-1px 1px 0 #000,
+	1px 1px 0 #000,
+	-2px -2px 0 #000,
+	2px -2px 0 #000,
+	0 3px 0 #000,
+	-2px 2px 0 #000,
+	2px 2px 0 #000;
+}
+
+.ac-1 {
+	background: url(./masseffect.png);
+}
+
+.ac-2:after {
+	content: 'Investigate';
+	position: absolute;
+	display: block;
+	left: 61%;
+	top: 76%;
+}
+
+.extra[data-name="dialog"] {
+	top: 60%!important;
+	margin: 0 10%;
+	text-align: center;
+}
+
+.choice:first-child {
+	position: absolute;
+	top: 70%;
+	text-align: right;
+	right: 59.5%;
+	color: #5cc0ff;
+}
+
+.choice:last-child {
+	position: absolute;
+	top: 82%;
+	text-align: right;
+	right: 60.5%;
+	color: #ff0004;
+}

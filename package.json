@@ -6,7 +6,6 @@
   "bugs": "https://github.com/walaura/pancakes-or-waffles/issues",
   "dependencies": {
     "chalk": "^2.3.0",
-    "change-case": "^3.0.1",
     "clean-webpack-plugin": "^0.1.15",
     "concurrently": "^3.5.1",
     "dotenv": "^4.0.0",
