@@ -73,6 +73,13 @@ const boot = () => {
 
 	makePost(queryString.seed?queryString.seed:undefined);
 
+	/*
+	this is for screnshots.js to pick up for now
+	*/
+	window.Pancakes = {
+		posts: posts
+	}
+
 };
 
 boot();
