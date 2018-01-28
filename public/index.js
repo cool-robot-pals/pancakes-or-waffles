@@ -78,7 +78,7 @@ const boot = () => {
 	*/
 	window.Pancakes = {
 		posts: posts
-	}
+	};
 
 };
 
