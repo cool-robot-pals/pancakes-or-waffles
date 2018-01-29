@@ -62,12 +62,15 @@ const getReplacement = async (name, context, seed) => {
 };
 
 const transformChunk = async (chunk, replacer, context, seed) => {
-	if(lookup[replacer].test(chunk) !== false) {
+	if(lookup[replacer].test(chunk) === true) {
 		const replacement = await getReplacement(replacer, context, seed);
-		chunk = chunk.replace(lookup[replacer], replacement);
+		return chunk.replace(lookup[replacer], replacement);
 	}
-	return chunk;
+	else {
+		return chunk;
+	}
 };
+
 
 export default async (chunk, {context={},seed=makeSeed()} ) => {
 
@@ -78,8 +81,15 @@ export default async (chunk, {context={},seed=makeSeed()} ) => {
 		import('../getter/adjective.js')
 	]).then(stuff => stuff.map(imported => imported.default) );
 
-	for (let replacer of lookupKeys) {
-		chunk = await transformChunk(chunk, replacer, context, seed);
-	}
-	return await chunk;
+	const tasks = (lookupKeys.map(replacer => internalChunk =>
+		transformChunk(internalChunk, replacer, context, seed)
+	));
+
+	let result = Promise.resolve(chunk);
+	tasks.forEach(task => {
+		result = result.then(task);
+	});
+
+	return await result;
+
 };
