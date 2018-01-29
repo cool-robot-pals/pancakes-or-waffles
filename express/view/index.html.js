@@ -9,7 +9,7 @@ const render = (options={}) =>
 		<meta charset="UTF-8">
 		<title>🐙</title>
 		<link href="/view/index.css" rel="stylesheet">
-		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,500i|Gentium+Book+Basic:700|Patrick+Hand|Poiret+One|Roboto+Mono:500|Oswald:600|Lato:700,400|Tulpen+One">
+		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,500i|Rammetto+One|Gentium+Book+Basic:700|Patrick+Hand|Poiret+One|Roboto+Mono:500|Oswald:600|Lato:700,400|Tulpen+One">
 	</head>
 	<body>
 		<div id="pancakes"></div>
