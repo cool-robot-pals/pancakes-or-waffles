@@ -14,6 +14,7 @@ const modules = [
 	'seedrandom',
 	'pluralize',
 	'number2text',
+	'tensify',
 	'mocha/mocha.js'
 ];
 
@@ -44,6 +45,9 @@ const webpackify = (module) => {
 			filename: `${module.replace('.js','')}.js`,
 			library: '_217878383_',
 			libraryTarget: 'var',
+		},
+		node: {
+			fs: 'empty'
 		},
 		plugins: [
 			new WrapperPlugin({

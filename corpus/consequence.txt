@@ -1,0 +1,3 @@
+everything not @verb.past will be @verb.past
+everything you @verb.past will be @verb.past
+@characterOrThing will be @verb.past

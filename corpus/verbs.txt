@@ -59,6 +59,7 @@ rescue
 capture
 cure
 heal
+lose
 boop
 hack
 give @characterOrThing to

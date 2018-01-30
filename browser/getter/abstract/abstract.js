@@ -20,7 +20,7 @@ const abstractGetter = class {
 	}
 
 	/*filter it based on context*/
-	async filter(fetched, context) {
+	async filter(fetched, context, options) {
 		return fetched;
 	}
 
@@ -43,13 +43,13 @@ const abstractGetter = class {
 	async get() {
 		return await
 		this.fetch()
-			.then(fetched => this.filter(fetched, this.context))
+			.then(fetched => this.filter(fetched, this.context, this.options))
 			.then(filtered => this.reduce(filtered));
 	}
 
 	async getButNot(...keys) {
 		const solvedKeys = await Promise.all(keys);
-		const fetchable = await this.fetch().then(fetched => this.filter(fetched, this.context));
+		const fetchable = await this.fetch().then(fetched => this.filter(fetched, this.context, this.options));
 		const withFilter = await fetchable.filter(item =>
 			solvedKeys.reduce(
 				(acc, key) => (acc && !this.compareFetchResults(key, item))
