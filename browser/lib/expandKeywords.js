@@ -2,12 +2,14 @@ import {makeSeed} from '../lib/random.js';
 import tensify from '/target/npm/tensify.js';
 
 const lookup = {
-	thingPlural: /@thing\.plural\.s/g,
+	thingPluralProper: /@thing\.plural\.proper\@/g,
+	thingPlural: /@thing\.plural/g,
 	thingSingular: /@thing\.singular/g,
 	thing: /@thing/g,
 	adjective: /@adjective/g,
 	characterOrThing: /@characterOrThing/g,
 	character: /@character/g,
+	verbPastParticiple: /@verb\.past-participle/g,
 	verbPast: /@verb\.past/g,
 	verb: /@verb/g,
 };
@@ -17,9 +19,13 @@ let ChancesGetter, ThingGetter, CharacterGetter, AdjectiveGetter, VerbGetter;
 
 const getReplacement = async (name, context, seed) => {
 	switch(name) {
-	case 'verbPast': {
+	case 'verbPastParticiple': {
 		const verbs = await (new VerbGetter({seed:seed},{simple:true})).getArray(3);
 		return verbs.map(verb => tensify(verb).past_participle);
+	}
+	case 'verbPast': {
+		const verbs = await (new VerbGetter({seed:seed},{simple:true})).getArray(3);
+		return verbs.map(verb => tensify(verb).past);
 	}
 	case 'verb': {
 		return await (new VerbGetter({seed:seed})).getArray(3);
@@ -61,6 +67,14 @@ const getReplacement = async (name, context, seed) => {
 			seed: seed
 		},{
 			plural: true
+		}).getArray(3);
+	}
+	case 'thingPluralProper':{
+		return await new ThingGetter({
+			seed: seed
+		},{
+			plural: true,
+			forceProper: true
 		}).getArray(3);
 	}
 	case 'thing':{

@@ -1,5 +1,7 @@
 import abstractGetter from './abstract/abstract.js';
 
+import {capitalizeFirstLetter,decapitalizeFirstLetter} from '../lib/stringies.js';
+
 export default class extends abstractGetter {
 
 	constructor(...props) {
@@ -8,9 +10,9 @@ export default class extends abstractGetter {
 	}
 
 	async reduce(list) {
-		return await this.expandKeywordHelper(
+		return capitalizeFirstLetter(await this.expandKeywordHelper(
 			this.randomArray(list)
-		);
+		));
 	}
 
 }
