@@ -1,6 +1,6 @@
 import Post from '../_abstract/post.js';
 
-import NarratorGetter from '../../getter/less-common/narrator.js';
+import NarratorGetter from '../../getter/narrator.js';
 import FalloutGetter from '../../getter/less-common/fallout.js';
 import ChancesGetter from '../../getter/chances.js';
 import {capitalizeFirstLetter,decapitalizeFirstLetter} from '../../lib/stringies.js';

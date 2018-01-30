@@ -8,6 +8,7 @@
     "chalk": "^2.3.0",
     "clean-webpack-plugin": "^0.1.15",
     "concurrently": "^3.5.1",
+    "conjugate": "^1.0.3",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "jest-puppeteer": "0.0.6",

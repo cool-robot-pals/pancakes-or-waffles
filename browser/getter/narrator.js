@@ -7,7 +7,7 @@ export default class extends abstractGetter {
 
 	constructor(...props) {
 		super(...props);
-		this.remote = 'less-common/narrator';
+		this.remote = 'narrator';
 	}
 
 	async narrate(sentence) {

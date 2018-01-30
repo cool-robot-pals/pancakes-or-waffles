@@ -4,7 +4,7 @@ import {capitalizeFirstLetter,decapitalizeFirstLetter} from '../../lib/stringies
 
 import ChancesGetter from '../../getter/chances.js';
 import CharacterGetter from '../../getter/character.js';
-import NarratorGetter from '../../getter/less-common/narrator.js';
+import NarratorGetter from '../../getter/narrator.js';
 import BinaryChoicesGetter from '../../getter/less-common/binaryChoices.js';
 
 class CustomPost extends Post {
