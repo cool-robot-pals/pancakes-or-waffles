@@ -58,9 +58,9 @@ export default class PostGetter extends abstractGetter {
 		}
 
 		const useable = await (async ()=>{switch (params.use) {
-		case USE_THING: return await this.thing.get();
-		case USE_CHAR: return params.character;
-			}})();
+			case USE_THING: return await this.thing.get();
+			case USE_CHAR: return params.character;
+		}})();
 
 		return [
 			capitalizeFirstLetter(params.verb),

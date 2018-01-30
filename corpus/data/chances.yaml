@@ -1,9 +1,9 @@
 useAdjective: 20%
 useTwoAdjectives: 10%
 isSingular: 50%
-useThing: 20%
+useThing: 10%
 useSameVerb: 30%
-crossFandomsOver: 5%
+crossFandomsOver: 2.5%
 characterHaveOwnable: 10%
 
 
