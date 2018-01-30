@@ -79,7 +79,7 @@ export default async (chunk, {context={},seed=makeSeed()} ) => {
 		import('../getter/thing.js'),
 		import('../getter/character.js'),
 		import('../getter/adjective.js')
-	]).then(stuff => stuff.map(imported => imported.default) );
+	]).then(stuff => stuff.map(imported => imported.default));
 
 	const tasks = (lookupKeys.map(replacer => internalChunk =>
 		transformChunk(internalChunk, replacer, context, seed)
