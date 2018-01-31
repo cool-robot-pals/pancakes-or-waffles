@@ -9,7 +9,7 @@ export const TYPE_OWNABLE = 'ownable';
 export const TYPE_THING = 'thing';
 export const TYPE_PROPER = 'proper';
 
-export const MASK_ALWAYS = 'ownable';
+export const MASK_ALWAYS = 'always';
 export const MASK_NEVER = 'thing';
 export const MASK_WHEN_OWNABLE = 'whenOwnable';
 export const MASK_WHEN_NOT_OWNABLE = 'whenNotOwnable';
@@ -69,6 +69,7 @@ export const ThingGetter = class extends abstractGetter {
 
 
 	async shouldUsePronoun(noun) {
+		console.log([noun.props.pronoun, noun.value]);
 		if(this.options.forcePronoun === MASK_NEVER){
 			return false;
 		}
@@ -85,7 +86,7 @@ export const ThingGetter = class extends abstractGetter {
 			return true;
 		}
 		if(this.isProperNoun(noun)) {
-			return false;
+			return await this.chances.should('usePronounIfProper');
 		}
 		else {
 			return this.options.type === TYPE_THING;

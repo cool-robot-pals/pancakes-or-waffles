@@ -10,7 +10,6 @@
     "concurrently": "^3.5.1",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
-    "jest-puppeteer": "0.0.6",
     "js-yaml": "^3.10.0",
     "mocha": "^5.0.0",
     "number-to-text": "^0.3.2",
@@ -21,6 +20,7 @@
     "request": "^2.83.0",
     "seedrandom": "^2.4.2",
     "spdy": "^3.4.7",
+    "tensify": "0.0.3",
     "twit": "^2.2.5",
     "webpack": "^3.1.0",
     "wrapper-webpack-plugin": "^1.0.0"

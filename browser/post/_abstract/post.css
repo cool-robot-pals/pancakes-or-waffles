@@ -27,3 +27,7 @@
 .post > .bg {
 	z-index: 9;
 }
+
+.post > .content {
+	z-index: 11;
+}

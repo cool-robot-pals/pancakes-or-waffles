@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="428px" height="120px" viewBox="0 0 428 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Artboard</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-0.8%" y="-4.2%" width="101.5%" height="108.4%" filterUnits="objectBoundingBox" id="filter-1">
+            <feGaussianBlur stdDeviation="1" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" fill="#FFFFFF">
+            <path d="M379.108974,44.7820513 C388.43763,44.7820513 396,37.2196815 396,27.8910256 C396,18.5623698 388.43763,11 379.108974,11 L59.3513893,11 C30.4385153,11 7,32.4385153 7,61.3513893 C7,68.6900262 10.5,77 14.2362639,82.0155073 C20.0260039,59.678823 36.7700572,44.7820513 60.2362253,44.7820513 L379.108974,44.7820513 Z" id="Combined-Shape" filter="url(#filter-1)"></path>
+        </g>
+    </g>
+</svg>

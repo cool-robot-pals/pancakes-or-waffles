@@ -1,13 +1,13 @@
-import abstractGetter from '../abstract/abstract.js';
+import abstractGetter from './abstract/abstract.js';
 
-import {capitalizeFirstLetter,decapitalizeFirstLetter} from '../../lib/stringies.js';
+import {capitalizeFirstLetter,decapitalizeFirstLetter} from '../lib/stringies.js';
 
 
 export default class extends abstractGetter {
 
 	constructor(...props) {
 		super(...props);
-		this.remote = 'less-common/narrator';
+		this.remote = 'narrator';
 	}
 
 	async narrate(sentence) {

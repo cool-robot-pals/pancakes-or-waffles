@@ -1,6 +1,6 @@
 import Post from '../_abstract/post.js';
 
-import NarratorGetter from '../../getter/less-common/narrator.js';
+import NarratorGetter from '../../getter/narrator.js';
 import BinaryChoicesGetter from '../../getter/less-common/binaryChoices.js';
 
 

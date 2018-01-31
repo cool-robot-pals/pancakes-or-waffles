@@ -3,17 +3,17 @@
 # so like "[i,you] want" will generate
 # two separate sentences for "i want" and "you want"
 
-# then, @thing expands to a thing (nouns.txt), and @thing.plural expands
-# to a plural thing, @thing.singular gets a singular thing
+# then, @thing@ expands to a thing (nouns.txt), and @thing.plural@ expands
+# to a plural thing, @thing.singular@ gets a singular thing
 
-# you also have @characterOrThing and @character
+# you also have @character-or-thing@ and @character@
 
 save
 kill
 kiss
-kiss @characterOrThing with
+kiss @character-or-thing@ with
 hug
-smash @characterOrThing with
+smash @character-or-thing@ with
 smash
 hug with
 cuddle
@@ -26,10 +26,10 @@ hang out with
 sacrifice
 pet
 eat
-eat @thing with
+eat @thing@ with
 drink
-drink @thing with
-have @thing with
+drink @thing@ with
+have @thing@ with
 join
 forgive
 tell
@@ -49,27 +49,28 @@ choose
 pardon
 evict
 visit
-visit @thing with
+visit @thing@ with
 read
-read @thing with
+read @thing@ with
 watch
-watch @characterOrThing with
+watch @character-or-thing@ with
 travel with
 rescue
 capture
 cure
 heal
+lose
 boop
 hack
-give @characterOrThing to
-hand @characterOrThing to
+give @character-or-thing@ to
+hand @character-or-thing@ to
 give a hand to
 listen to
-talk to @characterOrThing with
+talk to @character-or-thing@ with
 talk to
 ask
 ask for
-ask @characterOrThing for
+ask @character-or-thing@ for
 argue with
 avoid
 evade
@@ -78,24 +79,24 @@ take
 take down
 mine
 disguise as
-disguise @characterOrThing as
-play @thing with
+disguise @character-or-thing@ as
+play @thing@ with
 play with
 give up on
 grab
 steal
 entertain
 amuse
-amuse @characterOrThing with
+amuse @character-or-thing@ with
 fight
-fight @characterOrThing with
-fight @characterOrThing alongside
+fight @character-or-thing@ with
+fight @character-or-thing@ alongside
 defeat
 ignore
 marry
 smell
-throw @characterOrThing at
-throw @characterOrThing under
+throw @character-or-thing@ at
+throw @character-or-thing@ under
 toot
 panic at
 burn

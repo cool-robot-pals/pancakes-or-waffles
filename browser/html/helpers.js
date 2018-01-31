@@ -39,11 +39,6 @@ const render = postData => {
 		>
 			<div class="content">
 				${
-					[1,2].map(additionalContainer =>
-						`<div class="ac-${additionalContainer}"></div>`
-					).join('')
-				}
-				${
 					postData.extras.map(extra =>
 						`<div
 								key="extra-${extra.key}"
@@ -64,6 +59,11 @@ const render = postData => {
 					}
 				</div>
 			</div>
+			${
+				[1,2].map(additionalContainer =>
+					`<div class="ac-${additionalContainer}"></div>`
+				).join('')
+			}
 			<div class="bg" data-sink="true" style="background-image: url('${postData.bg}')"></div>
 			<link rel="stylesheet" href="/app/post/${postData.layout}/post.css" />
 		</div>
