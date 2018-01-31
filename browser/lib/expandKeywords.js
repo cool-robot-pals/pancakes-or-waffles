@@ -3,20 +3,6 @@ import tensify from '/target/npm/tensify.js';
 
 const matcher = /@(.*?)@/g;
 
-const lookup = {
-	thingPluralProper: /@thing\.plural\.proper\@/g,
-	thingPlural: /@thing\.plural/g,
-	thingSingular: /@thing\.singular/g,
-	thing: /@thing/g,
-	adjective: /@adjective@/g,
-	characterOrThing: /@character-or-thing@/g,
-	character: /@character@/g,
-	verbPastParticiple: /@verb\.past-participle/g,
-	verbPast: /@verb\.past/g,
-	verb: /@verb/g,
-};
-const lookupKeys = Object.keys(lookup);
-
 let ChancesGetter, ThingGetter, CharacterGetter, AdjectiveGetter, VerbGetter;
 
 const getReplacement = async (replacer, context, seed) => {
