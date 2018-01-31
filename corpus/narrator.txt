@@ -1,14 +1,14 @@
 [should,is it cool if] [you,we,I] $1?
 if you don't mind me asking, [would you, can I, may I] $1?
 [I,you,we] [won't,can't] $1
-@characterOrThing [can,may,should] $1
-[Can,Should,May] @characterOrThing $1?
-I can't resist this @adjective desire to $1
-Nobody in @thing feels that way about @character. In fact, we $1
+@character-or-thing@ [can,may,should] $1
+[Can,Should,May] @character-or-thing@ $1?
+I can't resist this @adjective@ desire to $1
+Nobody in @thing@ feels that way about @character@. In fact, we $1
 $1[?,!]
 [What's with you,Buzz Off,Help][!,,?] [You,We,I] just want to $1[!,,?]
 Aw, [gee whiz,shucks]... [You,We,I] hate to $1
-$1, @characterOrThing[!?,!,?]
-@character... I promised to $1[! I believe in you!,!]
-[What's with you,Buzz Off,,Help] @character[...,?,!] I [asked,need,require] you to $1[ ,!]
-[Time, It's time] to $1, @character!
+$1, @character-or-thing@[!?,!,?]
+@character@... I promised to $1[! I believe in you!,!]
+[What's with you,Buzz Off,,Help] @character@[...,?,!] I [asked,need,require] you to $1[ ,!]
+[Time, It's time] to $1, @character@!

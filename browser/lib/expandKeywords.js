@@ -1,14 +1,16 @@
 import {makeSeed} from '../lib/random.js';
 import tensify from '/target/npm/tensify.js';
 
+const matcher = /@(.*?)@/g;
+
 const lookup = {
 	thingPluralProper: /@thing\.plural\.proper\@/g,
 	thingPlural: /@thing\.plural/g,
 	thingSingular: /@thing\.singular/g,
 	thing: /@thing/g,
-	adjective: /@adjective/g,
-	characterOrThing: /@characterOrThing/g,
-	character: /@character/g,
+	adjective: /@adjective@/g,
+	characterOrThing: /@character-or-thing@/g,
+	character: /@character@/g,
 	verbPastParticiple: /@verb\.past-participle/g,
 	verbPast: /@verb\.past/g,
 	verb: /@verb/g,
@@ -17,92 +19,71 @@ const lookupKeys = Object.keys(lookup);
 
 let ChancesGetter, ThingGetter, CharacterGetter, AdjectiveGetter, VerbGetter;
 
-const getReplacement = async (name, context, seed) => {
-	switch(name) {
-	case 'verbPastParticiple': {
-		const verbs = await (new VerbGetter({seed:seed},{simple:true})).getArray(3);
-		return verbs.map(verb => tensify(verb).past_participle);
+const getReplacement = async (replacer, context, seed) => {
+	switch(replacer[0]) {
+	case 'verb' : {
+		if(replacer.includes('past')){
+			const verb = await (new VerbGetter({seed:seed},{simple:true})).get();
+			return tensify(verb).past;
+		}
+		else if (replacer.includes('past-participle')){
+			const verb = await (new VerbGetter({seed:seed},{simple:true})).get();
+			return tensify(verb).past_participle;
+		}
+		else {
+			return await (new VerbGetter({seed:seed})).get();
+		}
 	}
-	case 'verbPast': {
-		const verbs = await (new VerbGetter({seed:seed},{simple:true})).getArray(3);
-		return verbs.map(verb => tensify(verb).past);
-	}
-	case 'verb': {
-		return await (new VerbGetter({seed:seed})).getArray(3);
-	}
-	case 'characterOrThing': {
+	case 'character-or-thing' : {
 		const chances = new ChancesGetter({seed:seed});
 		if(await chances.should('useThing')) {
 			return await new ThingGetter({
 				seed: seed
-			}).getArray(3);
+			}).get();
 		}
 		else {
-			return [(await new CharacterGetter({
+			return (await new CharacterGetter({
 				seed: seed,
 				fandom: context.fandom
-			}).get()).name];
+			}).get()).name;
 		}
 	}
-	case 'character':{
-		return [(await new CharacterGetter({
+	case 'character' : {
+		return (await new CharacterGetter({
 			seed: seed,
 			fandom: context.fandom
-		}).get()).name];
+		}).get()).name;
 	}
-	case 'adjective':{
+	case 'adjective' : {
 		return await new AdjectiveGetter({
 			seed: seed
-		}).getArray(3);
+		}).get();
 	}
-	case 'thingSingular':{
+	case 'thing' : {
 		return await new ThingGetter({
-			seed: seed
-		},{
-			singular: true
-		}).getArray(3);
-	}
-	case 'thingPlural':{
-		return await new ThingGetter({
-			seed: seed
-		},{
-			plural: true
-		}).getArray(3);
-	}
-	case 'thingPluralProper':{
-		return await new ThingGetter({
-			seed: seed
-		},{
-			plural: true,
-			forceProper: true
-		}).getArray(3);
-	}
-	case 'thing':{
-		return await new ThingGetter({
-			seed: seed
-		}).getArray(3);
+			seed: seed,
+			singular: replacer.includes('singular'),
+			plural: replacer.includes('plural'),
+			forceProper: replacer.includes('proper')
+		}).get();
 	}
 	}
 };
 
-const transformChunk = async (chunk, replacer, context, seed) => {
-	lookup[replacer].lastIndex = -1;
-	if(lookup[replacer].test(chunk) === true) {
-		const replacement = await getReplacement(replacer, context, seed);
-		let i = -1;
-		return chunk.replace(lookup[replacer], match => {
-			if(!replacement[i]) i = -1;
-			i++;
-			return replacement[i];
-		});
-	}
-	else {
-		return chunk;
-	}
-};
+const transformValue = async (value, context, seed) => {
+	matcher.lastIndex = -1;
+	const replacers = (value.match(matcher) || []).map(str => str.slice(1, -1).split('.'));
+	const replacements = await Promise.all(replacers.map(replacer => getReplacement(replacer, context, seed)));
 
+	let i = -1;
+	matcher.lastIndex = -1;
+	return value.replace(matcher, () => {
+		i++;
+		return replacements[i];
+	});
+}
 
-export default async (chunk, {context={},seed=makeSeed()} ) => {
+export default async (chunk='', {context={},seed=makeSeed()} ) => {
 
 	[ChancesGetter,VerbGetter,ThingGetter,CharacterGetter,AdjectiveGetter] = await Promise.all([
 		import('../getter/chances.js'),
@@ -112,17 +93,14 @@ export default async (chunk, {context={},seed=makeSeed()} ) => {
 		import('../getter/adjective.js')
 	]).then(stuff => stuff.map(imported => imported.default));
 
-	const tasks = (lookupKeys.map(replacer => internalChunk => {
-		return transformChunk(internalChunk, replacer, context, seed).then(ck => {
-			return ck;
-		});
-	}));
-
-	let result = Promise.resolve(chunk);
-	tasks.forEach(task => {
-		result = result.then(task);
-	});
-
-	return await result;
+	if(chunk.value) {
+		return {
+			...chunk,
+			value: await transformValue(chunk.value, context, seed)
+		}
+	}
+	else {
+		return await transformValue(chunk, context, seed)
+	}
 
 };

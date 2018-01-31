@@ -78,15 +78,16 @@ lamp
 lighthouse
 romance
 disco
+radiation
 
 patriarchy (singular=always,only=proper)
 
-Arcadia Bay (proper,only=proper)
-Blackwell Academy (proper,only=proper)
+Arcadia Bay (proper,only=proper,pronoun=never)
+Blackwell Academy (proper,only=proper,pronoun=never)
 Citadel (proper,only=proper,pronoun=always)
-Hyrule (proper,only=proper)
-space (proper,only=proper)
-Hell (proper,only=proper)
+Hyrule (proper,only=proper,pronoun=never)
+space (proper,only=proper,pronoun=whenNotOwnable)
+Hell (proper,only=proper,pronoun=never)
 moon (proper,pronoun=whenNotOwnable)
 pool (proper,pronoun=whenNotOwnable)
 beach (proper,pronoun=whenNotOwnable)
@@ -94,8 +95,7 @@ planet (proper,only=proper,pronoun=always)
 location (proper,pronoun=always)
 straights (proper,only=proper,pronoun=always)
 gays (proper,only=proper,pronoun=always)
-lesbians (proper,pronoun=always)
-radiation (proper,only=proper)
+lesbians (proper,pronoun=whenNotOwnable)
 halloween (proper,only=proper)
 xmas (proper,only=proper)
 Netflix (proper,only=proper)

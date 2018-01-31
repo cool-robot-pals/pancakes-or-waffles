@@ -69,6 +69,7 @@ export const ThingGetter = class extends abstractGetter {
 
 
 	async shouldUsePronoun(noun) {
+		console.log([noun.props.pronoun, noun.value]);
 		if(this.options.forcePronoun === MASK_NEVER){
 			return false;
 		}
@@ -85,7 +86,7 @@ export const ThingGetter = class extends abstractGetter {
 			return true;
 		}
 		if(this.isProperNoun(noun)) {
-			return false;
+			return await this.chances.should('usePronounIfProper');
 		}
 		else {
 			return this.options.type === TYPE_THING;
