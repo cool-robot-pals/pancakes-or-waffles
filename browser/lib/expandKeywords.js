@@ -81,7 +81,7 @@ const transformValue = async (value, context, seed) => {
 		i++;
 		return replacements[i];
 	});
-}
+};
 
 export default async (chunk='', {context={},seed=makeSeed()} ) => {
 
@@ -97,10 +97,10 @@ export default async (chunk='', {context={},seed=makeSeed()} ) => {
 		return {
 			...chunk,
 			value: await transformValue(chunk.value, context, seed)
-		}
+		};
 	}
 	else {
-		return await transformValue(chunk, context, seed)
+		return await transformValue(chunk, context, seed);
 	}
 
 };

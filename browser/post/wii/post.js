@@ -16,7 +16,7 @@ class CustomPost extends Post {
 		const choices = await this.choices.get();
 		const consequence = await this.consequence.get();
 
-		const hasPlayer2 = this.randomNumber('32hj') > .5;
+		const hasPlayer2 = this.randomNumber('32hj') > .75;
 
 		return {
 			extras: {
