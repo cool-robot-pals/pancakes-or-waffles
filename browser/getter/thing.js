@@ -59,6 +59,12 @@ export const ThingGetter = class extends abstractGetter {
 
 
 	async shouldUseAdjective(noun) {
+		if(this.options.adjective === MASK_NEVER){
+			return false;
+		}
+		if(this.options.adjective === MASK_ALWAYS){
+			return true;
+		}
 		if(this.isProperNoun(noun)) {
 			return false;
 		}
@@ -69,11 +75,10 @@ export const ThingGetter = class extends abstractGetter {
 
 
 	async shouldUsePronoun(noun) {
-		console.log([noun.props.pronoun, noun.value]);
-		if(this.options.forcePronoun === MASK_NEVER){
+		if(this.options.pronoun === MASK_NEVER){
 			return false;
 		}
-		if(this.options.forcePronoun === MASK_ALWAYS){
+		if(this.options.pronoun === MASK_ALWAYS){
 			return true;
 		}
 		if(noun.props.pronoun === MASK_NEVER) {
@@ -95,22 +100,25 @@ export const ThingGetter = class extends abstractGetter {
 
 
 	isProperNoun(noun) {
-		if(this.options.forceProper) return true;
+		if(this.options.proper) return true;
 		else return noun.props.proper === true;
 	}
 
 
-	async filter(list, context) {
-		if(this.options.type === TYPE_THING) {
+	async filter(list, context, options) {
+		if(context.thing) {
+			return [{value:context.thing, props: {}}];
+		}
+		if(options.type === TYPE_THING) {
 			list = list.filter(noun => !noun.props.only || noun.props.only !== TYPE_OWNABLE);
 		}
-		else if (this.options.type === TYPE_OWNABLE) {
+		else if (options.type === TYPE_OWNABLE) {
 			list = list.filter(noun => !noun.props.only || noun.props.only !== TYPE_PROPER);
 		}
-		if(this.options.singular === true) {
+		if(options.singular === true) {
 			list = list.filter(async noun => await this.isSingular(noun));
 		}
-		if(this.options.plural === true) {
+		if(options.plural === true) {
 			list = list.filter(async noun => await !this.isSingular(noun));
 		}
 		return list;
@@ -118,6 +126,8 @@ export const ThingGetter = class extends abstractGetter {
 
 
 	async reduce(wordList) {
+
+		console.log(wordList);
 
 		const noun = await this.expandKeywordHelper(this.randomArray(wordList));
 		const useAdjective = await this.shouldUseAdjective(noun);

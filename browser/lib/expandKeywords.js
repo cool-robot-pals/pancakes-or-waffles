@@ -1,9 +1,17 @@
 import {makeSeed} from '../lib/random.js';
 import tensify from '/target/npm/tensify.js';
 
+import { MASK_ALWAYS, MASK_NEVER } from '../getter/thing.js';
+
 const matcher = /@(.*?)@/g;
 
 let ChancesGetter, ThingGetter, CharacterGetter, AdjectiveGetter, VerbGetter;
+
+const getReplacerMask = (lookup, replacer) => {
+	if(replacer.includes(lookup)) return MASK_ALWAYS;
+	else if(replacer.includes(`!${lookup}`)) return MASK_NEVER;
+	else return null;
+}
 
 const getReplacement = async (replacer, context, seed) => {
 	switch(replacer[0]) {
@@ -50,7 +58,9 @@ const getReplacement = async (replacer, context, seed) => {
 			seed: seed,
 			singular: replacer.includes('singular'),
 			plural: replacer.includes('plural'),
-			forceProper: replacer.includes('proper')
+			proper: replacer.includes('proper'),
+			pronoun: getReplacerMask('pronoun', replacer),
+			adjective: getReplacerMask('adjective', replacer),
 		}).get();
 	}
 	}

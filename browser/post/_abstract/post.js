@@ -11,11 +11,13 @@ class Post {
 		this.layout = props.layout;
 		this.context = {};
 
-		this.postGetter = this.buildGetter(PostGetter).get().then(post=>{
-			this.context = post;
-			this.buildGetters();
-			return post;
-		});
+		this.postGetter = this.buildGetter(PostGetter).get().then(post =>
+			Promise.all([
+				post,
+				()=>{this.context = post;},
+				this.buildGetters()
+			])
+		).then(([post]) => post)
 
 	}
 
@@ -45,7 +47,7 @@ class Post {
 
 	}
 
-	buildGetters() {}
+	async buildGetters() {}
 
 	async getMoreProps(post) {
 		return {};
