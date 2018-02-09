@@ -17,6 +17,7 @@
     "pluralize": "^7.0.0",
     "puppeteer": "^1.0.0",
     "query-string": "^5.0.1",
+    "react": "^16.2.0",
     "request": "^2.83.0",
     "seedrandom": "^2.4.2",
     "spdy": "^3.4.7",
