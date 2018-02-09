@@ -20,6 +20,7 @@
     "request": "^2.83.0",
     "seedrandom": "^2.4.2",
     "spdy": "^3.4.7",
+    "style-loader": "^0.19.1",
     "tensify": "0.0.3",
     "twit": "^2.2.5",
     "webpack": "^3.1.0",
