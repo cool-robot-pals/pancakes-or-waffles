@@ -79,6 +79,11 @@ lighthouse
 romance
 disco
 radiation
+hammer
+boot
+badge
+map
+
 
 patriarchy (singular=always,only=proper)
 

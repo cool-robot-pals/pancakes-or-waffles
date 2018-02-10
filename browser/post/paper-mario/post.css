@@ -1,0 +1,155 @@
+@import url(./../_abstract/post.css);
+
+.post {
+	font-family: pm-dialog, serif;
+	background: #000;
+	filter: blur(.03em);
+	image-rendering: pixelated;
+	-webkit-font-smoothing: none;
+	font-size: 36px;
+	letter-spacing: 2px;
+}
+
+.bg {
+	filter: saturate(2);
+	width: 960px;
+	margin: auto;
+	background-position: left top;
+}
+
+.choice {
+	display: flex;
+	text-transform: capitalize;
+}
+
+.choice span {
+	display: flex;
+	width: 100%;
+	line-height: 1.25;
+	height: 1.25em;
+	justify-content: space-between;
+}
+
+.choice span i {
+		font-style: normal;
+		margin-left: .5em;
+}
+
+.choice span i:after {
+	content: 'FP';
+	font-size: .5em;
+}
+
+.choice:before {
+	display: block;
+	height: 1em;
+	width: 1.2em;
+	transform: scale(1.2) translateY(-.1em);
+	content: var(--icon-9);
+	margin-right: .1em;
+	vertical-align: inherit;
+}
+.choice:nth-child(1):before {
+	content: url(./neutral-yellow.png);
+}
+.choice:nth-child(2):before {
+	content: var(--icon-2);
+}
+.choice:nth-child(3):before {
+	content: var(--icon-3);
+}
+.choice:nth-child(4):before {
+	content: var(--icon-4);
+}
+.choice:nth-child(5):before {
+	content: var(--icon-5);
+}
+.choice:nth-child(6):before {
+	content: var(--icon-6);
+}
+
+.content {
+	left: 200px;
+	right: 200px;
+	top: 2em;
+	bottom: 1em;
+	position: absolute;
+}
+
+.content:before {
+	content: url(./fing.png);
+	position: absolute;
+	left: .9em;
+	transform: scaleY(2) scaleX(2.2);
+	z-index: 99;
+	height: 1.25em;
+	top: calc(1.35em + calc(var(--selected) * 1.25em));
+}
+
+
+.extra[key=extra-descriptor],
+.choices {
+	background: #e8e5dd url(./checkerboard.png) center center repeat;
+	border-radius: 1em;
+	color: #3e3d31;
+	line-height: 1.5;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+}
+
+.choices {
+	padding: 1.25em 0 .5em 2em;
+	width: max-content;
+	position: relative;
+	right: auto;
+	bottom: auto;
+}
+
+.choices:before, .choices:after {
+	background: var(--brand);
+	display: block;
+	box-shadow: inset .1em .1em .1em .05em hsla(0, 100%, 100%, 0.5), inset -.1em -.1em .1em .05em hsla(0, 100%, 0%, 0.25);
+	border-radius: .33em;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	color: #fff;
+}
+
+.choices::after {
+	content: '';
+	right: .75em;
+	top: -1em;
+	height: 2em;
+	width: 2em;
+	border-radius: 100%;
+	background-size: 60%;
+	background-image: var(--icon-3);
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.choices::before {
+	content: 'Attacks';
+	top: -.6em;
+	left: 1.5em;
+	right: 3.5em;
+	text-shadow:
+	2px 2px 0 hsla(0, 0%, 0%, .5),
+	-2px -2px 0 hsla(0, 0%, 0%, .5),
+	-2px 2px 0 hsla(0, 0%, 0%, .5),
+	2px -2px 0 hsla(0, 0%, 0%, .5)
+	;
+	height: 1.3em;
+}
+
+.extra[key=extra-descriptor] {
+	bottom: 1em;
+	position: absolute;
+	top: auto;
+	padding: 0 1em;
+}

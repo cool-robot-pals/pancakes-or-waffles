@@ -11,7 +11,27 @@ const parse = (str) => {
 		.filter(chunk => chunk.charAt(0) !== '#')
 		.filter(chunk => chunk.length > 0)
 		.map(chunk => chunk === '_empty_'?'':chunk)
-		.map(chunk => expandBracketWords(chunk));
+		.map(expandBracketWords)
+		.map(chunk =>
+			(chunk instanceof Array)
+				? chunk
+				: [chunk]
+		);
+
+	const repeatCount = array.map(_ => _.length);
+	const max = repeatCount.reduce((acc,item)=>
+		item > acc
+			? item
+			: acc
+		,0);
+
+	array = array
+		.map((item,index)=>{
+			while(item.length < max) {
+				item = [...item, ...item];
+			}
+			return item;
+		});
 
 	array = [].concat.apply([], array);
 

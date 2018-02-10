@@ -1,18 +1,10 @@
 import abstractGetter from './abstract/abstract.js';
+import {TYPE_OWNABLE, TYPE_THING, TYPE_PROPER, MASK_ALWAYS, MASK_NEVER, MASK_WHEN_OWNABLE, MASK_WHEN_NOT_OWNABLE} from './abstract/constants.js';
 import ChancesGetter from './chances.js';
 import PronounGetter from './pronoun.js';
 import AdjectiveGetter from './adjective.js';
 
 import pluralize from '/target/npm/pluralize.js';
-
-export const TYPE_OWNABLE = 'ownable';
-export const TYPE_THING = 'thing';
-export const TYPE_PROPER = 'proper';
-
-export const MASK_ALWAYS = 'always';
-export const MASK_NEVER = 'thing';
-export const MASK_WHEN_OWNABLE = 'whenOwnable';
-export const MASK_WHEN_NOT_OWNABLE = 'whenNotOwnable';
 
 const defaultOptions = {
 	type: TYPE_THING
@@ -59,6 +51,12 @@ export const ThingGetter = class extends abstractGetter {
 
 
 	async shouldUseAdjective(noun) {
+		if(this.options.adjective === MASK_NEVER){
+			return false;
+		}
+		if(this.options.adjective === MASK_ALWAYS){
+			return true;
+		}
 		if(this.isProperNoun(noun)) {
 			return false;
 		}
@@ -69,11 +67,10 @@ export const ThingGetter = class extends abstractGetter {
 
 
 	async shouldUsePronoun(noun) {
-		console.log([noun.props.pronoun, noun.value]);
-		if(this.options.forcePronoun === MASK_NEVER){
+		if(this.options.pronoun === MASK_NEVER){
 			return false;
 		}
-		if(this.options.forcePronoun === MASK_ALWAYS){
+		if(this.options.pronoun === MASK_ALWAYS){
 			return true;
 		}
 		if(noun.props.pronoun === MASK_NEVER) {
@@ -95,22 +92,25 @@ export const ThingGetter = class extends abstractGetter {
 
 
 	isProperNoun(noun) {
-		if(this.options.forceProper) return true;
+		if(this.options.proper) return true;
 		else return noun.props.proper === true;
 	}
 
 
-	async filter(list, context) {
-		if(this.options.type === TYPE_THING) {
+	async filter(list, context, options) {
+		if(context.thing) {
+			return [{value:context.thing, props: {}}];
+		}
+		if(options.type === TYPE_THING) {
 			list = list.filter(noun => !noun.props.only || noun.props.only !== TYPE_OWNABLE);
 		}
-		else if (this.options.type === TYPE_OWNABLE) {
+		else if (options.type === TYPE_OWNABLE) {
 			list = list.filter(noun => !noun.props.only || noun.props.only !== TYPE_PROPER);
 		}
-		if(this.options.singular === true) {
+		if(options.singular === true) {
 			list = list.filter(async noun => await this.isSingular(noun));
 		}
-		if(this.options.plural === true) {
+		if(options.plural === true) {
 			list = list.filter(async noun => await !this.isSingular(noun));
 		}
 		return list;
@@ -157,5 +157,6 @@ export const ThingGetter = class extends abstractGetter {
 
 };
 
+export {TYPE_OWNABLE, TYPE_THING, TYPE_PROPER, MASK_ALWAYS, MASK_NEVER, MASK_WHEN_OWNABLE, MASK_WHEN_NOT_OWNABLE};
 
 export default ThingGetter;

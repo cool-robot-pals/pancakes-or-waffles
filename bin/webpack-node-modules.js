@@ -5,9 +5,11 @@ require('dotenv').config();
 
 const webpack = require('webpack');
 const WrapperPlugin = require('wrapper-webpack-plugin');
+const StringReplacePlugin = require('webpack-plugin-replace');
 const fs = require('fs');
 const path = require('path');
 const config = require('../.pancakerc');
+const reporter = require('./tools/reporter.js');
 
 const modules = [
 	'query-string',
@@ -15,6 +17,7 @@ const modules = [
 	'pluralize',
 	'number2text',
 	'tensify',
+	'conjugate',
 	'mocha/mocha.js'
 ];
 
@@ -38,28 +41,42 @@ const webpackify = (module) => {
 		}
 	})();
 
-	webpack({
-		entry: entry,
-		output: {
-			path: path.resolve(path.join(__dirname, '..', config.paths.build, 'npm')),
-			filename: `${module.replace('.js','')}.js`,
-			library: '_217878383_',
-			libraryTarget: 'var',
-		},
-		node: {
-			fs: 'empty'
-		},
-		plugins: [
-			new WrapperPlugin({
-				footer: 'export default _217878383_'
-			})
-		]
-	}, (err, stats) => {
-		if (err || stats.hasErrors()) {
-			console.error(err, stats);
-		}
-	});
+	return new Promise(yay => {
 
+		webpack({
+			entry: entry,
+			output: {
+				path: path.resolve(path.join(__dirname, '..', config.paths.build, 'npm')),
+				filename: `${module.replace('.js','')}.js`,
+				library: '_217878383_',
+				libraryTarget: 'var',
+			},
+			node: {
+				fs: 'empty'
+			},
+			plugins: [
+				new WrapperPlugin({
+					footer: 'export default _217878383_'
+				}),
+				new StringReplacePlugin({
+					values: {
+						'this.module !== module': 'true'
+					}
+				})
+			],
+		}, (err, stats) => {
+			if (err || stats.hasErrors()) {
+				throw new Error([err, stats]);
+			}
+			else {
+				yay();
+			}
+		});
+	});
 };
 
-modules.forEach(webpackify);
+modules.forEach(module =>
+	webpackify(module)
+		.then(info=> reporter.success(`Done: ${module}`))
+		.catch(err => reporter.error(err))
+);

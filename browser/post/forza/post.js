@@ -9,8 +9,8 @@ class CustomPost extends Post {
 	buildGetters() {
 		this.choices = this.buildGetter(BinaryChoicesGetter);
 		this.thing = this.buildGetter(ThingGetter,{
-			forceProper: true,
-			forcePronoun: 'never'
+			proper: true,
+			pronoun: 'never'
 		});
 	}
 

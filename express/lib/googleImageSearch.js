@@ -52,7 +52,7 @@ const googleImageSearch = async function(query) {
 							width: 20,
 							height: 10
 						},
-						link: 'http://cdn3.dualshockers.com/wp-content/uploads/2015/09/GravityRushRemastered-6.jpg'
+						link: '/static/offline.jpg'
 					}
 				]);
 			}
