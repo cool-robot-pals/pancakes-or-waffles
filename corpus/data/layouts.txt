@@ -13,3 +13,4 @@ gravity-rush
 forza
 dk64
 wii
+paper-mario
