@@ -21,7 +21,7 @@ export default () => {
 		window.it('should export 1+ choices', done => {
 			const $pancake = document.createElement('pancake-post');
 			$pancake.addEventListener('pancake-ready',(ev,extra)=>{
-				if(ev.detail.postData.choices.length > 1) {
+				if(ev.detail.postData.choices.length >= 1) {
 					done();
 				}
 				else done(new Error());
