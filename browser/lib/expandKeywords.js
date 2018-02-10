@@ -35,7 +35,7 @@ const getReplacement = async (replacer, context, seed) => {
 			return conjugate('it', verb);
 		}
 		else if(replacer.includes('simple')){
- 			return await (new VerbGetter({seed:seed},{simple:true})).get();
+			return await (new VerbGetter({seed:seed},{simple:true})).get();
 		}
 		else if(replacer.includes('past')){
 			const verb = await (new VerbGetter({seed:seed},{simple:true})).get();
