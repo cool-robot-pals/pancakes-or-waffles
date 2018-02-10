@@ -1,8 +1,6 @@
 const expandBracketWords = require('./txt/expandBracketWords.js');
 const expandProps = require('./txt/expandProps.js');
 
-
-
 const parse = (str) => {
 
 	return str.split('\n')
