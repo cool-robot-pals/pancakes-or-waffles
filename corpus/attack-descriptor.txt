@@ -1,0 +1,7 @@
+@verb.conjugate@ @character@ with @thing@. Works [several times, once].
+@verb.conjugate@ @character@ with @thing@.
+@verb.conjugate@ @character@ with @thing@. [Can, Will, May] @verb@ [the, your] [enemy, foe, friend, partner].
+@verb.conjugate@ @character@ with @thing@. [Can, Will, May] @verb@ @character@.
+@adjective@ly @verb@ @character@'s @thing.!pronoun@.
+@adjective@ly @verb@ @character@'s @thing.!pronoun@. [Can, Will, May] @verb@ [the, your] [enemy, foe, friend, partner].
+@adjective@ly @verb@ @character@'s @thing.!pronoun@. [Can, Will, May] @verb@ @character@.

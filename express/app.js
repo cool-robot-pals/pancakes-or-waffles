@@ -6,7 +6,7 @@ const fs = require('fs');
 const app = express();
 
 app.use('/target', express.static(path.resolve(__dirname, '../target')));
-app.use('/view', express.static(path.resolve(__dirname, './view')));
+app.use('/static', express.static(path.resolve(__dirname, './static')));
 
 app.use('/app', express.static(path.resolve(__dirname, '../browser')));
 app.use('/corpus', express.static(path.resolve(__dirname, '../corpus')));

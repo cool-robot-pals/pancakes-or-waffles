@@ -52,7 +52,7 @@ const googleImageSearch = async function(query) {
 							width: 20,
 							height: 10
 						},
-						link: '/view/offline.jpg'
+						link: '/static/offline.jpg'
 					}
 				]);
 			}

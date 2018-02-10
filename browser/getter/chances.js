@@ -1,7 +1,6 @@
 import abstractGetter from './abstract/abstract.js';
 import {randomNumber} from '../lib/random.js';
 
-
 export default class ChancesGetter extends abstractGetter {
 
 	constructor(...props) {

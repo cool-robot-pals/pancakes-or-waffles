@@ -16,8 +16,6 @@ hug
 smash @character-or-thing@ with
 smash
 hug with
-cuddle
-cuddle with
 elope with
 flirt with
 swoon over
@@ -103,3 +101,7 @@ burn
 burn down
 torch
 incinerate
+attack
+jump
+bounce
+focus

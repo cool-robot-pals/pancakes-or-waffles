@@ -11,13 +11,13 @@ class Post {
 		this.layout = props.layout;
 		this.context = {};
 
-		this.postGetter = this.buildGetter(PostGetter).get().then(post =>
-			Promise.all([
+		this.postGetter = this.buildGetter(PostGetter).get().then(post => {
+			this.context = post;
+			return Promise.all([
 				post,
-				()=>{this.context = post;},
-				this.buildGetters()
-			])
-		).then(([post]) => post)
+				this.buildGetters(),
+			]);
+		}).then(([post]) => post);
 
 	}
 

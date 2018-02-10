@@ -8,8 +8,16 @@ const render = (options={}) =>
 	<head>
 		<meta charset="UTF-8">
 		<title>🐙</title>
-		<link href="/view/index.css" rel="stylesheet">
+		<link href="/static/index.css" rel="stylesheet">
 		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,500i|Rammetto+One|Gentium+Book+Basic:700|Patrick+Hand|Poiret+One|Roboto+Mono:500|Oswald:600|Lato:700,400|Tulpen+One">
+		<style>
+			@font-face {
+			    font-family: 'pm-dialog';
+			    src: url('/static/font/pm-dialog.woff2') format('woff2');
+			    font-weight: normal;
+			    font-style: normal;
+			}
+		</style>
 	</head>
 	<body>
 		<div id="pancakes"></div>
@@ -20,7 +28,7 @@ const render = (options={}) =>
 	${options.mode==='wall'?
 		`
 		<script type="module" src="/app/index.wall.js"></script>
-		<link href="/view/wall.css" rel="stylesheet"></head>
+		<link href="/static/wall.css" rel="stylesheet"></head>
 		`:''
 	}
 	${options.mode==='test'?
