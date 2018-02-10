@@ -1,74 +1,56 @@
 const expandBracketWords = require('./txt/expandBracketWords.js');
-
-const propsRegex = /\((.*?)\)/;
+const expandProps = require('./txt/expandProps.js');
 
 const parse = (str) => {
 
-	let array = str.split('\n');
+	return str.split('\n')
 
-	array = array
+		/*
+		basic mangling
+		*/
 		.map(chunk => chunk.trim())
 		.filter(chunk => chunk.charAt(0) !== '#')
 		.filter(chunk => chunk.length > 0)
 		.map(chunk => chunk === '_empty_'?'':chunk)
+
+		/*
+		expand [the words, the things] between
+		brackets into all possibilities, then
+		expand all to fix the probabilities biasing
+		towards the bracketed ones
+		*/
 		.map(expandBracketWords)
-		.map(chunk =>
-			(chunk instanceof Array)
-				? chunk
-				: [chunk]
-		);
-
-	const repeatCount = array.map(_ => _.length);
-	const max = repeatCount.reduce((acc,item)=>
-		item > acc
-			? item
-			: acc
-		,0);
-
-	array = array
-		.map((item,index)=>{
+		.map((item, index, original) => {
+			const max = original
+				.map(_ => _.length)
+				.reduce((acc,item) =>
+					item > acc
+						? item
+						: acc
+					, 0 );
 			while(item.length < max) {
 				item = [...item, ...item];
 			}
 			return item;
+		})
+		.reduce((acc,chunk)=>[...acc,...chunk],[])
+
+		/*
+		grab the props specified at the end
+		*/
+		.map(expandProps)
+		.map((chunk,i,original) => {
+			const propCount = original.reduce((acc,current) =>
+				acc + Object.keys(current.props).length
+				, 0);
+			return propCount < 1
+				? chunk.value
+				: chunk;
 		});
-
-	array = [].concat.apply([], array);
-
-	const arrayWithProps = array
-		.map(chunk => {
-			let props = {};
-			let propArray = propsRegex.exec(chunk);
-			if(propArray) {
-				propArray = propArray[1].split(',');
-				chunk = chunk.replace(propsRegex,'').trim();
-			}
-			else {
-				propArray = [];
-			}
-			if(propArray.length > 0) {
-				propArray.map(prop => {
-					prop = prop.split('=');
-					props[prop[0]] = prop[1]?prop[1]:true;
-				});
-			}
-			return {
-				value: chunk,
-				props: props
-			};
-		});
-
-	const propCount = arrayWithProps.reduce((acc,current) => {
-		return acc + Object.keys(current.props).length;
-	}, 0);
-
-	if(propCount < 1) {
-		return arrayWithProps.map(item => item.value);
-	}
-	else {
-		return arrayWithProps;
-	}
 
 };
+
+
+
 
 module.exports = parse;
