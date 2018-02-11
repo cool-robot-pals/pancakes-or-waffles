@@ -39,7 +39,7 @@ const takeScreenshot = async () => {
 	page.on('console', msg => {
 		console.log(msg.text());
 	});
-	await page.waitFor(2000);
+	await page.waitFor(4000);
 	await page.screenshot({ path: outPath });
 
 	await browser.close();
