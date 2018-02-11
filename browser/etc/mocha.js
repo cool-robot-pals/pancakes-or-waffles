@@ -67,10 +67,10 @@ export default () => {
 		});
 
 
-		window.it('should make all layouts 3x without an error', done => {
+		window.it('should make all layouts 2x without an error', done => {
 			new LayoutGetter().fetch().then(fetchedLayouts => {
 
-				const layouts = [...fetchedLayouts,...fetchedLayouts,...fetchedLayouts];
+				const layouts = [...fetchedLayouts,...fetchedLayouts];
 				const total = layouts.length;
 
 				let rendered = 0;
@@ -104,7 +104,7 @@ export default () => {
 					}
 				});
 			});
-		}).timeout(5000);
+		}).timeout(10000);
 	});
 
 	window.mocha.reporter('spec').run( failures => {
