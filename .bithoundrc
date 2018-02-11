@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "unused-ignores": [
-      "mocha",
       "eslint",
       "concurrently",
       "babel-core",
@@ -13,7 +12,7 @@
       'number2text',
       'tensify',
       'conjugate',
-      'mocha/mocha.js'
+      'mocha'
     ]
   }
 }
