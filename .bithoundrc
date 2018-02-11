@@ -5,14 +5,13 @@
       "concurrently",
       "babel-core",
       "*-loader",
-
-      'query-string',
-      'seedrandom',
-      'pluralize',
-      'number2text',
-      'tensify',
-      'conjugate',
-      'mocha'
+      "query-string",
+      "seedrandom",
+      "pluralize",
+      "number2text",
+      "tensify",
+      "conjugate",
+      "mocha"
     ]
   }
 }
