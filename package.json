@@ -13,7 +13,6 @@
     "express": "^4.16.2",
     "js-yaml": "^3.10.0",
     "mocha": "^5.0.0",
-    "number-to-text": "^0.3.2",
     "number2text": "^1.1.0",
     "pluralize": "^7.0.0",
     "puppeteer": "^1.0.0",

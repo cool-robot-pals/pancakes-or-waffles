@@ -5,7 +5,15 @@
       "eslint",
       "concurrently",
       "babel-core",
-      "*-loader"
+      "*-loader",
+
+      'query-string',
+      'seedrandom',
+      'pluralize',
+      'number2text',
+      'tensify',
+      'conjugate',
+      'mocha/mocha.js'
     ]
   }
 }
