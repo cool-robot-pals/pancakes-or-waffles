@@ -14,7 +14,9 @@ const config = require('../.pancakerc');
 const server = require('../express/app.js');
 
 const port = 1337; /*bite me*/
-const url = `https://localhost:${port}/`;
+const url = (process.env.npm_config_layout
+	? `https://localhost:${port}/?layout=${process.env.npm_config_layout}`
+	: `https://localhost:${port}/`);
 const outPath = path.join(__dirname, '..', config.paths.build, config.filenames.base + '.jpg');
 
 try {
